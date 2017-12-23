@@ -85,11 +85,8 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();		
 		int start = (page - 1) * 5;
 		
-//		HttpServletRequest request = null;
-//		System.out.println(service.selectCount());
 		mav.addObject("total",service.selectCount());
-		
-		System.out.println(session.getAttribute("userInfo"));
+		mav.addObject("page", page);
 		if(userInfo == null) {
 			mav.setViewName("redirect:loginForm.do");
 			return mav;
@@ -102,13 +99,12 @@ public class BoardController {
 	}
 
 	@RequestMapping("detail.do")
-	public ModelAndView detail(@RequestParam int num, HttpSession session) {
+	public ModelAndView detail(@RequestParam int num, HttpSession session , @RequestParam("page") int page) {
 		HashMap<String, Object> userInfo = new HashMap<String, Object>();
 		userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 		service.readCountUp(num);
-
 		ModelAndView mav = new ModelAndView();
-		System.out.println(session.getAttribute("userInfo"));
+		mav.addObject("page", page);
 		if(userInfo == null) {
 			mav.setViewName("redirect:loginForm.do");
 			return mav;

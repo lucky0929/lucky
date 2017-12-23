@@ -78,9 +78,10 @@ public class BoardService {
 
 				params.put("file", storedFileName);
 				bDao.insertBoard(params);
+			}else {
+			bDao.insertBoard(params);
 			}
 		}
-		bDao.insertBoard(params);
 	}
 
 

@@ -57,7 +57,7 @@
 				<td>${board.num }</td>
 				<td>${board.name }</td>
 				<td><a
-					href="http://localhost/Board/detail.do?num=${board.num }">${board.title }</a>
+					href="http://localhost/Board/detail.do?num=${board.num }&page=${page }">${board.title }</a>
 				</td>
 				<td>${board.readCount }</td>
 			</tr>

@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1><a href="main.do?page=${page }">홈으로</a></h1>
 	<center>
 		<h1>제목 : ${detail.title }</h1>
 		작성자 : ${detail.name }
