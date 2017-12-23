@@ -77,14 +77,18 @@ public class BoardController {
 
 	//	------------------------------------   밑에부터 보드   ---------------------------------------------- 
 
+	
 	@RequestMapping("main.do")
 	public ModelAndView main(HttpSession session, @RequestParam(defaultValue="1") int page) {
 		HashMap<String, Object> userInfo = new HashMap<String, Object>();
 		userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
-		ModelAndView mav = new ModelAndView();
-		System.out.println("페이지는"+page);
-		mav.addObject("count",service.selectCount());
+		ModelAndView mav = new ModelAndView();		
 		int start = (page - 1) * 5;
+		
+//		HttpServletRequest request = null;
+//		System.out.println(service.selectCount());
+		mav.addObject("total",service.selectCount());
+		
 		System.out.println(session.getAttribute("userInfo"));
 		if(userInfo == null) {
 			mav.setViewName("redirect:loginForm.do");

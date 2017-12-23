@@ -1,9 +1,12 @@
+<%@page import="org.springframework.stereotype.Service"%>
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
 <%@page import="dao.IBoardDao"%>
 <%@page import="service.BoardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@page import="util.PaginateUtil"%>
+<%@page import="util.PaginateUtil"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="total" value="${total }"/>
 <%
 	//page 파라미터 받음
 	String pageStr = 
@@ -19,7 +22,7 @@
 	}//if end
 	
 	//한 페이지당 보여질 방명록 갯수
-	int numPage = 4;
+	int numPage = 5;
 	
 	//페이징의 블록갯수
 	int numBlock = 5;
@@ -27,13 +30,13 @@
 	String url = "main.do";
 	String param = "page=";
 	
+	int total = (int)request.getAttribute("total");
 	
-	int total = %>${count }<%;
 	//페이징 마크업(문자열)
-	String paginate = 
+	String paginate =  
 	PaginateUtil.getPaginate(nowPage, total, numPage, numBlock, url, param);
 %>
-	
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -73,9 +76,8 @@
 			<option value="content">내용</option>
 			<option value="titleAndContent">제목+내용</option>
 			<option value="name">글쓴이</option>
-		</select> 
-		<input id="searchBox" type="text" name="whatSearch"> 
-		<input	type="submit" value="검색">
+		</select> <input id="searchBox" type="text" name="whatSearch"> <input
+			type="submit" value="검색">
 	</form>
 
 	<script type="text/javascript" src="js/jquery.js"></script>
