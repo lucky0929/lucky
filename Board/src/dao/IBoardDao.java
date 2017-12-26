@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 public interface IBoardDao {
 	
 	public int selectCount();
+	
+	public int searchCount(HashMap<String, Object> params);
 
 	public void insertBoard(HashMap<String, Object> params);
 	

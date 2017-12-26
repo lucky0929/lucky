@@ -114,6 +114,20 @@ public class BoardController {
 		mav.setViewName("detail");
 		return mav;
 	}
+	
+	@RequestMapping("search.do")
+	public ModelAndView search(@RequestParam HashMap<String, Object> params,  @RequestParam(defaultValue="1") int page) {
+		ModelAndView mav = new ModelAndView();
+//		int start = (page - 1) * 5;
+//		params.put("start", start);
+		System.out.println("파라미터"+params);
+		mav.addObject("search", service.search(params));
+//		mav.addObject("total",service.searchCount(params));
+//		mav.addObject("page", page);
+		mav.setViewName("search");
+		return mav;
+	}
+
 
 	@RequestMapping("insertForm.do")
 	public String insertForm(HttpSession session){
@@ -175,19 +189,6 @@ public class BoardController {
 		service.deleteBoard(params);
 		return "redirect:main.do";
 	}
-
-
-
-	@RequestMapping("search.do")
-	public ModelAndView search(@RequestParam HashMap<String, Object> params) {
-		ModelAndView mav = new ModelAndView();
-		//		params.put("whatSearch", params.get(params.get("what")));
-		System.out.println(params);
-		mav.addObject("search", service.search(params));
-		mav.setViewName("search");
-		return mav;
-	}
-
 
 
 	//	-----------------------------------밑에부터 댓글 ------------------------------------

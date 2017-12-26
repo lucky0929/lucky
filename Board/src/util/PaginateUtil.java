@@ -1,5 +1,7 @@
 package util;
 
+import org.springframework.beans.NotWritablePropertyException;
+
 public class PaginateUtil {
 
 	public static String getPaginate(int pageNo,
@@ -28,15 +30,24 @@ public class PaginateUtil {
 				"<div class='paginate'>";
 
 		if(total!=0) {
+			
+			if(pageNo < 6) {// 지금 6페이지보다 높을때만
+				//비활성화
+				paginate += "<span title=\"이전 페이지 없음\"><i class=\"fa fa-chevron-left\"></i></span>";
+			}else {
+				//활성화
+				paginate += "<a href='"+url+"?"+param+(1)+"' title='이전 페이지로'><i class='fa fa-chevron-left'></i><span class='screen_out'> 처음으로</span></a>";
+				
+			}//if end
 
-			if(totalPage > 5) {
+			if(totalPage > 5) {//5페이지 이상일때만
 				//이전버튼
-				if(pageNo<=1) {
+				if(pageNo < 6) {// 지금 6페이지 이상일떄만
 					//비활성화
 					paginate += "<span title=\"이전 페이지 없음\"><i class=\"fa fa-chevron-left\"></i></span>";
 				}else {
 					//활성화
-					paginate += "<a href='"+url+"?"+param+(pageNo-1)+"' title='이전 페이지로'><i class='fa fa-chevron-left'></i><span class='screen_out'>이전 페이지</span></a>";
+					paginate += "<a href='"+url+"?"+param+(pageNo-5)+"' title='이전 페이지로'><i class='fa fa-chevron-left'></i><span class='screen_out'> 이전 </span></a>";
 
 				}//if end
 			}
@@ -65,14 +76,30 @@ public class PaginateUtil {
 
 			}//for end(블록 만들기)
 
-			if(totalPage > 5) {
+			if(totalPage > 5) {//전체 6페이지 이상일때만
 				//다음버튼
-				if(pageNo >= totalPage) {
+				if(totalPage < 6) {
 					//비활성화
 					paginate+="<span title='다음 페이지 없음'><i class='fa fa-chevron-right'></i></span>";
 				}else {
 					//활성화
-					paginate+="<a href='"+url+"?"+param+(pageNo+1)+"' title='다음 페이지로'><i class='fa fa-chevron-right'></i><span class='screen_out'>다음 페이지</span></a>";
+					if(pageNo+5 < totalPage) {
+						paginate+="<a href='"+url+"?"+param+(pageNo+5)+"' title='다음 페이지로'><i class='fa fa-chevron-right'></i><span class='screen_out'> 다음 </span></a>";
+					}else
+						paginate+="<a href='"+url+"?"+param+(totalPage)+"' title='다음 페이지로'><i class='fa fa-chevron-right'></i><span class='screen_out'> 다음 </span></a>";
+						
+				}//if end
+			}//if tatalpage > 5 end
+
+
+			if(totalPage > 5) {//5페이지 이상일때만
+				//다음버튼
+				if(totalPage < 6) {
+					//비활성화
+					paginate+="<span title='다음 페이지 없음'><i class='fa fa-chevron-right'></i></span>";
+				}else {
+					//활성화
+					paginate+="<a href='"+url+"?"+param+(totalPage)+"' title='다음 페이지로'><i class='fa fa-chevron-right'></i><span class='screen_out'> 끝으로 </span></a>";
 				}//if end
 			}//if tatalpage > 5 end
 

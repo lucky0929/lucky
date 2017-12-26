@@ -45,6 +45,9 @@ public class BoardService {
 	public int selectCount() {
 		return bDao.selectCount();
 	}
+	public int searchCount(HashMap<String, Object> params) {
+		return bDao.searchCount(params);
+	}
 
 	public List<HashMap<String, Object>> selectAll(int start){
 		return bDao.selectAll(start);
@@ -79,7 +82,7 @@ public class BoardService {
 				params.put("file", storedFileName);
 				bDao.insertBoard(params);
 			}else {
-			bDao.insertBoard(params);
+				bDao.insertBoard(params);
 			}
 		}
 	}

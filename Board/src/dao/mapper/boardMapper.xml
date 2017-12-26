@@ -15,11 +15,13 @@
 		,#{name},#{pass},#{content},#{title}, #{file}, #{readCount})
 	</insert>
 
-	<select id="selectAll" resultType="java.util.HashMap" parameterType="int">
-		SELECT num,name,pass,content,email,readCount,writedate,title,file
+	<select id="selectAll" resultType="java.util.HashMap"
+		parameterType="int">
+		SELECT
+		num,name,pass,content,email,readCount,writedate,title,file
 		FROM board
- 		order by num desc
- 		limit #{start},5
+		order by num desc
+		limit #{start},5
 
 	</select>
 
@@ -51,22 +53,43 @@
 
 	<select id="search" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
-		select * from board where
+		select * from board
+		where
 		<if test="what == 'titleAndContent'.toString()">
-		title like '%${whatSearch}%' or content like '%${whatSearch}%'
+			title like '%${whatSearch}%' or content like '%${whatSearch}%'
 		</if>
 		<if test="what == 'title'.toString()">
-		title like '%${whatSearch}%' 
+			title like '%${whatSearch}%'
 		</if>
 		<if test="what == 'content'.toString()">
-		content like '%${whatSearch}%'
+			content like '%${whatSearch}%'
 		</if>
 		<if test="what == 'name'.toString()">
-		name like '%${whatSearch}%' 
+			name like '%${whatSearch}%'
 		</if>
-		
+		order by num desc
+		<!-- limit #{start},5 -->
 	</select>
 
+	<select id="searchCount" parameterType="java.util.HashMap"
+		resultType="int">
+		select COUNT(*) from board
+		where
+		<if test="what == 'titleAndContent'.toString()">
+			title like '%${whatSearch}%' or content like '%${whatSearch}%'
+		</if>
+		<if test="what == 'title'.toString()">
+			title like '%${whatSearch}%'
+		</if>
+		<if test="what == 'content'.toString()">
+			content like '%${whatSearch}%'
+		</if>
+		<if test="what == 'name'.toString()">
+			name like '%${whatSearch}%'
+		</if>
+		order by num desc
+		limit #{start},5
+	</select>
 
 
 
@@ -90,9 +113,9 @@
 		update comment set
 		comment = #{comment} where commentNum = #{commentNum}
 	</update>
-	
+
 	<select id="oneComment" parameterType="String" resultType="java.util.HashMap">
-		select * from comment where commentNum = #{commentNum}	
+		select * from comment where commentNum = #{commentNum}
 	</select>
 
 
