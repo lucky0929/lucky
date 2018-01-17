@@ -23,7 +23,7 @@ public class LoginInfo {
 	public void setProfile(String profile) { this.profile = profile; }
 	public void setSex(Character sex) { this.sex = sex; }
 	public void setIntroduction(String introduction) { this.introduction = introduction; }
-
+	
 	@Override
 	public String toString() {
 		return "LoginInfo [no=" + no + ", name=" + name + ", nickname=" + nickname + ", regionNo=" + regionNo

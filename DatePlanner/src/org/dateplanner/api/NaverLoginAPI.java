@@ -1,11 +1,11 @@
 package org.dateplanner.api;
 
-import org.dateplanner.vo.LoginInfo;
+import org.dateplanner.vo.ApiLoginInfo;
 
 public class NaverLoginAPI implements LoginAPI {
 	
 	@Override
-	public LoginInfo login(String arg) {
+	public ApiLoginInfo login(String arg) {
 		
 		return null;
 		
