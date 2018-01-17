@@ -7,6 +7,6 @@ public class hello {
 		System.out.println("성종이 안되냐");
 		System.out.println("록기록기");
 		System.out.println("록기록기");
-		System.out.println("패키지 만들었음");//
+		System.out.println("패키지 만들었음");
 	}
 }
