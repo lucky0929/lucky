@@ -1,9 +1,6 @@
 
 public class hello {
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-System.out.println("안녕로봇");
+		System.out.println("유선일 커밋테스트");
 	}
-
 }
