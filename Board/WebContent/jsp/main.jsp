@@ -14,7 +14,7 @@
 
 	// 기본값은 1
 	int nowPage = 1;
-
+	
 	//만약 page파라미터가 있다면 
 	//int형으로 변환
 	if(pageStr!=null && pageStr.length()!=0){
