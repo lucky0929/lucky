@@ -30,7 +30,6 @@
 		while ((msg = br.readLine()) != null) {
 			data += msg;
 		}
-/* ㅎㅇ */
 		/*String token = (String) items.get("access_token"); */
 	%>
 	<%=data %>
