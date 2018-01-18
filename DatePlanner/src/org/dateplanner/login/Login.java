@@ -4,6 +4,6 @@ import org.dateplanner.vo.ApiLoginInfo;
 
 public interface Login {
 	
-	public ApiLoginInfo login(String arg);
+	public ApiLoginInfo apiLogin(String arg);
 	
 } //interface Login;
