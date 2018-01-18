@@ -15,6 +15,8 @@ public class NaverLoginAPI implements Login {
 //		private Character sex;
 //		private String introduction;
 		
+		String client_id = "tOzxSVFgBuq1ArjsmwsD"; // 네이버API 앱키
+		String client_secret = "PJRT5Ku1Yp"; //
 		
 		
 		ApiLoginInfo result = new ApiLoginInfo();
