@@ -15,6 +15,6 @@ public class ApiToken {
 	public void setKey(String key) { this.key = key; }
 	
 	@Override
-	public String toString() { return "ApiToken [platform=" + platform + ", key=" + key + "]"; }
+	public String toString() { return "ApiToken [no=" + no + ", platform=" + platform + ", key=" + key + ", " + super.toString() + "]"; }
 	
 } //class ApiToken;
