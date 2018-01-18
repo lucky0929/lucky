@@ -2,21 +2,21 @@ package org.dateplanner.vo;
 
 public class LoginInfo {
 	
-	private int no;
+	private Integer no;
 	private String name, nickname;
 	private Integer regionNo;
 	private String profile;
 	private Character sex;
 	private String introduction;
 	
-	public int getNo() { return no; }
+	public Integer getNo() { return no; }
 	public String getName() { return name; }
 	public String getNickname() { return nickname; }
 	public Integer getRegionNo() { return regionNo; }
 	public String getProfile() { return profile; }
 	public Character getSex() { return sex; }
 	public String getIntroduction() { return introduction; }
-	public void setNo(int no) { this.no = no; }
+	public void setNo(Integer no) { this.no = no; }
 	public void setName(String name) { this.name = name; }
 	public void setNickname(String nickname) { this.nickname = nickname; }
 	public void setRegionNo(Integer regionNo) { this.regionNo = regionNo; }
