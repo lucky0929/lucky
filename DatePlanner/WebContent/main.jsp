@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.fasterxml.jackson.databind.ObjectMapper"%>
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.net.HttpURLConnection"%>
@@ -24,15 +26,16 @@
 		URLConnection urlConn = url.openConnection();
 		HttpURLConnection hurlConn = (HttpURLConnection) urlConn;
 		hurlConn.setRequestProperty("Content-Type", "application/x-www-form-unlencoded");
-		BufferedReader br = new BufferedReader(new InputStreamReader(hurlConn.getInputStream(), "UTF-8"));
+		/*BufferedReader br = new BufferedReader(new InputStreamReader(hurlConn.getInputStream(), "UTF-8"));
 		String data = "";
 		String msg = null;
 		while ((msg = br.readLine()) != null) {
 			data += msg;
-		}
+		}*/
+		Map data = new ObjectMapper().readValue(hurlConn.getInputStream(), Map.class);
 /* ㅎㅇ */
 		/*String token = (String) items.get("access_token"); */
 	%>
-	<%=data %>
+	<%=data.get("access_token")%>
 </body>
 </html>
