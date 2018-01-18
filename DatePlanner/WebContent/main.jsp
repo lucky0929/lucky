@@ -31,7 +31,7 @@
 						Sign Up</a></li>
 				<li><a
 					href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
-						<span class="glyphicon glyphicon-log-in"></span> Login
+						<span class="glyphicon glyphicon-log-in"></span> 로그인
 				</a></li>
 			</ul>
 		</div>
