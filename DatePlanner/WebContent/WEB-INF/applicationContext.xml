@@ -27,12 +27,4 @@
   <aop:config>
 	<aop:advisor advice-ref="tx" pointcut="execution(public * org.dateplanner.service.*Service.*(..))"/>
   </aop:config>
-  <bean id="memberDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	<property name="mapperInterface" value="me.laziness.dao.IMemberDAO"/>
-  </bean>
-  <bean id="boardDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	<property name="mapperInterface" value="me.laziness.dao.IBoardDAO"/>
-  </bean>
 </beans>
