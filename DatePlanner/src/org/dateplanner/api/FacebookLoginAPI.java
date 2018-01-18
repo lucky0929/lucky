@@ -6,7 +6,7 @@ import org.dateplanner.vo.ApiLoginInfo;
 public class FacebookLoginAPI implements Login {
 	
 	@Override
-	public ApiLoginInfo apiLogin(String arg) {
+	public ApiLoginInfo login(String arg) {
 		
 		return null;
 		
