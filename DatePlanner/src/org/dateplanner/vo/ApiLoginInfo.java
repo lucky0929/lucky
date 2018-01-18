@@ -1,16 +1,17 @@
 package org.dateplanner.vo;
 
-public class ApiLoginInfo {
+public class ApiLoginInfo extends  LoginInfo {
+
+	//platform: D = DatePlanner, N = Naver, F = Facebook
+	private char platform;
+	private String key;
 	
-	private ApiToken apiToken;
-	private LoginInfo loginInfo;
-	
-	public ApiToken getApiToken() { return apiToken; }
-	public LoginInfo getLoginInfo() { return loginInfo; }
-	public void setApiToken(ApiToken apiToken) { this.apiToken = apiToken; }
-	public void setLoginInfo(LoginInfo loginInfo) { this.loginInfo = loginInfo; }
+	public char getPlatform() { return platform; }
+	public String getKey() { return key; }
+	public void setPlatform(char platform) { this.platform = platform; }
+	public void setKey(String key) { this.key = key; }
 	
 	@Override
-	public String toString() { return "ApiLoginInfo [apiToken=" + apiToken + ", loginInfo=" + loginInfo + "]"; }
+	public String toString() { return "ApiLoginInfo [platform=" + platform + ", key=" + key + ", " + super.toString() + "]"; }
 	
 } //class ApiLoginInfo;
