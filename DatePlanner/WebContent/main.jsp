@@ -1,5 +1,3 @@
-<%@page import="java.util.Map"%>
-<%@page import="com.fasterxml.jackson.databind.ObjectMapper"%>
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.net.HttpURLConnection"%>
@@ -26,28 +24,15 @@
 		URLConnection urlConn = url.openConnection();
 		HttpURLConnection hurlConn = (HttpURLConnection) urlConn;
 		hurlConn.setRequestProperty("Content-Type", "application/x-www-form-unlencoded");
-		/*BufferedReader br = new BufferedReader(new InputStreamReader(hurlConn.getInputStream(), "UTF-8"));
+		BufferedReader br = new BufferedReader(new InputStreamReader(hurlConn.getInputStream(), "UTF-8"));
 		String data = "";
 		String msg = null;
 		while ((msg = br.readLine()) != null) {
 			data += msg;
-		}*/
-		Map data = new ObjectMapper().readValue(hurlConn.getInputStream(), Map.class);
+		}
 /* ㅎㅇ */
 		/*String token = (String) items.get("access_token"); */
-	%><%-- <%=data%><br> --%>
-	<%
-	if(data.get("error") == null) {
-		String token = (String)data.get("access_token"); 
-		URL url2 =  new URL("https://openapi.naver.com/v1/nid/me");
-		URLConnection urlConn2 = url2.openConnection();
-		HttpURLConnection hurlConn2 = (HttpURLConnection) urlConn2;
-		hurlConn2.setRequestProperty("Content-Type", "application/x-www-form-unlencoded");	
-		hurlConn2.setRequestMethod("GET");
-		hurlConn2.setRequestProperty("Authorization", "Bearer " + token);
-		Map data2 = new ObjectMapper().readValue(hurlConn2.getInputStream(), Map.class);
-		%><%=data2.get("response")%><%
-	}
 	%>
+	<%=data %>
 </body>
 </html>
