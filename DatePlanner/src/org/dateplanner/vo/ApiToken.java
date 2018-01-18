@@ -2,16 +2,16 @@ package org.dateplanner.vo;
 
 public class ApiToken {
 	
-	//platform: N = naver, F = facebook
+	//platform: D = DatePlanner, N = Naver, F = Facebook
 	private char platform;
-	private String token;
+	private String key;
 	
 	public char getPlatform() { return platform; }
-	public String getToken() { return token; }
+	public String getKey() { return key; }
 	public void setPlatform(char platform) { this.platform = platform; }
-	public void setToken(String token) { this.token = token; }
+	public void setKey(String key) { this.key = key; }
 	
 	@Override
-	public String toString() { return "ApiToken [platform=" + platform + ", token=" + token + "]"; }
+	public String toString() { return "ApiToken [platform=" + platform + ", key=" + key + "]"; }
 	
 } //class ApiToken;
