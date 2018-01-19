@@ -24,7 +24,7 @@ public class NaverLoginAPI implements Login {
 			conn.disconnect();
 		}catch (IOException e) { e.printStackTrace(); }
 		return result;
-		
+
 	} //getToken();
 	
 	@SuppressWarnings("unchecked")
@@ -41,7 +41,6 @@ public class NaverLoginAPI implements Login {
 		}
 		catch (IOException e) { e.printStackTrace(); }
 		return result;
-		
 	} //getProfile();
 	
 	@Override
@@ -74,5 +73,4 @@ public class NaverLoginAPI implements Login {
 		return result;
 		
 	} // login();
-
 } // class NaverLoginAPI;
