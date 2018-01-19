@@ -1,11 +1,12 @@
 package org.dateplanner.api;
 
-import org.dateplanner.vo.LoginInfo;
+import org.dateplanner.login.Login;
+import org.dateplanner.vo.ApiLoginInfo;
 
-public class FacebookLoginAPI implements LoginAPI {
+public class FacebookLoginAPI implements Login {
 	
 	@Override
-	public LoginInfo login(String arg) {
+	public ApiLoginInfo login(String arg) {
 		
 		return null;
 		
