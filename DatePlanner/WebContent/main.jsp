@@ -29,16 +29,20 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 						회원가입</a></li>
-						
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">로그인 <span class="glyphicon glyphicon-log-in"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">네이버 로그인</a></li>
-                    <li><a href="#">페이스북 로그인</a></li>
-                    <li><a href="#">구글 로그인</a></li>
-                </ul>
-            </li>
+
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">로그인 
+					<span class="glyphicon glyphicon-log-in"></span></a>
+
+					<ul class="dropdown-menu">
+						<li><a
+							href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">네이버
+								로그인</a></li>
+						<li><a href="#">페이스북 로그인</a></li>
+						<li><a href="#">구글 로그인</a></li>
+					</ul></li>
 			</ul>
-		</div> 
+		</div>
 	</nav>
 	<h1>안녕</h1>
 	<%
