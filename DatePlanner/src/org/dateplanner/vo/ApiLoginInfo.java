@@ -1,6 +1,6 @@
 package org.dateplanner.vo;
 
-public class ApiLoginInfo extends  LoginInfo {
+public class ApiLoginInfo extends LoginInfo {
 
 	//platform: D = DatePlanner, N = Naver, F = Facebook
 	private char platform;
