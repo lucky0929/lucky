@@ -24,17 +24,24 @@
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">DatePlanner</a>
+				<a class="navbar-brand" href="main.jsp">DatePlanner</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						Sign Up</a></li>
+						회원가입</a></li>
 				<li><a
 					href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
 						<span class="glyphicon glyphicon-log-in"></span> 로그인
 				</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">로그인 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">네이버 로그인</a></li>
+                    <li><a href="#">페이스북 로그인</a></li>
+                    <li><a href="#">구글 로그인</a></li>
+                </ul>
+            </li>
 			</ul>
-		</div>
+		</div> 
 	</nav>
 	<h1>안녕</h1>
 	<%
