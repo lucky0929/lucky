@@ -47,6 +47,9 @@
 			</ul>
 		</div>
 	</nav>
+	
+	
+	
 	<h1>안녕</h1>
 	<%
 		String code = request.getParameter("code");
