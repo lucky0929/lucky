@@ -45,5 +45,6 @@ public class FestivalAPI {
 //		String item = "homepage : "+homepage+" tel : "+tel+" area : "+area+" addr : "+addr1+addr2+" overview : "+overview+" latlon = "+lat+", "+lon;
 //		System.out.println(item);
 		System.out.println(items);
+		//안올라가니?
 	}
 }
