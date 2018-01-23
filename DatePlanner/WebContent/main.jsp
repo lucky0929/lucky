@@ -5,31 +5,25 @@
 <%@page import="java.net.HttpURLConnection"%>
 <%@page import="java.net.URLConnection"%>
 <%@page import="java.net.URL"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>DatePlanner</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>DatePlanner</title>
 </head>
 <body>
-	<!-- a -->
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">DatePlanner</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						Sign Up</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 				<li><a
 					href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
 						<span class="glyphicon glyphicon-log-in"></span> 로그인
@@ -72,7 +66,7 @@
 		}
 	%>
 
-<script src="jquery.js"></script>
+	<script src="jquery.js"></script>
 	<script>
 		// This is called with the results from from FB.getLoginStatus(). 
 		function statusChangeCallback(response) {
@@ -155,42 +149,39 @@
 		}
 		
 		
-		<%=request.getAttribute("id") %>
+		<%=request.getAttribute("id")%>
 		
-		<% 
-		URL fUrl = new URL("http://www.facebook.com/app_scoped_user_id/57516656282906");
-		URLConnection urlConn3 = fUrl.openConnection();
-		HttpURLConnection hurlConn3 = (HttpURLConnection) urlConn3;
-		/* Map data3 = new ObjectMapper().readValue(hurlConn3.getInputStream(), Map.class); */
-		BufferedReader br = new BufferedReader(new InputStreamReader(hurlConn3.getInputStream(), "UTF-8"));
-		String data3 = "";
-		String msg = null;
-		while ((msg = br.readLine()) != null) {
-			data3 += msg;
-		}
-		%>
+		<%URL fUrl = new URL("http://www.facebook.com/app_scoped_user_id/57516656282906");
+			URLConnection urlConn3 = fUrl.openConnection();
+			HttpURLConnection hurlConn3 = (HttpURLConnection) urlConn3;
+			/* Map data3 = new ObjectMapper().readValue(hurlConn3.getInputStream(), Map.class); */
+			BufferedReader br = new BufferedReader(new InputStreamReader(hurlConn3.getInputStream(), "UTF-8"));
+			String data3 = "";
+			String msg = null;
+			while ((msg = br.readLine()) != null) {
+				data3 += msg;
+			}%>
 		 
 	</script>
-	<fb:login-button scope="public_profile,email"
-		onlogin="checkLoginState();">
+	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 	</fb:login-button>
 
 	<div id="status"></div>
-	<p id = "result"></p>
+	<p id="result"></p>
 	<br>
 	<br>
-	
-	
+
+
 	<div id="customBtn" class="customGPlusSignIn">
-   <li><a href="#">구글로그인하자</a></li>
-   </div>
-	
-	
-	
-<!-- 구글 로그인================================================================================================ -->
+		<li><a href="#">구글로그인하자</a></li>
+	</div>
 
 
-  <script type="text/javascript">
+
+	<!-- 구글 로그인================================================================================================ -->
+
+
+	<script type="text/javascript">
   (function() {
     var po = document.createElement('script');
     po.type = 'text/javascript'; po.async = true;
@@ -306,6 +297,6 @@ var google_access_token = "";
   });
 }
   </script>
-  <!-- 구글 끝 -->
+	<!-- 구글 끝 -->
 </body>
 </html>
