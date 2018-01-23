@@ -20,7 +20,10 @@
 	<property name="dataSource" ref="dataSource"/>
   </bean>
   
-  <bean id="googleVo" class="org.dateplanner."></bean>
+  <bean id="googleLogin" class="org.dateplanner.googletemp.googleVo">
+  	<property name="googleConnectionFactory" ref="googleLogin" />
+  	<property name="googleOAuth2Parameters" ref="googleLogin" />
+  </bean>
   
   <tx:advice id="tx" transaction-manager="transactionManager">
 	<tx:attributes>
