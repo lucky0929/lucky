@@ -7,16 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class controller1 {
+public class TestController {
 
-	@Autowired private  service service;
+	@Autowired
+	private service service;
 
 	@RequestMapping("test.do")
 	public ModelAndView dummy() {
+		
 		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("msg", service.getData());
 		mav.setViewName("test");
+		
 		return mav;
-	}
+		
+	} //dummy();
 	
-}
+} //class TestController;
