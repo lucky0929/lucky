@@ -47,7 +47,8 @@
 		while ((msg = br.readLine()) != null) {
 			data += msg;
 		}*/
-		Map data = new ObjectMapper().readValue(hurlConn.getInputStream(), Map.class);
+		@SuppressWarnings("unchecked")
+		Map<String, Object> data = new ObjectMapper().readValue(hurlConn.getInputStream(), Map.class);
 		/* ㅎㅇ */
 		/*String token = (String) items.get("access_token"); */
 	%><%-- <%=data%><br> --%>
@@ -60,7 +61,8 @@
 			hurlConn2.setRequestProperty("Content-Type", "application/x-www-form-unlencoded");
 			hurlConn2.setRequestMethod("GET");
 			hurlConn2.setRequestProperty("Authorization", "Bearer " + token);
-			Map data2 = new ObjectMapper().readValue(hurlConn2.getInputStream(), Map.class);
+			@SuppressWarnings("unchecked")
+			Map<String, Object> data2 = new ObjectMapper().readValue(hurlConn2.getInputStream(), Map.class);
 	%><%=data2.get("response")%>
 	<%
 		}

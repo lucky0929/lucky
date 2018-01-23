@@ -1,12 +1,12 @@
 package org.dateplanner.api;
 
 import org.dateplanner.login.Login;
-import org.dateplanner.vo.ApiLoginInfo;
+import org.dateplanner.vo.User;
 
 public class FacebookLoginAPI implements Login {
 	
 	@Override
-	public ApiLoginInfo login(String arg) {
+	public User login(String arg) {
 		
 		return null;
 		

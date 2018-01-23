@@ -1,9 +1,9 @@
 package org.dateplanner.login;
 
-import org.dateplanner.vo.LoginInfo;
+import org.dateplanner.vo.User;
 
 public interface Login {
 	
-	public LoginInfo login(String arg);
+	public User login(String arg);
 	
 } //interface Login;

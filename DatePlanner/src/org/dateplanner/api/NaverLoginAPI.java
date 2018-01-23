@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.Map;
 
 import org.dateplanner.login.Login;
-import org.dateplanner.vo.ApiLoginInfo;
+import org.dateplanner.vo.User;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,13 +44,7 @@ public class NaverLoginAPI implements Login {
 	} //getProfile();
 	
 	@Override
-	public ApiLoginInfo login(String code) {
-		
-		// private String name, nickname;
-		// private Integer regionNo;
-		// private String profile;
-		// private Character sex;
-		// private String introduction;
+	public User login(String code) {
 		
 		Map<String, String> token = getToken(code);
 		if (token.get("error") != null) return null;
@@ -59,10 +53,10 @@ public class NaverLoginAPI implements Login {
 		try { System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(profile)); }
 		catch (JsonProcessingException e) { e.printStackTrace(); }
 		
-		ApiLoginInfo result = new ApiLoginInfo();
+		User result = new User();
 		
-		result.setPlatform('N');
-		result.setKey(profile.get("enc_id"));
+//		result.setPlatform('N');
+//		result.setKey(profile.get("enc_id"));
 		result.setName(profile.get("name"));
 		result.setNickname(profile.get("nickname"));
 		result.setProfile(profile.get("profile_image"));
@@ -73,4 +67,5 @@ public class NaverLoginAPI implements Login {
 		return result;
 		
 	} // login();
+	
 } // class NaverLoginAPI;

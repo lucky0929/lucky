@@ -1,6 +1,6 @@
 package org.dateplanner.googletemp;
 
-import org.dateplanner.vo.LoginInfo;
+import org.dateplanner.vo.User;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 class googleVo {
 	
-	private LoginInfo user;
+	private User user;
 	private GoogleConnectionFactory googleConnectionFactory;
 	private OAuth2Parameters googleOAuth2Parameters;
 	
@@ -28,11 +28,11 @@ class googleVo {
 		this.googleOAuth2Parameters = googleOAuth2Parameters;
 	}
 
-	public LoginInfo getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(LoginInfo user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
