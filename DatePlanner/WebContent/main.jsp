@@ -136,7 +136,7 @@
 			FB.login(function(response){
 				var fbname;
 				var accessToken = response.authResponse.accessToken;
-				FB.api('/me?fileds=id,name,age_range,gender', function(response) {
+				FB.api('/me', {fields : 'name, gender, birthday, id, age_range'}, function(response) {
 					var fb_data = jQuery.parseJSON(JSON.stringify(response));
 					console.log(fb_data);
 					var data = "<br/>fb_id " + fb_data.id;
@@ -176,7 +176,135 @@
 
 	<div id="status"></div>
 	<p id = "result"></p>
+	<br>
+	<br>
+	
+	
+	<div id="customBtn" class="customGPlusSignIn">
+   <li><a href="#">구글로그인하자</a></li>
+   </div>
+	
+	
+	
+<!-- 구글 로그인================================================================================================ -->
 
 
+  <script type="text/javascript">
+  (function() {
+    var po = document.createElement('script');
+    po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(po, s);
+  })();
+
+  function render() { // 로그인 버튼 지정
+    gapi.signin.render('customBtn', {
+      'callback': 'signinCallback', // 버튼 클릭 시 실행할 function
+      'clientid': '8b875df1fd17f39239f593145372cbcfc5fbf1bf',
+      'cookiepolicy': 'single_host_origin',
+      'requestvisibleactions': 'http://schemas.google.com/AddActivity',
+      'scope': 'https://www.googleapis.com/auth/plus.login'
+    });
+  }
+  
+var google_access_token = "";
+  function signinCallback(authResult) { // 지정한 버튼 클릭시
+   if (authResult['access_token']) {
+  google_access_token = authResult['access_token'];
+     // 승인 성공
+     var idToken = authResult['id_token']; 
+   gapi.auth.setToken(authResult); // 반환된 토큰을 저장합니다.
+   getEmail(); // 토큰저장했으니 프로필 정보 가지러 ㄱㄱ
+
+     
+   
+     document.getElementById('customBtn').setAttribute('style', 'display: none'); // 사용자가 승인되었으므로 로그인 버튼을 숨김
+     
+   } else if (authResult['error']) {
+     // 오류가 발생했습니다.
+     // 가능한 오류 코드:
+     //   "access_denied" - 사용자가 앱에 대한 액세스 거부
+     //   "immediate_failed" - 사용자가 자동으로 로그인할 수 없음
+     /*  alert('오류 발생: ' + authResult['error']); */
+   }
+  }
+
+ 
+
+
+  function getEmail(){
+   // userinfo 메소드를 사용할 수 있도록 oauth2 라이브러리를 로드합니다.
+  gapi.client.load('oauth2', 'v2', function() {
+   var request = gapi.client.oauth2.userinfo.get();
+   request.execute(getEmailCallback);
+  });
+  }
+
+  function getEmailCallback(obj){
+  if(sns_comment_type == "GOOGLE" || sns_comment_type == ""){ // 여러가지 sns를 구별하기 위해 사용하였으며, 다른 홈페이지에서 구글이 로그인 되있을경우 자동 로그인되는 것을 방지하기 위함.
+    goname = obj['name']; // 프로필 정보는  넘겨받은 obj값들중  선택하여 뽑아내면 됨.
+    var linkUrl = obj['link'];
+    var pictureUrl = obj['picture'];
+    var image = document.getElementById('facebookimage');
+    image.src = pictureUrl;
+    var name = document.getElementById('googlename');
+    name.innerHTML = obj['name'];
+    var id = document.getElementById('googleid');
+    id.innerHTML = obj['id'];
+    // 밑에는 session생성을 위해..
+    $.post("/oAuthASPExample/comment_session_process_g.asp", { "userid": obj['id'], "email":obj['email'], "username": goname, "goaccesstoken":google_access_token, "picture":pictureUrl, "link":obj['link']},  
+     function (responseasp) {  
+      if(responseasp=="N"){
+       alert("로그인 세션 실패");
+       //location.replace('/unmember/memberrege?flag=1');            
+      }else{ 
+       getCommentList("");
+       //location.replace('/');
+      }
+     });
+
+    document.getElementById('sign_in_container').style.display = "none";
+    document.getElementById('sign_out_container').style.display = "";
+    document.getElementById('google_submit').style.display = "";
+    document.getElementById('snslogininfoG').style.display = "";
+    document.getElementById('snsTopImg').src = '/_common/img/ico_reply03.jpg';
+    document.getElementById('snsTopImg').alt = 'google';
+   }else{
+    return;
+   }
+ } 
+
+  /* 구글 로그아웃 */
+  function disconnectUser() {
+   var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' + google_access_token; // 로그아웃을 위해서는 저URL에 그냥 토큰값만 추가해서 날려주면된다.
+  $.post("/oAuthASPExample/naver_out.asp", {},  function (responseasp) {  // 내가 생성했던 SESSION을 제거하기 위함..
+   if(responseasp!="Y"){
+    alert("Error");
+    //location.replace('/unmember/memberrege?flag=1');            
+   }else{
+      // 비동기 GET 요청을 수행합니다.
+      $.ajax({
+      type: 'GET',
+      url: revokeUrl,
+      async: false,
+      contentType: "application/json",
+      dataType: 'jsonp',
+      success: function(nullResponse) { 
+      // 성공
+      },
+      error: function(e) {
+      // 오류 처리
+      // console.log(e);
+      // 실패한 경우 사용자가 수동으로 연결 해제하게 할 수 있습니다.
+      // https://plus.google.com/apps
+      }
+      });
+     <%-- location.href = '<%=%>'; // 로그아웃 한 페이지로 이동 --%>
+   }
+  });
+}
+  </script>
+  <!-- 구글 끝 -->
 </body>
 </html>
