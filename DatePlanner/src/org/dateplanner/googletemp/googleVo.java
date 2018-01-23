@@ -1,4 +1,4 @@
-package googleTemp;
+package org.dateplanner.googletemp;
 
 class googleVo {
 	
