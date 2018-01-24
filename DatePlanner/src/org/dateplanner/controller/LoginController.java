@@ -2,13 +2,14 @@ package org.dateplanner.controller;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.dateplanner.login.Login;
+import org.dateplanner.login.NaverLogin;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,7 +39,8 @@ public class LoginController {
 		Object stateToken = session.getAttribute("stateToken");
 		session.removeAttribute("stateToken");
 		if(!state.equals(stateToken))
-			return null; //위조방지 상태토큰이 다름
+			return null; //TODO 네이버 로그인 콜백오류처리1
+						 //위조방지 상태토큰이 다름
 						 //값의 위조 가능성이 있음
 		
 		try {
@@ -52,16 +54,11 @@ public class LoginController {
 							+ "&code=" + code), Map.class);
 			
 			if(token.get("error") != null)
-				return null;
+				return null; //TODO 네이버 로그인 콜백오류처리2
+							 //토큰을 불러오는중 오류가 생김
 			
-			HttpURLConnection conn = (HttpURLConnection)new URL("https://openapi.naver.com/v1/nid/me").openConnection();
-			conn.setRequestProperty("Authorization", "Bearer " + token.get("access_token"));
-			
-			Map<String, Object> userInfo = mapper.readValue(conn.getInputStream(), Map.class);
-			
-			conn.disconnect();
-			
-			System.out.println(userInfo);
+			Login.login(session, new NaverLogin((String)token.get("access_token")));
+			Login.getLoginInfo(session);
 			
 		}catch (IOException e) { e.printStackTrace(); }
 		
