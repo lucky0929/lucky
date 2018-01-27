@@ -196,5 +196,9 @@ function onSignIn(googleUser) {
   }
 </script>
 	<!-- 구글 끝 -->
+	
+	<!--페북로그인  -->
+	<a href="https://www.facebook.com/v2.11/dialog/oauth?client_id=2032128690391759&redirect_uri=http://localhost/NaverBookSearchAPI/facebook.do&state=lucky">페이스북</a>
+	
 </body>
 </html>
