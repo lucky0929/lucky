@@ -26,8 +26,8 @@ public class TestController {
 	} //dummy();
 	
 	@RequestMapping("google.do")
-	public String google(@RequestParam String code) {
-		System.out.println(code);
+	public String google(@RequestParam String code) throws Exception{
+		testService.google(code);
 		return "google";
 	}
 	

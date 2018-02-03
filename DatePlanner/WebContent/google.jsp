@@ -26,6 +26,7 @@
 	<!-- Use an image that follows the branding guidelines in a real app -->
 	<button id="signinButton">Sign in with Google</button>
 	<script>
+	var signInCallback = "http://localhost/google.do";
   $('#signinButton').click(function() {
     // signInCallback defined in step 6.
     auth2.grantOfflineAccess().then(signInCallback);
