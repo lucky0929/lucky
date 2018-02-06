@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.dateplanner.login.Login;
 import org.dateplanner.login.NaverLogin;
+import org.dateplanner.service.TestService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +18,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller @RequestMapping("login")
 public class LoginController {
+	
+	@RequestMapping("facebookLogin.do")
+	public void facebookLogin(String code) throws Exception{
+		TestService service = new TestService();
+		System.out.println("??");
+		System.out.println(service.facebookLogin(code));
+	}
 	
 	@RequestMapping("naver.do")
 	public String naver(HttpSession session) {

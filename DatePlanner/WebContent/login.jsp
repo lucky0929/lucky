@@ -85,7 +85,7 @@ text-align: center;
 			<li class="icon">
 				<p>
 					<a
-						href="https://www.facebook.com/v2.11/dialog/oauth?client_id=2032128690391759&redirect_uri=http://localhost/NaverBookSearchAPI/facebook.do&state=lucky">
+						href="https://www.facebook.com/v2.11/dialog/oauth?client_id=2032128690391759&redirect_uri=http://localhost/login/facebookLogin.do&state=lucky">
 						<img src="img/facebook1.png" alt="ÆäÀÌ½ººÏ" width="30px" height="30px"/>
 					</a>
 				</p>

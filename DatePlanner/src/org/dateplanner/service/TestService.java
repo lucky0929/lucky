@@ -1,8 +1,14 @@
 package org.dateplanner.service;
 
 
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.springframework.stereotype.Service;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
@@ -21,7 +27,21 @@ public class TestService {
 
 	public String getData() { return "I am a boy"; }
 	
-	
+	public JSONObject facebookLogin(String code) throws Exception{
+		URL url = new URL("https://graph.facebook.com/v2.11/oauth/access_token?client_id=2032128690391759&redirect_uri=http://localhost/login/facebookLogin.do&client_secret=74be2c0fbdd71bddd240b3597ffaedea&code="+code);
+		HttpURLConnection urlConn = (HttpURLConnection)url.openConnection(); 
+//		urlConn.disconnect();
+		BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream(),"UTF-8"));
+		JSONObject items = (JSONObject) JSONValue.parseWithException(br);
+		String token = (String) items.get("access_token");
+		
+		URL url2 = new URL("https://graph.facebook.com/v2.11/me?fields=id,name,picture,gender,age_range&access_token="+token);
+		HttpURLConnection urlConn2 = (HttpURLConnection)url2.openConnection();
+		BufferedReader br2 = new BufferedReader(new InputStreamReader(urlConn2.getInputStream(),"UTF-8"));
+		JSONObject info = (JSONObject) JSONValue.parseWithException(br2);
+		
+		return info;
+	}
 	
 	// (Receive authCode via HTTPS POST)
 
