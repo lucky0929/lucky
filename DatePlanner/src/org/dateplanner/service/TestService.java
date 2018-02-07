@@ -27,7 +27,7 @@ public class TestService {
 
 	public String getData() { return "I am a boy"; }
 	
-	public JSONObject facebookLogin(String code) throws Exception{
+	public String facebookLogin(String code) throws Exception{
 		URL url = new URL("https://graph.facebook.com/v2.11/oauth/access_token?client_id=2032128690391759&redirect_uri=http://localhost/login/facebookLogin.do&client_secret=74be2c0fbdd71bddd240b3597ffaedea&code="+code);
 		HttpURLConnection urlConn = (HttpURLConnection)url.openConnection(); 
 //		urlConn.disconnect();
@@ -39,8 +39,13 @@ public class TestService {
 		HttpURLConnection urlConn2 = (HttpURLConnection)url2.openConnection();
 		BufferedReader br2 = new BufferedReader(new InputStreamReader(urlConn2.getInputStream(),"UTF-8"));
 		JSONObject info = (JSONObject) JSONValue.parseWithException(br2);
-		
-		return info;
+		JSONObject minmaxAge = (JSONObject)info.get("age_range");
+		Object age = minmaxAge.get("max");
+		Object gender = info.get("gender");
+		Object name = info.get("name");
+		Object userId = info.get("id");
+		String userInfo = "age : "+age+" gender:"+gender+" name:"+name+" userId:"+userId;
+		return userInfo;
 	}
 	
 	// (Receive authCode via HTTPS POST)

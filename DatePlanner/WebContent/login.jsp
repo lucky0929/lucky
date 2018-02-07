@@ -60,13 +60,14 @@ img {
 	width: 30px;
 	height: 30px;
 }
-p{
-text-align: center;
+
+p {
+	text-align: center;
 }
 </style>
 </head>
 <body>
-<!-- ====================================================================상단 바=========================== -->
+	<!-- ====================================================================상단 바=========================== -->
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -77,31 +78,40 @@ text-align: center;
 					회원가입</a></li>
 
 			<li class="dropdown"><a class="dropdown-toggle"
-				href="http://localhost/NaverBookSearchAPI/jsp/login.jsp"> 로그인 </a>
-			<li class="icon"><img src="img/naver.png" alt="네이버" width="30px"
-				height="30px" />
-			<li />
+				href="http://localhost/login/naver.do"> 로그인 </a>
+			<li class="icon">
+				<p>
+					<a href="http://localhost/login/naver.do"><img
+						src="img/naverLogo.png" alt="네이버" width="30px" height="30px" /></a>
+				</p>
+			</li>
 
 			<li class="icon">
 				<p>
 					<a
 						href="https://www.facebook.com/v2.11/dialog/oauth?client_id=2032128690391759&redirect_uri=http://localhost/login/facebookLogin.do&state=lucky">
-						<img src="img/facebook1.png" alt="페이스북" width="30px" height="30px"/>
+						<img src="img/facebook1.png" alt="페이스북" width="30px" height="30px" />
 					</a>
 				</p>
 			<li />
-			<li class="icon"><img src="img/Google.png" alt="구글" width="30px"
-				height="30px" />
+
+
+			<li class="icon">
+				<p>
+					<img src="img/Google.png" alt="구글" width="30px" height="30px" />
+				</p>
 			<li />
-			
-			<li class="icon"><img src="img/kakao.jpg" alt="카카오톡" width="30px"
-				height="30px" />
+
+			<li class="icon">
+				<p>
+					<img src="img/kakao.jpg" alt="카카오톡" width="30px" height="30px" />
+				</p>
 			<li />
 		</ul>
 
 	</div>
 	</nav>
-	
+
 	<!-- ===================================상단 바============================================= -->
 
 	<div id="login">
