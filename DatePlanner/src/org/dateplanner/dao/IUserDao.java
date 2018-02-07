@@ -1,5 +1,5 @@
 package org.dateplanner.dao;
 
-public interface IDao {
+public interface IUserDao {
 	
 }
