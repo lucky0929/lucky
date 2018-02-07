@@ -34,12 +34,12 @@ public class TestService {
 		BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream(),"UTF-8"));
 		JSONObject items = (JSONObject) JSONValue.parseWithException(br);
 		String token = (String) items.get("access_token");
-		
+
 		URL url2 = new URL("https://graph.facebook.com/v2.11/me?fields=id,name,picture,gender,age_range&access_token="+token);
 		HttpURLConnection urlConn2 = (HttpURLConnection)url2.openConnection();
 		BufferedReader br2 = new BufferedReader(new InputStreamReader(urlConn2.getInputStream(),"UTF-8"));
 		JSONObject info = (JSONObject) JSONValue.parseWithException(br2);
-		
+
 		return info;
 	}
 	

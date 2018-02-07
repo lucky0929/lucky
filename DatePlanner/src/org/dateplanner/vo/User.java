@@ -19,7 +19,7 @@ public class User {
 	public void setName(String name) { this.name = name; }
 	public void setSex(char sex) { this.sex = sex; }
 	public void setRegionNo(int regionNo) { this.regionNo = regionNo; }
-	
+
 	@Override
 	public String toString() {
 		return "User [no=" + no + ", nickname=" + nickname + ", profile=" + profile+ ", name=" + name + ", sex=" + sex
