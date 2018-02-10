@@ -11,4 +11,5 @@ public interface IUserDao {
 	public void selectNoWithId(String userId);
 	public void insertUserFacebook(String userId);
 	
+	
 }

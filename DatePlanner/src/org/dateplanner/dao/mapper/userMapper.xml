@@ -26,7 +26,7 @@
 	    VALUES(false, (SELECT MAX(no)+1 from user), #{id})
 	    
 	    INSERT INTO user
-	    VALUES(#{ name},#{ nickname},#{ regionNo},#{ profile},#{ sex},#{ introduction},#{chNameDate},#{ logCheckTime})
+	    VALUES(#{ name},#{ nickname},#{ regionNo},#{ profile},#{ sex},#{ introduction},#{chNameDate}, #{ logCheckTime})
 	  </insert>
 
 	  <insert id="insertUser" parameterType="java.util.HashMap">
