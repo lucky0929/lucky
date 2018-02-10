@@ -7,198 +7,348 @@
 <%@page import="java.net.URL"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="google-signin-client_id" content="621114611079-u0sp80g20j116v4tcnc08jlvpb7ip2un.apps.googleusercontent.com">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<title>DatePlanner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>DatePlanner</title>
+    <style>
+        .navbar{
+            margin-bottom: 0;
+        }
+
+        .regionbar{
+            position: relative;
+            border: 2px solid darkgoldenrod;
+        }
+
+        #mainContent{
+            min-width: 1100px;
+            min-height: 830px;
+        }
+
+        .container{
+            /*border: 2px solid darkcyan;*/
+        }
+
+        .regionbar .dropdown{
+            float: right;
+            margin-top: -32px;
+        }
+
+        .contentwrap{
+            padding-top: 20px;
+            width: 100%;
+            min-width: 1000px;
+            position: relative;
+        }
+
+        .boardwrap{
+            position: absolute;
+            border: 2px solid aquamarine;
+            width: 70%;
+            height: 750px;
+        }
+
+        .boardlist{
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .festivalwrap{
+            border: 2px solid coral;
+            width: 30%;
+            height: 750px;
+            float: right;
+        }
+
+        .festival{
+            border: 2px solid deepskyblue;
+            width: 100%;
+            height: 100%;
+            padding: 15px;
+        }
+
+        .festival .container{
+            width: 100%;
+        }
+
+        th{
+            text-align: center;
+        }
+
+        th a:link{
+            text-decoration: none;
+        }
+
+        #viewArray button{
+            float: left;
+            width: 50%;
+        }
+
+        #buttonBox{
+            width: 100%;
+            /*float: right;*/
+            font-size: 1.8em;
+        }
+
+        #buttonBox button{
+            width: 40px;
+            height: 40px;
+            float: right;
+        }
+
+        .table{
+            text-align: center;
+        }
+
+        .mainPhoto img{
+            width: 40px;
+            height: 40px;
+        }
+
+        .contentTitle{
+            font-weight: bold;
+            position: relative;
+            max-width: 90%;
+        }
+
+        .contentPreview{
+            width: 400px;
+            height: 25px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .contentInfo a{
+            text-decoration: none;
+        }
+
+        .rank a{
+            text-decoration: none;
+        }
+
+        .writer a{
+            text-decoration: none;
+        }
+
+        .writeDay a{
+            text-decoration: none;
+        }
+
+        .contentPreview{
+            text-overflow: ellipsis;
+        }
+    </style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">DatePlanner</a>
-			</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a
-					href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
-						<span class="glyphicon glyphicon-log-in"></span> 로그인
-				</a></li>
-			</ul>
-		</div>
-	</nav>
-	<h1>안녕</h1>
-	<!--gdgd  -->
-	<%
-		String code = request.getParameter("code");
-		URL url = new URL(
-				"https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=tOzxSVFgBuq1ArjsmwsD&client_secret=PJRT5Ku1Yp&code="
-						+ code);
-		URLConnection urlConn = url.openConnection();
-		HttpURLConnection hurlConn = (HttpURLConnection) urlConn;
-		hurlConn.setRequestProperty("Content-Type", "application/x-www-form-unlencoded");
-		/*BufferedReader br = new BufferedReader(new InputStreamReader(hurlConn.getInputStream(), "UTF-8"));
-		String data = "";
-		String msg = null;
-		while ((msg = br.readLine()) != null) {
-			data += msg;
-		}*/
-		@SuppressWarnings("unchecked")
-		Map<String, Object> data = new ObjectMapper().readValue(hurlConn.getInputStream(), Map.class);
-		/* ㅎㅇ */
-		/*String token = (String) items.get("access_token"); */
-	%><%-- <%=data%><br> --%>
-	<%
-		if (data.get("error") == null) {
-			String token = (String) data.get("access_token");
-			URL url2 = new URL("https://openapi.naver.com/v1/nid/me");
-			URLConnection urlConn2 = url2.openConnection();
-			HttpURLConnection hurlConn2 = (HttpURLConnection) urlConn2;
-			hurlConn2.setRequestProperty("Content-Type", "application/x-www-form-unlencoded");
-			hurlConn2.setRequestMethod("GET");
-			hurlConn2.setRequestProperty("Authorization", "Bearer " + token);
-			@SuppressWarnings("unchecked")
-			Map<String, Object> data2 = new ObjectMapper().readValue(hurlConn2.getInputStream(), Map.class);
-	%><%=data2.get("response")%>
-	<%
-		}
-	%>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="main.jsp">DatePlanner</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>
+                회원가입</a></li>
 
-	<script src="jquery.js"></script>
-	<script>
-		// This is called with the results from from FB.getLoginStatus(). 
-		function statusChangeCallback(response) {
-			console.log('statusChangeCallback');
-			console.log(response);
-			// response 객체는 현재 로그인 상태를 나타내는 정보를 보여준다. 
-			// 앱에서 현재의 로그인 상태에 따라 동작하면 된다. 
-			// FB.getLoginStatus().의 레퍼런스에서 더 자세한 내용이 참조 가능하다. 
-			if (response.status === 'connected') {
-				// 페이스북을 통해서 로그인이 되어있다. 
-				testAPI();
-			} else if (response.status === 'not_authorized') {
-				// 페이스북에는 로그인 했으나, 앱에는 로그인이 되어있지 않다. 
-				document.getElementById('status').innerHTML = 'Please log '
-						+ 'into this app.';
-			} else {
-				// 페이스북에 로그인이 되어있지 않다. 따라서, 앱에 로그인이 되어있는지 여부가 불확실하다.
-				document.getElementById('status').innerHTML = 'Please log '
-						+ 'into Facebook.';
-			}
-		}
-		// 이 함수는 누군가가 로그인 버튼에 대한 처리가 끝났을 때 호출된다. 
-		// onlogin 핸들러를 아래와 같이 첨부하면 된다. 
-		function checkLoginState() {
-			FB.getLoginStatus(function(response) {
-				statusChangeCallback(response);
-			});
-		}
-		window.fbAsyncInit = function() {
-			FB.init({
-				appId : '2032128690391759',
-				cookie : true, // 쿠키가 세션을 참조할 수 있도록 허용
-				xfbml : true, // 소셜 플러그인이 있으면 처리 
-				version : 'v2.1' // 버전 2.1 사용 
-			});
-			// 자바스크립트 SDK를 초기화 했으니, FB.getLoginStatus()를 호출한다. 
-			//.이 함수는 이 페이지의 사용자가 현재 로그인 되어있는 상태 3가지 중 하나를 콜백에 리턴한다. 
-			// 그 3가지 상태는 아래와 같다. 
-			// 1. 앱과 페이스북에 로그인 되어있다. ('connected') 
-			// 2. 페이스북에 로그인되어있으나, 앱에는 로그인이 되어있지 않다. ('not_authorized') 
-			// 3. 페이스북에 로그인이 되어있지 않아서 앱에 로그인이 되었는지 불확실하다. 
-			// 
-			// 위에서 구현한 콜백 함수는 이 3가지를 다루도록 되어있다. 
-			FB.getLoginStatus(function(response) {
-				statusChangeCallback(response);
-			});
-		};
-		// SDK를 비동기적으로 호출 
-		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id))
-				return;
-			js = d.createElement(s);
-			js.id = id;
-			js.src = "//connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                로그인 <span class="glyphicon glyphicon-log-in"></span></a>
 
-		// 로그인이 성공한 다음에는 간단한 그래프API를 호출한다. 
-		// 이 호출은 statusChangeCallback()에서 이루어진다. 
-		function testAPI() {
-			FB.login(function(response){
-				var fbname;
-				var accessToken = response.authResponse.accessToken;
-				FB.api('/me', {fields : 'name, gender, birthday, id, age_range'}, function(response) {
-					var fb_data = jQuery.parseJSON(JSON.stringify(response));
-					console.log(fb_data);
-					var data = "<br/>fb_id " + fb_data.id;
-					data += "<br/>name " + fb_data.name;
-					data += "<br/>age " + fb_data.age_range;
-					data += "<br/>gender " + fb_data.gender;
-					console.log(fb_data);
-					
-					$("#result").append(data);
-					
-					/* document.getElementById('status').innerHTML = '반가워용, '
-							+ response.name + '!'; */
-				});
-			});
-		}
-		
-		
-		<%=request.getAttribute("id")%>
-		
-		<%URL fUrl = new URL("http://www.facebook.com/app_scoped_user_id/57516656282906");
-			URLConnection urlConn3 = fUrl.openConnection();
-			HttpURLConnection hurlConn3 = (HttpURLConnection) urlConn3;
-			/* Map data3 = new ObjectMapper().readValue(hurlConn3.getInputStream(), Map.class); */
-			BufferedReader br = new BufferedReader(new InputStreamReader(hurlConn3.getInputStream(), "UTF-8"));
-			String data3 = "";
-			String msg = null;
-			while ((msg = br.readLine()) != null) {
-				data3 += msg;
-			}%>
-		 
-	</script>
-	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-	</fb:login-button>
+                <ul class="dropdown-menu">
+                    <li><a
+                            href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
+                        네이버 로그인</a></li>
+                    <li><a href="#">페이스북 로그인</a></li>
+                    <li><a href="#">구글 로그인</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-	<div id="status"></div>
-	<p id="result"></p>
-	<br>
-	<br>
+<div id="mainContent" class="container">
+    <div class="regionbar">
+        <p>인천</p>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">지역 변경
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <input class="form-control" id="myInput" type="text" placeholder="검색하기"/>
+                <li><a href="#">서울</a></li>
+                <li><a href="#">부산</a></li>
+                <li><a href="#">울산</a></li>
+                <li><a href="#">대구</a></li>
+                <li><a href="#">인천</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="contentwrap">
+        <div class="content">
+            <div class="boardwrap">
+                <div class="boardlist">
+
+                    <div id="viewArray">
+                        <button class="btn btn-info">인기게시물</button>
+                        <button class="btn btn-info">최신게시물</button>
+                    </div>
+
+                    <div id="buttonBox">
+                        <button><i class="fab fa-buromobelexperte"></i></button>
+                        <button><i class="fas fa-list"></i></button>
+                    </div>
+
+                    <div class="contentList">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>순위</th>
+                                <th>메인사진</th>
+                                <th>글 정보</th>
+                                <th>글쓴이</th>
+                                <th>날짜</th>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="festivalwrap">
+            <div class="festival">
+
+                <div class="container">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+
+                            <div class="item active">
+                                <img src="img/la.jpg" alt="Los Angeles" style="width:100%;">
+                                <div class="carousel-caption">
+                                    <h3>Los Angeles</h3>
+                                </div>
+                                <p>LA is always so much fun!</p>
+                            </div>
 
 
+                            <div class="item">
+                                <img src="img/chicago.jpg" alt="Chicago" style="width:100%;">
+                                <div class="carousel-caption">
+                                    <h3>Chicago</h3>
+                                </div>
+                                <p>Thank you, Chicago!</p>
+                            </div>
 
-	<!-- 구글 로그인================================================================================================ -->
+                            <div class="item">
+                                <img src="img/ny.jpg" alt="New York" style="width:100%;">
+                                <div class="carousel-caption">
+                                    <h3>New York</h3>
+                                </div>
+                                <p>We love the Big Apple!</p>
+                            </div>
+
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
-</script>
-<a href="#" onclick="signOut();">Sign out</a>
-<script>
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(".dropdown-menu li").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
     });
-  }
 </script>
-	<!-- 구글 끝 -->
-	
-	<!--페북로그인  -->
-	<a href="https://www.facebook.com/v2.11/dialog/oauth?client_id=2032128690391759&redirect_uri=http://localhost/NaverBookSearchAPI/facebook.do&state=lucky">페이스북</a>
-	
+
 </body>
 </html>

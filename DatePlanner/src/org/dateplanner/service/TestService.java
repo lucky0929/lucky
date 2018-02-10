@@ -5,9 +5,13 @@ import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
 
+import org.dateplanner.dao.IUserDao;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
@@ -23,6 +27,20 @@ import com.google.api.services.drive.model.File;
 
 @Service
 public class TestService {
+	
+	@Autowired
+	private IUserDao userDao;
+	
+	public HashMap<String, Object> selectOne(String userId){
+//		System.out.println(userId);
+		userId = "1";
+		if(userId != null) {
+		return userDao.selectOne(userId);
+		}
+		else {
+			return null;
+		}
+	}
 
 	public String getData() { return "I am a boy"; }
 	

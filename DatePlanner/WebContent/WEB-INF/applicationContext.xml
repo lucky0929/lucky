@@ -16,12 +16,12 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath*:org/dateplanner/dao/mapper/**/*.xml" />
-		<property name="configLocation" value="classpath:org/dateplanner/dao/mapper/**/*.xml" /> 
+		<!-- <property name="configLocation" value="classpath:org/dateplanner/dao/mapper/**/*.xml" />  -->
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="userDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-		<property value="dao.IUserDao" name="mapperInterface"      />
+		<property value="org.dateplanner.dao.IUserDao" name="mapperInterface"/>
 	</bean>
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

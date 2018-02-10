@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.dateplanner.login.Login;
 import org.dateplanner.login.NaverLogin;
 import org.dateplanner.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,11 +20,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller @RequestMapping("login")
 public class LoginController {
 	
+	@Autowired
+	private TestService service;
+	
 	@RequestMapping("facebookLogin.do")
-	public void facebookLogin(String code) throws Exception{
-		TestService service = new TestService();
-		System.out.println("??");
-		System.out.println(service.facebookLogin(code));
+	public String facebookLogin(String code) throws Exception{
+		String userId = service.facebookLogin(code);
+		System.out.println(service.selectOne(userId));
+//		if(service.selectOne(userId)==null) {
+//			System.out.println("비었다");
+//		}else {
+//			System.out.println("안비었다");
+//		}
+		return "main";
 	}
 	
 	@RequestMapping("naver.do")
