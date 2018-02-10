@@ -20,10 +20,6 @@
 	  <select id="selectOne" parameterType="String" resultType="java.util.HashMap">
 	  	select * from login_facebook where user_id = #{userId}
 	  </select>
-
-	  <select id="selectOne" parameterType="String" resultType="java.util.HashMap">
-	  	select * from login_facebook where user_id = #{userId}
-	  </select>
 	  
 	  <insert id="insertUserFacebook" parameterType="java.util.HashMap">
 	  	INSERT INTO login_facebook(synchronize, user_no, id) 
