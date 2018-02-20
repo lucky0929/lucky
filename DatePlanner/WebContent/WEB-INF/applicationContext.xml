@@ -21,7 +21,7 @@
 	
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="userDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-		<property value="org.dateplanner.dao.IUserDao" name="mapperInterface"/>
+		<property value="org.dateplanner.dao.UsersDAO" name="mapperInterface"/>
 	</bean>
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

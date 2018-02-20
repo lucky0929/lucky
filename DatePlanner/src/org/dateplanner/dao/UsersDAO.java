@@ -3,7 +3,7 @@ package org.dateplanner.dao;
 import java.util.HashMap;
 import java.util.List;
 
-public interface IUserDao {
+public interface UsersDAO {
 	
 	public HashMap<String, Object> selectOne(String userId);
 	public void deleteOne (String userId);
