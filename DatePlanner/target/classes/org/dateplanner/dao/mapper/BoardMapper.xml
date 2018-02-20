@@ -10,4 +10,8 @@
   order by no desc limit 7; <!--  최근 7개 -->
   </select>
   
+  <insert id="insertBoard" parameterType="Post">
+  INSERT into board
+  VALUES(0, #{region_no}, #{title}, now(), #{user_no}, #{subject}, #{main_photo}, #{hit})
+  </insert>
 </mapper>
