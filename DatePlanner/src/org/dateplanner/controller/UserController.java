@@ -18,5 +18,5 @@ public class UserController {
 		model.addAttribute("test", user.selectAll());
 		return "test";
 	} //test
-	
+
 } //UserController
