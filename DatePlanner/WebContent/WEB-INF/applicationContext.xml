@@ -19,9 +19,9 @@
 	<property name="typeAliasesPackage" value="org.dateplanner.vo"/>
   </bean>
 
-  <bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="userDao">
+  <bean id="usersDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
 	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	<property value="org.dateplanner.dao.UsersDAO" name="mapperInterface"/>
+	<property name="mapperInterface" value="org.dateplanner.dao.UsersDAO"/>
   </bean>
 
   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -33,6 +33,7 @@
 	  <tx:method name="*"/>
 	</tx:attributes>
   </tx:advice>
+
   <aop:config>
 	<aop:advisor advice-ref="tx" pointcut="execution(public * org.dateplanner.service.*Service.*(..))"/>
   </aop:config>
