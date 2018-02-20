@@ -7,7 +7,7 @@
   <select id="selectBoard">
   select * 
   from board 
-  order by no desc limit 7; <!--  최근 7개 -->
+  order by no desc limit 7 <!--  최근 7개 -->
   </select>
   
   <insert id="insertBoard" parameterType="Post">
