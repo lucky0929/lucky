@@ -19,9 +19,14 @@
 		<!-- <property name="configLocation" value="classpath:org/dateplanner/dao/mapper/**/*.xml" />  -->
 	</bean>
 	
-	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="userDao">
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="usersDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 		<property value="org.dateplanner.dao.UsersDAO" name="mapperInterface"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="boardDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		<property value="org.dateplanner.dao.BoardDAO" name="mapperInterface"/>
 	</bean>
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

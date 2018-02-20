@@ -3,16 +3,18 @@ package org.dateplanner.service;
 import java.util.HashMap;
 import java.util.List;
 
-import org.dateplanner.dao.UsersDAO;
+import org.dateplanner.dao.BoardDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsersService {
-	
+public class BoardService {
+
 	@Autowired
-	private UsersDAO usersDAO;
+	private BoardDAO boardDAO;
 	
+	public List<HashMap<String, Object>> selectBoard(){
+		return boardDAO.selectBoard();
+	}
 	
-	
-} //class UserService
+}
