@@ -1,8 +1,5 @@
 package org.dateplanner.service;
 
-import java.util.HashMap;
-import java.util.List;
-
 import org.dateplanner.dao.UsersDAO;
 import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;

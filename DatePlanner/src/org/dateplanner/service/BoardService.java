@@ -1,6 +1,5 @@
 package org.dateplanner.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.dateplanner.dao.BoardDAO;
@@ -13,7 +12,6 @@ public class BoardService {
 
 	@Autowired
 	private BoardDAO boardDAO;
-	private Post post;
 	
 	public List<Post> selectBoard(){
 		return boardDAO.selectBoard();

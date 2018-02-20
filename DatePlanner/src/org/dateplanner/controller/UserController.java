@@ -1,6 +1,5 @@
 package org.dateplanner.controller;
 
-import org.dateplanner.service.BoardService;
 import org.dateplanner.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

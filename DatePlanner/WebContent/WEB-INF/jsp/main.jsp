@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -172,7 +171,7 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <input class="form-control" id="myInput" type="text" placeholder="검색하기"/>
+                <li><input class="form-control" id="myInput" type="text" placeholder="검색하기"/></li>
                 <li><a href="#">서울</a></li>
                 <li><a href="#">부산</a></li>
                 <li><a href="#">울산</a></li>
