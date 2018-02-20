@@ -7,11 +7,6 @@
 						   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
   <context:component-scan base-package="org.dateplanner.service"/>
 
-  <bean id="usersDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	<property name="mapperInterface" value="org.dateplanner.dao.UsersDAO"/>
-  </bean>
-
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	<property name="dataSource" ref="dataSource"/>
 	<property name="mapperLocations" value="classpath*:org/dateplanner/dao/mapper/**/*.xml"/>
@@ -35,4 +30,13 @@
 	  <tx:method name="*"/>
 	</tx:attributes>
   </tx:advice>
+
+  <bean id="usersDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	<property name="mapperInterface" value="org.dateplanner.dao.UsersDAO"/>
+  </bean>
+  <bean id="boardDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	<property name="mapperInterface" value="org.dateplanner.dao.BoardDAO"/>
+  </bean>
 </beans>
