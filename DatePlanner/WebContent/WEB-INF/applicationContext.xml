@@ -5,33 +5,29 @@
 						   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 						   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 						   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-	<context:component-scan base-package="org.dateplanner.service"/>
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://sunx.cafe24.com/sunx"/>
-		<property name="username" value="sunx"/>
-		<property name="password" value="comnet12"/>
-	</bean>
+  <context:component-scan base-package="org.dateplanner.service"/>
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	<property name="url" value="jdbc:mysql://sunx.cafe24.com/sunx"/>
+	<property name="username" value="sunx"/>
+	<property name="password" value="comnet12"/>
+  </bean>
 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath*:org/dateplanner/dao/mapper/**/*.xml" />
-		<!-- <property name="configLocation" value="classpath:org/dateplanner/dao/mapper/**/*.xml" />  -->
-	</bean>
-	
-	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="userDao">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-		<property value="org.dateplanner.dao.UsersDAO" name="mapperInterface"/>
-	</bean>
-	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"/>
+	<property name="mapperLocations" value="classpath*:org/dateplanner/dao/mapper/**/*.xml"/>
+	<!-- <property name="configLocation" value="classpath:org/dateplanner/dao/mapper/**/*.xml" /> -->
+  </bean>
 
-  <!-- <bean id="googleLogin" class="org.dateplanner.googletemp.googleVo">
-	<property name="googleConnectionFactory" ref="googleLogin"/>
-	<property name="googleOAuth2Parameters" ref="googleLogin"/>
-  </bean> -->
+  <bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="userDao">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	<property value="org.dateplanner.dao.UsersDAO" name="mapperInterface"/>
+  </bean>
+
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource"/>
+  </bean>
+
   <tx:advice id="tx" transaction-manager="transactionManager">
 	<tx:attributes>
 	  <tx:method name="*"/>
