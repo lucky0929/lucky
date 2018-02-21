@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="https://kauth.kakao.com/oauth/authorize?client_id=62b0ece7e740a62645b08a9daa0da6f8&redirect_uri=https://localhost/login/kakao/callback&response_type=code">카카오로그인</a>
+<a href="user/kakao/login">카카오로그인</a>
 </body>
 </html>
