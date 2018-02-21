@@ -6,16 +6,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@Controller @RequestMapping("user")
 public class UserController {
 	
 	@Autowired
-	private UsersService user;
+	private UsersService usersService;
 	
-	@RequestMapping
-	public String test(Model model) {
-		model.addAttribute("test", user.selectAll());
-		return "test";
+	@RequestMapping("login")
+	public String login(Model model) {
+		
+		return "main";
 	} //test
 
-} //UserController
+	@RequestMapping("join")
+	public String join(Model model) {
+		model.addAttribute("", usersService.selectAll());
+		return "test";
+	} //insert
+	
+	@RequestMapping("leave")
+	public String leave(Model model) {
+		model.addAttribute("test", usersService.selectAll());
+		return "test";
+	} //leave
+	
+} //class LoginController;

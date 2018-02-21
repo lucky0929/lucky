@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsersService {
+public class UsersService implements UsersDAO {
 	
 	@Autowired
 	private UsersDAO usersDAO;
-	
-	public User selectAll(){ return usersDAO.selectAll(); }
+
+	@Override public User loginAPI() { return usersDAO.loginAPI(); }
+	@Override public void insert() { }
+	@Override public void delete() { }
+	@Override public void update() { }
 	
 } //class UserService
