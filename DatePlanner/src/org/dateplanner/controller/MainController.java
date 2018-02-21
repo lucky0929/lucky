@@ -1,5 +1,7 @@
 package org.dateplanner.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -7,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	
 	@RequestMapping(path= { "/", "main", "index" })
-	public String main() { return "main"; }
+	public String main(HttpServletRequest request) { return "main"; }
 	
 } //class MainController;

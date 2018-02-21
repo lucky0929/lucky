@@ -3,9 +3,9 @@ package org.dateplanner.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller @RequestMapping("user")
-public class UserController {
+@Controller @RequestMapping("post")
+public class PostController {
 	
 	
 	
-} //class LoginController;
+} //class PlaceController;

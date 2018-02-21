@@ -11,8 +11,6 @@ public class ApiToken {
 	public void setRefreshToken(String refreshToken) { this.refreshToken = refreshToken; }
 	
 	@Override
-	public String toString() {
-		return "ApiToken [accessToken=" + accessToken + ", refreshToken=" + refreshToken + "]";
-	} //toString();
+	public String toString() { return "ApiToken [accessToken=" + accessToken + ", refreshToken=" + refreshToken + "]"; }
 	
 } //class ApiToken;
