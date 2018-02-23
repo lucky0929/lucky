@@ -7,6 +7,6 @@
     INSERT INTO
       users(id, name, `key`, nickname, sex, profile, region_no, introduction)
     VALUES
-      (#{id}, #{name}, #{key}, #{nickname}, #{sex}, #{profile}, #{regionNo}, #{introduction});
+      (#{id}, #{name}, #{key}, #{nickname}, #{sex}, #{profile}, #{regionNo}, #{introduction})
   </insert>
 </mapper>
