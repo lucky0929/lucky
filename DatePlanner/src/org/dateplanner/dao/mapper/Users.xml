@@ -5,8 +5,8 @@
 <mapper namespace="org.dateplanner.dao.UsersDAO">
   <insert id="insert" parameterType="user">
     INSERT INTO
-      users(id, name, `key`, nickname, sex, profile, region_no, introduction)
+      users(id, name, `key`, nickname, profile, region_no, introduction)
     VALUES
-      (#{id}, #{name}, #{key}, #{nickname}, #{sex}, #{profile}, #{regionNo}, #{introduction})
+      (#{id}, #{name}, #{key}, #{nickname}, #{profile}, #{regionNo}, #{introduction})
   </insert>
 </mapper>
