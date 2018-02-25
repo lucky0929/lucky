@@ -23,7 +23,7 @@
 	        });
 	    });
     </script>
-<style>
+	<style>
 	     #title {
             margin:20px 0;
             height:50px;
@@ -39,7 +39,5 @@
         <input id="title" size="72" placeholder="제목"/>
         <textarea name="content" id="summernote"></textarea>
     </form>
-<body>
-
 </body>
 </html>
