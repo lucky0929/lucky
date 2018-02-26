@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,32 +11,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>DatePlanner</title>
     <style>
-        .container{
-            text-align: center;
-        }
-
-        input{
-            text-align: center;
-        }
-
-        input[type=file]{
-            display: inline-block;
-        }
-
-        #profile input{
-            display: inline-block;
-        }
-
-        h3{
-            color: red;
-        }
+        .container{ text-align: center; }
+        input{ text-align: center; }
+        input[type=file]{ display: inline-block; }
+        #profile input{ display: inline-block; }
+        h3{ color: red; }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">DatePlanner</a>
+            <a class="navbar-brand" href="/main">DatePlanner</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>
@@ -57,18 +43,19 @@
     </div>
 </nav>
 
-
 <div class="container">
 
     <h1>새로운 계정을 만들어주세요</h1>
     <h3>입력창 앞에 별표가 붙은것은 꼭 입력해주세요</h3>
     <div class="signup">
-		<form action="user/join" method="post">
-        <i class="fas fa-star"></i><input type="text" id="name" placeholder="이름" required />
-        <input type="text" placeholder="닉네임" ><br><br>
+		<form action="join" method="post">
+		<input type="text" placeholder="id"  name="id"><br><br>
+		<input type="text" placeholder="pw"  name="key"><br><br>
+        <i class="fas fa-star"></i><input type="text" id="name" name="name" placeholder="이름" required />
+        <input type="text" placeholder="닉네임"  name="nickname"><br><br>
 
         지역을 선택해주세요<br>
-        <select>
+        <select name="regionNo">
             <option value="1">서울</option>
             <option value="2">부산</option>
             <option value="3">대구</option>
@@ -92,9 +79,9 @@
         <input type="file" id="profile"><br><br>
 
         성별을 선택해주세요<br>
-        <input type="radio" name="sex" value="male"> 남자
-        <input type="radio" name="sex" value="female"> 여자
-        <input type="radio" name="sex" value="other"> 그 외
+        <input type="radio" name="sex" value="M" id="M"> <label for="M">남자</label>
+        <input type="radio" name="sex" value="F" id="F"><label for="F">여자</label>
+        <input type="radio" name="sex" value="O" id="O"> <label for="O">그 외</label>
         <br><br>
         <input type="text" placeholder="한줄소개를 입력해주세요" name="introduction"><br><br>
         <input type="submit" value="가입!">

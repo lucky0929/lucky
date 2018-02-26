@@ -102,7 +102,7 @@
 				<a class="navbar-brand" href="#">DatePlanner</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+				<li><a href="user/insertForm"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
 
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 로그인 <span
 						class="glyphicon glyphicon-log-in"></span></a>

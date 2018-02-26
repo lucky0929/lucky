@@ -1,9 +1,9 @@
 package org.dateplanner.dao;
 
-import org.dateplanner.vo.User;
+import java.util.HashMap;
 
 public interface UsersDAO {
 	
-	public boolean insert(User user);
+	public boolean insertDateplanner(HashMap<String, String> user);
 	
 } //interface UsersDAO;

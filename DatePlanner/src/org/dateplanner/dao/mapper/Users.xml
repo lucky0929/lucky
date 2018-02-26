@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dateplanner.dao.UsersDAO">
-  <insert id="insert" parameterType="user">
+  <insert id="insertDateplanner" parameterType="java.util.HashMap">
     INSERT INTO
       users(id, name, `key`, nickname, profile, region_no, introduction)
     VALUES
