@@ -3,6 +3,7 @@ package org.dateplanner.service;
 import java.util.HashMap;
 
 import org.dateplanner.dao.UsersDAO;
+import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,26 @@ public class UsersService {
 	@Autowired
 	private UsersDAO usersDAO;
 	
-	public Boolean join(HashMap<String, String> user) { return usersDAO.insertDateplanner(user); }
+	public void join(User user) { usersDAO.insertDateplanner(user); }
+	public int idCheck(String id) { return usersDAO.idCheck(id); }
+	public void update(User user) { usersDAO.update(user); }
+	public void delete(String id) { usersDAO.delete(id); }
+	public User login(String id, String pw) { usersDAO.login(id); }
+	
+	public User HashMapToUserVO(HashMap<String,String> userMap) {
+		User user = new User();
+		try {
+			user.setName(userMap.get("name"));
+			user.setKey(userMap.get("key"));
+			user.setNickname(userMap.get("nickname"));
+			user.setSex(userMap.get("sex").charAt(0));
+			user.setProfile(userMap.get("profile"));
+			user.setRegionNo(Integer.valueOf(userMap.get("regionNo")));
+			user.setIntroduction(userMap.get("introduction"));
+			
+		} catch (NullPointerException e) { e.printStackTrace(); }
+		
+		return user;
+	}
 	
 } //class UsersService;
