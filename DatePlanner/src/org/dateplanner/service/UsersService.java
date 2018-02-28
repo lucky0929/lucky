@@ -17,7 +17,7 @@ public class UsersService {
 	public int idCheck(String id) { return usersDAO.idCheck(id); }
 	public void update(User user) { usersDAO.update(user); }
 	public void delete(String id) { usersDAO.delete(id); }
-	public User login(String id, String pw) { usersDAO.login(id); }
+	public User login(String id, String pw) { return usersDAO.login(id, pw); }
 	
 	public User HashMapToUserVO(HashMap<String,String> userMap) {
 		User user = new User();
