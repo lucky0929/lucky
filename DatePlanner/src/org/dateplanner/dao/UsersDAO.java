@@ -12,9 +12,10 @@ public interface UsersDAO {
 	프로필 페이지 [board JOIN WITH users]
 	 */
 	public void insertDateplanner(User user);
-	public int idCheck(String id);
 	public void update(User user);
 	public void delete(String id);
+	public User searchUser(String find);
+	public int idCheck(String id);
 	public User login(String id, String pw);
 	
 } //interface UsersDAO;

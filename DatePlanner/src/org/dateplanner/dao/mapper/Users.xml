@@ -28,7 +28,7 @@
   <select id="searchUser" parameterType="String" resultType="User">
     SELECT *
     FROM users
-    WHERE id=#{id}
+    WHERE id=#{find}
   </select>
   <!-- ******************************************************************************** -->
 

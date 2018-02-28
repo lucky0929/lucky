@@ -14,10 +14,14 @@ public class UsersService {
 	private UsersDAO usersDAO;
 	
 	public void join(User user) { usersDAO.insertDateplanner(user); }
-	public int idCheck(String id) { return usersDAO.idCheck(id); }
 	public void update(User user) { usersDAO.update(user); }
 	public void delete(String id) { usersDAO.delete(id); }
-	public User login(String id, String pw) { return usersDAO.login(id, pw); }
+	public User searchUser(String find) { return usersDAO.searchUser(find); }
+	public int selectOne(String id) { return usersDAO.idCheck(id); }
+	public User selectOne(String id, String pw) { return usersDAO.login(id, pw); }
+	
+//	public int idCheck(String id) { return usersDAO.idCheck(id); }
+//	public User login(String id, String pw) { return usersDAO.login(id, pw); }
 	
 	public User HashMapToUserVO(HashMap<String,String> userMap) {
 		User user = new User();
