@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller @RequestMapping("user")
 public class UserController {
 	
+	//isnertForm 등 ViewPage는 isnert
+	//insert를 처리하는 Non-ViewPage는 doInsert
+	
 	@Autowired
 	private UsersService userService;
 	
