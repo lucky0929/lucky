@@ -23,10 +23,9 @@
 		ORDER BY regdate DESC
 	</select>
 	
-	<select id="selectRegdateAsc" resultType="Post" parameterType="int">
+	<select id="viewOneBoard" resultType="Post" parameterType="int">
 		SELECT * FROM board
-		WHERE region_no=#{regionNo} 
-		ORDER BY regdate ASC
+		WHERE no=#{no}
 	</select>
 	
 	<select id="searchWithTitle" resultType="Post" parameterType="String">
