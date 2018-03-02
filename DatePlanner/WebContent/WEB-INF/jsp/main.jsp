@@ -165,56 +165,16 @@
 									<th>글쓴이</th>
 									<th>날짜</th>
 								</tr>
-								<c:set var="post" value="${postList[0]}"/>
-								<tr>
-									<td class="rank"><a href="#">1</a></td>
-									<td class="mainPhoto"><a href="#"><img src="${post.image}"></a></td>
-									<td class="contentInfo"><a class="contentTitle" href="#">${post.title}</a><br>
-										<div class="contentPreview">${post.content}</div></td>
-
-									<td class="writer"><a href="#">${post.userNo}</a></td>
-									<td class="writeDay"><a href="#">${post.regdate}</a></td>
-								</tr>
-
-								<tr>
-									<td class="rank"><a href="#">1</a></td>
-									<td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
-									<td class="contentInfo"><a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
-										<div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div></td>
-
-									<td class="writer"><a href="#">앙팡</a></td>
-									<td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
-								</tr>
-
-								<tr>
-									<td class="rank"><a href="#">1</a></td>
-									<td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
-									<td class="contentInfo"><a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
-										<div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div></td>
-
-									<td class="writer"><a href="#">앙팡</a></td>
-									<td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
-								</tr>
-
-								<tr>
-									<td class="rank"><a href="#">1</a></td>
-									<td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
-									<td class="contentInfo"><a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
-										<div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div></td>
-
-									<td class="writer"><a href="#">앙팡</a></td>
-									<td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
-								</tr>
-
-								<tr>
-									<td class="rank"><a href="#">1</a></td>
-									<td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
-									<td class="contentInfo"><a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
-										<div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div></td>
-
-									<td class="writer"><a href="#">앙팡</a></td>
-									<td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
-								</tr>
+								<c:forEach var="post" items="${postList}" varStatus="status">
+									<tr>
+										<td class="rank"><a href="#">${status.count}</a></td>
+										<td class="mainPhoto"><a href="#"><img src="${post.image}"></a></td>
+										<td class="contentInfo"><a class="contentTitle" href="#">${post.title}</a><br>
+											<div class="contentPreview">${post.content}</div></td>
+										<td class="writer"><a href="#">${post.userNo}</a></td>
+										<td class="writeDay"><a href="#">${post.regdate}</a></td>
+									</tr>
+								</c:forEach>
 
 							</table>
 						</div>

@@ -33,12 +33,9 @@ public class MainController {
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping(path = "test", params = "no")
-	public ResponseEntity<String> test(int no) throws IOException {
-		
-		Object obj;
-		
-		obj = boardService.selectRegdateDesc(no);
+	@RequestMapping(path = "test")
+	public ResponseEntity<String> test() throws IOException {
+		Object obj = null;
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-type", MediaType.APPLICATION_JSON_UTF8_VALUE);
