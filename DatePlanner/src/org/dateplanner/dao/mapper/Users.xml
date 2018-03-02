@@ -15,7 +15,7 @@
   <!-- login ,idCheck, searchUser 변경 -->
   <!-- login, idCheck selectOne로 변경 Service에서 selectOne사용해서 login, idCheck구현 -->
   <!-- searchUser의 id find로 변경 -->
-  <select id="login" parameterType="String; String" resultType="User">
+  <select id="login" parameterType="String" resultType="User">
     SELECT id
     FROM users
     WHERE id=#{id} AND `key`=#{pw}
