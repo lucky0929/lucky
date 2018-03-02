@@ -36,7 +36,8 @@ public class PostController {
 	
 	
 	@RequestMapping("writeForm")
-	public String writeForm() { return ""; }
+	public String writeForm() { return "boardInsert"; }
+	
 	@RequestMapping("doWrite")
 	public String doWrite(@RequestParam HashMap<String, String> postMap) {
 		boardService.insert(boardService.HashMapToPostVO(postMap));
