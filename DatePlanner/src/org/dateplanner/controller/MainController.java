@@ -21,10 +21,11 @@ public class MainController {
 	
 	@RequestMapping(path = { "/", "main", "index" })
 	public ModelAndView main(HttpServletRequest request) {
+		int regionNo = 5;
 		
 		ModelAndView model = new ModelAndView("main");
 		
-		model.addObject("postList", boardService.selectRegdateDesc(0));
+		model.addObject("postList", boardService.selectRegdateDesc(regionNo));
 		
 		return model;
 		

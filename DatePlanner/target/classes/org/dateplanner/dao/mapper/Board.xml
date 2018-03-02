@@ -17,6 +17,15 @@
 		WHERE user_no=#{userNo}
 	</update>
 	
+  <select id="selectOne" parameterType="int" resultType="Post">
+    SELECT
+      no, image, title, content, lat, lng, user_no, region_no, packageable, regdate
+    FROM
+      board
+    WHERE
+      no = #{no}
+  </select>
+  
 	<select id="selectRegdateDesc" resultType="Post" parameterType="int">
 		SELECT *
 		FROM board 

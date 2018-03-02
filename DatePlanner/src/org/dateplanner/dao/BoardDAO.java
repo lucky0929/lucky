@@ -6,6 +6,10 @@ import org.dateplanner.vo.Post;
 
 public interface BoardDAO {
 	
+	public Post selectOne(int no);
+	
+	
+	
 	public void insert(Post post);
 	public List<Post> selectRegdateDesc(int regionNo);
 	public List<Post> selectRegdateAsc(int regionNo);

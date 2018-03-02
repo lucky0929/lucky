@@ -6,15 +6,34 @@ import org.dateplanner.service.BoardService;
 import org.dateplanner.vo.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller @RequestMapping("post")
 public class PostController {
 	
 	@Autowired
-	BoardService boardService;
-
+	private BoardService boardService;
+	
+	@RequestMapping("view/{no}")
+	public ModelAndView view(@PathVariable int no) {
+		
+		ModelAndView model = new ModelAndView("post/view");
+		
+		model.addObject("post", boardService.getPost(no));
+		
+		return model;
+		
+	} //view();
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("writeForm")
 	public String writeForm() { return ""; }
@@ -41,7 +60,7 @@ public class PostController {
 	
 	@RequestMapping("searchTitle")
 	public String searchTitle(@RequestParam String titlez	) {
-		boardService.searchWithTitle(title);
+//		boardService.searchWithTitle(title);
 		return "";
 	} //update();
 	

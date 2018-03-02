@@ -12,7 +12,10 @@ import org.springframework.stereotype.Service;
 public class BoardService {
 	
 	@Autowired
-	BoardDAO boardDAO;
+	private BoardDAO boardDAO;
+	
+	public Post getPost(int no) { return boardDAO.selectOne(no); }
+	
 	
 	public void insert(Post post) { boardDAO.insert(post); }
 	public List<Post> selectRegdateDesc(int regionNo) { return boardDAO.selectRegdateDesc(regionNo); }
