@@ -1,16 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
-    pageEncoding="UTF-8"%><%-- 6130c6030505781f512e184e3fba2403 --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 	<script src="/summernoteDrafts.js"></script>
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
-    <meta charset="utf-8">
     
     <title>키워드로 장소검색하고 목록으로 표출하기</title>
     
@@ -64,8 +63,7 @@
 	<div class="container" style="width: 80%; height:70%;">
 		<div id="summernote_wrap">
 			<h1>summernote</h1>
-			<form name="writeForm"
-				action="/NaverBookSearchAPI/summernote_insert.jsp" method="post">
+			<form name="writeForm" action="doWrite" method="post">
 				packageable : <input type="checkbox" name="packageable" value="1"><br>
 				title : <input type="text" name="title">&nbsp 
 				좌표 : <input type="text" id="x" name="x" readonly> 
@@ -381,20 +379,20 @@ function removeAllChildNods(el) {
 }
 
  // =========================== summernote===============
-	 	function sendFile(file, editor) {
+	 	function sendFile(files, editor) {
             // 파일 전송을 위한 폼생성
 	 		data = new FormData();
-	 	    data.append("uploadFile", file);
+            $.each(files, function(i, v) { data.append(i, v) });
 	 	    $.ajax({ // ajax를 통해 파일 업로드 처리
 	 	        data : data,
 	 	        type : "POST",
-	 	        url : "/NaverBookSearchAPI/summernote_imageUpload.jsp",
+	 	        url : "write/upload",
 	 	        cache : false,
 	 	        contentType : false,
 	 	        processData : false,
 	 	        success : function(data) { // 처리가 성공할 경우
                     // 에디터에 이미지 출력
-	 	        	$(editor).summernote('editor.insertImage', data.url);
+                    $.each(data, function() { $(editor).summernote('editor.insertImage', 'img/' + this) });
 	 	        },
 	 	    	error : function(error){
 	 	    		console.log("실패");
@@ -407,7 +405,7 @@ function removeAllChildNods(el) {
 				callbacks: { // 콜백을 사용
                     // 이미지를 업로드할 경우 이벤트를 발생
 				    onImageUpload: function(files, editor, welEditable) {
-					    sendFile(files[0], this);
+					    sendFile(files, this);
 					}
 				}
 			});
