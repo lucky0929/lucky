@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BoardService {
-
+	
 	@Autowired
 	BoardDAO boardDAO;
 	
@@ -23,7 +23,7 @@ public class BoardService {
 	
 	public void delete(int no) { boardDAO.delete(no); }
 	public void update(Post post) { boardDAO.update(post); }
-
+	
 	public Post HashMapToPostVO(HashMap<String,String> postMap) {
 		Post post = new Post();
 		try {
