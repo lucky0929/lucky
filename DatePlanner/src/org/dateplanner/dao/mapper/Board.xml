@@ -18,18 +18,27 @@
 	</update>
 	
 	<select id="selectRegdateDesc" resultType="Post" parameterType="int">
-		SELECT * FROM board 
+		SELECT *
+		FROM board 
 		WHERE region_no=#{regionNo}
 		ORDER BY regdate DESC
 	</select>
 	
+	<select id="selectCount" resultType="int" parameterType="int">
+		SELECT count(*)
+		FROM board 
+		WHERE region_no=#{regionNo}
+	</select>
+	
 	<select id="viewOneBoard" resultType="Post" parameterType="int">
-		SELECT * FROM board
+		SELECT *
+		FROM board
 		WHERE no=#{no}
 	</select>
 	
 	<select id="searchWithTitle" resultType="Post" parameterType="String">
-		SELECT * FROM board 
+		SELECT *
+		FROM board 
 		WHERE title=#{title}
 		ORDER BY regdate DESC
 	</select>

@@ -19,6 +19,7 @@ public class BoardService {
 	public List<Post> selectRegdateAsc(int regionNo) { return boardDAO.selectRegdateAsc(regionNo); }
 	public List<Post> searchWithTitle(String title) { return boardDAO.searchWithTitle(title); }
 	public Post viewOneBoard(int no) { return boardDAO.viewOneBoard(no); }
+	public int boardCount(int regionNo) { return boardDAO.boardCount(regionNo); }
 	
 	public void delete(int no) { boardDAO.delete(no); }
 	public void update(Post post) { boardDAO.update(post); }

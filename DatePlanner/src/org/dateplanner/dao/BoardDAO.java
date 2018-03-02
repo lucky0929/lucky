@@ -11,6 +11,7 @@ public interface BoardDAO {
 	public List<Post> selectRegdateAsc(int regionNo);
 	public List<Post> searchWithTitle(String title);
 	public Post viewOneBoard(int no);
+	public int boardCount(int regionNo);
 	
 	public void delete(int no);
 	public void update(Post post);
