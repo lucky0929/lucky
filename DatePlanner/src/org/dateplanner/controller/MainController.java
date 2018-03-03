@@ -3,6 +3,7 @@ package org.dateplanner.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.dateplanner.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,10 @@ public class MainController {
 	private BoardService boardService;
 	
 	@RequestMapping(path = "test")
-	public ResponseEntity<String> test() throws IOException {
+	public ResponseEntity<String> test(HttpSession session) throws IOException {
 		Object obj = null;
 		
-		
+		obj = session.getAttribute("loginInfo");
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-type", MediaType.APPLICATION_JSON_UTF8_VALUE);

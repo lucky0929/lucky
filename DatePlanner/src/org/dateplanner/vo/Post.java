@@ -8,7 +8,7 @@ public class Post {
 	private String image;
 	private String title;
 	private String content;
-	private int userNo;
+	private User user;
 	private int regionNo;
 	private Boolean packageable;
 	private Timestamp regdate;
@@ -19,7 +19,7 @@ public class Post {
 	public String getImage() { return image; }
 	public String getTitle() { return title; }
 	public String getContent() { return content; }
-	public int getUserNo() { return userNo; }
+	public User getUser() { return user; }
 	public int getRegionNo() { return regionNo; }
 	public Boolean getPackageable() { return packageable; }
 	public Timestamp getRegdate() { return regdate; }
@@ -29,7 +29,7 @@ public class Post {
 	public void setImage(String image) { this.image = image; }
 	public void setTitle(String title) { this.title = title; }
 	public void setContent(String content) { this.content = content; }
-	public void setUserNo(int userNo) { this.userNo = userNo; }
+	public void setUser(User user) { this.user = user; }
 	public void setRegionNo(int regionNo) { this.regionNo = regionNo; }
 	public void setPackageable(Boolean packageable) { this.packageable = packageable; }
 	public void setRegdate(Timestamp regdate) { this.regdate = regdate; }
@@ -38,8 +38,9 @@ public class Post {
 	
 	@Override
 	public String toString() {
-		return "Post [no=" + no + ", image=" + image + ", title=" + title + ", content=" + content + ", userNo="
-				+ userNo + ", regionNo=" + regionNo + ", packageable=" + packageable + ", regdate=" + regdate + "]";
+		return "Post [no=" + no + ", image=" + image + ", title=" + title + ", content=" + content + ", user=" + user
+				+ ", regionNo=" + regionNo + ", packageable=" + packageable + ", regdate=" + regdate + ", lat=" + lat
+				+ ", lng=" + lng + "]";
 	} //toString();
 	
 } //class Post;

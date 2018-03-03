@@ -3,19 +3,9 @@ package org.dateplanner.dao;
 import org.dateplanner.vo.User;
 
 public interface UsersDAO {
-	/*
-	회원가입
-	회원수정
-	로그인
-	회원탈퇴
-	사용자 검색
-	프로필 페이지 [board JOIN WITH users]
-	 */
-	public void insertDateplanner(User user);
-	public void update(User user);
-	public void delete(String id);
-	public User searchUser(String find);
-	public int idCheck(String id);
-	public User login(String id, String pw);
+	
+	public boolean insert(User user);
+	public boolean idExist(String id);
+	public User selectOne(String id);
 	
 } //interface UsersDAO;

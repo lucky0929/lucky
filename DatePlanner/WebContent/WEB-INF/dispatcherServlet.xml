@@ -13,7 +13,7 @@
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
-    <property name="order" value="0"></property>
+	<property name="order" value="0"></property>
   </bean>
   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
 </beans>

@@ -3,45 +3,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dateplanner.dao.UsersDAO">
-
-  <insert id="insertDateplanner" parameterType="User">
+  
+  <insert id="insert" parameterType="User">
     INSERT INTO
-    users(id, name, `key`, nickname, profile, region_no,
-    introduction)
+      users(id, name, `key`, nickname, profile, region_no, introduction)
     VALUES
-    (#{id}, #{name}, #{key}, #{nickname}, #{profile}, #{regionNo}, #{introduction})
+      (#{id}, #{name}, #{key}, #{nickname}, #{profile}, #{regionNo}, #{introduction})
   </insert>
-
-  <!-- login ,idCheck, searchUser 변경 -->
-  <!-- login, idCheck selectOne로 변경 Service에서 selectOne사용해서 login, idCheck구현 -->
-  <!-- searchUser의 id find로 변경 -->
-  <select id="login" parameterType="String" resultType="User">
-    SELECT id
-    FROM users
-    WHERE id=#{id} AND `key`=#{pw}
+  
+  <select id="idExist" parameterType="String" resultType="boolean">
+    SELECT
+      COUNT(*)
+    FROM
+      users
+    WHERE
+      platform IS NULL
+    AND
+      id = #{id}
   </select>
-  <select id="idCheck" parameterType="String" resultType="int">
-    SELECT count(*)
-    FROM users
-    WHERE id=#{id}
+  
+  <select id="selectOne" parameterType="String" resultType="User">
+    SELECT
+      no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction, regdate
+    FROM
+      users
+    WHERE
+      platform IS NULL
+    AND
+      id = #{id}
   </select>
-  <select id="searchUser" parameterType="String" resultType="User">
-    SELECT *
-    FROM users
-    WHERE id=#{find}
-  </select>
-  <!-- ******************************************************************************** -->
-
-  <update id="update" parameterType="User">
-    UPDATE users SET name=#{name}, nickname=#{nickname},
-    profile#{profile},
-    region_no#{regionNo}, introduction=#{introduction}
-    WHERE id=#{id}
-  </update>
-
-  <delete id="delete" parameterType="String">
-    DELETE FROM users
-    WHERE id=#{id}
-  </delete>
-
+  
 </mapper>

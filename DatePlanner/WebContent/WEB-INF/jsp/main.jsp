@@ -4,259 +4,66 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title>DatePlanner</title>
-	<style>
-		.navbar { margin-bottom: 0; }
-		.regionbar {
-			position: relative;
-			border: 2px solid darkgoldenrod;
-		}
-		#mainContent {
-			min-width: 1100px;
-			min-height: 830px;
-		}
-		.container {
-			border: 2px solid darkcyan;
-		}
-		.regionbar .dropdown {
-			float: right;
-			margin-top: -32px;
-		}
-		.contentwrap {
-			padding-top: 20px;
-			width: 100%;
-			min-width: 1000px;
-			position: relative;
-		}
-		.boardwrap {
-			position: absolute;
-			border: 2px solid aquamarine;
-			width: 70%;
-			height: 750px;
-		}
-		.boardlist {
-			width: 100%;
-			height: 100%;
-			padding: 20px;
-		}
-		.festivalwrap {
-			border: 2px solid coral;
-			width: 30%;
-			height: 750px;
-			float: right;
-		}
-		.festival {
-			border: 2px solid deepskyblue;
-			width: 100%;
-			height: 100%;
-			padding: 15px;
-		}
-		.festival .container { width: 100%; }
-		th { text-align: center; }
-		th a:link { text-decoration: none; }
-		
-		#viewArray button {
-			float: left;
-			width: 50%;
-		}
-		#buttonBox {
-			width: 100%;
-			/*float: right;*/
-			font-size: 1.8em;
-		}
-		#buttonBox button {
-			width: 40px;
-			height: 40px;
-			float: right;
-		}
-		.table { text-align: center; }
-		.mainPhoto img {
-			width: 40px;
-			height: 40px;
-		}
-		.contentTitle {
-			font-weight: bold;
-			position: relative;
-			max-width: 90%;
-		}
-		.contentPreview {
-			width: 400px;
-			height: 25px;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
-		}
-		.contentInfo a, .rank a, .writer a,
-		.writeDay a { text-decoration: none; }
-		.contentPreview { text-overflow: ellipsis; }
-	</style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">DatePlanner</a>
-			</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="user/insertForm"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
-
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 로그인 <span
-						class="glyphicon glyphicon-log-in"></span></a>
-
-					<ul class="dropdown-menu">
-						<li><a
-							href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
-								네이버 로그인</a></li>
-						<li><a href="#">페이스북 로그인</a></li>
-						<li><a href="#">구글 로그인</a></li>
-					</ul></li>
-			</ul>
-		</div>
-	</nav>
-
-	<div id="mainContent" class="container">
-		<div class="regionbar">
-			<p>인천</p>
-			<div class="dropdown">
-				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-					지역 변경 <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li><input class="form-control" id="myInput" type="text" placeholder="검색하기" /></li>
-					<li><a href="#">서울</a></li>
-					<li><a href="#">부산</a></li>
-					<li><a href="#">울산</a></li>
-					<li><a href="#">대구</a></li>
-					<li><a href="#">인천</a></li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="contentwrap">
-			<div class="content">
-				<div class="boardwrap">
-					<div class="boardlist">
-
-						<div id="viewArray">
-							<button class="btn btn-info">인기게시물</button>
-							<button class="btn btn-info">최신게시물</button>
-						</div>
-
-						<div id="buttonBox">
-							<button>
-								<i class="fab fa-buromobelexperte"></i>
-							</button>
-							<button>
-								<i class="fas fa-list"></i>
-							</button>
-						</div>
-
-						<div class="contentList">
-							<table class="table table-hover">
-								<tr>
-									<th>순위</th>
-									<th>메인사진</th>
-									<th>글 정보</th>
-									<th>글쓴이</th>
-									<th>날짜</th>
-								</tr>
-								<c:forEach var="post" items="${postList}" varStatus="status">
-									<tr>
-										<td class="rank"><a href="#">${status.count}</a></td>
-										<td class="mainPhoto"><a href="#"><img src="${post.image}"></a></td>
-										<td class="contentInfo"><a class="contentTitle" href="#">${post.title}</a><br>
-											<div class="contentPreview">${post.content}</div></td>
-										<td class="writer"><a href="#">${post.userNo}</a></td>
-										<td class="writeDay"><a href="#">${post.regdate}</a></td>
-									</tr>
-								</c:forEach>
-
-							</table>
-						</div>
-
-					</div>
-				</div>
-			</div>
-			<div class="festivalwrap">
-				<div class="festival">
-
-					<div class="container">
-						<div id="myCarousel" class="carousel slide" data-ride="carousel">
-							<!-- Indicators -->
-							<ol class="carousel-indicators">
-								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-								<li data-target="#myCarousel" data-slide-to="1"></li>
-								<li data-target="#myCarousel" data-slide-to="2"></li>
-								<li data-target="#myCarousel" data-slide-to="3"></li>
-							</ol>
-
-							<!-- Wrapper for slides -->
-							<div class="carousel-inner">
-
-								<div class="item active">
-									<img src="img/la.jpg" alt="Los Angeles" style="width: 100%;">
-									<div class="carousel-caption">
-										<h3>Los Angeles</h3>
-										<p>LA is always so much fun!</p>
-									</div>
-								</div>
-
-								<div class="item">
-									<img src="img/chicago.jpg" alt="Chicago" style="width: 100%;">
-									<div class="carousel-caption">
-										<h3>Chicago</h3>
-										<p>Thank you, Chicago!</p>
-									</div>
-								</div>
-
-								<div class="item">
-									<img src="img/chicago.jpg" alt="Chicago" style="width: 100%;">
-									<div class="carousel-caption">
-										<h3>Chicago</h3>
-										<p>Thank you, Chicago!</p>
-									</div>
-								</div>
-
-								<div class="item">
-									<img src="img/ny.jpg" alt="New York" style="width: 100%;">
-									<div class="carousel-caption">
-										<h3>New York</h3>
-										<p>We love the Big Apple!</p>
-									</div>
-								</div>
-
-							</div>
-
-							<!-- Left and right controls -->
-							<a class="left carousel-control" href="#myCarousel" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span>
-								<span class="sr-only">Previous</span>
-							</a> <a class="right carousel-control" href="#myCarousel" data-slide="next"> <span
-								class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span>
-							</a>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div>
+	<c:choose>
+		<c:when test="${empty loginInfo}">
+			<div><a href="user/login">로그인</a> / <a href="user/join">회원가입</a></div>
+		</c:when>
+		<c:otherwise>
+			<div><strong>${loginInfo.nickname}</strong>로 로그인됨</div>
+			<div><a href="post/write">글쓰기</a> / <a href="user/logout">로그아웃</a></div>
+		</c:otherwise>
+	</c:choose>
+	<div>
+		<span>지역선택</span>
+		<select id="regionSelect">
+			<option value="0">서울특별시</option>
+			<option value="1">부산광역시</option>
+			<option value="2">광주광역시</option>
+			<option value="3">대구광역시</option>
+			<option value="4">대전광역시</option>
+			<option value="5">인천광역시</option>
+			<option value="6">경기도</option>
+			<option value="7">울산광역시</option>
+			<option value="8">세종특별자치시</option>
+			<option value="9">제주특별자치도</option>
+			<option value="10">경상남도</option>
+			<option value="11">충청남도</option>
+			<option value="12">전라북도</option>
+			<option value="13">충청북도</option>
+			<option value="14">전라남도</option>
+			<option value="15">경상북도</option>
+			<option value="16">강원도</option>
+		</select>
 	</div>
-
-	<script>
-		$(function() {
-			$("#myInput").keyup(function() {
-				var value = $(this).val().toLowerCase();
-				$(".dropdown-menu li").filter(function() {
-					$(this).toggle($(this)
-							.text().toLowerCase()
-							.indexOf(value) > -1)
-				});
-			});
-		});
-	</script>
+	<div>
+		<span>글 목록</span>
+		<span>글이 없습니다.</span>
+		<ul>
+			<li>
+				<img src="post/img/494471ed1ae746ddb7e0b9194e0ea938.jpg" height="480">
+				<dl style="display: inline-block">
+					<dt>제목</dt>
+					<dd>제목</dd>
+					<dt>내용</dt>
+					<dd>&lt;script&gt;alert('HelloWorld!')&lt;/script&gt;</dd>
+					<dt>lat</dt>
+					<dd>lat</dd>
+					<dt>lng</dt>
+					<dd>lng</dd>
+					<dt>글쓴이</dt>
+					<dd>심심한쫑이</dd>
+					<dt>지역</dt>
+					<dd>인천팡역시</dd>
+					<dt>작성일</dt>
+					<dd>1999-02-22</dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>$('#regionSelect').change(function() { location.href = '?region=' + $(this).val() })</script>
 </body>
 </html>

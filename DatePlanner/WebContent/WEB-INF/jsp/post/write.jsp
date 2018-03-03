@@ -380,6 +380,7 @@ function removeAllChildNods(el) {
 
  // =========================== summernote===============
 	 	function sendFile(files, editor) {
+	 console.log(files);
             // 파일 전송을 위한 폼생성
 	 		data = new FormData();
             $.each(files, function(i, v) { data.append(i, v) });
