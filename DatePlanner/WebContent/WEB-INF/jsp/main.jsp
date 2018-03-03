@@ -64,6 +64,10 @@
 								<dd>${post.regionNo}</dd>
 								<dt>작성일</dt>
 								<dd>${post.regdate}</dd>
+								<c:if test="${loginInfo.no eq post.user.no}">
+									<dt>편집</dt>
+									<dd><a href="post/update?no=${post.no}">수정</a> <a href="post/delete?no=${post.no}">삭제</a></dd>
+								</c:if>
 							</dl>
 						</li>
 					</c:forEach>
@@ -72,6 +76,6 @@
 		</c:choose>
 	</div>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script>$('#regionSelect').change(function() { location.href = '?region=' + $(this).val() })</script>
+	<script>$('#regionSelect').change(function() { location.href = '?region='+$(this).val() })</script>
 </body>
 </html>
