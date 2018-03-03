@@ -39,29 +39,37 @@
 		</select>
 	</div>
 	<div>
-		<span>글 목록</span>
-		<span>글이 없습니다.</span>
-		<ul>
-			<li>
-				<img src="post/img/494471ed1ae746ddb7e0b9194e0ea938.jpg" height="480">
-				<dl style="display: inline-block">
-					<dt>제목</dt>
-					<dd>제목</dd>
-					<dt>내용</dt>
-					<dd>&lt;script&gt;alert('HelloWorld!')&lt;/script&gt;</dd>
-					<dt>lat</dt>
-					<dd>lat</dd>
-					<dt>lng</dt>
-					<dd>lng</dd>
-					<dt>글쓴이</dt>
-					<dd>심심한쫑이</dd>
-					<dt>지역</dt>
-					<dd>인천팡역시</dd>
-					<dt>작성일</dt>
-					<dd>1999-02-22</dd>
-				</dl>
-			</li>
-		</ul>
+		<div><span>글 목록</span></div>
+		<c:choose>
+			<c:when test="${empty postList}">
+				<div><span>글이 없습니다.</span></div>
+			</c:when>
+			<c:otherwise>
+				<ul>
+					<c:forEach var="post" items="${postList}">
+						<li style="border: 1px solid black">
+							<img src="post/img/${post.image}" height="480">
+							<dl style="display: inline-block">
+								<dt>제목</dt>
+								<dd>${post.title}</dd>
+								<dt>내용</dt>
+								<dd>${post.content}</dd>
+								<dt>lat</dt>
+								<dd>${post.lat}</dd>
+								<dt>lng</dt>
+								<dd>${post.lng}</dd>
+								<dt>글쓴이</dt>
+								<dd>${post.user.nickname}</dd>
+								<dt>지역</dt>
+								<dd>${post.regionNo}</dd>
+								<dt>작성일</dt>
+								<dd>${post.regdate}</dd>
+							</dl>
+						</li>
+					</c:forEach>
+				</ul>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>$('#regionSelect').change(function() { location.href = '?region=' + $(this).val() })</script>

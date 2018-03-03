@@ -31,6 +31,23 @@ public class UserController {
 	@RequestMapping("join")
 	public void join() {}
 	
+	@RequestMapping("join/upload")
+	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request) throws IOException {
+		
+		MultipartFile file = request.getFile("file");
+		String originalFileName = file.getOriginalFilename();
+		String fileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileName.substring(originalFileName.lastIndexOf('.'));
+		
+		file.transferTo(new File(request.getServletContext().getRealPath("/user/img/") + fileName));
+		
+		System.out.println("[DEBUG] Upload Location: " + request.getServletContext().getRealPath("/user/img/"));
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-type", MediaType.APPLICATION_JSON_UTF8_VALUE);
+		return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(Collections.singletonMap("fileName", fileName)), headers, HttpStatus.OK);
+		
+	} //writeUpload();
+	
 	@RequestMapping(path = "doJoin", params = { "id", "password", "name", "nickname", "regionNo", "profile", "introduction" })
 	public String doJoin(@ModelAttribute User user, String password) {
 		user.setKey(password);
@@ -41,23 +58,6 @@ public class UserController {
 		return "redirect:../";
 		
 	} //doJoin();
-	
-	@RequestMapping("join/upload")
-	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request) throws IOException {
-		
-		MultipartFile file = request.getFile("file");
-		String originalFileName = file.getOriginalFilename();
-		String fileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileName.substring(originalFileName.lastIndexOf('.'));
-		
-		file.transferTo(new File(request.getServletContext().getRealPath("/user/img/") + fileName));
-		
-		System.out.println("[DEBUG]Upload Location: " + request.getServletContext().getRealPath("/user/img/"));
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-type", MediaType.APPLICATION_JSON_UTF8_VALUE);
-		return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(Collections.singletonMap("fileName", fileName)), headers, HttpStatus.OK);
-		
-	} //writeUpload();
 	
 	@RequestMapping("login")
 	public void login() {};

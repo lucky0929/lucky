@@ -58,6 +58,7 @@
 			$.ajax('join/upload', {
 				data: data,
 				type : "POST",
+				cache : false,
 				contentType : false,
 				processData : false,
 				success: function(json) { $profile.val(json.fileName) }

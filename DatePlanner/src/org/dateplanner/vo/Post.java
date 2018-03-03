@@ -5,9 +5,9 @@ import java.sql.Timestamp;
 public class Post {
 	
 	private int no;
-	private String image;
 	private String title;
 	private String content;
+	private String image;
 	private User user;
 	private int regionNo;
 	private Boolean packageable;
@@ -16,9 +16,9 @@ public class Post {
 	private Double lng;
 	
 	public int getNo() { return no; }
-	public String getImage() { return image; }
 	public String getTitle() { return title; }
 	public String getContent() { return content; }
+	public String getImage() { return image; }
 	public User getUser() { return user; }
 	public int getRegionNo() { return regionNo; }
 	public Boolean getPackageable() { return packageable; }
@@ -26,9 +26,9 @@ public class Post {
 	public Double getLat() { return lat; }
 	public Double getLng() { return lng; }
 	public void setNo(int no) { this.no = no; }
-	public void setImage(String image) { this.image = image; }
 	public void setTitle(String title) { this.title = title; }
 	public void setContent(String content) { this.content = content; }
+	public void setImage(String image) { this.image = image; }
 	public void setUser(User user) { this.user = user; }
 	public void setRegionNo(int regionNo) { this.regionNo = regionNo; }
 	public void setPackageable(Boolean packageable) { this.packageable = packageable; }
@@ -38,7 +38,7 @@ public class Post {
 	
 	@Override
 	public String toString() {
-		return "Post [no=" + no + ", image=" + image + ", title=" + title + ", content=" + content + ", user=" + user
+		return "Post [no=" + no + ", title=" + title + ", content=" + content + ", image=" + image + ", user=" + user
 				+ ", regionNo=" + regionNo + ", packageable=" + packageable + ", regdate=" + regdate + ", lat=" + lat
 				+ ", lng=" + lng + "]";
 	} //toString();

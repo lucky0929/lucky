@@ -20,20 +20,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class MainController {
 	
+	@Autowired
+	private BoardService boardService;
+	
 	@RequestMapping(path = { "/", "main", "index" })
 	public ModelAndView main(HttpServletRequest request) {
-		int regionNo = 5;
 		
 		ModelAndView model = new ModelAndView("main");
 		
-		model.addObject("postList", boardService.selectRegdateDesc(regionNo));
+		model.addObject("postList", boardService.selectAll());
 		
 		return model;
 		
 	} //main();
-	
-	@Autowired
-	private BoardService boardService;
 	
 	@RequestMapping(path = "test")
 	public ResponseEntity<String> test(HttpSession session) throws IOException {
