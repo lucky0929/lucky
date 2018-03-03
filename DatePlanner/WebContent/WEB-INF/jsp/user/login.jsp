@@ -12,7 +12,7 @@
 			<tr><td>비밀번호: </td><td><input type="password" name="password" required></td></tr>
 			<tr>
 				<td colspan="2" style="text-align: right">
-					<a href="../">돌아가기</a>
+					<a href="../">메인 페이지로</a>
 					<button>로그인</button>
 				</td>
 			</tr>

@@ -6,8 +6,22 @@
     INSERT INTO
       board(title, content, image, lat, lng, user_no, region_no, packageable)
     VALUES
-      (#{title}, #{content}, #{image}, #{lat}, #{lng}, #{user.no}, #{regionNo}, packageable)
+      (#{title}, #{content}, #{image}, #{lat}, #{lng}, #{user.no}, #{regionNo}, #{packageable})
   </insert>
+  
+  <select id="selectOne" parameterType="int" resultType="Post">
+    SELECT
+      b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
+      u.no 'user.no', nickname 'user.nickname'
+    FROM
+      board b
+    JOIN
+      users u
+    ON
+      user_no = u.no
+    WHERE
+      b.no = #{no}
+  </select>
   
   <select id="selectAll" resultType="Post">
     SELECT

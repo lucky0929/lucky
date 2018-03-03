@@ -53,7 +53,7 @@
 				<tr><td>packageable: </td><td><input type="checkbox" name="packageable"></td></tr>
 				<tr>
 					<td colspan="2" style="text-align: right">
-						<a href="../">돌아가기</a>
+						<a href="../">메인 페이지로</a>
 						<button>글쓰기</button>
 					</td>
 				</tr>

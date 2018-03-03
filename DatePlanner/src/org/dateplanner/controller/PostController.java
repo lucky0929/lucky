@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -71,7 +72,7 @@ public class PostController {
 		post.setUser(loginInfo);
 		
 		if(loginInfo != null) {
-
+			
 			post.setPackageable(post.getPackageable() != null);
 			post.setUser(loginInfo);
 			
@@ -84,64 +85,15 @@ public class PostController {
 		
 	} //doWrite();
 	
-//	@RequestMapping("write")
-//	public void write() {}
-//	
-
-//	
-//	@RequestMapping(path = "doWrite", params = { "title", "content", "lat", "lng", "regionNo" })
-//	public void doWrite(@RequestParam Map<String, Object> params) throws IOException {
-//		
-//		new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(System.out, params);
-//		
-//	} //doWrite();
-//	
-//	@RequestMapping("view/{no}")
-//	public ModelAndView view(@PathVariable int no) {
-//		
-//		ModelAndView model = new ModelAndView("post/view");
-//		
-//		model.addObject("post", boardService.getPost(no));
-//		
-//		return model;
-//		
-//	} //view();
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	@RequestMapping("writeForm")
-//	public String writeForm() { return "boardInsert"; }
-//	
-////	@RequestMapping("doWrite")
-////	public String doWrite(@RequestParam HashMap<String, String> postMap) {
-////		boardService.insert(boardService.HashMapToPostVO(postMap));
-////		
-////		return null;
-////	} //doWrite();
-//	
-//	@RequestMapping("delete")
-//	public String delete(@RequestParam int no) {
-//		boardService.delete(no);
-//		return "";
-//	} //delete();
-//	
-//	@RequestMapping("updateForm")
-//	public String updateForm() { return ""; }
-//	@RequestMapping("update")
-//	public String update(@RequestParam Post post) {
-//		boardService.update(post);
-//		return "";
-//	} //update();
-//	
-//	@RequestMapping("searchTitle")
-//	public String searchTitle(@RequestParam String titlez	) {
-////		boardService.searchWithTitle(title);
-//		return "";
-//	} //update();
+	@RequestMapping(path = "view", params = "no")
+	public ModelAndView view(int no) {
+		
+		ModelAndView model = new ModelAndView();
+		
+		model.addObject("post", boardService.selectOne(no));
+		
+		return model;
+		
+	} //view();
 	
 } //class PlaceController;

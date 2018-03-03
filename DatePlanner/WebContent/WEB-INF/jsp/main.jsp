@@ -51,7 +51,7 @@
 							<img src="post/img/${post.image}" height="480">
 							<dl style="display: inline-block">
 								<dt>제목</dt>
-								<dd>${post.title}</dd>
+								<dd><a href="post/view?no=${post.no}">${post.title}</a></dd>
 								<dt>내용</dt>
 								<dd>${post.content}</dd>
 								<dt>lat</dt>

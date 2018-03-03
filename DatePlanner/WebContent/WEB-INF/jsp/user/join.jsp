@@ -41,7 +41,7 @@
 			<tr><td>한줄소개: </td><td><input name="introduction"></td></tr>
 			<tr>
 				<td colspan="2" style="text-align: right">
-					<a href="../">돌아가기</a>
+					<a href="../">메인 페이지로</a>
 					<button>회원가입</button>
 				</td>
 			</tr>
