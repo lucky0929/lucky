@@ -67,19 +67,11 @@ public class PostController {
 	@RequestMapping(path = "doWrite", params = { "title", "content", "image", "lat", "lng", "regionNo", "files" })
 	public String doWrite(HttpSession session, @ModelAttribute Post post) {
 		
-		User loginInfo = (User)session.getAttribute("loginInfo");
+		post.setUser((User)session.getAttribute("loginInfo"));
+		post.setPackageable(post.getPackageable() != null);
 		
-		post.setUser(loginInfo);
-		
-		if(loginInfo != null) {
-			
-			post.setPackageable(post.getPackageable() != null);
-			post.setUser(loginInfo);
-			
-			if(!boardService.write(post))
-				return "redirect:write";
-			
-		}
+		if(!boardService.write(post))
+			return "redirect:write";
 		
 		return "redirect:../";
 		

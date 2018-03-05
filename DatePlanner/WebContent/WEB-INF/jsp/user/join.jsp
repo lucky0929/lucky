@@ -51,7 +51,8 @@
 	<script src="../js/sha512.js"></script>
 	<script>
 		var $password = $('input[name=password]'),
-			$profile = $('input[name=profile]');
+			$profile = $('input[name=profile]'),
+			submittable = false;
 		$('input[type=file]').change(function() {
 			var data = new FormData();
 			data.append('file', this.files[0]);
@@ -64,7 +65,12 @@
 				success: function(json) { $profile.val(json.fileName) }
 			})
 		});
-		$('#joinForm').submit(function(e) { $password.val(sha512($password.val())) });
+		$('input[name=id]').keyup(function() {
+			
+		});
+		$('#joinForm').submit(function(e) {
+			$password.val(sha512($password.val()))
+		});
 	</script>
 </body>
 </html>
