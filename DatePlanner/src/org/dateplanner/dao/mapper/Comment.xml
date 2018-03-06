@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dateplanner.dao.CommentDAO">
 
-	<inset id="insert" parameterType="Comment">
+	<insert id="insert" parameterType="Comment">
 		INSERT INTO 
 		  comment(board_no, user_no, comment, parent_no, seq)
 		VALUES
 		  (#{boardNo}, #{userNo}, #{comment}, #{parentNo}, #{seq})
-	</inset>
+	</insert>
 	
 	<update id="update" parameterType="Comment">
 	  UPDATE
