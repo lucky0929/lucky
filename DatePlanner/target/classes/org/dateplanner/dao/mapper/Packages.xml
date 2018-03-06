@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dateplanner.dao.PackagesDAO">
+  
+  <insert id="insertPost" parameterType="Post" keyProperty="no" useGeneratedKeys="true">
+    INSERT INTO
+      board(title, content, image, user_no, region_no)
+    VALUES
+      (#{title}, #{content}, #{image}, #{user.no}, #{regionNo})
+  </insert>
+  
+  <insert id="insert" parameterType="Package">
+    INSERT INTO
+      package(no, place_no, `order`)
+    VALUES
+     <foreach collection="placeList" item="place" index="i" separator=", ">(#{packagePost.no}, #{place.no}, #{i})</foreach>
+  </insert>
+  
+  <select id="checkPackageable" parameterType="Package" resultType="int">
+    SELECT
+      COUNT(*)
+    FROM
+      board
+    WHERE
+      ((packageable IS NOT NULL AND user_no = #{packagePost.no})
+    OR
+      packageable = true)
+    AND
+      no IN(<foreach collection="placeList" item="place" separator=", ">#{place.no}</foreach>)
+  </select>
+  
+  <select id="selectPackageable" parameterType="int" resultType="Post">
+    SELECT
+      no, title, content, image, lat, lng, user_no 'user.no', region_no regionNo, packageable, regdate
+    FROM
+      board
+    WHERE
+      ((packageable IS NOT NULL AND user_no = #{packagePost.no})
+    OR
+      packageable = true)
+  </select>
+  
+</mapper>

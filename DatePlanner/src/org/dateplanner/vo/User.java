@@ -15,6 +15,9 @@ public class User {
 	private Integer regionNo;
 	private String introduction;
 	private Timestamp regdate;
+
+	public User() {}
+	public User(int no) { this.no = no; }
 	
 	public int getNo() { return no; }
 	public String getId() { return id; }

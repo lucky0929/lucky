@@ -27,7 +27,7 @@
 <!--     </mvc:interceptor> -->
     <mvc:interceptor>
       <mvc:mapping path="/post/write/**"/>
-      <mvc:mapping path="/post/doWrite"/>
+      <mvc:mapping path="/post/doWrite/**"/>
       <bean class="org.dateplanner.interceptor.LoginInterceptor"/>
     </mvc:interceptor>
   </mvc:interceptors>

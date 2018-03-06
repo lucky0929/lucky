@@ -14,6 +14,9 @@ public class Post {
 	private Timestamp regdate;
 	private Double lat;
 	private Double lng;
+
+	public Post() {}
+	public Post(int no) { this.no = no; }
 	
 	public int getNo() { return no; }
 	public String getTitle() { return title; }

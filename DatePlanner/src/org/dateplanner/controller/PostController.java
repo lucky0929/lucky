@@ -88,4 +88,21 @@ public class PostController {
 		
 	} //view();
 	
+	@RequestMapping(path = "myPage")
+	public ModelAndView myPage(HttpSession session) {
+		
+		User loginInfo = (User)session.getAttribute("loginInfo");
+		
+		List<Post> post = boardService.selectMyPage(loginInfo.getNo());
+		System.out.println(post);
+		ModelAndView model = new ModelAndView();
+		
+		model.addObject("loginInfo", loginInfo);
+		model.addObject("postList", post);
+		model.setViewName("post/mypage");
+		
+		return model;
+		
+	}
+	
 } //class PlaceController;
