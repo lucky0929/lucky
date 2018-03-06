@@ -3,14 +3,11 @@ package org.dateplanner.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
-import org.dateplanner.service.BoardService;
 import org.dateplanner.service.UsersService;
-import org.dateplanner.vo.Post;
 import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
