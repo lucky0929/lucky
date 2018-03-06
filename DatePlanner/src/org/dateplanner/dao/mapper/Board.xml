@@ -35,4 +35,18 @@
       user_no = u.no
   </select>
   
+  <select id="selectMyPage" parameterType="int" resultType="Post">
+	SELECT
+	  b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
+      u.no 'user.no', nickname 'user.nickname'
+    FROM
+      board b
+    JOIN
+      users u
+    ON
+      user_no = u.no
+    ORDER BY b.regdate desc
+   	limit 8
+  </select>
+  
 </mapper>

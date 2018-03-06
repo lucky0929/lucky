@@ -16,5 +16,6 @@ public class BoardService {
 	public boolean write(Post post) { return boardDAO.insert(post); }
 	public Post selectOne(int no) { return boardDAO.selectOne(no); }
 	public List<Post> selectAll() { return boardDAO.selectAll(); }
+	public List<Post> selectMyPage(int no){ return boardDAO.selectMyPage(no); }
 	
 } //class BoardService;

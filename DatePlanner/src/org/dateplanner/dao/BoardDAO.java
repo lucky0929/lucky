@@ -9,5 +9,5 @@ public interface BoardDAO {
 	public boolean insert(Post post);
 	public Post selectOne(int no);
 	public List<Post> selectAll();
-	
+	public List<Post> selectMyPage(int no);
 } //interface BoardDAO;
