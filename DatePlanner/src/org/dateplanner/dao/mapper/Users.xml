@@ -11,7 +11,7 @@
       (#{id}, #{name}, #{key}, #{nickname}, #{profile}, #{regionNo}, #{introduction})
   </insert>
   
-  <select id="idExist" parameterType="String">
+  <select id="idExist" parameterType="String" resultType="boolean">
     SELECT
       COUNT(*)
     FROM
