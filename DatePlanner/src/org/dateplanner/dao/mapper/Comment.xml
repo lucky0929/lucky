@@ -1,1 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="org.dateplanner.dao.CommentDAO">
+
+	<inset id="insert" parameterType="Comment">
+		INSERT INTO 
+		  comment(board_no, user_no, comment, parent_no, seq)
+		VALUES
+		  (#{boardNo}, #{userNo}, #{comment}, #{parentNo}, #{seq})
+	</inset>
+	
+	<update id="update" parameterType="Comment">
+	  UPDATE
+	    comment
+	  SET 
+	    board_no = #{boardNo}, user_no = #{userNo}, comment = #{comment}, parent_no = #{parentNo}
+	  WHERE
+	    no = #{no}
+	</update>
+	
+	<select id="select" parameterType="int" resultType="Comment">
+	  SELECT 
+	    no, board_no, user_no, comment, write_date, parent_no, seq
+	  FROM
+	    comment
+	  WHERE
+	    board_no = #{boardNo}
+	</select>
+	
+	<delete id="delete" parameterType="int" >
+		DELETE FROM 
+		  comment
+		WHERE
+		 no = #{no}
+	</delete>
+</mapper>
