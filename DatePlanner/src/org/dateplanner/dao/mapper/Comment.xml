@@ -12,7 +12,7 @@
 	  UPDATE
 	    comment
 	  SET 
-	    board_no = #{boardNo}, user_no = #{userNo}, comment = #{comment}, parent_no = #{parentNo}
+	    comment = #{comment}
 	  WHERE
 	    no = #{no}
 	</update>
