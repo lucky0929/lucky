@@ -26,6 +26,7 @@ public class FileReceiver {
 	public static String receiveFile(MultipartHttpServletRequest request, String uploadPath) {
 		
 		String result = null;
+		
 		uploadPath = request.getServletContext().getRealPath(uploadPath);
 		
 		Iterator<String> fileNames = request.getFileNames();

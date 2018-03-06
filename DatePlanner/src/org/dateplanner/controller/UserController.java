@@ -29,7 +29,7 @@ public class UserController {
 	
 	@RequestMapping("join/upload")
 	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request)
-			throws IOException { return JsonUtil.convertToResponseEntity(Collections.singletonMap("result", FileReceiver.receiveFile(request, "/user/img")));}
+			throws IOException { return JsonUtil.convertToResponseEntity(Collections.singletonMap("result", FileReceiver.receiveFile(request, "/user/img/")));}
 	
 	@RequestMapping(path = "doJoin", params = { "id", "password", "name", "nickname", "regionNo", "profile", "introduction" })
 	public ModelAndView doJoin(@ModelAttribute User user, String password) {

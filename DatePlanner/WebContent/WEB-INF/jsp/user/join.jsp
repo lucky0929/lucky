@@ -48,27 +48,16 @@
 		</table>
 	</form>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="../js/FileUpload.js"></script>
 	<script src="../js/sha512.js"></script>
 	<script>
 		var $password = $('#password'),
 			$profileInput = $('#profileInput')
 			$profile = $('#profile'),
 			submittable = false;
-		$profileInput.change(function() {
-			//url, files, success
-			$.ajax('join/upload', {
-				data: $.extend({}, $profileInput[0].files),
-				type : "POST",
-				cache : false, contentType : false, processData : false,
-				success: function(json) { $profile.val(json.fileName) }
-			})
-		});
-		$('input[name=id]').keyup(function() {
-			
-		});
-		$('#joinForm').submit(function(e) {
-			$password.val(sha512($password.val()))
-		});
+		
+		$profileInput.change(function() { fileUpload('join/upload', $profileInput[0].files, function(json) { $profile.val(json.result) }) });
+		$('#joinForm').submit(function(e) { $password.val(sha512($password.val())) });
 	</script>
 </body>
 </html>
