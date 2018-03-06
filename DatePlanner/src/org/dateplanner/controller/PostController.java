@@ -1,6 +1,7 @@
 package org.dateplanner.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -29,7 +30,7 @@ public class PostController {
 	
 	@RequestMapping("write/upload")
 	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request)
-			throws IOException { return JsonUtil.getResponseEntity(FileUploadUtil.getFile(request, "/post/img/")); }
+			throws IOException { return JsonUtil.getResponseEntity(Collections.singletonMap("result", FileUploadUtil.getFile(request, "/post/img/"))); }
 	
 	@RequestMapping("write/upload/list")
 	public ResponseEntity<String> writeUploadList(MultipartHttpServletRequest request)
