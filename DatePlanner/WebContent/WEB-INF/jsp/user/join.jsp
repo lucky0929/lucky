@@ -55,6 +55,7 @@
 			$profile = $('#profile'),
 			submittable = false;
 		$profileInput.change(function() {
+			//url, files, success
 			$.ajax('join/upload', {
 				data: $.extend({}, $profileInput[0].files),
 				type : "POST",
