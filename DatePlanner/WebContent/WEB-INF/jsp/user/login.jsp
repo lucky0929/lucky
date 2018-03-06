@@ -9,7 +9,7 @@
 	<form id="loginForm" action="doLogin" method="POST">
 		<table border="1" style="border-collapse: collapse">
 			<tr><td>아이디: </td><td><input name="id" required></td></tr>
-			<tr><td>비밀번호: </td><td><input type="password" name="password" required></td></tr>
+			<tr><td>비밀번호: </td><td><input id="password" name="password" type="password" required></td></tr>
 			<tr>
 				<td colspan="2" style="text-align: right">
 					<a href="../">메인 페이지로</a>
@@ -21,7 +21,7 @@
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="../js/sha512.js"></script>
 	<script>
-		var $password = $('input[name=password]');
+		var $password = $('#password');
 		$('#loginForm').submit(function(e) { $password.val(sha512($password.val())); });
 	</script>
 </body>

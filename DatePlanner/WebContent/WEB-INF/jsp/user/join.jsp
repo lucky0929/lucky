@@ -9,7 +9,7 @@
 	<form id="joinForm" action="doJoin" method="POST" enctype="multipart/form-data">
 		<table border="1" style="border-collapse: collapse">
 			<tr><td>아이디: </td><td><input name="id" required></td></tr>
-			<tr><td>비밀번호: </td><td><input type="password" name="password" required></td></tr>
+			<tr><td>비밀번호: </td><td><input name="password" type="password" required></td></tr>
 			<tr><td>이름: </td><td><input name="name"></td></tr>
 			<tr><td>닉네임: </td><td><input name="nickname" required></td></tr>
 			<tr>
@@ -36,7 +36,7 @@
 					</select>
 				</td>
 			</tr>
-			<tr><td>프로필: </td><td><input type="file"></td></tr>
+			<tr><td>프로필: </td><td><input id="profile" type="file"></td></tr>
 			<tr><td>파일 주소: </td><td colspan="2"><input name="profile" readonly></td></tr>
 			<tr><td>한줄소개: </td><td><input name="introduction"></td></tr>
 			<tr>
@@ -53,7 +53,7 @@
 		var $password = $('input[name=password]'),
 			$profile = $('input[name=profile]'),
 			submittable = false;
-		$('input[type=file]').change(function() {
+		$('#profile').change(function() {
 			var data = new FormData();
 			data.append('file', this.files[0]);
 			$.ajax('join/upload', {
