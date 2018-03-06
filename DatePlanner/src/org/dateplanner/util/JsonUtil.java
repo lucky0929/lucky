@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtil {
 	
-	public static ResponseEntity<String> getResponseEntity(Object obj) throws IOException {
+	public static ResponseEntity<String> convertToResponseEntity(Object obj) throws IOException {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-type", MediaType.APPLICATION_JSON_UTF8_VALUE);

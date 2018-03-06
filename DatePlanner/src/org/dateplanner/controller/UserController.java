@@ -6,7 +6,7 @@ import java.util.Collections;
 import javax.servlet.http.HttpSession;
 
 import org.dateplanner.service.UsersService;
-import org.dateplanner.util.FileUploadUtil;
+import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
 import org.dateplanner.util.RedirectWithAlert;
 import org.dateplanner.vo.User;
@@ -29,7 +29,7 @@ public class UserController {
 	
 	@RequestMapping("join/upload")
 	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request)
-			throws IOException { return JsonUtil.getResponseEntity(Collections.singletonMap("result", FileUploadUtil.getFile(request, "/user/img")));}
+			throws IOException { return JsonUtil.convertToResponseEntity(Collections.singletonMap("result", FileReceiver.receiveFile(request, "/user/img")));}
 	
 	@RequestMapping(path = "doJoin", params = { "id", "password", "name", "nickname", "regionNo", "profile", "introduction" })
 	public ModelAndView doJoin(@ModelAttribute User user, String password) {

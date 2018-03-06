@@ -7,7 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.dateplanner.service.BoardService;
-import org.dateplanner.util.FileUploadUtil;
+import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
 import org.dateplanner.vo.Post;
 import org.dateplanner.vo.User;
@@ -30,11 +30,11 @@ public class PostController {
 	
 	@RequestMapping("write/upload")
 	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request)
-			throws IOException { return JsonUtil.getResponseEntity(Collections.singletonMap("result", FileUploadUtil.getFile(request, "/post/img/"))); }
+			throws IOException { return JsonUtil.convertToResponseEntity(Collections.singletonMap("result", FileReceiver.receiveFile(request, "/post/img/"))); }
 	
 	@RequestMapping("write/upload/list")
 	public ResponseEntity<String> writeUploadList(MultipartHttpServletRequest request)
-			throws IOException { return JsonUtil.getResponseEntity(FileUploadUtil.getFileList(request, "/post/img/")); }
+			throws IOException { return JsonUtil.convertToResponseEntity(FileReceiver.receiveFiles(request, "/post/img/")); }
 	
 	@RequestMapping(path = "doWrite", params = { "title", "content", "image", "lat", "lng", "regionNo", "files" })
 	public String doWrite(HttpSession session, @ModelAttribute Post post) {
