@@ -326,7 +326,7 @@ ul li {
 							<td class="comment">${commnet.content }</td>
 							<td class="write_date">${comment.writeDate }</td>
 						</tr>
-						
+					
 					</c:forEach>
 
 
