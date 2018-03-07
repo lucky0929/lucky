@@ -6,23 +6,23 @@
 
 	<insert id="insert" parameterType="Comment">
 		INSERT INTO 
-		  comment(board_no, user_no, comment, parent_no, seq)
+		  comment(board_no, user_no, content, parent_no, seq)
 		VALUES
-		  (#{boardNo}, #{userNo}, #{comment}, #{parentNo}, #{seq})
+		  (#{boardNo}, #{userNo}, #{content}, #{parentNo}, #{seq})
 	</insert>
 	
 	<update id="update" parameterType="Comment">
 	  UPDATE
 	    comment
 	  SET 
-	    comment = #{comment}
+	    content = #{content}
 	  WHERE
 	    no = #{no}
 	</update>
 	
 	<select id="select" parameterType="int" resultType="Comment">
 	  SELECT 
-	    no, board_no, user_no, comment, write_date, parent_no, seq
+	    no, board_no, user_no, content, write_date, parent_no, seq
 	  FROM
 	    comment
 	  WHERE
