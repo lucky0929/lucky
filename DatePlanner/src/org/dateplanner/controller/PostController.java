@@ -2,14 +2,15 @@ package org.dateplanner.controller;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.dateplanner.service.BoardService;
+import org.dateplanner.service.CommentService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
-import org.dateplanner.util.RedirectWithAlert;
 import org.dateplanner.vo.Post;
 import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class PostController {
 	@Autowired
 	private BoardService boardService;
 	
+	@Autowired
+	private CommentService CommentService;
+	
 	@RequestMapping("write")
 	public void write() {}
 	
@@ -38,15 +42,15 @@ public class PostController {
 			throws IOException { return JsonUtil.convertToResponseEntity(FileReceiver.receiveFiles(request, "/post/img/")); }
 	
 	@RequestMapping(path = "doWrite", params = { "title", "content", "image", "lat", "lng", "regionNo", "files" })
-	public ModelAndView doWrite(HttpSession session, @ModelAttribute Post post) {
+	public String doWrite(HttpSession session, @ModelAttribute Post post) {
 		
 		post.setUser((User)session.getAttribute("loginInfo"));
 		post.setPackageable(post.getPackageable() != null);
 		
 		if(!boardService.write(post))
-			return new RedirectWithAlert("글쓰기", "글쓰기에 실패했습니다.", "write");
+			return "redirect:write";
 		
-		return new ModelAndView("redirect:../");
+		return "redirect:../";
 		
 	} //doWrite();
 	
@@ -56,10 +60,38 @@ public class PostController {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("post", boardService.selectOne(no));
+		model.addObject("comment", CommentService.select(no));
 		
 		return model;
 		
 	} //view();
+	
+	@RequestMapping("commentInsert")
+	public String commentInsert(HashMap<String, String> params) {
+		
+		CommentService.insert(CommentService.HashMapToCommentVO(params));
+		
+		return "redirect:/post/view?no=" + params.get("boardNo");
+		
+	} //commentInsert();
+	
+	@RequestMapping("commentUpdate")
+	public String commentUpdate(String no, String content, String boardNo) {
+		
+		CommentService.update(no, content);
+		
+		return "redirect:/post/view?no=" + boardNo;
+		
+	} //commentUpdate();
+
+	@RequestMapping("commentDelete")
+	public String commentDelete(int no) {
+		
+		CommentService.delete(no);
+		
+		return "redirect:../";
+		
+	} //commentDelete();
 	
 	@RequestMapping(path = "myPage")
 	public ModelAndView myPage(HttpSession session) {
