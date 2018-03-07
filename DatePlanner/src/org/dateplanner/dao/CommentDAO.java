@@ -7,7 +7,7 @@ import org.dateplanner.vo.Comment;
 public interface CommentDAO {
 
 	public void insert(Comment comment);
-	public void update(Comment comment);
+	public void update(String content, String no);
 	public List<Comment> select(int boardNo);
 	public void delete(int no);
 	

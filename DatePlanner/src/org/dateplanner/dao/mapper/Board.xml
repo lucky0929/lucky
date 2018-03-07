@@ -54,7 +54,7 @@
     ON
       user_no = u.no
     ORDER BY
-      regdate DESC
+      b.regdate DESC
   </select>
   
   <select id="selectPackageable" parameterType="int" resultType="Post">
