@@ -47,14 +47,17 @@
 			<c:otherwise>
 				<ul>
 					<c:forEach var="post" items="${postList}">
-						<li style="border: 1px solid black<c:if test="${post.packageable eq null}">; background: lightgray</c:if>">
+						<c:set var="category">
 							<c:choose>
-								<c:when test="${post.packageable eq null}"><img src="package/img/${post.image}" height="480"></c:when>
-								<c:otherwise><img src="post/img/${post.image}" height="480"></c:otherwise>
+								<c:when test="${post.packageable eq null}">package</c:when>
+								<c:otherwise>post</c:otherwise>
 							</c:choose>
+						</c:set>
+						<li style="border: 1px solid black<c:if test="${category eq 'package'}">; background: lightgray</c:if>">
+							<img src="${category}/img/${post.image}" height="480">
 							<dl style="display: inline-block">
 								<dt>제목</dt>
-								<dd><a href="post/view?no=${post.no}">${post.title}</a></dd>
+								<dd><a href="${category}/view?no=${post.no}">${post.title}</a></dd>
 								<dt>내용</dt>
 								<dd>${post.content}</dd>
 								<dt>lat</dt>
@@ -69,7 +72,7 @@
 								<dd>${post.regdate}</dd>
 								<c:if test="${loginInfo.no eq post.user.no}">
 									<dt>편집</dt>
-									<dd><a href="post/update?no=${post.no}">수정</a> <a href="post/delete?no=${post.no}">삭제</a></dd>
+									<dd><a href="${category}/update?no=${post.no}">수정</a> <a href="${category}/delete?no=${post.no}">삭제</a></dd>
 								</c:if>
 							</dl>
 						</li>
