@@ -22,7 +22,7 @@
     FROM
       board
     WHERE
-      ((packageable IS NOT NULL AND user_no = #{packagePost.no})
+      ((packageable IS NOT NULL AND user_no = #{packagePost.user.no})
     OR
       packageable = true)
     AND
@@ -53,6 +53,8 @@
       users u
     ON
       user_no = u.no
+    ORDER BY
+      regdate DESC
   </select>
   
   <select id="selectPackageable" parameterType="int" resultType="Post">
@@ -61,7 +63,7 @@
     FROM
       board
     WHERE
-      ((packageable IS NOT NULL AND user_no = #{packagePost.no})
+      ((packageable IS NOT NULL AND user_no = #{packagePost.user.no})
     OR
       packageable = true)
   </select>

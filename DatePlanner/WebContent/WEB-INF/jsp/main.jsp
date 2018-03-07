@@ -13,7 +13,7 @@
 		</c:when>
 		<c:otherwise>
 			<div><strong>${loginInfo.nickname}</strong>로 로그인됨</div>
-			<div><a href="post/write">글쓰기</a> / <a href="user/logout">로그아웃</a></div>
+			<div><a href="post/write">글쓰기</a> / <a href="package/create">패키지 만들기</a> / <a href="user/logout">로그아웃</a></div>
 		</c:otherwise>
 	</c:choose>
 	<div>
@@ -47,8 +47,11 @@
 			<c:otherwise>
 				<ul>
 					<c:forEach var="post" items="${postList}">
-						<li style="border: 1px solid black">
-							<img src="post/img/${post.image}" height="480">
+						<li style="border: 1px solid black<c:if test="${post.packageable eq null}">; background: lightgray</c:if>">
+							<c:choose>
+								<c:when test="${post.packageable eq null}"><img src="package/img/${post.image}" height="480"></c:when>
+								<c:otherwise><img src="post/img/${post.image}" height="480"></c:otherwise>
+							</c:choose>
 							<dl style="display: inline-block">
 								<dt>제목</dt>
 								<dd><a href="post/view?no=${post.no}">${post.title}</a></dd>

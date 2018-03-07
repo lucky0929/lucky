@@ -11,10 +11,10 @@
 	<div class="container">
 		<form action="doWrite" method="POST">
 			<table border="1" style="width: 100%; border-collapse: collapse">
-				<tr><td>제목: </td><td><input name="title"></td></tr>
+				<tr><td>제목: </td><td><input name="title" required></td></tr>
 				<tr>
 					<td>내용: </td>
-					<td><textarea id="summernote" name="content"></textarea></td>
+					<td><textarea id="summernote" name="content" required></textarea></td>
 				</tr>
 				<tr>
 					<td>사진: </td>
