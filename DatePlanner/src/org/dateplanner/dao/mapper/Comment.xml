@@ -11,7 +11,7 @@
 		  (#{boardNo}, #{userNo}, #{content}, #{parentNo}, #{seq})
 	</insert>
 	
-	<update id="update" parameterType="Comment">
+	<update id="update" parameterType="String">
 	  UPDATE
 	    comment
 	  SET 
@@ -19,20 +19,25 @@
 	  WHERE
 	    no = #{no}
 	</update>
-	
+
 	<select id="select" parameterType="int" resultType="Comment">
 	  SELECT 
-	    no, board_no, user_no, content, write_date, parent_no, seq
+	    c.no, board_no boardNo, user_no userNo, content, 
+	    write_date writeDate, parent_no parentNo, seq, u.name userName
 	  FROM
-	    comment
+	    comment c
+	  JOIN 
+	    users u
+	  ON
+	    c.user_no = u.no
 	  WHERE
 	    board_no = #{boardNo}
 	</select>
-	
+
 	<delete id="delete" parameterType="int" >
-		DELETE FROM 
+		DELETE 2FROM 
 		  comment
 		WHERE
-		 no = #{no}
+		  no = #{no}
 	</delete>
 </mapper>
