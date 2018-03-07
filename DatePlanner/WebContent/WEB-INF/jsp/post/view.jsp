@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -315,41 +316,14 @@
 
             <table class="table table-striped" id="comment_back">
 
-                <tr>
-                    <td class="nickname">우메뭬뭄</td>
-                    <td class="comment">하야끄하야끄하야끄하야끄하야끄하야끄하야끄하야끄</td>
-                    <td class="write_date">18-03-25 23:54</td>
-                </tr>
+	<%-- <c:forEach var=""> --%>
+  		<tr>
+           <td class="nickname">우메뭬뭄</td>
+           <td class="comment">하야끄하야끄하야끄하야끄하야끄하야끄하야끄하야끄</td>
+           <td class="write_date">18-03-25 23:54</td>
+        </tr>
+	<%-- </c:forEach> --%>
 
-                <tr>
-                    <td class="nickname">우메뭬뭄</td>
-                    <td class="comment">하야끄하야끄</td>
-                    <td class="write_date">18-03-25 23:54</td>
-                </tr>
-
-                <tr>
-                    <td class="nickname">우메뭬뭄</td>
-                    <td class="comment">하야끄하야끄</td>
-                    <td class="write_date">18-03-25 23:54</td>
-                </tr>
-
-                <tr>
-                    <td class="nickname">우메뭬뭄</td>
-                    <td class="comment">하야끄하야끄</td>
-                    <td class="write_date">18-03-25 23:54</td>
-                </tr>
-
-                <tr>
-                    <td class="nickname">우메뭬뭄</td>
-                    <td class="comment">하야끄하야끄</td>
-                    <td class="write_date">18-03-25 23:54</td>
-                </tr>
-
-                <tr>
-                    <td class="nickname">우메뭬뭄</td>
-                    <td class="comment">하야끄하야끄</td>
-                    <td class="write_date">18-03-25 23:54</td>
-                </tr>
 
             </table>
         </div>
@@ -375,4 +349,4 @@
 </script>
 
 </body>
-</html>
+</html>	
