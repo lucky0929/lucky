@@ -318,6 +318,7 @@ ul li {
 					</form>
 				</div>
 
+
 				<table class="table table-striped" id="comment_back">
 
 					<c:forEach var="comment" items="${comment }">

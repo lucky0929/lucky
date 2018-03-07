@@ -6,7 +6,9 @@ import java.util.List;
 import org.dateplanner.dao.CommentDAO;
 import org.dateplanner.vo.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommentService {
 
 	@Autowired
