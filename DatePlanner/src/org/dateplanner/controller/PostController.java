@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.dateplanner.service.BoardService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
+import org.dateplanner.util.RedirectWithAlert;
 import org.dateplanner.vo.Post;
 import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,15 +38,15 @@ public class PostController {
 			throws IOException { return JsonUtil.convertToResponseEntity(FileReceiver.receiveFiles(request, "/post/img/")); }
 	
 	@RequestMapping(path = "doWrite", params = { "title", "content", "image", "lat", "lng", "regionNo", "files" })
-	public String doWrite(HttpSession session, @ModelAttribute Post post) {
+	public ModelAndView doWrite(HttpSession session, @ModelAttribute Post post) {
 		
 		post.setUser((User)session.getAttribute("loginInfo"));
 		post.setPackageable(post.getPackageable() != null);
 		
 		if(!boardService.write(post))
-			return "redirect:write";
+			return new RedirectWithAlert("글쓰기", "글쓰기에 실패했습니다.", "write");
 		
-		return "redirect:../";
+		return new ModelAndView("redirect:../");
 		
 	} //doWrite();
 	

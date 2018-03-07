@@ -18,11 +18,11 @@
 				</tr>
 				<tr>
 					<td>사진: </td>
-					<td><input type="file"></td>
+					<td><input id="imageInput" type="file"></td>
 				</tr>
 				<tr>
 					<td>사진 주소: </td>
-					<td><input name="image" readonly></td>
+					<td><input id="image" name="image" readonly></td>
 				</tr>
 				<tr><td>lat: </td><td><input name="lat" value="123.123"></td></tr>
 				<tr><td>lng: </td><td><input name="lng" value="123.123"></td></tr>
@@ -63,39 +63,22 @@
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.min.js"></script>
+	<script src="../js/FileUpload.js"></script>
 	<script>
-		var $image = $('input[name=image]');
-		$('input[type=file]').change(function() {
-			var data = new FormData();
-			data.append('file', this.files[0]);
-			$.ajax('write/upload', {
-				data: data,
-				type : "POST",
-				cache : false,
-				contentType : false,
-				processData : false,
-				success: function(json) { $image.val(json[0]) }
-			})
-		});
-		$(function() { $('#summernote').summernote({
+		var $image = $('#image'),
+			$summernote = $('#summernote');
+		
+		$('#imageInput').change(function() { fileUpload('write/upload', this.files, function(json) { $image.val(json.result) }) });
+		$('#summernote').summernote({
 			height: 400,
 			callbacks: {
 				onImageUpload: function(files) {
-					var data = new FormData();
-					$.each(files, function(i, v) { data.append(i, v) });
-					var editor = this;
-					$.ajax({
-						data : data,
-						type : "POST",
-						url : "write/upload",
-						cache : false,
-						contentType : false,
-						processData : false,
-						success : function(data) { $.each(data, function() { $(editor).summernote('editor.insertImage', '/post/img/'+this) }) }
-					});
+					fileUpload('write/upload/list', files, function(json) {
+						$.each(json, function() { $summernote.summernote('editor.insertImage', '/post/img/'+this) })
+					})
 				}
 			}
-		})})
+		})
 	</script>
 </body>
 </html>

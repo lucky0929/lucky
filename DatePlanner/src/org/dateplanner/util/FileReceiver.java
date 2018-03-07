@@ -12,12 +12,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class FileReceiver {
 	
-	private static String saveFile(MultipartFile file, String uploadPath) throws IOException {
+	private static String saveFile(MultipartFile multipartFile, String uploadPath) throws IOException {
 		
-		String originalFileName = file.getOriginalFilename();
+		String originalFileName = multipartFile.getOriginalFilename();
 		String fileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileName.substring(originalFileName.lastIndexOf('.'));
-		
-		file.transferTo(new File(uploadPath + fileName));
+
+		File file = null;
+		while((file = new File(uploadPath + fileName)).exists());
+		multipartFile.transferTo(file);
 		
 		return fileName;
 		
