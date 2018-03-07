@@ -226,7 +226,7 @@ ul li {
 	<nav class="navbar navbar-inverse" data-spy="affix">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">DatePlanner</a>
+				<a class="navbar-brand" href="main">DatePlanner</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
@@ -306,13 +306,16 @@ ul li {
 
 				<div id="comment_write">
 					<div id="profile">
-						<img src="img/여친짤.jpg"
+						<img src="/user/img/${loginInfo.profile }"
 							style="width: 50px; height: 50px; float: left;"> <span
-							style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${post.user.nickname}</span>
+							style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
 					</div>
+					
 					<form action="commentInsert">
-						<input type="hidden" ${post.no }>
-						<textarea class="form-control" placeholder="댓글을 입력해주세요"
+						<input type="hidden" name="boardNo" value="${post.no }">
+						<input type="hidden" name="userNo" value="1">
+					
+						<textarea class="form-control" name="content" placeholder="댓글을 입력해주세요"
 							style="min-height: 150px; height: auto; resize: none"></textarea>
 						<button type="submit" class="btn btn-default" style="float: right">입력!</button>
 					</form>
@@ -323,7 +326,7 @@ ul li {
 
 					<c:forEach var="comment" items="${comment }">
 						<tr>
-							<td class="nickname">${comment.userNo }</td>
+							<td class="nickname">${comment.userName }</td>
 							<td class="comment">${commnet.content }</td>
 							<td class="write_date">${comment.writeDate }</td>
 						</tr>
