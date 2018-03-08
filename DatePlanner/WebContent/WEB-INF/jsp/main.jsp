@@ -67,7 +67,7 @@
 								<dt>글쓴이</dt>
 								<dd>${post.user.nickname}</dd>
 								<dt>지역</dt>
-								<dd>${post.regionNo}</dd>
+								<dd>${post.region}</dd>
 								<dt>작성일</dt>
 								<dd>${post.regdate}</dd>
 								<c:if test="${loginInfo.no eq post.user.no}">
