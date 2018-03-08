@@ -2,6 +2,8 @@ package org.dateplanner.vo;
 
 import java.sql.Timestamp;
 
+import org.dateplanner.commons.Constants;
+
 public class User {
 	
 	private int no;
@@ -28,6 +30,7 @@ public class User {
 	public Character getSex() { return sex; }
 	public String getProfile() { return profile; }
 	public Integer getRegionNo() { return regionNo; }
+	public String getRegion() { return Constants.REGION_LIST.get(regionNo); }
 	public String getIntroduction() { return introduction; }
 	public Timestamp getRegdate() { return regdate; }
 	public void setNo(int no) { this.no = no; }
