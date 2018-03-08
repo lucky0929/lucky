@@ -22,7 +22,7 @@ public class PackagesService {
 	
 	public boolean createPackage(Package pack) {
 		
-		return boardDAO.checkPackageable(pack) == pack.getPlaceList().size() && boardDAO.insertPackage(pack.getPackagePost()) && packagesDAO.insert(pack);
+		return boardDAO.checkPackageable(pack) == pack.getPlaceList().size() && boardDAO.insertPackage(pack.getPost()) && packagesDAO.insert(pack);
 		
 	} //createPackage();
 	
