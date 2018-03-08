@@ -298,7 +298,6 @@ ul li {
 				style="display: block">55,498,451,981</span>
 		</div>
 		
-
 	</div>
 
 	<div class="container" style="padding: 0">
