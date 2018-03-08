@@ -35,7 +35,7 @@
 	</select>
 
 	<delete id="delete" parameterType="int" >
-		DELETE 2FROM 
+		DELETE FROM 
 		  comment
 		WHERE
 		  no = #{no}

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.dateplanner.service.BoardService;
 import org.dateplanner.service.CommentService;
+import org.dateplanner.service.LikeService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
 import org.dateplanner.vo.Post;
@@ -30,6 +31,10 @@ public class PostController {
 	
 	@Autowired
 	private CommentService CommentService;
+	
+	@Autowired
+	private LikeService likeService;
+	
 	
 	@RequestMapping("write")
 	public void write() {}
@@ -64,6 +69,15 @@ public class PostController {
 		/*model.addObject("comment", CommentService.select(no));*/
 		
 		return model;
+		
+	} //view();
+
+	@RequestMapping("like")
+	public String like(int boardNo, HttpSession session) {
+		
+		session.getAttribute("loginInfo");
+		
+		return "redirect:/post/view?no=" + boardNo;
 		
 	} //view();
 	
