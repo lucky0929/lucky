@@ -6,26 +6,26 @@
 
 	<insert id="insert" parameterType="Comment">
 		INSERT INTO 
-		  comment(board_no, user_no, content, parent_no, seq)
+		  comments(board_no, user_no, content, parent_no, seq)
 		VALUES
 		  (#{boardNo}, #{userNo}, #{content}, #{parentNo}, #{seq})
 	</insert>
 	
 	<update id="update" parameterType="String">
 	  UPDATE
-	    comment
+	    comments
 	  SET 
 	    content = #{content}
 	  WHERE
 	    no = #{no}
 	</update>
 
-	<select id="select" parameterType="int" resultType="Comment">
+	<select id="select" parameterType="int" resultType="CommentResult">
 	  SELECT 
 	    c.no no, board_no boardNo, user_no userNo, content, write_date writeDate,
-	    parent_no parentNo, seq, u.name userName
+	    parent_no parentNo, seq, u.nickname userName, u.profile profile
 	  FROM
-	    comment c
+	    comments c
 	  JOIN 
 	    users u
 	  ON
@@ -36,7 +36,7 @@
 
 	<delete id="delete" parameterType="int" >
 		DELETE FROM 
-		  comment
+		  comments
 		WHERE
 		  no = #{no}
 	</delete>
