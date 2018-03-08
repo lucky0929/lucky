@@ -297,6 +297,7 @@ ul li {
 			<a href="#"><i class="fas fa-heart"></i></a> <span
 				style="display: block">55,498,451,981</span>
 		</div>
+		
 
 	</div>
 
