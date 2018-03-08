@@ -11,4 +11,25 @@
      <foreach collection="placeList" item="place" index="i" separator=", ">(#{packagePost.no}, #{place.no}, #{i})</foreach>
   </insert>
   
+  <select id="selectOne" parameterType="int" resultType="Post">
+    SELECT
+      b.no, title, content, image, lat, lng, user_no, b.region_no, packageable, b.regdate,
+      u.no 'user.no', u.nickname 'user.nickname'
+    FROM
+      board b
+    LEFT JOIN
+      package p
+    ON
+      b.no = place_no
+	JOIN
+      users u
+	ON
+      user_no = u.no
+    WHERE
+      b.no = 36
+    OR
+      p.no = 36
+    ORDER BY `order`
+  </select>
+  
 </mapper>
