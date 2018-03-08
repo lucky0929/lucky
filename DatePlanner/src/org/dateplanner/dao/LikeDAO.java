@@ -1,8 +1,10 @@
 package org.dateplanner.dao;
 
+import java.util.HashMap;
+
 public interface LikeDAO {
 	public int selectCount(int boardNo);
-	public int userCheck(int boardNo, int userNo);
-	public void insertLike(int boardNo, int userNo);
-	public void deleteLike(int boardNo, int userNo);
+	public int userCheck(HashMap<String, Integer> params);
+	public void insertLike(HashMap<String, Integer> params);
+	public void deleteLike(HashMap<String, Integer> params);
 }

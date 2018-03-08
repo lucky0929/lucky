@@ -13,7 +13,7 @@
 		  board_no = #{boardNo}
 	</select>
 	
-	<select id="userCheck" resultType="int" parameterType="int">
+	<select id="userCheck" resultType="int" parameterType="java.util.HashMap">
 		SELECT
 		  COUNT(*)
 		FROM
@@ -24,14 +24,14 @@
 		  user_no = #{userNo}
 	</select>
 	
-	<insert id="insertLike" parameterType="int">
+	<insert id="insertLike" parameterType="java.util.HashMap">
 		INSERT INTO 
 		  `like`(board_no, user_no)
 		VALUES
 		  (#{boardNo}, #{userNo})
 	</insert>
 	
-	<delete id="deleteLike" parameterType="int">
+	<delete id="deleteLike" parameterType="java.util.HashMap">
 		DELETE 
 		  FROM `like`
 		WHERE 

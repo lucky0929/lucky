@@ -78,11 +78,16 @@ public class PostController {
 		
 		User user = new User();
 		user = (User)session.getAttribute("loginInfo");
+		HashMap<String, Integer> params = new HashMap<>();
 		
-		if(likeService.userCheck(boardNo, user.getNo()) != 0) {
-			likeService.insertLike(boardNo, user.getNo());
+		params.put("boardNo", boardNo);
+		params.put("userNo", user.getNo());
+		
+		System.out.println("파라미터임 " + params);
+		if(likeService.userCheck(params) == 0) {
+			likeService.insertLike(params);
 		} else {
-			likeService.deleteLike(boardNo,user.getNo());
+			likeService.deleteLike(params);
 		}
 		
 		return "redirect:/post/view?no=" + boardNo;
@@ -126,7 +131,7 @@ public class PostController {
 		User loginInfo = (User)session.getAttribute("loginInfo");
 		
 		List<Post> post = boardService.selectMyPage(loginInfo.getNo());
-		System.out.println(post);
+		
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("loginInfo", loginInfo);
