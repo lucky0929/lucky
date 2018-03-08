@@ -28,6 +28,8 @@
     <mvc:interceptor>
       <mvc:mapping path="/post/write/**"/>
       <mvc:mapping path="/post/doWrite/**"/>
+      <mvc:mapping path="/package/create/**"/>
+      <mvc:mapping path="/package/doCreate/**"/>
       <bean class="org.dateplanner.interceptor.LoginInterceptor"/>
     </mvc:interceptor>
   </mvc:interceptors>

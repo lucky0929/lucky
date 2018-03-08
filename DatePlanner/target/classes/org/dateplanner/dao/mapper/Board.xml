@@ -22,7 +22,7 @@
     FROM
       board
     WHERE
-      ((packageable IS NOT NULL AND user_no = #{packagePost.no})
+      ((packageable IS NOT NULL AND user_no = #{packagePost.user.no})
     OR
       packageable = true)
     AND
@@ -63,7 +63,7 @@
     FROM
       board
     WHERE
-      ((packageable IS NOT NULL AND user_no = #{packagePost.no})
+      ((packageable IS NOT NULL AND user_no = #{packagePost.user.no})
     OR
       packageable = true)
   </select>
