@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,7 +50,7 @@ public class PackageController {
 		
 		Package pack = new Package();
 		post.setUser(new User(((User)session.getAttribute("loginInfo")).getNo()));
-		pack.setPackagePost(post);
+		pack.setPost(post);
 		List<Post> _placeList = new ArrayList<>();
 		if(!placeList.isEmpty()) {
 			String[] placeArr = placeList.split(",");
@@ -62,6 +63,19 @@ public class PackageController {
 			return new RedirectWithAlert("패키지 만들기", "패키지 작성에 실패했습니다", "create");
 		
 		return new ModelAndView("redirect:../");
-	}
+		
+	} //doCreate();
+	
+	@RequestMapping("view/{no}")
+	public ModelAndView view(@PathVariable int no) {
+		
+		ModelAndView model = new ModelAndView("package/view");
+		
+//		TODO Package selectOne
+//		model.addObject("package", packagesService.)
+		
+		return model;
+		
+	} //view();
 	
 } //class PackageController;

@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Package {
 	
-	private Post packagePost;
+	private Post post;
 	private List<Post> placeList;
 	
-	public Post getPackagePost() { return packagePost; }
+	public Post getPost() { return post; }
 	public List<Post> getPlaceList() { return placeList; }
-	public void setPackagePost(Post packagePost) { this.packagePost = packagePost; }
+	public void setPost(Post post) { this.post = post; }
 	public void setPlaceList(List<Post> placeList) { this.placeList = placeList; }
 	
 	@Override
-	public String toString() { return "Package [packagePost=" + packagePost + ", placeList=" + placeList + "]"; }
+	public String toString() { return "Package [post=" + post + ", placeList=" + placeList + "]"; }
 	
 } //class Package

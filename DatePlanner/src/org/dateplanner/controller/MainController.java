@@ -49,7 +49,7 @@ public class MainController {
 		Package pack = new Package();
 		Post post = new Post();
 		
-		pack.setPackagePost(post);
+		pack.setPost(post);
 		
 		post.setTitle("하이");
 		post.setContent("패키짖");
