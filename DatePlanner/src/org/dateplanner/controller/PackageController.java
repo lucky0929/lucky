@@ -71,8 +71,7 @@ public class PackageController {
 		
 		ModelAndView model = new ModelAndView("package/view");
 		
-//		TODO Package selectOne
-//		model.addObject("package", packagesService.)
+		model.addObject("pack", packagesService.selectPackage(no));
 		
 		return model;
 		
