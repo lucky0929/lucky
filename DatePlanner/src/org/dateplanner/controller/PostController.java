@@ -61,12 +61,19 @@ public class PostController {
 	} //doWrite();
 	
 	@RequestMapping(path = "view", params = "no")
-	public ModelAndView view(int no) {
+	public ModelAndView view(HttpSession session,int no) {
+		User user = new User();
+		user = (User)session.getAttribute("loginInfo");
+		HashMap<String, Integer> params = new HashMap<>();
+		
+		params.put("boardNo", no);
+		params.put("userNo", user.getNo());
 		
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("post", boardService.selectOne(no));
 		model.addObject("like", likeService.selectCount(no));
+		model.addObject("likeCheck", likeService.userCheck(params));
 		/*model.addObject("comment", CommentService.select(no));*/
 		
 		return model;

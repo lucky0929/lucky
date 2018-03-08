@@ -285,10 +285,17 @@ ul li {
 
 		<div class="content" style="display: inline-block;">${post.content}</div>
 
+<c:if test="${likeCheck eq 0}">
 		<div id="good" style="display: block">
 			<a href="like?boardNo=${post.no}"><i class="fas fa-heart"></i></a> <span style="display: block">${like }</span>
 		</div>
-		 
+</c:if>
+<c:if test="${likeCheck eq 1}">
+		<div id="good" style="display: block">
+			<a href="like?boardNo=${post.no}"><i class="fas fa-heart" style="color:red"></i></a> <span style="display: block">${like }</span>
+		</div>
+</c:if>
+
 	</div>
 
 	<div class="container" style="padding: 0">
@@ -328,14 +335,12 @@ ul li {
 				</table>
 			</div>
 		</div>
-
 	</div>
 
 	<script src="/js/jquery.js"></script>
 
 	<script>
 		var window = $(window);
-
 		$(window).scroll(function() {
 			if ($(window).scrollTop() / 2 < 500) {
 				$('.parallex').css('top', $(window).scrollTop() / 2);
@@ -345,6 +350,7 @@ ul li {
 		$("#good a").click(function() {
 			$("#good a").css("color", "red");
 		});
+		
 	</script>
 
 </body>
