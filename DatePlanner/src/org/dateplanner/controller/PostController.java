@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -60,15 +61,18 @@ public class PostController {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("post", boardService.selectOne(no));
-		model.addObject("comment", CommentService.select(no));
+		/*model.addObject("comment", CommentService.select(no));*/
 		
 		return model;
 		
 	} //view();
 	
 	@RequestMapping("commentInsert")
-	public String commentInsert(HashMap<String, String> params) {
-		
+	public String commentInsert(@RequestParam HashMap<String, String> params, HttpSession session) {
+		User user = new User();
+		user = (User)session.getAttribute("loginInfo");
+		params.put("userNo", ""+user.getNo());
+		params.put("seq", "1");
 		CommentService.insert(CommentService.HashMapToCommentVO(params));
 		
 		return "redirect:/post/view?no=" + params.get("boardNo");

@@ -22,8 +22,8 @@
 
 	<select id="select" parameterType="int" resultType="Comment">
 	  SELECT 
-	    c.no, board_no boardNo, user_no userNo, content, 
-	    write_date writeDate, parent_no parentNo, seq, u.name userName
+	    c.no no, board_no boardNo, user_no userNo, content, write_date writeDate,
+	    parent_no parentNo, seq, u.name userName
 	  FROM
 	    comment c
 	  JOIN 

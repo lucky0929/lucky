@@ -21,10 +21,12 @@ public class CommentService {
 
 	public Comment HashMapToCommentVO(HashMap<String, String> commentMap) {
 		 return new Comment(
-				Integer.valueOf((String)commentMap.get("no")),
-				Integer.valueOf((String)commentMap.get("boardNo")), 
-				Integer.valueOf((String)commentMap.get("userNo")), 
-				commentMap.get("content"), 
-				Integer.valueOf((String)commentMap.get("seq")));
+				Integer.valueOf((String)commentMap.get("boardNo")),
+				Integer.valueOf((String)commentMap.get("userNo")),
+				commentMap.get("content"),
+				Integer.valueOf((String)commentMap.get("seq")),
+				/*Integer.valueOf("parentNo")*/ 1
+				 );
 	} //HashMapToCommentVO();
 } //CommentService
+
