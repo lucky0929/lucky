@@ -68,14 +68,14 @@ public class PostController {
 		HashMap<String, Integer> params = new HashMap<>();
 		
 		params.put("boardNo", no);
-		params.put("userNo", user.getNo());
+		params.put("userNo", user.getNo()); 
 		
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("post", boardService.selectOne(no));
 		model.addObject("like", likeService.selectCount(no));
 		model.addObject("likeCheck", likeService.userCheck(params));
-		/*model.addObject("comment", CommentService.select(no));*/
+		model.addObject("comment", CommentService.select(no));
 		
 		return model;
 		
