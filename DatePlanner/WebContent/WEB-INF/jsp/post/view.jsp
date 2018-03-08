@@ -288,7 +288,7 @@ ul li {
 		<div id="good" style="display: block">
 			<a href="like?boardNo=${post.no}"><i class="fas fa-heart"></i></a> <span style="display: block">${like }</span>
 		</div>
-		
+		 
 	</div>
 
 	<div class="container" style="padding: 0">
