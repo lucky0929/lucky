@@ -226,7 +226,7 @@ ul li {
 	<nav class="navbar navbar-inverse" data-spy="affix">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="main">DatePlanner</a>
+				<a class="navbar-brand" href="../">DatePlanner</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
@@ -254,20 +254,12 @@ ul li {
 		</div>
 
 		<div id="placePick">
+		<!-- 장소별로 내부링크 걸기(패키지일때) -->
 			<ul>
-				<li><a href="#1">부산가즈아아아아아아아asdasda</a></li>
-				<li><a href="#2">부산 가즈아아아아</a></li>
-				<li><a href="#3">부산 가즈아아아아</a></li>
-				<li><a href="#4">부산 가즈아아아아</a></li>
-				<li><a href="#5">부산 가즈아아아아</a></li>
-				<li><a href="#6">부산 가즈아아아아</a></li>
-				<li><a href="#7">부산 가즈아아아아</a></li>
-				<li><a href="#8">부산 가즈아아아아</a></li>
-				<li><a href="#9">부산 가즈아아아아</a></li>
-				<li><a href="#10">부산 가즈아아아아</a></li>
+				
 			</ul>
-
 		</div>
+		
 		<div id="directionBar">
 			<div id="previous" title="이전 장소로">
 				<a href="#"><i class="fas fa-arrow-alt-circle-left"></i></a>
@@ -294,8 +286,7 @@ ul li {
 		<div class="content" style="display: inline-block;">${post.content}</div>
 
 		<div id="good" style="display: block">
-			<a href="#"><i class="fas fa-heart"></i></a> <span
-				style="display: block">55,498,451,981</span>
+			<a href="like?boardNo=${post.no}"><i class="fas fa-heart"></i></a> <span style="display: block">${like }</span>
 		</div>
 		
 	</div>
