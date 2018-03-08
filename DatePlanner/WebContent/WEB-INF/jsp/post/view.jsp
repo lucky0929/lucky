@@ -291,9 +291,9 @@ ul li {
 
 	<div class="container-fluid">
 
-		<div class="content">${post.content}</div>
+		<div class="content" style="display: inline-block;">${post.content}</div>
 
-		<div id="good">
+		<div id="good" style="display: block">
 			<a href="#"><i class="fas fa-heart"></i></a> <span
 				style="display: block">55,498,451,981</span>
 		</div>

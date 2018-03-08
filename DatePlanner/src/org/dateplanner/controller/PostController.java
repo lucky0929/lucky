@@ -61,7 +61,7 @@ public class PostController {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("post", boardService.selectOne(no));
-		model.addObject("comment", CommentService.select(no));
+		/*model.addObject("comment", CommentService.select(no));*/
 		
 		return model;
 		
