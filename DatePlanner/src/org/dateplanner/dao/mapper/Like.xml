@@ -31,7 +31,7 @@
 		  (#{boardNo}, #{userNo})
 	</insert>
 	
-	<delete id="deleteLike" parameterType="String">
+	<delete id="deleteLike" parameterType="int">
 		DELETE 
 		  FROM `like`
 		WHERE 

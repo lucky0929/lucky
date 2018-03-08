@@ -66,6 +66,7 @@ public class PostController {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("post", boardService.selectOne(no));
+		model.addObject("like", likeService.selectCount(no));
 		/*model.addObject("comment", CommentService.select(no));*/
 		
 		return model;
@@ -73,13 +74,21 @@ public class PostController {
 	} //view();
 
 	@RequestMapping("like")
-	public String like(int boardNo, HttpSession session) {
+	public String likeInsert(int boardNo, HttpSession session) {
 		
-		session.getAttribute("loginInfo");
+		User user = new User();
+		user = (User)session.getAttribute("loginInfo");
+		
+		if(likeService.userCheck(boardNo, user.getNo()) != 0) {
+			likeService.insertLike(boardNo, user.getNo());
+		} else {
+			likeService.deleteLike(boardNo,user.getNo());
+		}
 		
 		return "redirect:/post/view?no=" + boardNo;
 		
 	} //view();
+
 	
 	@RequestMapping("commentInsert")
 	public String commentInsert(@RequestParam HashMap<String, String> params, HttpSession session) {

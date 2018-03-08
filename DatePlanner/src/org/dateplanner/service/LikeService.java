@@ -12,7 +12,7 @@ public class LikeService {
 	
 	public int selectCount(int boardNo){ return likeDAO.selectCount(boardNo); }
 	public int userCheck(int boardNo, int userNo){ return likeDAO.userCheck(boardNo, userNo); }
-	public void insertLike(int boardNo, int userNO){ likeDAO.insertLike(boardNo, userNO); }
-	public void deleteLike(int boardNo){ likeDAO.deleteLike(boardNo); }
+	public void insertLike(int boardNo, int userNo){ likeDAO.insertLike(boardNo, userNo); }
+	public void deleteLike(int boardNo, int userNo){ likeDAO.deleteLike(boardNo, userNo); }
 
 }
