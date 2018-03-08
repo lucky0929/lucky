@@ -47,5 +47,8 @@
 	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	<property name="mapperInterface" value="org.dateplanner.dao.CommentDAO"/>
   </bean>
-  
+  <bean id="likeDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	<property name="mapperInterface" value="org.dateplanner.dao.LikeDAO"/>
+  </bean>
 </beans>
