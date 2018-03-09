@@ -2,7 +2,7 @@ package org.dateplanner.vo;
 
 import java.sql.Timestamp;
 
-public class CommentResult {
+public class _CommentResult {
 	private int no;
 	private int boardNo;
 	private int userNo;

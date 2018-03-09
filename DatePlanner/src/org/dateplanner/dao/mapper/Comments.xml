@@ -3,4 +3,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dateplanner.dao.CommentsDAO">
+  
+  <insert id="insertComment" parameterType="Comment">
+    INSERT INTO comments
+      (no, board_no, user_no, content)
+    VALUES
+      ((SELECT ifnull(MAX(no), 0)+1 FROM comments c), #{boardNo}, #{user.no}, #{content})
+  </insert>
+  
+  <insert id="insertReply" parameterType="Comment">
+    INSERT INTO comments
+      (no, `order`, board_no, user_no, content)
+    VALUES
+      (#{no}, (SELECT ifnull(MAX(`order`), 0)+1 FROM comments c WHERE no = 2), #{boardNo}, #{user.no}, #{content})
+  </insert>
+  
+  <select id="selectByBoardNo" parameterType="int">
+    SELECT
+      c.no, `order`, board_no, content, c.regdate,
+      u.no 'user.no', u.nickname 'user.nickname'
+    FROM
+      comments c
+    JOIN
+      users u
+    ON
+      user_no = u.no
+    WHERE
+      board_no = 2
+    ORDER BY c.no, `order`
+  </select>
+  
 </mapper>

@@ -84,8 +84,7 @@
 	  user_no = u.no
 	WHERE
 	  user_no = #{userNo}
-	ORDER BY
-	  b.regdate DESC
+	ORDER BY regdate DESC
 	LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   
@@ -101,8 +100,7 @@
 	  user_no = u.no
 	WHERE
 	  b.region_no = #{regionNo}
-	ORDER BY
-	  b.regdate DESC
+	ORDER BY regdate DESC
 	LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   
