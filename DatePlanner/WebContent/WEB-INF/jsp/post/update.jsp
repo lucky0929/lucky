@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="org.dateplanner.commons.Constants"%>
+<%@page import="org.dateplanner.commons.Region"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,7 +32,7 @@
 					<td>지역: </td>
 					<td>
 						<select name="regionNo">
-							<c:forEach var="region" items="${Constants.REGION_LIST}" varStatus="status">
+							<c:forEach var="region" items="${Region.LIST}" varStatus="status">
 								<option value="${status.index}"<c:if test="${status.index eq post.regionNo}"> selected</c:if>>${region}</option>
 							</c:forEach>
 						</select>
