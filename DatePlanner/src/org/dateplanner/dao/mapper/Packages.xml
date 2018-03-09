@@ -5,31 +5,31 @@
 <mapper namespace="org.dateplanner.dao.PackagesDAO">
   
   <insert id="insert" parameterType="Package">
-    INSERT INTO
-      package(no, place_no, `order`)
-    VALUES
-     <foreach collection="placeList" item="place" index="i" separator=", ">(#{post.no}, #{place.no}, #{i})</foreach>
+	INSERT INTO
+	  package(no, place_no, `order`)
+	VALUES
+	 <foreach collection="placeList" item="place" index="i" separator=", ">(#{post.no}, #{place.no}, #{i})</foreach>
   </insert>
   
   <select id="selectOne" parameterType="int" resultType="Post">
-    SELECT
-      b.no, title, content, image, lat, lng, user_no, b.region_no, packageable, b.regdate,
-      u.no 'user.no', u.nickname 'user.nickname'
-    FROM
-      board b
-    LEFT JOIN
-      package p
-    ON
-      b.no = place_no
-	JOIN
-      users u
+	SELECT
+	  b.no, title, content, image, lat, lng, user_no, b.region_no, packageable, b.regdate,
+	  u.no 'user.no', u.nickname 'user.nickname'
+	FROM
+	  board b
+	LEFT JOIN
+	  package p
 	ON
-      user_no = u.no
-    WHERE
-      b.no = 36
-    OR
-      p.no = 36
-    ORDER BY `order`
+	  b.no = place_no
+	JOIN
+	  users u
+	ON
+	  user_no = u.no
+	WHERE
+	  b.no = 36
+	OR
+	  p.no = 36
+	ORDER BY `order`
   </select>
   
 </mapper>

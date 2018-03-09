@@ -56,12 +56,12 @@
 		var $image = $('#image'),
 			$summernote = $('#summernote');
 		
-		$('#imageInput').change(function() { fileUpload('write/upload', this.files, function(json) { $image.val(json.result) }) });
+		$('#imageInput').change(function() { fileUpload('img/upload', this.files, function(json) { $image.val(json.result) }) });
 		$('#summernote').summernote({
 			height: 400,
 			callbacks: {
 				onImageUpload: function(files) {
-					fileUpload('write/upload/list', files, function(json) {
+					fileUpload('img/upload/list', files, function(json) {
 						$.each(json, function() { $summernote.summernote('editor.insertImage', '/post/img/'+this) })
 					})
 				}

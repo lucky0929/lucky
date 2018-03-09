@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.dateplanner.commons.Region;
 import org.dateplanner.service.PackageService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
@@ -34,14 +35,15 @@ public class PackageController {
 		
 		ModelAndView model = new ModelAndView();
 		
+		model.addObject("regionNo", Region.getRegionNo(session));
 		model.addObject("placeList",
 				packageService.selectPackageable(((User)session.getAttribute("loginInfo")).getNo()));
 		
 		return model;
 		
-	}
+	} //create();
 	
-	@RequestMapping("create/upload")
+	@RequestMapping("img/upload")
 	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request)
 			throws IOException { return JsonUtil.convertToResponseEntity(Collections.singletonMap("result", FileReceiver.receiveFile(request, "/package/img/"))); }
 	

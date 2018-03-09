@@ -20,7 +20,7 @@ public class Page {
 		this.contentCount = contentCount;
 		this.start = this.current - ((this.current - 1) % this.pageCount);
 		
-	}
+	} //Page();
 	
 	public Page initTotal(int total) {
 		
@@ -54,4 +54,4 @@ public class Page {
 				+ ", contentCount=" + contentCount + ", pageCount=" + pageCount + "]";
 	} //toString();
 	
-} //class Page
+} //class Page;

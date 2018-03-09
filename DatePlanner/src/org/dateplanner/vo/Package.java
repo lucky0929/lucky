@@ -15,4 +15,4 @@ public class Package {
 	@Override
 	public String toString() { return "Package [post=" + post + ", placeList=" + placeList + "]"; }
 	
-} //class Package
+} //class Package;

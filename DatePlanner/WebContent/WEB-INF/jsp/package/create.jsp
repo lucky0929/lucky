@@ -1,3 +1,4 @@
+<%@page import="org.dateplanner.commons.Region"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -32,23 +33,9 @@
 				<td>지역: </td>
 				<td>
 					<select name="regionNo">
-						<option value="0">서울특별시</option>
-						<option value="1">부산광역시</option>
-						<option value="2">광주광역시</option>
-						<option value="3">대구광역시</option>
-						<option value="4">대전광역시</option>
-						<option value="5">인천광역시</option>
-						<option value="6">경기도</option>
-						<option value="7">울산광역시</option>
-						<option value="8">세종특별자치시</option>
-						<option value="9">제주특별자치도</option>
-						<option value="10">경상남도</option>
-						<option value="11">충청남도</option>
-						<option value="12">전라북도</option>
-						<option value="13">충청북도</option>
-						<option value="14">전라남도</option>
-						<option value="15">경상북도</option>
-						<option value="16">강원도</option>
+						<c:forEach var="region" items="${Region.LIST}" varStatus="status">
+							<option value="${status.index}"<c:if test="${status.index eq regionNo}"> selected</c:if>>${region}</option>
+						</c:forEach>
 					</select>
 				</td>
 			</tr>
@@ -67,7 +54,7 @@
 			$image = $('#image'),
 			$placeList = $('#placeList');
 		
-		$('#imageInput').change(function() { fileUpload('create/upload', this.files, function(json) { $image.val(json.result) }) });
+		$('#imageInput').change(function() { fileUpload('img/upload', this.files, function(json) { $image.val(json.result) }) });
 		$.each($select, function(i, v) { v.on('click', 'li', function() { console.log(i); $(this).appendTo($select[1-i]) }) });
 		$('#createForm').submit(function(e) {
 			var arr = []; $.each($select[0].find('li'), function() { arr.push(this.dataset.no) });

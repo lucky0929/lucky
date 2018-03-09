@@ -30,9 +30,18 @@
 	<mvc:interceptor>
 	  <mvc:mapping path="/user/mypage/**"/>
 	  <mvc:mapping path="/post/write/**"/>
+	  <mvc:mapping path="/post/img/**"/>
 	  <mvc:mapping path="/post/doWrite/**"/>
+	  <mvc:mapping path="/post/update/**"/>
+	  <mvc:mapping path="/post/doUpdate/**"/>
+	  <mvc:mapping path="/post/doDelete/**"/>
+	  <mvc:mapping path="/post/comment/**"/>
 	  <mvc:mapping path="/package/create/**"/>
+	  <mvc:mapping path="/package/img/**"/>
 	  <mvc:mapping path="/package/doCreate/**"/>
+	  <mvc:mapping path="/package/update/**"/>
+	  <mvc:mapping path="/package/doUpdate/**"/>
+	  <mvc:mapping path="/package/doDelete/**"/>
 	  <bean class="org.dateplanner.interceptor.LoginInterceptor"/>
 	</mvc:interceptor>
   </mvc:interceptors>

@@ -3,45 +3,45 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dateplanner.dao.UsersDAO">
-
+  
   <insert id="insert" parameterType="User">
-    INSERT INTO
-      users(id, name, `key`, nickname, profile, region_no, introduction)
-    VALUES
-      (#{id}, #{name}, #{key}, #{nickname}, #{profile}, #{regionNo}, #{introduction})
+	INSERT INTO
+	  users(id, name, `key`, nickname, profile, region_no, introduction)
+	VALUES
+	  (#{id}, #{name}, #{key}, #{nickname}, #{profile}, #{regionNo}, #{introduction})
   </insert>
   
   <select id="selectIdExist" parameterType="String" resultType="boolean">
-    SELECT
-      COUNT(*)
-    FROM
-      users
-    WHERE
-      platform IS NULL
-    AND
-      id = #{id}
+	SELECT
+	  COUNT(*)
+	FROM
+	  users
+	WHERE
+	  platform IS NULL
+	AND
+	  id = #{id}
   </select>
   
   <select id="selectByNo" parameterType="int" resultType="User">
-    SELECT
-      no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction, regdate
-    FROM
-      users
-    WHERE
-      platform IS NULL
-    AND
-      no = #{no}
+	SELECT
+	  no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction, regdate
+	FROM
+	  users
+	WHERE
+	  platform IS NULL
+	AND
+	  no = #{no}
   </select>
   
   <select id="selectById" parameterType="String" resultType="User">
-    SELECT
-      no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction, regdate
-    FROM
-      users
-    WHERE
-      platform IS NULL
-    AND
-      id = #{id}
+	SELECT
+	  no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction, regdate
+	FROM
+	  users
+	WHERE
+	  platform IS NULL
+	AND
+	  id = #{id}
   </select>
   
 </mapper>

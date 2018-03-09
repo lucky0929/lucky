@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
 
+import org.dateplanner.commons.Region;
 import org.dateplanner.service.UserService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
@@ -28,9 +29,9 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("join")
-	public void join() {}
+	public ModelAndView join(HttpSession session) { return new ModelAndView().addObject("regionNo", Region.getRegionNo(session)); }
 	
-	@RequestMapping("join/upload")
+	@RequestMapping("img/upload")
 	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request)
 			throws IOException { return JsonUtil.convertToResponseEntity(Collections.singletonMap("result", FileReceiver.receiveFile(request, "/user/img/")));}
 	
@@ -53,6 +54,7 @@ public class UserController {
 	
 	@RequestMapping(path = "doLogin", params = { "id", "password" })
 	public ModelAndView doLogin(HttpSession session, String id, String password) {
+		
 		User loginInfo = userService.login(id, password);
 		if(loginInfo == null)
 			return new RedirectWithAlert("로그인 - DatePlanner", "아이디 혹은 비밀번호가 틀립니다", "login");

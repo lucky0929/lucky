@@ -25,7 +25,6 @@ public class PackageService {
 		
 	} //createPackage();
 	
-	public List<Post> selectPackageable(int no) { return boardDAO.selectPackageable(no); }
 	public Package selectPackage(int no) {
 		
 		Package pack = new Package();
@@ -46,6 +45,8 @@ public class PackageService {
 		
 		return pack;
 		
-	} //selectPackage
+	} //selectPackage();
+	
+	public List<Post> selectPackageable(int no) { return boardDAO.selectPackageable(no); }
 	
 } //class PackageService;

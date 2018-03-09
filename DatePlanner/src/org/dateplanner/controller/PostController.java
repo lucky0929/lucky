@@ -2,8 +2,6 @@ package org.dateplanner.controller;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,20 +26,14 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
-//	@Autowired
-//	private CommentService CommentService;
-	
-//	@Autowired
-//	private LikeService likeService;
-	
 	@RequestMapping("write")
 	public ModelAndView write(HttpSession session) { return new ModelAndView().addObject("regionNo", Region.getRegionNo(session)); }
 	
-	@RequestMapping("write/upload")
+	@RequestMapping("img/upload")
 	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request)
 			throws IOException { return JsonUtil.convertToResponseEntity(Collections.singletonMap("result", FileReceiver.receiveFile(request, "/post/img/"))); }
 	
-	@RequestMapping("write/upload/list")
+	@RequestMapping("img/upload/list")
 	public ResponseEntity<String> writeUploadList(MultipartHttpServletRequest request)
 			throws IOException { return JsonUtil.convertToResponseEntity(FileReceiver.receiveFiles(request, "/post/img/")); }
 	
@@ -69,77 +60,35 @@ public class PostController {
 		return model;
 		
 	} //view();
-
-	@RequestMapping("like")
-	public String likeInsert(int boardNo, HttpSession session) {
-		
-		User user = new User();
-		user = (User)session.getAttribute("loginInfo");
-		HashMap<String, Integer> params = new HashMap<>();
-		
-		params.put("boardNo", boardNo);
-		params.put("userNo", user.getNo());
-		
+	
+//	@RequestMapping("like")
+//	public String likeInsert(int boardNo, HttpSession session) {
+//		
+//		User user = new User();
+//		user = (User)session.getAttribute("loginInfo");
+//		HashMap<String, Integer> params = new HashMap<>();
+//		
+//		params.put("boardNo", boardNo);
+//		params.put("userNo", user.getNo());
+//		
 //		System.out.println("파라미터임 " + params);
 //		if(likeService.userCheck(params) == 0) {
 //			likeService.insertLike(params);
 //		} else {
 //			likeService.deleteLike(params);
 //		}
-		
-		return "redirect:/post/view?no=" + boardNo;
-		
-	} //view();
-
-	
-	@RequestMapping("commentInsert")
-	public String commentInsert(@RequestParam HashMap<String, String> params, HttpSession session) {
-		User user = new User();
-		user = (User)session.getAttribute("loginInfo");
-		params.put("userNo", ""+user.getNo());
-		params.put("seq", "1");
-//		CommentService.insert(CommentService.HashMapToCommentVO(params));
-		
-		return "redirect:/post/view?no=" + params.get("boardNo");
-		
-	} //commentInsert();
+//		
+//		return "redirect:/post/view?no=" + boardNo;
+//		
+//	} //view();
 	
 	@RequestMapping("update/{no}")
-	public ModelAndView update(@PathVariable int no) { ModelAndView model = new ModelAndView("post/update"); model.addObject("post", postService.selectOne(no)); return model; }
-	
-	@RequestMapping("commentUpdate")
-	public String commentUpdate(String no, String content, String boardNo) {
+	public ModelAndView update(@PathVariable int no) {
 		
-//		CommentService.update(no, content);
-		
-		return "redirect:/post/view?no=" + boardNo;
-		
-	} //commentUpdate();
-
-	@RequestMapping("commentDelete")
-	public String commentDelete(int no) {
-		
-//		CommentService.delete(no);
-		
-		return "redirect:../";
-		
-	} //commentDelete();
-	
-	@RequestMapping(path = "myPage")
-	public ModelAndView myPage(HttpSession session) {
-		
-		User loginInfo = (User)session.getAttribute("loginInfo");
-		
-		List<Post> post = postService.selectMyPage(loginInfo.getNo());
-		
-		ModelAndView model = new ModelAndView();
-		
-		model.addObject("loginInfo", loginInfo);
-		model.addObject("postList", post);
-		model.setViewName("post/mypage");
-		
+		ModelAndView model = new ModelAndView("post/update");
+		model.addObject("post", postService.selectOne(no));
 		return model;
 		
-	}
+	} //update();
 	
 } //class PlaceController;

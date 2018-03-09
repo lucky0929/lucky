@@ -28,6 +28,6 @@
 			<tr><td>작성일: </td><td>${post.regdate}</td></tr>
 		</table>
 	</c:forEach>
-	<a href="../">메인 페이지로</a>
+	<a href="../../">메인 페이지로</a>
 </body>
 </html>

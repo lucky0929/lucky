@@ -12,12 +12,11 @@ public interface BoardDAO {
 	public boolean insertPost(Post post);
 	public boolean insertPackage(Post post);
 	public int checkPackageable(Package pack);
-	public int selectTotalByRegion(int regionNo);
 	public int selectTotalByUserNo(int userNo);
+	public int selectTotalByRegion(int regionNo);
 	public Post selectByNo(int no);
-	public List<Post> selectByRegionWithPage(@Param(value = "regionNo") int regionNo, @Param(value = "page") Page page);
-	public List<Post> selectByUserNoWithPage(@Param(value = "userNo") int userNo, @Param(value = "page") Page page);
 	public List<Post> selectPackageable(int userNo);
-	public List<Post> selectMyPage(int no);
+	public List<Post> selectByUserNoWithPage(@Param(value = "userNo") int userNo, @Param(value = "page") Page page);
+	public List<Post> selectByRegionWithPage(@Param(value = "regionNo") int regionNo, @Param(value = "page") Page page);
 	
 } //interface BoardDAO;

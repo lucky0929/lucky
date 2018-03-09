@@ -23,6 +23,4 @@ public class PostService {
 		
 	} //selectByRegionWithPage();
 	
-	public List<Post> selectMyPage(int no){ return boardDAO.selectMyPage(no); }
-	
 } //class BoardService;
