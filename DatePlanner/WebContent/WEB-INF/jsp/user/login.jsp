@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>로그인</title>
+	<title>로그인 - DatePlanner</title>
 </head>
 <body>
 	<form id="loginForm" action="doLogin" method="POST">

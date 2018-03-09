@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>회원가입</title>
+	<title>회원가입 - DatePlanner</title>
 </head>
 <body>
 	<form id="joinForm" action="doJoin" method="POST" enctype="multipart/form-data">

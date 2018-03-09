@@ -43,12 +43,12 @@
 	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	<property name="mapperInterface" value="org.dateplanner.dao.PackagesDAO"/>
   </bean>
-  <bean id="commentDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	<property name="mapperInterface" value="org.dateplanner.dao.CommentDAO"/>
-  </bean>
-  <bean id="likeDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	<property name="mapperInterface" value="org.dateplanner.dao.LikeDAO"/>
-  </bean>
+<!--   <bean id="commentDAO" class="org.mybatis.spring.mapper.MapperFactoryBean"> -->
+<!-- 	<property name="sqlSessionFactory" ref="sqlSessionFactory"/> -->
+<!-- 	<property name="mapperInterface" value="org.dateplanner.dao.CommentDAO"/> -->
+<!--   </bean> -->
+<!--   <bean id="likeDAO" class="org.mybatis.spring.mapper.MapperFactoryBean"> -->
+<!-- 	<property name="sqlSessionFactory" ref="sqlSessionFactory"/> -->
+<!-- 	<property name="mapperInterface" value="org.dateplanner.dao.LikeDAO"/> -->
+<!--   </bean> -->
 </beans>

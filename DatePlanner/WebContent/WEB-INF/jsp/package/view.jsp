@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>DatePlanner - ${pack.post.title}</title>
+	<title>${pack.post.title} - DatePlanner</title>
 </head>
 <body>
 	<table border="1" style="border-collapse: collapse">

@@ -22,14 +22,32 @@
     FROM
       board
     WHERE
-      ((packageable IS NOT NULL AND user_no = #{packagePost.user.no})
+      ((packageable IS NOT NULL AND user_no = #{post.user.no})
     OR
       packageable = true)
     AND
       no IN(<foreach collection="placeList" item="place" separator=", ">#{place.no}</foreach>)
   </select>
   
-  <select id="selectOne" parameterType="int" resultType="Post">
+  <select id="selectTotalByRegion" parameterType="int" resultType="int">
+    SELECT
+      COUNT(*)
+    FROM
+      board b
+    WHERE
+      region_no = #{regionNo}
+  </select>
+  
+  <select id="selectTotalByUserNo" parameterType="int" resultType="int">
+    SELECT
+      COUNT(*)
+    FROM
+      board b
+    WHERE
+      user_no = #{userNo};
+  </select>
+  
+  <select id="selectByNo" parameterType="int" resultType="Post">
     SELECT
       b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
       u.no 'user.no', nickname 'user.nickname'
@@ -43,7 +61,7 @@
       b.no = #{no}
   </select>
   
-  <select id="selectAll" resultType="Post">
+  <select id="selectByRegionWithPage" resultType="Post">
     SELECT
       b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
       u.no 'user.no', nickname 'user.nickname'
@@ -53,8 +71,28 @@
       users u
     ON
       user_no = u.no
+    WHERE
+      b.region_no = #{regionNo}
     ORDER BY
       b.regdate DESC
+    LIMIT #{page.startContent}, #{page.contentCount}
+  </select>
+  
+  <select id="selectByUserNoWithPage" parameterType="int" resultType="Post">
+    SELECT
+      b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
+      u.no 'user.no', nickname 'user.nickname'
+    FROM
+      board b
+    JOIN
+      users u
+    ON
+      user_no = u.no
+    WHERE
+      user_no = #{userNo}
+    ORDER BY
+      b.regdate DESC
+    LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   
   <select id="selectPackageable" parameterType="int" resultType="Post">
@@ -63,7 +101,7 @@
     FROM
       board
     WHERE
-      ((packageable IS NOT NULL AND user_no = #{packagePost.user.no})
+      ((packageable IS NOT NULL AND user_no = #{userNo})
     OR
       packageable = true)
   </select>

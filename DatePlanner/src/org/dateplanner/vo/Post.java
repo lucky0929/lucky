@@ -2,7 +2,7 @@ package org.dateplanner.vo;
 
 import java.sql.Timestamp;
 
-import org.dateplanner.commons.Constants;
+import org.dateplanner.commons.Region;
 
 public class Post {
 	
@@ -26,7 +26,7 @@ public class Post {
 	public String getImage() { return image; }
 	public User getUser() { return user; }
 	public int getRegionNo() { return regionNo; }
-	public String getRegion() { return Constants.REGION_LIST.get(regionNo); }
+	public String getRegion() { return Region.LIST.get(regionNo); }
 	public Boolean getPackageable() { return packageable; }
 	public Timestamp getRegdate() { return regdate; }
 	public Double getLat() { return lat; }

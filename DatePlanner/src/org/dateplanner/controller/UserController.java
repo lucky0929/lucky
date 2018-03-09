@@ -5,16 +5,19 @@ import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
 
-import org.dateplanner.service.UsersService;
+import org.dateplanner.service.UserService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
 import org.dateplanner.util.RedirectWithAlert;
+import org.dateplanner.vo.Page;
 import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 	
 	@Autowired
-	private UsersService usersService;
+	private UserService userService;
 	
 	@RequestMapping("join")
 	public void join() {}
@@ -35,10 +38,10 @@ public class UserController {
 	public ModelAndView doJoin(@ModelAttribute User user, String password) {
 		user.setKey(password);
 		
-		RedirectWithAlert redirect = new RedirectWithAlert("회원가입");
+		RedirectWithAlert redirect = new RedirectWithAlert("회원가입 - DatePlanner");
 		
 		boolean idExist;
-		if((idExist = usersService.idExist(user.getId())) || !usersService.join(user))
+		if((idExist = userService.idExist(user.getId())) || !userService.join(user))
 			return redirect.setMessage(idExist ? "이미 존재하는 아이디 입니다" : "회원가입에 실패했습니다").setRedirect("join");
 		
 		return redirect.setMessage("회원가입에 성공했습니다").setRedirect("../");
@@ -50,23 +53,58 @@ public class UserController {
 	
 	@RequestMapping(path = "doLogin", params = { "id", "password" })
 	public ModelAndView doLogin(HttpSession session, String id, String password) {
-		User loginInfo = usersService.login(id, password);
+		User loginInfo = userService.login(id, password);
 		if(loginInfo == null)
-			return new RedirectWithAlert("로그인", "아이디 혹은 비밀번호가 틀립니다", "login");
+			return new RedirectWithAlert("로그인 - DatePlanner", "아이디 혹은 비밀번호가 틀립니다", "login");
 		
 		session.setAttribute("loginInfo", loginInfo);
+		if(loginInfo.getRegionNo() != null)
+			session.setAttribute("regionNo", loginInfo.getRegionNo());
+		
+		return new ModelAndView("redirect:../");
+		
+	} //doLogin();
+	
+	@RequestMapping(path = "doLogin", params = { "no" })
+	public ModelAndView doLogin(HttpSession session, int no) {
+		
+		session.setAttribute("loginInfo", userService.selectUser(no));
 		
 		return new ModelAndView("redirect:../");
 		
 	} //doLogin();
 	
 	@RequestMapping("logout")
-	public ModelAndView logout(HttpSession session) {
+	public String logout(HttpSession session) {
 		
 		session.removeAttribute("loginInfo");
 		
-		return new RedirectWithAlert("로그아웃", "로그아웃 되었습니다", "../");
+		return "redirect:../";
 		
 	} //logout();
+
+	@RequestMapping("mypage")
+	public String mypage(HttpSession session) { return "redirect:page/" + ((User)session.getAttribute("loginInfo")).getNo(); }
+	
+	@RequestMapping("page/{no}")
+	public ModelAndView page(HttpSession session, @PathVariable int no, @RequestParam(defaultValue = "1") int p) {
+		
+		ModelAndView model = new ModelAndView("user/page");
+		
+		User user;
+		if((user = ((User)session.getAttribute("loginInfo"))) == null || user.getNo() != no)
+			user = userService.selectUser(no);
+		
+		if(user == null) return new RedirectWithAlert("유저정보 페이지 - DatePlanner", "유저를 찾을수 없습니다", "../../");
+		
+		Page page = new Page(8, 8, p);
+		
+		model.addObject("user", user);
+		model.addObject("postList", userService.selectUsersPost(no, page));
+		model.addObject("page", page);
+		
+		return model;
+		
+	} //page();
 	
 } //class LoginController;

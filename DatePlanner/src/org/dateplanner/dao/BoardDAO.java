@@ -2,7 +2,9 @@ package org.dateplanner.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.dateplanner.vo.Package;
+import org.dateplanner.vo.Page;
 import org.dateplanner.vo.Post;
 
 public interface BoardDAO {
@@ -10,9 +12,12 @@ public interface BoardDAO {
 	public boolean insertPost(Post post);
 	public boolean insertPackage(Post post);
 	public int checkPackageable(Package pack);
-	public Post selectOne(int no);
-	public List<Post> selectAll();
-	public List<Post> selectPackageable(int no);
+	public int selectTotalByRegion(int regionNo);
+	public int selectTotalByUserNo(int userNo);
+	public Post selectByNo(int no);
+	public List<Post> selectByRegionWithPage(@Param(value = "regionNo") int regionNo, @Param(value = "page") Page page);
+	public List<Post> selectByUserNoWithPage(@Param(value = "userNo") int userNo, @Param(value = "page") Page page);
+	public List<Post> selectPackageable(int userNo);
 	public List<Post> selectMyPage(int no);
 	
 } //interface BoardDAO;

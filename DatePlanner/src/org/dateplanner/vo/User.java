@@ -2,7 +2,7 @@ package org.dateplanner.vo;
 
 import java.sql.Timestamp;
 
-import org.dateplanner.commons.Constants;
+import org.dateplanner.commons.Region;
 
 public class User {
 	
@@ -12,7 +12,6 @@ public class User {
 	private String key;
 	private Character platform;
 	private String nickname;
-	private Character sex;
 	private String profile;
 	private Integer regionNo;
 	private String introduction;
@@ -27,10 +26,10 @@ public class User {
 	public String getKey() { return key; }
 	public Character getPlatform() { return platform; }
 	public String getNickname() { return nickname; }
-	public Character getSex() { return sex; }
 	public String getProfile() { return profile; }
+	public String getProfileWithDefault() { return profile == null || profile.isEmpty() ? "default.jpg" : profile; }
 	public Integer getRegionNo() { return regionNo; }
-	public String getRegion() { return Constants.REGION_LIST.get(regionNo); }
+	public String getRegion() { return Region.LIST.get(regionNo); }
 	public String getIntroduction() { return introduction; }
 	public Timestamp getRegdate() { return regdate; }
 	public void setNo(int no) { this.no = no; }
@@ -39,7 +38,6 @@ public class User {
 	public void setKey(String key) { this.key = key; }
 	public void setPlatform(Character platform) { this.platform = platform; }
 	public void setNickname(String nickname) { this.nickname = nickname; }
-	public void setSex(Character sex) { this.sex = sex; }
 	public void setProfile(String profile) { this.profile = profile; }
 	public void setRegionNo(Integer regionNo) { this.regionNo = regionNo; }
 	public void setIntroduction(String introduction) { this.introduction = introduction; }
@@ -48,7 +46,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [no=" + no + ", id=" + id + ", name=" + name + ", key=" + key + ", platform=" + platform
-				+ ", nickname=" + nickname + ", sex=" + sex + ", profile=" + profile + ", regionNo=" + regionNo
+				+ ", nickname=" + nickname + ", profile=" + profile + ", regionNo=" + regionNo
 				+ ", introduction=" + introduction + ", regdate=" + regdate + "]";
 	} //toString();
 	

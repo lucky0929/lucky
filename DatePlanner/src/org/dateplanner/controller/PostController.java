@@ -7,9 +7,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.dateplanner.service.BoardService;
-import org.dateplanner.service.CommentService;
-import org.dateplanner.service.LikeService;
+import org.dateplanner.commons.Region;
+import org.dateplanner.service.PostService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
 import org.dateplanner.vo.Post;
@@ -28,17 +27,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class PostController {
 	
 	@Autowired
-	private BoardService boardService;
+	private PostService postService;
 	
-	@Autowired
-	private CommentService CommentService;
+//	@Autowired
+//	private CommentService CommentService;
 	
-	@Autowired
-	private LikeService likeService;
-	
+//	@Autowired
+//	private LikeService likeService;
 	
 	@RequestMapping("write")
-	public void write() {}
+	public ModelAndView write(HttpSession session) { return new ModelAndView().addObject("regionNo", Region.getRegionNo(session)); }
 	
 	@RequestMapping("write/upload")
 	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request)
@@ -54,28 +52,19 @@ public class PostController {
 		post.setUser((User)session.getAttribute("loginInfo"));
 		post.setPackageable(post.getPackageable() != null);
 		
-		if(!boardService.write(post))
+		if(!postService.write(post))
 			return "redirect:write";
 		
 		return "redirect:../";
 		
 	} //doWrite();
 	
-	@RequestMapping(path = "view", params = "no")
-	public ModelAndView view(HttpSession session,int no) {
-		User user = new User();
-		user = (User)session.getAttribute("loginInfo");
-		HashMap<String, Integer> params = new HashMap<>();
+	@RequestMapping("view/{no}")
+	public ModelAndView view(HttpSession session, @PathVariable int no) {
 		
-		params.put("boardNo", no);
-		params.put("userNo", user.getNo()); 
+		ModelAndView model = new ModelAndView("post/view");
 		
-		ModelAndView model = new ModelAndView();
-		
-		model.addObject("post", boardService.selectOne(no));
-		model.addObject("like", likeService.selectCount(no));
-		model.addObject("likeCheck", likeService.userCheck(params));
-		model.addObject("comment", CommentService.select(no));
+		model.addObject("post", postService.selectOne(no));
 		
 		return model;
 		
@@ -91,12 +80,12 @@ public class PostController {
 		params.put("boardNo", boardNo);
 		params.put("userNo", user.getNo());
 		
-		System.out.println("파라미터임 " + params);
-		if(likeService.userCheck(params) == 0) {
-			likeService.insertLike(params);
-		} else {
-			likeService.deleteLike(params);
-		}
+//		System.out.println("파라미터임 " + params);
+//		if(likeService.userCheck(params) == 0) {
+//			likeService.insertLike(params);
+//		} else {
+//			likeService.deleteLike(params);
+//		}
 		
 		return "redirect:/post/view?no=" + boardNo;
 		
@@ -109,19 +98,19 @@ public class PostController {
 		user = (User)session.getAttribute("loginInfo");
 		params.put("userNo", ""+user.getNo());
 		params.put("seq", "1");
-		CommentService.insert(CommentService.HashMapToCommentVO(params));
+//		CommentService.insert(CommentService.HashMapToCommentVO(params));
 		
 		return "redirect:/post/view?no=" + params.get("boardNo");
 		
 	} //commentInsert();
 	
 	@RequestMapping("update/{no}")
-	public ModelAndView update(@PathVariable int no) { ModelAndView model = new ModelAndView("post/update"); model.addObject("post", boardService.selectOne(no)); return model; }
+	public ModelAndView update(@PathVariable int no) { ModelAndView model = new ModelAndView("post/update"); model.addObject("post", postService.selectOne(no)); return model; }
 	
 	@RequestMapping("commentUpdate")
 	public String commentUpdate(String no, String content, String boardNo) {
 		
-		CommentService.update(no, content);
+//		CommentService.update(no, content);
 		
 		return "redirect:/post/view?no=" + boardNo;
 		
@@ -130,7 +119,7 @@ public class PostController {
 	@RequestMapping("commentDelete")
 	public String commentDelete(int no) {
 		
-		CommentService.delete(no);
+//		CommentService.delete(no);
 		
 		return "redirect:../";
 		
@@ -141,7 +130,7 @@ public class PostController {
 		
 		User loginInfo = (User)session.getAttribute("loginInfo");
 		
-		List<Post> post = boardService.selectMyPage(loginInfo.getNo());
+		List<Post> post = postService.selectMyPage(loginInfo.getNo());
 		
 		ModelAndView model = new ModelAndView();
 		

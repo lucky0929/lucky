@@ -1,4 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="org.dateplanner.commons.Region"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -13,29 +14,16 @@
 		</c:when>
 		<c:otherwise>
 			<div><strong>${loginInfo.nickname}</strong>로 로그인됨</div>
-			<div><a href="post/write">글쓰기</a> / <a href="package/create">패키지 만들기</a> / <a href="user/logout">로그아웃</a></div>
+			<div><a href="post/write">글쓰기</a> / <a href="package/create">패키지 만들기</a></div>
+			<div><a href="user/mypage">마이페이지</a> / <a href="user/logout">로그아웃</a></div>
 		</c:otherwise>
 	</c:choose>
 	<div>
 		<span>지역선택</span>
 		<select id="regionSelect">
-			<option value="0">서울특별시</option>
-			<option value="1">부산광역시</option>
-			<option value="2">광주광역시</option>
-			<option value="3">대구광역시</option>
-			<option value="4">대전광역시</option>
-			<option value="5">인천광역시</option>
-			<option value="6">경기도</option>
-			<option value="7">울산광역시</option>
-			<option value="8">세종특별자치시</option>
-			<option value="9">제주특별자치도</option>
-			<option value="10">경상남도</option>
-			<option value="11">충청남도</option>
-			<option value="12">전라북도</option>
-			<option value="13">충청북도</option>
-			<option value="14">전라남도</option>
-			<option value="15">경상북도</option>
-			<option value="16">강원도</option>
+			<c:forEach var="region" items="${Region.LIST}" varStatus="status">
+				<option value="${status.index}"<c:if test="${status.index eq regionNo}"> selected</c:if>>${region}</option>
+			</c:forEach>
 		</select>
 	</div>
 	<div>
@@ -45,6 +33,11 @@
 				<div><span>글이 없습니다.</span></div>
 			</c:when>
 			<c:otherwise>
+				<c:if test="${1 < page.start}"><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}">&lt;</a></c:if>
+				<c:forEach var="p" begin="${page.start}" end="${page.end}">
+					<a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${p}">${p}</a>
+				</c:forEach>
+				<c:if test="${page.next}"><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.end + 1}">&gt;</a></c:if>
 				<ul>
 					<c:forEach var="post" items="${postList}">
 						<c:set var="category">
@@ -54,10 +47,10 @@
 							</c:choose>
 						</c:set>
 						<li style="border: 1px solid black<c:if test="${category eq 'package'}">; background: lightgray</c:if>">
-							<img src="${category}/img/${post.image}" height="480">
+							<c:if test="${!empty post.image}"><img src="${category}/img/${post.image}" height="480"></c:if>
 							<dl style="display: inline-block">
 								<dt>제목</dt>
-								<dd><a href="${category}/view?no=${post.no}">${post.title}</a></dd>
+								<dd><a href="${category}/view/${post.no}">${post.title}</a></dd>
 								<dt>내용</dt>
 								<dd>${post.content}</dd>
 								<dt>lat</dt>
@@ -72,7 +65,7 @@
 								<dd>${post.regdate}</dd>
 								<c:if test="${loginInfo.no eq post.user.no}">
 									<dt>편집</dt>
-									<dd><a href="${category}/update?no=${post.no}">수정</a> <a href="${category}/delete?no=${post.no}">삭제</a></dd>
+									<dd><a href="${category}/update/${post.no}">수정</a> <a href="${category}/delete/${post.no}">삭제</a></dd>
 								</c:if>
 							</dl>
 						</li>
@@ -82,6 +75,6 @@
 		</c:choose>
 	</div>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script>$('#regionSelect').change(function() { location.href = '?region='+$(this).val() })</script>
+	<script>$('#regionSelect').change(function(){location.href='?r='+$(this).val()})</script>
 </body>
 </html>

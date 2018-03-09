@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>패키지 만들기</title>
+	<title>패키지 만들기 - DatePlanner</title>
 </head>
 <body>
 	<form id="createForm" action="doCreate">

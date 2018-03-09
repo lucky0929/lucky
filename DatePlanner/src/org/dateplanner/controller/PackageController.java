@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.dateplanner.service.PackagesService;
+import org.dateplanner.service.PackageService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
 import org.dateplanner.util.RedirectWithAlert;
@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class PackageController {
 	
 	@Autowired
-	private PackagesService packagesService;
+	private PackageService packageService;
 	
 	@RequestMapping("create")
 	public ModelAndView create(HttpSession session) {
@@ -35,7 +35,7 @@ public class PackageController {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("placeList",
-				packagesService.selectPackageable(((User)session.getAttribute("loginInfo")).getNo()));
+				packageService.selectPackageable(((User)session.getAttribute("loginInfo")).getNo()));
 		
 		return model;
 		
@@ -59,8 +59,8 @@ public class PackageController {
 		}
 		pack.setPlaceList(_placeList);
 		
-		if(!packagesService.createPackage(pack))
-			return new RedirectWithAlert("패키지 만들기", "패키지 작성에 실패했습니다", "create");
+		if(!packageService.createPackage(pack))
+			return new RedirectWithAlert("패키지 만들기 - DatePlanner", "패키지 작성에 실패했습니다", "create");
 		
 		return new ModelAndView("redirect:../");
 		
@@ -71,7 +71,7 @@ public class PackageController {
 		
 		ModelAndView model = new ModelAndView("package/view");
 		
-		model.addObject("pack", packagesService.selectPackage(no));
+		model.addObject("pack", packageService.selectPackage(no));
 		
 		return model;
 		

@@ -11,7 +11,7 @@
       (#{id}, #{name}, #{key}, #{nickname}, #{profile}, #{regionNo}, #{introduction})
   </insert>
   
-  <select id="idExist" parameterType="String" resultType="boolean">
+  <select id="selectIdExist" parameterType="String" resultType="boolean">
     SELECT
       COUNT(*)
     FROM
@@ -22,7 +22,18 @@
       id = #{id}
   </select>
   
-  <select id="selectOne" parameterType="String" resultType="User">
+  <select id="selectByNo" parameterType="int" resultType="User">
+    SELECT
+      no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction, regdate
+    FROM
+      users
+    WHERE
+      platform IS NULL
+    AND
+      no = #{no}
+  </select>
+  
+  <select id="selectById" parameterType="String" resultType="User">
     SELECT
       no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction, regdate
     FROM
