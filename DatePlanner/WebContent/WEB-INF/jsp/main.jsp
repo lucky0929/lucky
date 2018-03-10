@@ -5,20 +5,45 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title>DatePlanner</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
-	<c:choose>
-		<c:when test="${empty loginInfo}">
-			<div><a href="user/login">로그인</a> / <a href="user/join">회원가입</a></div>
-		</c:when>
-		<c:otherwise>
-			<div><strong>${loginInfo.nickname}</strong>로 로그인됨</div>
-			<div><a href="post/write">글쓰기</a> / <a href="package/create">패키지 만들기</a></div>
-			<div><a href="user/mypage">마이페이지</a> / <a href="user/logout">로그아웃</a></div>
-		</c:otherwise>
-	</c:choose>
+	<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../">DatePlanner</a>
+        </div>
+        <c:choose>
+        	<c:when test="${empty loginInfo}">
+		       <ul class="nav navbar-nav navbar-right">
+		            <li><a href="user/join"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+		
+		            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="user/login">로그인<span class="glyphicon glyphicon-log-in"></span></a>
+		
+		                <ul class="dropdown-menu">
+		                	<li><a href="user/login">데이트 플래너 로그인</a></li>
+		                    <li><a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
+		                        네이버 로그인</a></li>
+		                    <li><a href="#">페이스북 로그인</a></li>
+		                </ul>
+		            </li>
+		        </ul>
+        	</c:when>
+        	<c:otherwise>
+        		<ul class="nav navbar-nav navbar-right">
+		            <li><a href="user/mypage"><span class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로 로그인중</a></li>
+		        </ul>
+        	</c:otherwise>
+        	
+        </c:choose>
+       
+    </div>
+</nav>
 	<div>
 		<span>지역선택</span>
 		<select id="regionSelect">

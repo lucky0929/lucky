@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>DatePlanner</title>
+
+    <style>
+        #firstWrap{
+            min-width: 1170px;
+            min-height: 830px;
+        }
+
+        .contentwrap{
+            min-width: 1100px;
+            min-height: 830px;
+            padding-top: 20px;
+            width: 100%;
+            position: relative;
+        }
+
+        .boardwrap{
+            position: absolute;
+            width: 100%;
+            height: 750px;
+        }
+
+        .boardlist{
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .festival .container{
+            width: 100%;
+        }
+
+        th{
+            text-align: center;
+        }
+
+        th a:link{
+            text-decoration: none;
+        }
+
+        #viewArray button{
+            float: left;
+            width: 50%;
+        }
+
+        #buttonBox button{
+            width: 40px;
+            height: 40px;
+            float: right;
+        }
+
+        .table{
+            text-align: center;
+        }
+
+        .mainPhoto img{
+            width: 40px;
+            height: 40px;
+        }
+
+        .contentTitle{
+            font-weight: bold;
+            position: relative;
+            max-width: 90%;
+        }
+
+        .contentPreview{
+            width: 400px ;
+            height: 40px;
+            margin-right: -230px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .contentInfo a{
+            text-decoration: none;
+        }
+
+        .rank a{
+            text-decoration: none;
+        }
+
+        .writer a{
+            text-decoration: none;
+        }
+
+        .writeDay a{
+            text-decoration: none;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">DatePlanner</a>
+        </div>
+        <c:choose>
+        	<c:when test="${empty loginInfo}">
+		       <ul class="nav navbar-nav navbar-right">
+		            <li><a href="user/join"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+		
+		            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="user/login">로그인<span class="glyphicon glyphicon-log-in"></span></a>
+		
+		                <ul class="dropdown-menu">
+		                    <li><a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
+		                        네이버 로그인</a></li>
+		                    <li><a href="#">페이스북 로그인</a></li>
+		                </ul>
+		            </li>
+		        </ul>
+        	</c:when>
+        	<c:otherwise>
+        		<ul class="nav navbar-nav navbar-right">
+		            <li><a href="user/mypage"><span class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong></a>로 로그인중</li>
+		        </ul>
+        	</c:otherwise>
+        	
+        </c:choose>
+       
+    </div>
+</nav>
+
+<div id="firstWrap" class="container">
+    <div class="contentwrap">
+        <div class="content">
+            <div class="boardwrap">
+                <div class="boardlist">
+
+                    <div id="viewArray">
+                        <button class="btn btn-info">인기게시물</button>
+                        <button class="btn btn-info">최신게시물</button>
+                    </div>
+
+                    <div class="contentList">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>순위</th>
+                                <th>메인사진</th>
+                                <th>글 정보</th>
+                                <th>글쓴이</th>
+                                <th>날짜</th>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#" title="1.서울출바알 &#10;2.남산도착!">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="rank"><a href="#">1</a></td>
+                                <td class="mainPhoto"><a href="#"><img src="img/손하.jpg"></a></td>
+                                <td class="contentInfo">
+                                    <a class="contentTitle" href="#">촌놈들의 서울 구경</a><br>
+                                    <div class="contentPreview">아아 여러분 안녕하십니까 오늘도 화장하구요 남산타워 조지구요 애지구요 반박할 수 없는 부분이구요 존나 힘들고요 자고싶고요</div>
+                                </td>
+
+                                <td class="writer"><a href="#">앙팡</a></td>
+                                <td class="writeDay"><a href="#">2018.01.01 16:45:21</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
