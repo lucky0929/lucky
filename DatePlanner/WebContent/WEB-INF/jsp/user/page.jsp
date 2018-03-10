@@ -4,6 +4,7 @@
 <html lang="ko">
 <head><c:set var="mypage" value="${loginInfo eq user}"/>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<title><c:choose><c:when test="${mypage}">내</c:when><c:otherwise>${user.nickname}님의 </c:otherwise></c:choose>페이지 - DatePlanner</title>
 </head>
 <body>
@@ -31,12 +32,14 @@
 				<div><span>글이 없습니다.</span></div>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${1 < page.start}"><a href="?p=${page.start - page.pageCount}">&lt;</a></c:if>
+			
+			<ul class="pagination">
+				<c:if test="${1 < page.start}"><a href="?p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></c:if>
 				<c:forEach var="p" begin="${page.start}" end="${page.end}">
-					<a href="?p=${p}">${p}</a>
+					<li><a href="?p=${p}" aria-label="Next">${p}</a></li>
 				</c:forEach>
-				<c:if test="${page.next}"><a href="?p=${page.end + 1}">&gt;</a></c:if>
-				<ul>
+				<c:if test="${page.next}"><a href="?p=${page.end + 1}"><span aria-hidden="true">&raquo;</span></a></c:if>
+			</ul>                                                                               
 					<c:forEach var="post" items="${postList}">
 						<c:set var="category">
 							<c:choose>
