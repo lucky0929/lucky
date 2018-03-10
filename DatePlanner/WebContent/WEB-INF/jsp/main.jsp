@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>DatePlanner</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
 	<c:choose>
@@ -26,6 +27,7 @@
 			</c:forEach>
 		</select>
 	</div>
+	
 	<div>
 		<div><span>글 목록</span></div>
 		<c:choose>
@@ -33,12 +35,13 @@
 				<div><span>글이 없습니다.</span></div>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${1 < page.start}"><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}">&lt;</a></c:if>
+			<ul class="pagination">
+				<c:if test="${1 < page.start}"><li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li></c:if>
 				<c:forEach var="p" begin="${page.start}" end="${page.end}">
-					<a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${p}">${p}</a>
+					<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${p}">${p}</a></li>
 				</c:forEach>
-				<c:if test="${page.next}"><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.end + 1}">&gt;</a></c:if>
-				<ul>
+				<c:if test="${page.next}"><li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.end + 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></c:if>
+			</ul>
 					<c:forEach var="post" items="${postList}">
 						<c:set var="category">
 							<c:choose>
