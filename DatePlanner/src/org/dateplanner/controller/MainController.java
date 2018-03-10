@@ -31,7 +31,7 @@ public class MainController {
 			session.setAttribute("regionNo", r);
 		
 		int regionNo = Region.getRegionNo(session);
-		Page page = new Page(3, 5, p);
+		Page page = new Page(2, 8, p);
 		
 		model.addObject("postList", postService.selectByRegionWithPage(regionNo, page));
 		model.addObject("regionNo", regionNo);
