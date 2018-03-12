@@ -11,6 +11,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title>DatePlanner</title>
+	<style>
+		.pagination a[href="#"]{
+			cursor: context-menu;
+			background-color:gray;
+			color:#fff;
+			font-size:
+		}
+		.pagination a[href="#"]:HOVER{ background-color:gray; color:#fff;}
+	</style>
+	<script src="//sunx.cafe24.com/js/jquery.js"></script>
+	<script>
+		function aNone(){
+			alert("현재 페이지 입니다"); 
+			return false; 
+		};
+	</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -63,7 +79,15 @@
 			<ul class="pagination">
 				<c:if test="${1 < page.start}"><li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li></c:if>
 				<c:forEach var="p" begin="${page.start}" end="${page.end}">
-					<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${p}">${p}</a></li>
+					<c:choose>
+						<c:when test="${param.p == p}">
+							<li><a href="#" onclick="aNone()">${p}</a></li>
+						</c:when>
+						<c:otherwise>
+						<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${p}">${p}</a></li>
+						</c:otherwise>
+					</c:choose>
+					
 				</c:forEach>
 				<c:if test="${page.next}"><li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.end + 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></c:if>
 			</ul>
