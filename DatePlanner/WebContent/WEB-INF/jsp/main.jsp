@@ -19,16 +19,18 @@
 			font-size:
 		}
 		.pagination a[href="#"]:HOVER{ background-color:gray; color:#fff;}
+		#loading{
+			display:none;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-left: -128px;
+			margin-top: -128px;
+		}
 	</style>
-	<script src="//sunx.cafe24.com/js/jquery.js"></script>
-	<script>
-		function aNone(){
-			alert("현재 페이지 입니다"); 
-			return false; 
-		};
-	</script>
 </head>
 <body>
+<img id="loading" alt="로딩이미지" src="/temp/img/loading.gif" />
 	<nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -55,9 +57,7 @@
 		            <li><a href="user/mypage"><span class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로 로그인중</a></li>
 		        </ul>
         	</c:otherwise>
-        	
         </c:choose>
-       
     </div>
 </nav>
 	<div>
@@ -68,7 +68,6 @@
 			</c:forEach>
 		</select>
 	</div>
-	
 	<div>
 		<div><span>글 목록</span></div>
 		<c:choose>
@@ -80,14 +79,13 @@
 				<c:if test="${1 < page.start}"><li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li></c:if>
 				<c:forEach var="p" begin="${page.start}" end="${page.end}">
 					<c:choose>
-						<c:when test="${param.p == p}">
+						<c:when test="${page.current == p}">
 							<li><a href="#" onclick="aNone()">${p}</a></li>
 						</c:when>
 						<c:otherwise>
-						<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${p}">${p}</a></li>
+							<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${p}">${p}</a></li>
 						</c:otherwise>
 					</c:choose>
-					
 				</c:forEach>
 				<c:if test="${page.next}"><li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.end + 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></c:if>
 			</ul>
@@ -122,11 +120,21 @@
 							</dl>
 						</li>
 					</c:forEach>
-				</ul>
 			</c:otherwise>
 		</c:choose>
 	</div>
+	
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script>$('#regionSelect').change(function(){location.href='?r='+$(this).val()})</script>
+	<script>
+		$('#regionSelect').change(function(){
+			$("#loading").fadeIn(0);
+			location.href='?r='+$(this).val(); 
+		});
+
+		function aNone(){
+			alert("현재 페이지 입니다"); 
+			return false; 
+		};
+	</script>
 </body>
 </html>

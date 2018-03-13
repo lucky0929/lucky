@@ -8,6 +8,6 @@ import org.dateplanner.vo.Post;
 public interface PackagesDAO {
 	
 	public boolean insert(Package pack);
-	public List<Post> selectOne(int no);
+	public List<Post> selectPackage(int no);
 	
 } //interface PackagesDAO;

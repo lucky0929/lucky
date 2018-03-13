@@ -11,7 +11,7 @@
 	 <foreach collection="placeList" item="place" index="i" separator=", ">(#{post.no}, #{place.no}, #{i})</foreach>
   </insert>
   
-  <select id="selectOne" parameterType="int" resultType="Post">
+  <select id="selectPackage" parameterType="int" resultType="Post">
 	SELECT
 	  b.no, title, content, image, lat, lng, user_no, b.region_no, packageable, b.regdate,
 	  u.no 'user.no', u.nickname 'user.nickname'
