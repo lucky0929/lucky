@@ -33,4 +33,17 @@
     ORDER BY c.no, `order`
   </select>
   
+  <update id="update">
+    UPDATE
+      comments
+    SET
+      content = #{content}, regdate = now()
+    WHERE
+      board_no = #{boardNo}
+      AND
+      user_no = #{userNo}
+      AND
+      no = #{no}
+  </update>
+  
 </mapper>
