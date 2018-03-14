@@ -213,7 +213,7 @@
 
                 <c:otherwise>
                     <div id="profile">
-                        <a href="#"><img src="/user/img/${loginInfo.profileWithDefault}" height="85%" width="85%"/></a>
+                        <a href="user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" height="85%" width="85%"/></a>
                     </div>
 
                     <div id="name_box" style="border: 2px blueviolet">
