@@ -1,79 +1,206 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-<head><c:set var="mypage" value="${loginInfo eq user}"/>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<title><c:choose><c:when test="${mypage}">내</c:when><c:otherwise>${user.nickname}님의 </c:otherwise></c:choose>페이지 - DatePlanner</title>
+<head>
+   <c:set var="mypage" value="${loginInfo eq user}"/>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+   <title><c:choose><c:when test="${mypage}">내</c:when><c:otherwise>${user.nickname}님의 </c:otherwise></c:choose>페이지 - DatePlanner</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <style>
+body {
+   background-repeat: no-repeat;
+   background-image: url("/tem7p/user-background/sunset-3102754_1920.jpg");
+}
+
+.first {
+   min-width: 1200px;
+}
+
+#profile_H {
+   padding-left: 69px;
+   position: relative;
+   width: 100%;
+   height: 100%;
+}
+
+#profile {
+   width: 300px;
+   height: 30%;
+   display: inline-block;
+   border: 2px solid cyan;
+}
+
+#nameBox {
+   display: inline-table;
+   color: white;
+   margin-bottom: -50px;
+}
+
+#name {
+   font-weight: bold;
+   font-size: xx-large;
+}
+
+#nickname {
+   font-weight: bold;
+   font-size: large;
+}
+
+#intro {
+   font-weight: bold;
+}
+
+#region {
+   font-weight: bold;
+}
+
+ul {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+}
+
+.myContent {
+   text-align: center;
+   padding-top: 20px;
+   margin-left: 5%;
+   position: relative;
+   width: 100%;
+}
+
+.content_L {
+   float: left;
+   overflow: hidden;
+   transition: .1s ease;
+   margin: 10px;
+   position: relative;
+   width: 240px;
+   height: 240px;
+}
+
+.info_box {
+   color: antiquewhite;
+   width: 240px;
+   height: 240px;
+   position: absolute;
+   transition: .1s ease;
+   bottom: -240px;
+}
+
+.content_L:hover {
+   box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0
+      rgba(0, 0, 0, 0.21);
+}
+
+.content_L:hover .info_box {
+   bottom: -70px;
+   transition: .1s ease;
+}
+
+.content_L:hover:before {
+   content: "";
+   display: block;
+   width: 240px;
+   height: 240px;
+   top: 0;
+   left: 0;
+   position: absolute;
+   background-color: rgba(0, 0, 0, .7);
+}
+
+.heart {
+   color: indianred;
+   padding-right: 3px;
+   font-size: 1.3em;
+}
+
+.comment {
+   color: cadetblue;
+   padding-right: 3px;
+   font-size: 1.3em;
+}
+</style>
 </head>
 <body>
-	<a href="../../">메인 페이지로</a>
-	<div>
-		<dl>
-			<dt>닉네임</dt>
-			<dd>${user.nickname}</dd>
-			<dt>거주지</dt>
-			<dd>${user.region}</dd>
-			<dt>한줄소개</dt>
-			<dd>${user.introduction}</dd>
-			<dt>프로필 사진</dt>
-			<dd><img src="../img/${user.profileWithDefault}"></dd>
-			<c:if test="${mypage}">
-				<dt>계정 관리</dt>
-				<dd><a href="../update">프로필 수정</a> / <a href="../leave">회원 탈퇴</a></dd>
-			</c:if>
-		</dl>
-	</div>
-	<div>
-		<div><span>글 목록</span></div>
-		<c:choose>
-			<c:when test="${empty postList}">
-				<div><span>글이 없습니다.</span></div>
-			</c:when>
-			<c:otherwise>
-			
-			<ul class="pagination">
-				<c:if test="${1 < page.start}"><a href="?p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></c:if>
-				<c:forEach var="p" begin="${page.start}" end="${page.end}">
-					<li><a href="?p=${p}" aria-label="Next">${p}</a></li>
-				</c:forEach>
-				<c:if test="${page.next}"><a href="?p=${page.end + 1}"><span aria-hidden="true">&raquo;</span></a></c:if>
-			</ul>                                                                               
-					<c:forEach var="post" items="${postList}">
-						<c:set var="category">
-							<c:choose>
-								<c:when test="${post.packageable eq null}">package</c:when>
-								<c:otherwise>post</c:otherwise>
-							</c:choose>
-						</c:set>
-						<li style="border: 1px solid black<c:if test="${category eq 'package'}">; background: lightgray</c:if>">
-							<c:if test="${!empty post.image}"><img src="${category}/img/${post.image}" height="480"></c:if>
-							<dl style="display: inline-block">
-								<dt>제목</dt>
-								<dd><a href="../../${category}/view/${post.no}">${post.title}</a></dd>
-								<dt>내용</dt>
-								<dd>${post.content}</dd>
-								<dt>lat</dt>
-								<dd>${post.lat}</dd>
-								<dt>lng</dt>
-								<dd>${post.lng}</dd>
-								<dt>글쓴이</dt>
-								<dd>${post.user.nickname}</dd>
-								<dt>지역</dt>
-								<dd>${post.region}</dd>
-								<dt>작성일</dt>
-								<dd>${post.regdate}</dd>
-								<c:if test="${loginInfo.no eq post.user.no}">
-									<dt>편집</dt>
-									<dd><a href="../../${category}/update/${post.no}">수정</a> <a href="../../${category}/delete/${post.no}">삭제</a></dd>
-								</c:if>
-							</dl>
-						</li>
-					</c:forEach>
-				</ul>
-			</c:otherwise>
-		</c:choose>
-	</div>
+   <nav class="navbar navbar-inverse">
+      <div class="container">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="../../">DatePlanner</a>
+         </div>
+         <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>
+                  회원가입</a></li>
+
+            <li class="dropdown"><a class="dropdown-toggle"
+               data-toggle="dropdown" href="#"> 로그인 <span
+                  class="glyphicon glyphicon-log-in"></span></a>
+
+               <ul class="dropdown-menu">
+                  <li><a
+                     href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
+                        네이버 로그인</a></li>
+                  <li><a href="#">페이스북 로그인</a></li>
+                  <li><a href="#">구글 로그인</a></li>
+               </ul></li>
+         </ul>
+      </div>
+   </nav>
+
+   <div class="first container">
+
+      <div id="profile_H">
+
+         <div id="profile">
+            <img src="/post/img/"${userInfo.profile } alt="손화민" style="width: 100%; height: 100%;">
+         </div>
+       
+         <div id="nameBox">
+            <span id="name">${userInfo.name }</span> <span id="nickname">(${userInfo.nickname })</span>
+            <p id="intro">${userInfo.introduction }</p>
+            <p id="region">주활동지역 : ${userInfo.regionNo }</p>
+         </div> <!-- id="nameBox" -->
+      </div> <!-- id="profile_H -->
+
+      <div class="myContent">
+     <c:choose>
+        <c:when test="${empty postList}">
+         <div><span>글이 없습니다.</span></div>
+      </c:when>
+      <c:otherwise>   
+         <ul class="pagination">
+            <c:if test="${1 < page.start}"><a href="?p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></c:if>
+            <c:forEach var="p" begin="${page.start}" end="${page.end}">
+               <li><a href="?p=${p}" aria-label="Next">${p}</a></li>
+            </c:forEach>
+            <c:if test="${page.next}"><a href="?p=${page.end + 1}"><span aria-hidden="true">&raquo;</span></a></c:if>
+         </ul>
+              <ul>
+            <c:forEach var="post" items="${postList }">
+               <li class="content_L" <c:if test="${category eq 'package'}">style="board:3px solid pink"</c:if>>
+                  <a href="../../${category}/view/${post.no}">
+                     <div class="info_box">
+                        <h3>${post.title}</h3>
+                        <ul>
+                           <li><i class="fas fa-heart heart"></i><span>추가예정</span></li><!-- 조아요 개수 -->
+                           <li><i class="fas fa-comment comment"></i><span>추가예정</span></li><!-- 댓글 개수 -->
+                        </ul>
+                     </div> 
+                     <%-- <c:if test="${!empty post.image}"> --%>
+                        <img src="${category}/img/${post.image}" height="100%" width="100%">
+                     <%-- </c:if> --%>
+                  </a>
+               </li>
+               </c:forEach>
+           </ul>
+         </c:otherwise>
+     </c:choose>
+      </div> <!-- class="myContent -->
+   </div> <!-- class="first container" --> 
 </body>
 </html>
