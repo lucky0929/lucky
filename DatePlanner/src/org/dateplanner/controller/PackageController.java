@@ -62,7 +62,7 @@ public class PackageController {
 		pack.setPlaceList(_placeList);
 		
 		if(!packageService.createPackage(pack))
-			return new RedirectWithAlert("패키지 만들기 - DatePlanner", "패키지 작성에 실패했습니다", "create");
+			return new RedirectWithAlert("패키지 작성 - DatePlanner", "패키지 작성에 실패했습니다", "create");
 		
 		return new ModelAndView("redirect:../");
 		

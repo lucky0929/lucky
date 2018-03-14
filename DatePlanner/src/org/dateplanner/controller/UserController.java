@@ -37,6 +37,7 @@ public class UserController {
 	
 	@RequestMapping(path = "doJoin", params = { "id", "password", "name", "nickname", "regionNo", "profile", "introduction" })
 	public ModelAndView doJoin(@ModelAttribute User user, String password) {
+		
 		user.setKey(password);
 		
 		RedirectWithAlert redirect = new RedirectWithAlert("회원가입 - DatePlanner");
@@ -58,20 +59,16 @@ public class UserController {
 		User loginInfo = userService.login(id, password);
 		if(loginInfo == null)
 			return new RedirectWithAlert("로그인 - DatePlanner", "아이디 혹은 비밀번호가 틀립니다", "login");
-		
 		session.setAttribute("loginInfo", loginInfo);
 		if(loginInfo.getRegionNo() != null)
 			session.setAttribute("regionNo", loginInfo.getRegionNo());
-		
 		return new ModelAndView("redirect:../");
 		
 	} //doLogin();
 	
-	@RequestMapping(path = "doLogin", params = { "no" })
+	@RequestMapping(path = "doLogin", params = "no")
 	public ModelAndView doLogin(HttpSession session, int no) {
-		
 		session.setAttribute("loginInfo", userService.selectUser(no));
-		
 		return new ModelAndView("redirect:../");
 		
 	} //doLogin();

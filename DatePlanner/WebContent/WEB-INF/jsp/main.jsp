@@ -77,13 +77,15 @@
 			<c:otherwise>
 			<ul class="pagination">
 				<c:if test="${1 < page.start}"><li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li></c:if>
+				<%String title;%>
 				<c:forEach var="p" begin="${page.start}" end="${page.end}">
 					<c:choose>
 						<c:when test="${page.current == p}">
 							<li><a href="#" onclick="aNone()">${p}</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${p}">${p}</a></li>
+							<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if><c:if test="${!empty title}">title=${title}&</c:if>p=${p}">${p}</a></li>
+							&title=<% if(null==(title = (String)request.getAttribute("title"))){} %>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
