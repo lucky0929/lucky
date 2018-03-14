@@ -23,7 +23,7 @@ public class MainController {
 	private PostService postService;
 	
 	@RequestMapping(path = { "/", "main", "index" })
-	public ModelAndView main(HttpServletRequest request, HttpSession session, Integer r, @RequestParam(defaultValue = "1") int p) {
+	public ModelAndView main(HttpServletRequest request, HttpSession session, Integer r, @RequestParam(defaultValue = "1") int p, @RequestParam(required = false) String title) {
 		
 		ModelAndView model = new ModelAndView("main");
 
@@ -31,11 +31,12 @@ public class MainController {
 			session.setAttribute("regionNo", r);
 		
 		int regionNo = Region.getRegionNo(session);
-		Page page = new Page(3, 5, p);
+		Page page = new Page(2, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
 		
-		model.addObject("postList", postService.selectByRegionWithPage(regionNo, page));
+		model.addObject("postList", title==null ? postService.selectByRegionWithPage(regionNo, page) : postService.selectByTitleAndRegionWithPage(title, page));
 		model.addObject("regionNo", regionNo);
 		model.addObject("page", page);
+		model.addObject("title", title);
 		
 		return model;
 		

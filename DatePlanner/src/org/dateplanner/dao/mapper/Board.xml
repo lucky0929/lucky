@@ -42,9 +42,18 @@
 	SELECT
 	  COUNT(*)
 	FROM
-	  board b
+	  board
 	WHERE
 	  region_no = #{regionNo}
+  </select>
+    
+  <select id="selectTotalBytitle" parameterType="String" resultType="int">
+	SELECT
+	  COUNT(*)
+	FROM
+	  board
+	WHERE
+	  title like '%${value}%' 
   </select>
   
   <select id="selectByNo" parameterType="int" resultType="Post">
@@ -88,6 +97,17 @@
 	LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   
+  <select id="selectByTitleAndRegionWithPage" resultType="Post">
+	SELECT
+	  title, content, image, lat, lng, user_no, region_no, packageable
+	FROM
+	  board
+	WHERE
+	  title like '%${title}%'
+	ORDER BY regdate DESC
+	LIMIT #{page.startContent}, #{page.contentCount}
+  </select>
+  
   <select id="selectByRegionWithPage" resultType="Post">
 	SELECT
 	  b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
@@ -103,5 +123,17 @@
 	ORDER BY regdate DESC
 	LIMIT #{page.startContent}, #{page.contentCount}
   </select>
+  
+  <update id="update">
+  	UPDATE 
+  	  board
+  	SET 
+  	  title = #{title}, content = #{content}, image = #{image}, lat = #{lat}, lng = #{lng},
+  	  region_no = #{regionNo}, packageable = #{packageable}
+  	WHERE 
+  	  no = #{no} 
+  	  AND 
+  	  user_no = #{userNo}
+  </update>
   
 </mapper>

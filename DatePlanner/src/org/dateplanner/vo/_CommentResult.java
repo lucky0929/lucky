@@ -13,7 +13,6 @@ public class _CommentResult {
 	private String userName;
 	private String profile;
 	
-	
 	@Override
 	public String toString() {
 		return "CommentResult [no=" + no + ", boardNo=" + boardNo + ", userNo=" + userNo + ", content=" + content

@@ -1,5 +1,6 @@
 package org.dateplanner.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -14,9 +15,12 @@ public interface BoardDAO {
 	public int checkPackageable(Package pack);
 	public int selectTotalByUserNo(int userNo);
 	public int selectTotalByRegion(int regionNo);
+	public int selectTotalBytitle(String title);
 	public Post selectByNo(int no);
 	public List<Post> selectPackageable(int userNo);
+
 	public List<Post> selectByUserNoWithPage(@Param(value = "userNo") int userNo, @Param(value = "page") Page page);
+	public List<Post> selectByTitleAndRegionWithPage(HashMap<String, Object> prams/*@Param(value = "title") String title, @Param(value = "page") Page page*/);
 	public List<Post> selectByRegionWithPage(@Param(value = "regionNo") int regionNo, @Param(value = "page") Page page);
 	
 } //interface BoardDAO;

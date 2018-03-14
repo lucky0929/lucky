@@ -16,7 +16,7 @@ public class User {
 	private Integer regionNo;
 	private String introduction;
 	private Timestamp regdate;
-
+	
 	public User() {}
 	public User(int no) { this.no = no; }
 	

@@ -42,7 +42,16 @@
 	  <mvc:mapping path="/package/update/**"/>
 	  <mvc:mapping path="/package/doUpdate/**"/>
 	  <mvc:mapping path="/package/doDelete/**"/>
-	  <bean class="org.dateplanner.interceptor.LoginInterceptor"/>
+	  <mvc:mapping path="/user/logout"/>
+	  <bean class="org.dateplanner.interceptor.FalseLoginInterceptor"/>
 	</mvc:interceptor>
+	
+	<mvc:interceptor>
+		<mvc:mapping path="/user/login"/>
+		<mvc:mapping path="/user/doLogin"/>
+		<mvc:mapping path="/user/doJoin"/>
+	  <bean class="org.dateplanner.interceptor.TureLoginInterceptor"/>
+	</mvc:interceptor>
+	
   </mvc:interceptors>
 </beans>
