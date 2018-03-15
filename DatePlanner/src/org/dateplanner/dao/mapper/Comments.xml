@@ -8,7 +8,7 @@
     INSERT INTO comments
       (no, board_no, user_no, content)
     VALUES
-      ((SELECT ifnull(MAX(no), 0)+1 FROM comments c), #{boardNo}, #{user.no}, #{content})
+      ((SELECT IFNULL(MAX(no), 0)+1 FROM comments c), #{boardNo}, #{user.no}, #{content})
   </insert>
   
   <insert id="insertReply" parameterType="Comment">
@@ -32,18 +32,30 @@
       board_no = 2
     ORDER BY c.no, `order`
   </select>
+
+  <select id="selectByBoardNo" parameterType="int">
+    SELECT
+      c.no, `order`, board_no, content, c.regdate,
+      u.no 'user.no', u.nickname 'user.nickname'
+    FROM
+      comments c
+    JOIN
+      users u
+    ON
+      user_no = u.no
+    WHERE
+      board_no = 2
+    ORDER BY c.no, `order`
+  </select>
+
   
   <update id="update">
     UPDATE
       comments
     SET
-      content = #{content}, regdate = now()
+      content = #{content}
     WHERE
-      board_no = #{boardNo}
-      AND
-      user_no = #{userNo}
-      AND
-      no = #{no}
+      <!-- 보류 -->
   </update>
   
 </mapper>
