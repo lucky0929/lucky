@@ -1,268 +1,321 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
 <%@page import="org.dateplanner.commons.Region"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <title>DatePlanner</title>
-    <style>
-        #list_view{
-            width: 70%;
-            padding-right: 5%;
-            float: left;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>DatePlanner</title>
+<style>
+#list_view {
+	width: 70%;
+	padding-right: 5%;
+	float: left;
+}
 
-        h2{
-            text-align: center;
-        }
+h2 {
+	text-align: center;
+}
 
-        #no{
-            width: 5%;
-            font-size: 10px;
-        }
+#no {
+	width: 5%;
+	font-size: 10px;
+}
 
-        #title{
-            width: 50%;
-            font-size: 10px;
-        }
+#title {
+	width: 50%;
+	font-size: 10px;
+}
 
-        #writer{
-            width: 20%;
-            font-size: 10px;
-        }
+#writer {
+	width: 20%;
+	font-size: 10px;
+}
 
-        #w_date{
-            width: 20%;
-            font-size: 10px;
-        }
+#w_date {
+	width: 20%;
+	font-size: 10px;
+}
 
-        #like{
-            width: 5%;
-            font-size: 10px;
-        }
+#like {
+	width: 5%;
+	font-size: 10px;
+}
 
-        #profile{
-            width: 100%;
-            overflow: hidden;
-            float: left;
-        }
+#profile {
+	width: 100%;
+	overflow: hidden;
+	float: left;
+}
 
-        #name_box{
-            text-align: center;
-            padding-top: 5%;
-            display: inline-block;
-        }
+#name_box {
+	text-align: center;
+	padding-top: 5%;
+	display: inline-block;
+}
 
-        #nickname{
-            font-size: large;
-            font-weight: bold;
-        }
+#nickname {
+	font-size: large;
+	font-weight: bold;
+}
 
-        #greetings{
-            font-size: large;
-            height: 50%;
-        }
+#greetings {
+	font-size: large;
+	height: 50%;
+}
 
-        #btn_box{
-            float: left;
-            padding: 15px;
-            display: block;
-            width: 100%;
-        }
+#btn_box {
+	float: left;
+	padding: 15px;
+	display: block;
+	width: 100%;
+}
 
-        #btn_box button{
-            width: 40%;
-            padding: 10px;
-        }
+#btn_box button {
+	width: 40%;
+	padding: 10px;
+}
 
-        table thead tr th{
-            text-align: center;
-        }
+table thead tr th {
+	text-align: center;
+}
 
-        tbody tr:hover{
-            background-color: #d6d8db;
-        }
+tbody tr:hover {
+	background-color: #d6d8db;
+}
 
-        table{
-            text-align: center;
-        }
+table {
+	text-align: center;
+}
 
-        #side_bar{
-            text-align: center;
-            width: 30%;
-            float: left;
-        }
+#side_bar {
+	text-align: center;
+	width: 30%;
+	float: left;
+}
 
-        #user_info{
-            padding-top: 3.5%;
-        }
+#user_info {
+	padding-top: 3.5%;
+}
 
-        #region_select{
-            float: left;
-            padding-top: 15px;
-            width: 100%;
-        }
-        
-        .pagination{
-        	text-align: center;
-        }
-	list-group-item:hover{
-		background-color: gray;
-	}
-	#selected{
-		background-color: gray;
-	}
-	
-    </style>
+#region_select {
+	float: left;
+	padding-top: 15px;
+	width: 100%;
+}
+
+.pagination {
+	text-align: center;
+}
+
+list-group-item:hover {
+	background-color: gray;
+}
+
+#selected {
+	background-color: gray;
+}
+</style>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="../">DatePlanner</a>
-        </div>
-        <c:choose>
-            <c:when test="${empty loginInfo}">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="user/join"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="../">DatePlanner</a>
+			</div>
+			<c:choose>
+				<c:when test="${empty loginInfo}">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="user/join"><span
+								class="glyphicon glyphicon-user"></span>회원가입</a></li>
 
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="user/login">로그인<span class="glyphicon glyphicon-log-in"></span></a>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="user/login">로그인<span
+								class="glyphicon glyphicon-log-in"></span></a>
 
-                        <ul class="dropdown-menu">
-                            <li><a href="user/login">데이트 플래너 로그인</a></li>
-                            <li><a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
-                                네이버 로그인</a></li>
-                            <li><a href="#">페이스북 로그인</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </c:when>
-            <c:otherwise>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="user/mypage"><span class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로 로그인중</a></li>
-                    <li><a href="user/logout">로그아웃</a></li>
-                </ul>
-            </c:otherwise>
+							<ul class="dropdown-menu">
+								<li><a href="user/login">데이트 플래너 로그인</a></li>
+								<li><a
+									href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
+										네이버 로그인</a></li>
+								<li><a href="#">페이스북 로그인</a></li>
+							</ul></li>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="user/mypage"><span
+								class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로
+								로그인중</a></li>
+						<li><a href="user/logout">로그아웃</a></li>
+					</ul>
+				</c:otherwise>
 
-        </c:choose>
+			</c:choose>
 
-    </div>
-</nav>
+		</div>
+	</nav>
 
-<div class="container">
-    <div id="list_view">
-        <c:choose>
-            <c:when test="${empty postList}">
-                <h1 style="padding-top: 50%; text-align: center">아직 게시글이 없네요 ㅜㅜ</h1>
-            </c:when>
+	<div class="container">
+		<div id="list_view">
+			<c:choose>
+				<c:when test="${empty postList}">
+					<h1 style="padding-top: 50%; text-align: center">아직 게시글이 없네요
+						ㅜㅜ</h1>
+				</c:when>
 
-            <c:otherwise>
-                <h2>게시글 목록</h2>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th id="no">번호</th>
-                        <th id="title">제목</th>
-                        <th id="writer">글쓴이</th>
-                        <th id="w_date">날짜</th>
-                        <th id="like">추천</th>
-                    </tr>
-                    </thead>
+				<c:otherwise>
+					<h2>게시글 목록</h2>
+					<table class="table">
+						<thead>
+							<tr>
+								<th id="no">번호</th>
+								<th id="title">제목</th>
+								<th id="writer">글쓴이</th>
+								<th id="w_date">날짜</th>
+								<th id="like">추천</th>
+							</tr>
+						</thead>
 
-                    <tbody>
-                    <c:forEach var="post" items="${postList}">
-                        <c:set var="category">
-                            <c:choose>
-                                <c:when test="${post.packageable} eq null">package</c:when>
-                                <c:otherwise>post</c:otherwise>
-                            </c:choose>
-                        </c:set>
+						<tbody>
+							<c:forEach var="post" items="${postList}">
+								<c:set var="category">
+									<c:choose>
+										<c:when test="${post.packageable} eq null">package</c:when>
+										<c:otherwise>post</c:otherwise>
+									</c:choose>
+								</c:set>
 
-                        <tr <c:if test="${category eq 'package'}">style="background:lightgray"</c:if> >
-                        <td>${post.no}</td>
-                        <td><a href="${category}/view/${post.no}">${post.title}</a></td>
-                        <td>${post.user.nickname}</td>
-                        <td>${post.formattedRegdate}</td>
-                        <td>${post.like}</td>
-                        </tr>
+								<tr
+									<c:if test="${category eq 'package'}">style="background:lightgray"</c:if>>
+									<td>${post.no}</td>
+									<td><a href="${category}/view/${post.no}">${post.title}</a></td>
+									<td>${post.user.nickname}</td>
+									<td>${post.formattedRegdate}</td>
+									<td>${post.like}</td>
+								</tr>
 
-                    </c:forEach>
+							</c:forEach>
 
-                    </tbody>
-                </table>
+						</tbody>
+					</table>
 
-                <ul class="pagination">
-                    <c:if test="${1 < page.start}"><li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li></c:if>
-                    <c:forEach var="p" begin="${page.start}" end="${page.end}">
-                        <li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if><c:if test="${!empty title}">title=${title}&</c:if>p=${p}">${p}</a></li>
-                    </c:forEach>
-                    <c:if test="${page.next}"><li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.end + 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></c:if>
-                </ul>
+					<ul class="pagination">
+						<c:if test="${1 < page.start}">
+							<li><a
+								href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}"
+								aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+						</c:if>
+						<c:forEach var="p" begin="${page.start}" end="${page.end}">
+							<li><a
+								href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if><c:if test="${!empty title}">title=${title}&</c:if>p=${p}">${p}</a></li>
+						</c:forEach>
+						<c:if test="${page.next}">
+							<li><a
+								href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.end + 1}"
+								aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+						</c:if>
+					</ul>
 
-            </c:otherwise>
-        </c:choose>
+				</c:otherwise>
+			</c:choose>
 
 
-    </div>
+		</div>
 
-    <div id="side_bar" style="border: 2px solid #cbcbcb">
-        <div id="user_info" >
-            <c:choose>
-                <c:when test="${empty loginInfo}">
-                    <button style="width: 70%" class="btn btn-warning"><a href="user/login">로그인해주세요</a></button>
-                </c:when>
+		<div id="side_bar" style="border: 2px solid #cbcbcb">
+			<div id="user_info">
+				<c:choose>
+					<c:when test="${empty loginInfo}">
+						<button style="width: 70%" class="btn btn-warning">
+							<a href="user/login">로그인해주세요</a>
+						</button>
+					</c:when>
 
-                <c:otherwise>
-                    <div id="profile">
-                        <a href="user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" height="85%" width="85%"/></a>
-                    </div>
+					<c:otherwise>
+						<div id="profile">
+							<a href="user/mypage"><img
+								src="/user/img/${loginInfo.profileWithDefault}" height="85%"
+								width="85%" /></a>
+						</div>
 
-                    <div id="name_box" style="border: 2px blueviolet">
-                        <div id="nickname">${loginInfo.nickname}</div>
-                        <div id="greetings">어서오세요</div>
-                    </div>
+						<div id="name_box" style="border: 2px blueviolet">
+							<div id="nickname">${loginInfo.nickname}</div>
+							<div id="greetings">어서오세요</div>
+						</div>
 
-                    <div id="btn_box" style="border-bottom: 2px solid #cbcbcb">
-                        <button class="btn btn-info"><a href="user/mypage">마이페이지</a></button>
-                        <button class="btn btn-info"><a href="user/logout">로그아웃</a></button>
-                        <button class="btn btn-info"><a href="#">글쓰기</a></button>
-                        <button class="btn btn-info"><a href="#">패키지 만들기</a></button>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-        </div>
+						<div id="btn_box" style="border-bottom: 2px solid #cbcbcb">
+							<button class="btn btn-info">
+								<a href="user/mypage">마이페이지</a>
+							</button>
+							<button class="btn btn-info">
+								<a href="user/logout">로그아웃</a>
+							</button>
+							<button class="btn btn-info">
+								<a href="#">글쓰기</a>
+							</button>
+							<button class="btn btn-info">
+								<a href="#">패키지 만들기</a>
+							</button>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
 
-        <div id="region_select" >
-            <h4>지역별 게시물 보기</h4>
-            <input class="form-control" id="myInput" type="text" placeholder="검색">
-            <br>
-            <ul class="list-group" id="myList">
-                <c:forEach var="region" items="${Region.LIST}" varStatus="status">
-                    <li class="list-group-item" value="${status.index}" <c:if test="${status.index eq regionNo}">id="selected"</c:if> onclick="RC()">${region}</li>
-                </c:forEach>
-            </ul>
-        </div>
-    </div>
-</div>
+			<div id="region_select">
+				<h4>지역별 게시물 보기</h4>
+				<input class="form-control" id="myInput" type="text"
+					placeholder="검색"> <br>
+				<ul class="list-group" id="myList">
+					<c:forEach var="region" items="${Region.LIST}" varStatus="status">
+						<li class="list-group-item" value="${status.index}"
+							<c:if test="${status.index eq regionNo}">id="selected"</c:if>
+							onclick="RC()">${region}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+	</div>
 
-<script>
-    $(document).ready(function(){
-        $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myList li").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$("#myInput")
+									.on(
+											"keyup",
+											function() {
+												var value = $(this).val()
+														.toLowerCase();
+												$("#myList li")
+														.filter(
+																function() {
+																	$(this)
+																			.toggle(
+																					$(
+																							this)
+																							.text()
+																							.toLowerCase()
+																							.indexOf(
+																									value) > -1)
+																});
+											});
+						});
 
-/*     $('#region_select').change(function(){location.href='?r='+$(this).val()}) */
-    function RC(){location.href='?r='+$(this).val()}
-</script>
+		/*     $('#region_select').change(function(){location.href='?r='+$(this).val()}) */
+		function RC() {
+			location.href = '?r=' + $(this).val()
+		}
+	</script>
 
 </body>
 </html>
