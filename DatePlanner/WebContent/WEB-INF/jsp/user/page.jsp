@@ -151,7 +151,7 @@ ul {
          </ul>
       </div>
    </nav>
-
+   
    <div class="first container">
 
       <div id="profile_H">
@@ -183,11 +183,19 @@ ul {
               <ul>
             <c:forEach var="post" items="${postList }">
                <li class="content_L" <c:if test="${category eq 'package'}">style="board:3px solid pink"</c:if>>
-                  <a href="../../${category}/view/${post.no}">
+               <c:choose>
+		       		<c:when test="${category eq 'package'}">
+		       			<a href="../../package/view/${post.no}">
+		       		</c:when>
+		       		<c:otherwise>
+                  		<a href="../../post/view/${post.no}">
+                  </c:otherwise>
+               </c:choose>
+                  
                      <div class="info_box">
                         <h3>${post.title}</h3>
                         <ul>
-                           <li><i class="fas fa-heart heart"></i><span>추가예정</span></li><!-- 조아요 개수 -->
+                           <li><i class="fas fa-heart heart"></i><span>${post.like}</span></li><!-- 조아요 개수 -->
                            <li><i class="fas fa-comment comment"></i><span>추가예정</span></li><!-- 댓글 개수 -->
                         </ul>
                      </div> 

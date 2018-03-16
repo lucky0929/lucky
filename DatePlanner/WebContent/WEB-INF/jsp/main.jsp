@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <title>DatePlanner</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>DatePlanner</title>
     <style>
         #list_view{
             width: 70%;
@@ -107,16 +108,18 @@
             padding-top: 15px;
             width: 100%;
         }
-        
-        .pagination{
-        	text-align: center;
-        }
-	list-group-item:hover{
-		background-color: gray;
-	}
-	#selected{
-		background-color: gray;
-	}
+	    .pagination{
+	     	text-align: center;
+	    }
+		.list-group-item:hover{
+			background-color:silver;
+			cursor:pointer;
+		}
+		#selected{
+			background-color: gray;
+			color:#fff;
+		}
+	
 	
     </style>
 </head>
@@ -243,15 +246,14 @@
             <br>
             <ul class="list-group" id="myList">
                 <c:forEach var="region" items="${Region.LIST}" varStatus="status">
-                    <li class="list-group-item" value="${status.index}" <c:if test="${status.index eq regionNo}">id="selected"</c:if> onclick="RC()">${region}</li>
+                    <li class="list-group-item" value="${status.index}" <c:if test="${status.index eq regionNo}">id="selected"</c:if> >${region}</li>
                 </c:forEach>
             </ul>
         </div>
     </div>
 </div>
-
 <script>
-    $(document).ready(function(){
+/*     $(document).ready(function(){
         $("#myInput").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $("#myList li").filter(function() {
@@ -259,9 +261,9 @@
             });
         });
     });
-
+ */
 /*     $('#region_select').change(function(){location.href='?r='+$(this).val()}) */
-    function RC(){location.href='?r='+$(this).val()}
+    $('.list-group-item').click(function(){location.href='?r='+$(this).val()});
 </script>
 
 </body>
