@@ -2,10 +2,12 @@ package org.dateplanner.controller;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
 import org.dateplanner.commons.Region;
+import org.dateplanner.service.LikeService;
 import org.dateplanner.service.PostService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
@@ -25,6 +27,7 @@ public class PostController {
 	
 	@Autowired
 	private PostService postService;
+	private LikeService likeService;
 	
 	@RequestMapping("write")
 	public ModelAndView write(HttpSession session) { return new ModelAndView().addObject("regionNo", Region.getRegionNo(session)); }
@@ -61,26 +64,26 @@ public class PostController {
 		
 	} //view();
 	
-//	@RequestMapping("like")
-//	public String likeInsert(int boardNo, HttpSession session) {
-//		
-//		User user = new User();
-//		user = (User)session.getAttribute("loginInfo");
-//		HashMap<String, Integer> params = new HashMap<>();
-//		
-//		params.put("boardNo", boardNo);
-//		params.put("userNo", user.getNo());
-//		
-//		System.out.println("파라미터임 " + params);
-//		if(likeService.userCheck(params) == 0) {
-//			likeService.insertLike(params);
-//		} else {
-//			likeService.deleteLike(params);
-//		}
-//		
-//		return "redirect:/post/view?no=" + boardNo;
-//		
-//	} //view();
+	@RequestMapping("like")
+	public String likeInsert(int boardNo, HttpSession session) {
+		
+		User user = new User();
+		user = (User)session.getAttribute("loginInfo");
+		HashMap<String, Integer> params = new HashMap<>();
+		
+		params.put("boardNo", boardNo);
+		params.put("userNo", user.getNo());
+		
+		System.out.println("파라미터임 " + params);
+		if(likeService.userCheck(params) == 0) {
+			likeService.insertLike(params);
+		} else {
+			likeService.deleteLike(params);
+		}
+		
+		return "redirect:/post/view?no=" + boardNo;
+		
+	} //view();
 	
 	@RequestMapping("update/{no}")
 	public ModelAndView update(@PathVariable int no) {
