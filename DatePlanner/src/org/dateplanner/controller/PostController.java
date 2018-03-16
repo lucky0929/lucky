@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.dateplanner.commons.Region;
@@ -11,6 +12,7 @@ import org.dateplanner.service.LikeService;
 import org.dateplanner.service.PostService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
+import org.dateplanner.util.RedirectWithAlert;
 import org.dateplanner.vo.Post;
 import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ public class PostController {
 	
 	@Autowired
 	private PostService postService;
+	@Autowired
 	private LikeService likeService;
 	
 	@RequestMapping("write")
@@ -55,7 +58,7 @@ public class PostController {
 	
 	@RequestMapping("view/{no}")
 	public ModelAndView view(HttpSession session, @PathVariable int no) {
-		
+
 		ModelAndView model = new ModelAndView("post/view");
 		
 		model.addObject("post", postService.selectOne(no));
@@ -65,25 +68,21 @@ public class PostController {
 	} //view();
 	
 	@RequestMapping("like")
-	public String likeInsert(int boardNo, HttpSession session) {
+	public String likeInsert(int boardNo, HttpSession session, HttpServletRequest req) {
 		
 		User user = new User();
 		user = (User)session.getAttribute("loginInfo");
-		HashMap<String, Integer> params = new HashMap<>();
+		HashMap<String, Integer> params = new HashMap<String, Integer>();
 		
 		params.put("boardNo", boardNo);
 		params.put("userNo", user.getNo());
 		
-		System.out.println("파라미터임 " + params);
-		if(likeService.userCheck(params) == 0) {
-			likeService.insertLike(params);
-		} else {
-			likeService.deleteLike(params);
-		}
-		
-		return "redirect:/post/view?no=" + boardNo;
-		
-	} //view();
+		if(likeService.userCheck(params) == 0)
+		     { likeService.insertLike(params); }
+		else { likeService.deleteLike(params); }
+		 	
+		return "redirect:"+req.getRequestURI().substring(0, req.getRequestURI().length()-5)+"/view/"+boardNo;
+	} //like()
 	
 	@RequestMapping("update/{no}")
 	public ModelAndView update(@PathVariable int no) {

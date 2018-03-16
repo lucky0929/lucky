@@ -36,6 +36,7 @@
 	  <mvc:mapping path="/post/doUpdate/**"/>
 	  <mvc:mapping path="/post/doDelete/**"/>
 	  <mvc:mapping path="/post/comment/**"/>
+	  <mvc:mapping path="/post/like"/>
 	  <mvc:mapping path="/package/create/**"/>
 	  <mvc:mapping path="/package/img/**"/>
 	  <mvc:mapping path="/package/doCreate/**"/>

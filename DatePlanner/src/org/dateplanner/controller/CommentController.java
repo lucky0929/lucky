@@ -11,6 +11,28 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 	
+	@RequestMapping("commentInsert")
+	public String commentInsert(int boardNo, String content) {
+		
+		return "";
+	}
 	
+	@RequestMapping("commentDelete")
+	public String commentDelete(int boardNo, String content) {
+		
+		return "";
+	}
+	
+	@RequestMapping("commentUpdate")
+	public String commentUpdate(int boardNo, String content) {
+		
+		return "";
+	}
+	
+	@RequestMapping("reCommentInsert")
+	public String reCommentInsert(int boardNo, String content) {
+		
+		return "";
+	}
 	
 } //class CommentController;
