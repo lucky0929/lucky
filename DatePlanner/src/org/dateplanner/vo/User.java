@@ -1,10 +1,13 @@
 package org.dateplanner.vo;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import org.dateplanner.commons.Region;
 
 public class User {
+	
+	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd kk:mm");
 	
 	private int no;
 	private String id;
@@ -32,6 +35,7 @@ public class User {
 	public String getRegion() { return Region.LIST.get(regionNo); }
 	public String getIntroduction() { return introduction; }
 	public Timestamp getRegdate() { return regdate; }
+	public String getFormattedRegdate() { return DATE_FORMAT.format(regdate); }
 	public void setNo(int no) { this.no = no; }
 	public void setId(String id) { this.id = id; }
 	public void setName(String name) { this.name = name; }

@@ -8,15 +8,16 @@
     INSERT INTO comments
       (no, board_no, user_no, content)
     VALUES
-      ((SELECT ifnull(MAX(no), 0)+1 FROM comments c), #{boardNo}, #{user.no}, #{content})
+      ((SELECT IFNULL(MAX(no), 0)+1 FROM comments c), #{boardNo}, #{user.no}, #{content})
   </insert>
   
   <insert id="insertReply" parameterType="Comment">
     INSERT INTO comments
       (no, `order`, board_no, user_no, content)
     VALUES
-      (#{no}, (SELECT ifnull(MAX(`order`), 0)+1 FROM comments c WHERE no = 2), #{boardNo}, #{user.no}, #{content})
+      (#{no}, (SELECT IFNULL(MAX(`order`), 0)+1 FROM comments c WHERE no = 2), #{boardNo}, #{user.no}, #{content})
   </insert>
+      <!-- 부모번호 -->
   
   <select id="selectByBoardNo" parameterType="int">
     SELECT
@@ -37,13 +38,13 @@
     UPDATE
       comments
     SET
-      content = #{content}, regdate = now()
+      content = #{content}
+      <!-- 
     WHERE
-      board_no = #{boardNo}
-      AND
-      user_no = #{userNo}
-      AND
-      no = #{no}
+      보류 -->
   </update>
   
+  <delete id="delete" parameterType="String">
+    
+  </delete>
 </mapper>

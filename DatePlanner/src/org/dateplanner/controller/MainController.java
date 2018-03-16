@@ -31,7 +31,7 @@ public class MainController {
 			session.setAttribute("regionNo", r);
 		
 		int regionNo = Region.getRegionNo(session);
-		Page page = new Page(2, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
+		Page page = new Page(10, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
 		
 		model.addObject("postList", title==null ? postService.selectByRegionWithPage(regionNo, page) : postService.selectByTitleAndRegionWithPage(title, page));
 		model.addObject("regionNo", regionNo);
