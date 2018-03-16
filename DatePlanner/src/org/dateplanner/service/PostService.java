@@ -19,7 +19,7 @@ public class PostService {
 	public Post selectOne(int no) { return boardDAO.selectByNo(no); }
 	public List<Post> selectByTitleAndRegionWithPage(String title, Page page) {
 		int total;
-		if((total=boardDAO.selectTotalBytitle(title)) == 0){ return null;}
+		if((total=boardDAO.selectTotalByTitle(title)) == 0){ return null;}
 		else{ 
 //			title, page.initTotal(total)
 			HashMap<String, Object> map = new HashMap<String, Object>();

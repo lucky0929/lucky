@@ -47,7 +47,7 @@
 	  region_no = #{regionNo}
   </select>
     
-  <select id="selectTotalBytitle" parameterType="String" resultType="int">
+  <select id="selectTotalByTitle" parameterType="String" resultType="int">
 	SELECT
 	  COUNT(*)
 	FROM
@@ -72,7 +72,8 @@
   
   <select id="selectPackageable" parameterType="int" resultType="Post">
 	SELECT
-	  no, title, content, image, lat, lng, user_no 'user.no', region_no regionNo, packageable, regdate
+	  no, title, content, image, lat, lng, user_no 'user.no', region_no regionNo, packageable, regdate, 
+	  (SELECT COUNT(no) from `like` where board_no = board.no) 'like'
 	FROM
 	  board
 	WHERE
@@ -84,7 +85,7 @@
   <select id="selectByUserNoWithPage" parameterType="int" resultType="Post">
 	SELECT
 	  b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
-	  u.no 'user.no', nickname 'user.nickname'
+	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like'
 	FROM
 	  board b
 	JOIN
@@ -99,9 +100,14 @@
   
   <select id="selectByTitleAndRegionWithPage" resultType="Post">
 	SELECT
-	  title, content, image, lat, lng, user_no, region_no, packageable
+	  b.no 'no', title, content, image, lat, lng, b.user_no userNo, b.region_no regionNo, packageable, b.regdate regdate,
+	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like'
 	FROM
-	  board
+	  board b
+	JOIN
+	  users u
+	ON
+	  user_no = u.no
 	WHERE
 	  title like '%${title}%'
 	ORDER BY regdate DESC
@@ -110,8 +116,8 @@
   
   <select id="selectByRegionWithPage" resultType="Post">
 	SELECT
-	  b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
-	  u.no 'user.no', nickname 'user.nickname'
+	  b.no, title, content, image, lat, lng, b.user_no, b.region_no regionNo, packageable, b.regdate,
+	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like'
 	FROM
 	  board b
 	JOIN

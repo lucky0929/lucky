@@ -15,7 +15,7 @@ public interface BoardDAO {
 	public int checkPackageable(Package pack);
 	public int selectTotalByUserNo(int userNo);
 	public int selectTotalByRegion(int regionNo);
-	public int selectTotalBytitle(String title);
+	public int selectTotalByTitle(String title);
 	public Post selectByNo(int no);
 	public List<Post> selectPackageable(int userNo);
 
