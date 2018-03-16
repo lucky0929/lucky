@@ -78,6 +78,7 @@
         #btn_box button{
             width: 40%;
             padding: 10px;
+            overflow: hidden;
         }
 
         table thead tr th{
@@ -110,6 +111,15 @@
         
         .pagination{
         	text-align: center;
+        }
+        
+        #all_wrap{
+        	background-color: #F2F4F7;
+        }
+        
+        #myList li:hover{
+            background-color: #9f9f9f;
+            cursor: pointer;
         }
 
     </style>
@@ -148,7 +158,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div id="all_wrap" class="container">
     <div id="list_view">
         <c:choose>
             <c:when test="${empty postList}">

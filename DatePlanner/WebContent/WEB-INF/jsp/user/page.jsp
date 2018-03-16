@@ -157,7 +157,7 @@ ul {
       <div id="profile_H">
 
          <div id="profile">
-            <img src="/post/img/"${userInfo.profile } alt="손화민" style="width: 100%; height: 100%;">
+            <img src="/post/img/"${userInfo.profile } style="width: 100%; height: 100%;">
          </div>
        
          <div id="nameBox">
@@ -187,7 +187,7 @@ ul {
                      <div class="info_box">
                         <h3>${post.title}</h3>
                         <ul>
-                           <li><i class="fas fa-heart heart"></i><span>추가예정</span></li><!-- 조아요 개수 -->
+                           <li><i class="fas fa-heart heart"></i><span>${like }</span></li><!-- 조아요 개수 -->
                            <li><i class="fas fa-comment comment"></i><span>추가예정</span></li><!-- 댓글 개수 -->
                         </ul>
                      </div> 
