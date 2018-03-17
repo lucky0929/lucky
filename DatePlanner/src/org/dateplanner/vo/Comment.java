@@ -11,13 +11,24 @@ public class Comment {
 	private String content;
 	private Timestamp regdate;
 	
-	public Comment() {}
+	public Comment(int boardNo, int no, int orderNo) {
+		this.boardNo=boardNo;
+		this.no = no;
+		this.order = orderNo;
+	}
 	
 	public Comment(int boardNo, int userNo, String content) {
 		
 		this.boardNo = boardNo;
 		this.user = new User(userNo);
 		this.content = content;
+		
+	} //Comment();
+	
+	public Comment(int boardNo, int orderNo) {
+		
+		this.order = orderNo;
+		this.boardNo = boardNo;
 		
 	} //Comment();
 	

@@ -1,5 +1,6 @@
 package org.dateplanner.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.dateplanner.service.CommentService;
@@ -16,28 +17,28 @@ public class CommentController {
 	CommentService commentService;
 	
 	@RequestMapping("commentInsert")
-	public String commentInsert(int boardNo, String content, HttpSession session) {
+	public String commentInsert(int boardNo, String content, HttpSession session, HttpServletRequest req) {
 		User user = (User)session.getAttribute("loginInfo");
 		commentService.insertComment(new Comment(boardNo, user.getNo(),content));
-		return "redirect:";
+		return "redirect:"+req.getRequestURI().substring(0, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
 	}
 	
 	@RequestMapping("commentDelete")
-	public String commentDelete(int boardNo, String content) {
-		
-		return "";
+	public String commentDelete(int boardNo, int no, int orderNo, HttpServletRequest req) {
+		commentService.deleteComment(new Comment(boardNo, no, orderNo));
+		return "redirect:"+req.getRequestURI().substring(0, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
 	}
 	
 	@RequestMapping("commentUpdate")
-	public String commentUpdate(int boardNo, String content) {
-		
-		return "";
+	public String commentUpdate(int boardNo, int orderNo, int no,String content, HttpServletRequest req) {
+		commentService.updateCommtent(new Comment(no, orderNo,content));
+		return "redirect:"+req.getRequestURI().substring(0, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
 	}
 	
 	@RequestMapping("reCommentInsert")
-	public String reCommentInsert(int boardNo, String content) {
-		
-		return "";
+	public String reCommentInsert(int boardNo, int no, int orderNo, String content, HttpServletRequest req) {
+		commentService.insertReply(new Comment(no, orderNo,content));
+		return "redirect:"+req.getRequestURI().substring(0, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
 	}
 	
 } //class CommentController;

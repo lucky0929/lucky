@@ -15,10 +15,8 @@ public class CommentService {
 	
 	public void insertComment(Comment comment){ commentDAO.insertComment(comment); }
 	public void insertReply(Comment reply){ commentDAO.insertComment(reply); }
-	public List<Comment> selectByBoardNo(int boardNo){ return commentDAO.selectByBoardNo(boardNo);}
-	public void updateCommtent(Comment comment) {commentDAO.updateCommtent(comment);}   // boardNo, content
-	public void  updateReComment(Comment comment){commentDAO.updateReComment(comment);}   // boardNo, content // boardNo, orderNo, content
-	public void  deleteComment(Comment comment){commentDAO.deleteComment(comment);}   // boardNo, content // boardNo, orderNo
-	
+	public List<Comment> selectByBoardNo(int boardNo){ return commentDAO.selectByBoardNo(boardNo); }
+	public void updateCommtent(Comment comment){ commentDAO.updateCommtent(comment); }
+	public void  deleteComment(Comment comment){ commentDAO.deleteComment(comment); }
 	
 } //class CommentService;

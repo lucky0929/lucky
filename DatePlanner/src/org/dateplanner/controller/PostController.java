@@ -92,7 +92,7 @@ public class PostController {
 		     { likeService.insertLike(params); }
 		else { likeService.deleteLike(params); }
 		 	
-		return "redirect:"+req.getRequestURI().substring(0, req.getRequestURI().length()-5)+"/view/"+boardNo;
+		return "redirect:"+req.getRequestURI().substring(0, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
 	} //like()
 	
 	@RequestMapping("update/{no}")
