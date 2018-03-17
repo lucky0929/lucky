@@ -228,16 +228,15 @@
 				</c:otherwise>
 			</c:choose>
 
-
 		</div>
 
 		<div id="side_bar" style="border: 2px solid #cbcbcb">
 			<div id="user_info">
 				<c:choose>
 					<c:when test="${empty loginInfo}">
-						<button style="width: 70%" class="btn btn-warning">
-							<a href="user/login">로그인해주세요</a>
-						</button>
+						<a href="user/login">
+							<button style="width: 70%" class="btn btn-warning">로그인해주세요</button>
+						</a>
 					</c:when>
 
 					<c:otherwise>
@@ -253,18 +252,18 @@
 						</div>
 
 						<div id="btn_box" style="border-bottom: 2px solid #cbcbcb">
-							<button class="btn btn-info">
-								<a href="user/mypage">마이페이지</a>
-							</button>
-							<button class="btn btn-info">
-								<a href="user/logout">로그아웃</a>
-							</button>
-							<button class="btn btn-info">
-								<a href="#">글쓰기</a>
-							</button>
-							<button class="btn btn-info">
-								<a href="#">패키지 만들기</a>
-							</button>
+							<a href="user/mypage">
+								<button class="btn btn-info">마이페이지</button>
+							</a>
+							<a href="user/logout">
+								<button class="btn btn-info">로그아웃</button>
+							</a>
+							<a href="post/write">
+								<button class="btn btn-info">글쓰기</button>
+							</a>
+							<a href="package/create">
+								<button class="btn btn-info">패키지 만들기</button>
+							</a>
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -291,7 +290,6 @@
 				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
-		//list-group-item
 		
 		$(".list-group-item") .on("click", function() {
 			location.href = '?r=' + $(this).val();

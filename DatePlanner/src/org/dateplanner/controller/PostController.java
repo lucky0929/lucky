@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.dateplanner.commons.Region;
+import org.dateplanner.service.CommentService;
 import org.dateplanner.service.LikeService;
 import org.dateplanner.service.PostService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
-import org.dateplanner.util.RedirectWithAlert;
 import org.dateplanner.vo.Post;
 import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +31,8 @@ public class PostController {
 	private PostService postService;
 	@Autowired
 	private LikeService likeService;
+	@Autowired
+	private CommentService commentService;
 	
 	@RequestMapping("write")
 	public ModelAndView write(HttpSession session) { return new ModelAndView().addObject("regionNo", Region.getRegionNo(session)); }
@@ -61,7 +63,15 @@ public class PostController {
 
 		ModelAndView model = new ModelAndView("post/view");
 		
+		HashMap<String, Integer> params = new HashMap<String, Integer>();
+		User user = (User)session.getAttribute("userInfo");
+		params.put("boardNo", no);
+		params.put("userNo",user.getNo());
+		
 		model.addObject("post", postService.selectOne(no));
+		model.addObject("comment", commentService.selectByBoardNo(no));
+		model.addObject("like", likeService.selectCount(no));
+		model.addObject("likeCheck", likeService.userCheck(params));
 		
 		return model;
 		

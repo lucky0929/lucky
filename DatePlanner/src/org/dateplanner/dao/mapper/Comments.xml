@@ -15,9 +15,8 @@
     INSERT INTO comments
       (no, `order`, board_no, user_no, content)
     VALUES
-      (#{no}, (SELECT IFNULL(MAX(`order`), 0)+1 FROM comments c WHERE no = 2), #{boardNo}, #{user.no}, #{content})
+      (#{no}, (SELECT IFNULL(MAX(`order`), 0)+1 FROM comments c WHERE no = #{no}), #{boardNo}, #{user.no}, #{content})
   </insert>
-      <!-- 부모번호                                                        ?? -->
   
   <select id="selectByBoardNo" parameterType="int">
     SELECT
@@ -30,7 +29,7 @@
     ON
       user_no = u.no
     WHERE
-      board_no = 2 			<!-- ?? -->
+      board_no = #{boardNo}
     ORDER BY c.no, `order`
   </select>
   
