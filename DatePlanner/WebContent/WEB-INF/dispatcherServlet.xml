@@ -32,6 +32,7 @@
 	  <mvc:mapping path="/post/write/**"/>
 	  <mvc:mapping path="/post/img/**"/>
 	  <mvc:mapping path="/post/doWrite/**"/>
+	  <mvc:mapping path="/post/view/**"/>
 	  <mvc:mapping path="/post/update/**"/>
 	  <mvc:mapping path="/post/doUpdate/**"/>
 	  <mvc:mapping path="/post/doDelete/**"/>

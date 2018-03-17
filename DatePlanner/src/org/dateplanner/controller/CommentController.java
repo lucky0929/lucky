@@ -1,6 +1,10 @@
 package org.dateplanner.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.dateplanner.service.CommentService;
+import org.dateplanner.vo.Comment;
+import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +16,10 @@ public class CommentController {
 	CommentService commentService;
 	
 	@RequestMapping("commentInsert")
-	public String commentInsert(int boardNo, String content) {
-		
-		return "";
+	public String commentInsert(int boardNo, String content, HttpSession session) {
+		User user = (User)session.getAttribute("loginInfo");
+		commentService.insertComment(new Comment(boardNo, user.getNo(),content));
+		return "redirect:";
 	}
 	
 	@RequestMapping("commentDelete")

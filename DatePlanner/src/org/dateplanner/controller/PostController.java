@@ -64,11 +64,12 @@ public class PostController {
 		ModelAndView model = new ModelAndView("post/view");
 		
 		HashMap<String, Integer> params = new HashMap<String, Integer>();
-		User user = (User)session.getAttribute("userInfo");
+		User user = (User)session.getAttribute("loginInfo");
 		params.put("boardNo", no);
 		params.put("userNo",user.getNo());
 		
 		model.addObject("post", postService.selectOne(no));
+		model.addObject("profile", user.getProfile());
 		model.addObject("comment", commentService.selectByBoardNo(no));
 		model.addObject("like", likeService.selectCount(no));
 		model.addObject("likeCheck", likeService.userCheck(params));
