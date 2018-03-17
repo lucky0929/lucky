@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -126,133 +125,6 @@
 		}
 		
 		</style>
-=======
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script defer
-	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>DatePlanner</title>
-<style>
-#list_view {
-	width: 70%;
-	padding-right: 5%;
-	float: left;
-}
-
-h2 {
-	text-align: center;
-}
-
-#no {
-	width: 5%;
-	font-size: 10px;
-}
-
-#title {
-	width: 50%;
-	font-size: 10px;
-}
-
-#writer {
-	width: 20%;
-	font-size: 10px;
-}
-
-#w_date {
-	width: 20%;
-	font-size: 10px;
-}
-
-#like {
-	width: 5%;
-	font-size: 10px;
-}
-
-#profile {
-	width: 100%;
-	overflow: hidden;
-	float: left;
-}
-
-#name_box {
-	text-align: center;
-	padding-top: 5%;
-	display: inline-block;
-}
-
-#nickname {
-	font-size: large;
-	font-weight: bold;
-}
-
-#greetings {
-	font-size: large;
-	height: 50%;
-}
-
-#btn_box {
-	float: left;
-	padding: 15px;
-	display: block;
-	width: 100%;
-}
-
-#btn_box button {
-	width: 40%;
-	padding: 10px;
-}
-
-table thead tr th {
-	text-align: center;
-}
-
-tbody tr:hover {
-	background-color: #d6d8db;
-}
-
-table {
-	text-align: center;
-}
-
-#side_bar {
-	text-align: center;
-	width: 30%;
-	float: left;
-}
-
-#user_info {
-	padding-top: 3.5%;
-}
-
-#region_select {
-	float: left;
-	padding-top: 15px;
-	width: 100%;
-}
-
-.pagination {
-	text-align: center;
-}
-
-list-group-item:hover {
-	background-color: gray;
-}
-
-#selected {
-	background-color: gray;
-}
-
-#btn_box button{
-	overflow: hidden;
-}
-</style>
->>>>>>> branch 'master' of https://github.com/lucky0929/lucky.git
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -344,8 +216,7 @@ list-group-item:hover {
 								aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 						</c:if>
 						<c:forEach var="p" begin="${page.start}" end="${page.end}">
-							<li><a
-								href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if><c:if test="${!empty title}">title=${title}&</c:if>p=${p}">${p}</a></li>
+							<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if><c:if test="${!empty title}">title=${title}&</c:if>p=${p}" <c:if test="${p eq page.current}">id="selected"</c:if>>${p}</a></li>
 						</c:forEach>
 						<c:if test="${page.next}">
 							<li><a
