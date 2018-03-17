@@ -284,33 +284,17 @@
 			</div>
 		</div>
 	</div>
-
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$("#myInput")
-									.on(
-											"keyup",
-											function() {
-												var value = $(this).val()
-														.toLowerCase();
-												$("#myList li")
-														.filter(
-																function() {
-																	$(this)
-																			.toggle(
-																					$(
-																							this)
-																							.text()
-																							.toLowerCase()
-																							.indexOf(
-																									value) > -1)
-																});
-											});
-						});
-
-		/*     $('#region_select').change(function(){location.href='?r='+$(this).val()}) */
+	
+		$(document).ready(function() {
+			$("#myInput") .on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#myList li").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+		});
+	
 		function RC() {
 			location.href = '?r=' + $(this).val()
 		}
