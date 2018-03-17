@@ -195,8 +195,7 @@
 									</c:choose>
 								</c:set>
 
-								<tr
-									<c:if test="${category eq 'package'}">style="background:lightgray"</c:if>>
+								<tr <c:if test="${category eq 'package'}">style="background:lightgray"</c:if>>
 									<td>${post.no}</td>
 									<td><a href="${category}/view/${post.no}">${post.title}</a></td>
 									<td>${post.user.nickname}</td>
