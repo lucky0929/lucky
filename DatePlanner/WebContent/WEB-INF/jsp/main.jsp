@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -125,6 +126,133 @@
 		}
 		
 		</style>
+=======
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>DatePlanner</title>
+<style>
+#list_view {
+	width: 70%;
+	padding-right: 5%;
+	float: left;
+}
+
+h2 {
+	text-align: center;
+}
+
+#no {
+	width: 5%;
+	font-size: 10px;
+}
+
+#title {
+	width: 50%;
+	font-size: 10px;
+}
+
+#writer {
+	width: 20%;
+	font-size: 10px;
+}
+
+#w_date {
+	width: 20%;
+	font-size: 10px;
+}
+
+#like {
+	width: 5%;
+	font-size: 10px;
+}
+
+#profile {
+	width: 100%;
+	overflow: hidden;
+	float: left;
+}
+
+#name_box {
+	text-align: center;
+	padding-top: 5%;
+	display: inline-block;
+}
+
+#nickname {
+	font-size: large;
+	font-weight: bold;
+}
+
+#greetings {
+	font-size: large;
+	height: 50%;
+}
+
+#btn_box {
+	float: left;
+	padding: 15px;
+	display: block;
+	width: 100%;
+}
+
+#btn_box button {
+	width: 40%;
+	padding: 10px;
+}
+
+table thead tr th {
+	text-align: center;
+}
+
+tbody tr:hover {
+	background-color: #d6d8db;
+}
+
+table {
+	text-align: center;
+}
+
+#side_bar {
+	text-align: center;
+	width: 30%;
+	float: left;
+}
+
+#user_info {
+	padding-top: 3.5%;
+}
+
+#region_select {
+	float: left;
+	padding-top: 15px;
+	width: 100%;
+}
+
+.pagination {
+	text-align: center;
+}
+
+list-group-item:hover {
+	background-color: gray;
+}
+
+#selected {
+	background-color: gray;
+}
+
+#btn_box button{
+	overflow: hidden;
+}
+</style>
+>>>>>>> branch 'master' of https://github.com/lucky0929/lucky.git
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -159,7 +287,9 @@
 						<li><a href="user/logout">로그아웃</a></li>
 					</ul>
 				</c:otherwise>
+
 			</c:choose>
+
 		</div>
 	</nav>
 
@@ -167,7 +297,8 @@
 		<div id="list_view">
 			<c:choose>
 				<c:when test="${empty postList}">
-					<h1 style="padding-top: 50%; text-align: center">아직 게시글이 없네요ㅜㅜ</h1>
+					<h1 style="padding-top: 50%; text-align: center">아직 게시글이 없네요
+						ㅜㅜ</h1>
 				</c:when>
 
 				<c:otherwise>
@@ -192,7 +323,8 @@
 									</c:choose>
 								</c:set>
 
-								<tr <c:if test="${category eq 'package'}">style="background:lightgray"</c:if>>
+								<tr
+									<c:if test="${category eq 'package'}">style="background:lightgray"</c:if>>
 									<td>${post.no}</td>
 									<td><a href="${category}/view/${post.no}">${post.title}</a></td>
 									<td>${post.user.nickname}</td>
@@ -207,14 +339,17 @@
 
 					<ul class="pagination">
 						<c:if test="${1 < page.start}">
-							<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}"
+							<li><a
+								href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.start - page.pageCount}"
 								aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 						</c:if>
 						<c:forEach var="p" begin="${page.start}" end="${page.end}">
-							<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if><c:if test="${!empty title}">title=${title}&</c:if>p=${p}" <c:if test="${page.current eq p}">id="currentBlock"</c:if>>${p}</a></li>
+							<li><a
+								href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if><c:if test="${!empty title}">title=${title}&</c:if>p=${p}">${p}</a></li>
 						</c:forEach>
 						<c:if test="${page.next}">
-							<li><a href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.end + 1}"
+							<li><a
+								href="?<c:if test="${!empty param.r}">r=${regionNo}&</c:if>p=${page.end + 1}"
 								aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 						</c:if>
 					</ul>
@@ -229,9 +364,9 @@
 			<div id="user_info">
 				<c:choose>
 					<c:when test="${empty loginInfo}">
-						
-							<a href="user/login"><button style="width: 70%" class="btn btn-warning">로그인해주세요</button></a>
-						
+						<button style="width: 70%" class="btn btn-warning">
+							<a href="user/login">로그인해주세요</a>
+						</button>
 					</c:when>
 
 					<c:otherwise>
@@ -254,40 +389,61 @@
 								<a href="user/logout">로그아웃</a>
 							</button>
 							<button class="btn btn-info">
-								<a href="../../post/write">글쓰기</a>
+								<a href="#">글쓰기</a>
 							</button>
 							<button class="btn btn-info">
-								<a href="../../package/create">패키지 만들기</a>
+								<a href="#">패키지 만들기</a>
 							</button>
 						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>
 
-        <div id="region_select" >
-            <h4>지역별 게시물 보기</h4>
-            <input class="form-control" id="myInput" type="text" placeholder="검색">
-            <br>
-            <ul class="list-group" id="myList">
-                <c:forEach var="region" items="${Region.LIST}" varStatus="status">
-                    <li class="list-group-item" value="${status.index}" <c:if test="${status.index eq regionNo}">id="selected"</c:if> >${region}</li>
-                </c:forEach>
-            </ul>
-        </div>
-    </div>
-</div>
-<script>
-     $(document).ready(function(){
-        $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myList li").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
- 
-    $('.list-group-item').click(function(){ location.href='?r='+$(this).val()});
-    $('#currentBlock').click(function(){ alert("현재 페이지 입니다.");return false;);
-</script>
+			<div id="region_select">
+				<h4>지역별 게시물 보기</h4>
+				<input class="form-control" id="myInput" type="text"
+					placeholder="검색"> <br>
+				<ul class="list-group" id="myList">
+					<c:forEach var="region" items="${Region.LIST}" varStatus="status">
+						<li class="list-group-item" value="${status.index}"
+							<c:if test="${status.index eq regionNo}">id="selected"</c:if>
+							onclick="RC()">${region}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$("#myInput")
+									.on(
+											"keyup",
+											function() {
+												var value = $(this).val()
+														.toLowerCase();
+												$("#myList li")
+														.filter(
+																function() {
+																	$(this)
+																			.toggle(
+																					$(
+																							this)
+																							.text()
+																							.toLowerCase()
+																							.indexOf(
+																									value) > -1)
+																});
+											});
+						});
+
+		/*     $('#region_select').change(function(){location.href='?r='+$(this).val()}) */
+		function RC() {
+			location.href = '?r=' + $(this).val()
+		}
+	</script>
+
 </body>
 </html>
