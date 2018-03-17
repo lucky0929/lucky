@@ -277,8 +277,7 @@
 				<ul class="list-group" id="myList">
 					<c:forEach var="region" items="${Region.LIST}" varStatus="status">
 						<li class="list-group-item" value="${status.index}"
-							<c:if test="${status.index eq regionNo}">id="selected"</c:if>
-							onclick="RC()">${region}</li>
+							<c:if test="${status.index eq regionNo}">id="selected"</c:if>>${region}</li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -286,18 +285,17 @@
 	</div>
 	<script>
 	
-		$(document).ready(function() {
-			$("#myInput") .on("keyup", function() {
-				var value = $(this).val().toLowerCase();
-				$("#myList li").filter(function() {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
+		$("#myInput") .on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#myList li").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
-	
-		function RC() {
-			location.href = '?r=' + $(this).val()
-		}
+		//list-group-item
+		
+		$(".list-group-item") .on("click", function() {
+			location.href = '?r=' + $(this).val();
+		});
 	</script>
 
 </body>
