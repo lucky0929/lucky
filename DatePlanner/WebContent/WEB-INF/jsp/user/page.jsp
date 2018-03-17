@@ -128,29 +128,43 @@ ul {
 </style>
 </head>
 <body>
-   <nav class="navbar navbar-inverse">
-      <div class="container">
-         <div class="navbar-header">
-            <a class="navbar-brand" href="../../">DatePlanner</a>
-         </div>
-         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>
-                  회원가입</a></li>
+  <nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="../">DatePlanner</a>
+			</div>
+			<c:choose>
+				<c:when test="${empty loginInfo}">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="user/join"><span
+								class="glyphicon glyphicon-user"></span>회원가입</a></li>
 
-            <li class="dropdown"><a class="dropdown-toggle"
-               data-toggle="dropdown" href="#"> 로그인 <span
-                  class="glyphicon glyphicon-log-in"></span></a>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="user/login">로그인<span
+								class="glyphicon glyphicon-log-in"></span></a>
 
-               <ul class="dropdown-menu">
-                  <li><a
-                     href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
-                        네이버 로그인</a></li>
-                  <li><a href="#">페이스북 로그인</a></li>
-                  <li><a href="#">구글 로그인</a></li>
-               </ul></li>
-         </ul>
-      </div>
-   </nav>
+							<ul class="dropdown-menu">
+								<li><a href="user/login">데이트 플래너 로그인</a></li>
+								<li><a
+									href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
+										네이버 로그인</a></li>
+								<li><a href="#">페이스북 로그인</a></li>
+							</ul></li>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="user/mypage"><span
+								class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로
+								로그인중</a></li>
+						<li><a href="user/logout">로그아웃</a></li>
+					</ul>
+				</c:otherwise>
+
+			</c:choose>
+
+		</div>
+	</nav>
 
    <div class="first container">
 
@@ -187,7 +201,7 @@ ul {
                      <div class="info_box">
                         <h3>${post.title}</h3>
                         <ul>
-                           <li><i class="fas fa-heart heart"></i><span>${like }</span></li><!-- 조아요 개수 -->
+                           <li><i class="fas fa-heart heart"></i><span>${post.like }</span></li><!-- 조아요 개수 -->
                            <li><i class="fas fa-comment comment"></i><span>추가예정</span></li><!-- 댓글 개수 -->
                         </ul>
                      </div> 

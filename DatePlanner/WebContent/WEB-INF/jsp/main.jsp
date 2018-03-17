@@ -124,6 +124,10 @@ list-group-item:hover {
 #selected {
 	background-color: gray;
 }
+
+#btn_box button{
+	overflow: hidden;
+}
 </style>
 </head>
 <body>
