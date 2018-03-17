@@ -17,7 +17,7 @@
     VALUES
       (#{no}, (SELECT IFNULL(MAX(`order`), 0)+1 FROM comments c WHERE no = 2), #{boardNo}, #{user.no}, #{content})
   </insert>
-      <!-- 부모번호 -->
+      <!-- 부모번호                                                        ?? -->
   
   <select id="selectByBoardNo" parameterType="int">
     SELECT
@@ -30,7 +30,7 @@
     ON
       user_no = u.no
     WHERE
-      board_no = 2
+      board_no = 2 			<!-- ?? -->
     ORDER BY c.no, `order`
   </select>
   
@@ -39,12 +39,14 @@
       comments
     SET
       content = #{content}
-      <!-- 
-    WHERE
-      보류 -->
+    <!-- 
+      WHERE 작성 불문
+    -->
   </update>
   
   <delete id="delete" parameterType="String">
-    
+    <!-- 
+      WHERE 작성 불문
+    -->
   </delete>
 </mapper>

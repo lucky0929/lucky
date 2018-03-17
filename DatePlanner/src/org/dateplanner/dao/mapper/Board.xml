@@ -85,7 +85,7 @@
   <select id="selectByUserNoWithPage" parameterType="int" resultType="Post">
 	SELECT
 	  b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
-	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like'
+	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like', (SELECT COUNT(*) from comments where board_no = b.no) comments
 	FROM
 	  board b
 	JOIN

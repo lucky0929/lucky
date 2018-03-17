@@ -20,7 +20,7 @@ public class Post {
 	private Double lat;
 	private Double lng;
 	private int like;
-
+	private int comments;
 	
 	public Post() {}
 	public Post(int no) { this.no = no; }
@@ -38,6 +38,7 @@ public class Post {
 	public Double getLat() { return lat; }
 	public Double getLng() { return lng; }
 	public int getLike() { return like; }
+	public int getComments() { return comments; }
 	public void setNo(int no) { this.no = no; }
 	public void setTitle(String title) { this.title = title; }
 	public void setContent(String content) { this.content = content; }
@@ -49,12 +50,13 @@ public class Post {
 	public void setLat(Double lat) { this.lat = lat; }
 	public void setLng(Double lng) { this.lng = lng; }
 	public void setLike(int like) { this.like = like; }
+	public void setComments(int comments) { this.comments = comments; }
 	
 	@Override
 	public String toString() {
 		return "Post [no=" + no + ", title=" + title + ", content=" + content + ", image=" + image + ", user=" + user
 				+ ", regionNo=" + regionNo + ", packageable=" + packageable + ", regdate=" + regdate + ", lat=" + lat
-				+ ", lng=" + lng + ", like=" + like + "]";
+				+ ", lng=" + lng + ", like=" + like + ", comments=" + comments + "]";
 	}
 	
 } //class Post;
