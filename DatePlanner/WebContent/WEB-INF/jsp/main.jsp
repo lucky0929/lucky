@@ -202,7 +202,7 @@
 									<td>${post.formattedRegdate}</td>
 									<td>${post.like}</td>
 								</tr>
-
+ 
 							</c:forEach>
 
 						</tbody>
