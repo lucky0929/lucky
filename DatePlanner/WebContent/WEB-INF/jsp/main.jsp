@@ -13,7 +13,7 @@
     <title>DatePlanner</title>
 		<style>
 		#list_view {
-			width: 70%;
+			width: 70%; 
 			padding-right: 5%;
 			float: left;
 		}
