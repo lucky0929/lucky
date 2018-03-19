@@ -55,3 +55,18 @@ public class User {
 	} //toString();
 	
 } //class User;
+/*
+		CREATE TABLE `users` (
+		  `no` int(10) NOT NULL AUTO_INCREMENT,
+		  `id` varchar(30) DEFAULT NULL,
+		  `name` varchar(30) DEFAULT NULL,
+		  `key` varchar(128) NOT NULL,
+		  `platform` char(1) DEFAULT NULL,
+		  `nickname` varchar(45) NOT NULL,
+		  `profile` varchar(128) DEFAULT NULL,
+		  `region_no` int(2) DEFAULT NULL,
+		  `introduction` varchar(300) DEFAULT NULL,
+		  `regdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		  PRIMARY KEY (`no`)
+		) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8
+*/

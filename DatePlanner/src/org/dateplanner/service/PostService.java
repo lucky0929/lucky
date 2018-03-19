@@ -1,6 +1,5 @@
 package org.dateplanner.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.dateplanner.dao.BoardDAO;
@@ -20,12 +19,11 @@ public class PostService {
 	public List<Post> selectByTitleAndRegionWithPage(String title, Page page) {
 		int total;
 		if((total=boardDAO.selectTotalByTitle(title)) == 0){ return null;}
-		else{ 
-//			title, page.initTotal(total)
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("page", page.initTotal(total));
-			map.put("title", title);
-			return boardDAO.selectByTitleAndRegionWithPage(map); 
+		else {
+//			HashMap<String, Object> map = new HashMap<String, Object>();
+//			map.put("page", );
+//			map.put("title", );
+			return boardDAO.selectByTitleAndRegionWithPage(page.initTotal(total), title); 
 		} //if~else
 	}
 

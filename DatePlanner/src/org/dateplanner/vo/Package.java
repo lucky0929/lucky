@@ -19,3 +19,12 @@ public class Package {
 	public String toString() { return "Package [post=" + post + ", placeList=" + placeList + "]"; }
 	
 } //class Package;
+
+/*
+ CREATE TABLE `package` (
+ 
+		  `no` int(10) NOT NULL,
+		  `place_no` int(10) NOT NULL,
+		  `order` int(10) NOT NULL
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8
+*/

@@ -60,3 +60,23 @@ public class Post {
 	}
 	
 } //class Post;
+
+
+/*
+	CREATE TABLE `board` (
+	  `no` int(10) NOT NULL AUTO_INCREMENT,
+	  `title` varchar(150) NOT NULL,
+	  `content` text NOT NULL,
+	  `image` char(37) NOT NULL,
+	  `lat` double DEFAULT NULL,
+	  `lng` double DEFAULT NULL,
+	  `user_no` int(10) NOT NULL,
+	  `region_no` int(2) NOT NULL,
+	  `packageable` tinyint(1) DEFAULT NULL,
+	  `regdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  PRIMARY KEY (`no`),
+	  KEY `user_no_idx` (`user_no`),
+	  CONSTRAINT `user_no` FOREIGN KEY (`user_no`) 
+	  REFERENCES `users` (`no`) ON DELETE CASCADE ON UPDATE CASCADE
+	)ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8
+*/

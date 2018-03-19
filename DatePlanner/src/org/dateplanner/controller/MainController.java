@@ -1,16 +1,12 @@
 package org.dateplanner.controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.dateplanner.commons.Region;
 import org.dateplanner.service.PostService;
-import org.dateplanner.util.JsonUtil;
 import org.dateplanner.vo.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,16 +37,5 @@ public class MainController {
 		return model;
 		
 	} //main();
-	
-	@RequestMapping("test")
-	public ResponseEntity<String> test(HttpSession session, @RequestParam(defaultValue = "3") int no) throws IOException {
-		
-		Object obj = null;
-		
-		obj = no;
-		
-		return JsonUtil.convertToResponseEntity(obj);
-		
-	} //test();
 	
 } //class MainController;

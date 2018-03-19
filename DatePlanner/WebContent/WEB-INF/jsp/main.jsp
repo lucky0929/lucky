@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>DatePlanner</title>
-		<style>
+	<style>
 		#list_view {
 			width: 70%; 
 			padding-right: 5%;
@@ -107,24 +107,20 @@
             padding-top: 15px;
             width: 100%;
         }
-	    .pagination{
-	     	text-align: center;
-	    }
-		.list-group-item:hover{
+        .list-group-item:hover {
 			background-color:silver;
 			cursor:pointer;
 		}
-		#selected{
+	    .pagination {
+	     	text-align: center;
+	    }
+		#selected {
 			background-color: gray;
 			color:#fff;
 		}
-		#currentBlock{
-			background-color: black;
-			fonr-color:#fff
-			
-		}
+
 		
-		</style>
+	</style>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">

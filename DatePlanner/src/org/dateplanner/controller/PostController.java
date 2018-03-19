@@ -13,6 +13,7 @@ import org.dateplanner.service.LikeService;
 import org.dateplanner.service.PostService;
 import org.dateplanner.util.FileReceiver;
 import org.dateplanner.util.JsonUtil;
+import org.dateplanner.vo.Page;
 import org.dateplanner.vo.Post;
 import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,8 +61,10 @@ public class PostController {
 	} //doWrite();
 	
 	@RequestMapping("view/{no}")
-	public ModelAndView view(HttpSession session, @PathVariable int no) {
-
+	public ModelAndView view(HttpSession session, @PathVariable int no, Integer r, @RequestParam(defaultValue = "1") int p) {
+		
+		Page page = new Page(10, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
+		
 		ModelAndView model = new ModelAndView("post/view");
 		
 		HashMap<String, Integer> params = new HashMap<String, Integer>();
@@ -70,7 +74,8 @@ public class PostController {
 		
 		model.addObject("post", postService.selectOne(no));
 		model.addObject("profile", user.getProfile());
-		model.addObject("comment", commentService.selectByBoardNo(no));
+		model.addObject("comment", commentService.selectByBoardNo(no, page));
+		model.addObject("page", page);
 		model.addObject("like", likeService.selectCount(no));
 		model.addObject("likeCheck", likeService.userCheck(params));
 		

@@ -10,7 +10,9 @@ public class Comment {
 	private User user;
 	private String content;
 	private Timestamp regdate;
-	
+
+	public Comment() { }
+
 	public Comment(int boardNo, int no, int orderNo) {
 		this.boardNo=boardNo;
 		this.no = no;
@@ -59,3 +61,13 @@ public class Comment {
 	} //toString();
 	
 } //class Comment;
+/*
+	  CREATE TABLE `comments` (
+	  `no` int(10) NOT NULL,
+	  `order` int(4) DEFAULT NULL,
+	  `board_no` int(10) NOT NULL,
+	  `user_no` int(10) NOT NULL,
+	  `content` varchar(1500) NOT NULL,
+	  `regdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8
+*/
