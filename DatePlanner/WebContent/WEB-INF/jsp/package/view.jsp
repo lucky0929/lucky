@@ -16,7 +16,7 @@
 		<tr><td>패키지 허용 여부: </td><td>${pack.post.packageable}</td></tr>
 		<tr><td>작성일: </td><td>${pack.post.regdate}</td></tr>
 	</table>
-	<hr> 
+	<hr>
 	<c:forEach var="post" items="${pack.placeList}">
 		<table border="1" style="border-collapse: collapse">
 			<tr><td>제목: </td><td>${post.title}</td></tr>

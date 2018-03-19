@@ -19,7 +19,7 @@
   </insert>
   
   <select id="selectByBoardNo" parameterType="int" resultType="Comment">
-    SELECT
+	SELECT
       c.no, `order`, board_no, content, c.regdate,
       u.no 'user.no', u.nickname 'user.nickname'
     FROM
@@ -38,14 +38,17 @@
       comments
     SET
       content = #{content}
-    <!-- 
-      WHERE 작성 불문
-    -->
+    WHERE 
+      order = `#{orderNo}`
+  	  AND
+  	  no = #{no}
   </update>
   
   <delete id="delete" parameterType="String">
-    <!-- 
-      WHERE 작성 불문
-    -->
+    DELETE FROM comment
+    WHERE 
+      order = `#{orderNo}`
+  	  AND
+  	  no = #{no}
   </delete>
 </mapper>
