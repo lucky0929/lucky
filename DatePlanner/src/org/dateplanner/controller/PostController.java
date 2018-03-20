@@ -72,6 +72,8 @@ public class PostController {
 		params.put("boardNo", no);
 		params.put("userNo",user.getNo());
 		
+		System.out.println(commentService.selectByBoardNo(no, page));
+		
 		model.addObject("post", postService.selectOne(no));
 		model.addObject("profile", user.getProfile());
 		model.addObject("comment", commentService.selectByBoardNo(no, page));
@@ -84,7 +86,7 @@ public class PostController {
 	} //view();
 	
 	@RequestMapping("like")
-	public String likeInsert(int boardNo, HttpSession session, HttpServletRequest req) {
+	public String likeInsert(@RequestParam int boardNo, HttpSession session, HttpServletRequest req) {
 		
 		User user = new User();
 		user = (User)session.getAttribute("loginInfo");
@@ -97,7 +99,7 @@ public class PostController {
 		     { likeService.insertLike(params); }
 		else { likeService.deleteLike(params); }
 		 	
-		return "redirect:"+req.getRequestURI().substring(0, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
+		return "redirect:post/view/"+boardNo;
 	} //like()
 	
 	@RequestMapping("update/{no}")

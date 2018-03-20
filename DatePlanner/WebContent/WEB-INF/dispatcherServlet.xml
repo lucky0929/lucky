@@ -30,6 +30,7 @@
 	<mvc:interceptor>
 	  <mvc:mapping path="/user/mypage/**"/>
 	  <mvc:mapping path="/post/write/**"/>
+	  <mvc:mapping path="/post/write"/>
 	  <mvc:mapping path="/post/img/**"/>
 	  <mvc:mapping path="/post/doWrite/**"/>
 	  <mvc:mapping path="/post/view/**"/>
