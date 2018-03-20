@@ -4,13 +4,283 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title>${post.title} - DatePlanner</title>
 	<style>
 		#selected { background-color: gray; color:#fff; }
+		
+		 .navbar{
+            margin-bottom: 0;
+        }
+
+        /*네비게이션바 고정*/
+        .affix{
+            top: 0;
+            width: 100%;
+            z-index: 9999 !important;
+        }
+
+        .parallex{
+            position: relative;
+            height: 718px;
+            background-image: url("/post/img/${post.image}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: dimgray;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            z-index: -1;
+            opacity: .8;
+        }
+
+        .parallex:before{
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            background-color: rgba(0,0,0,.4);
+        }
+
+        #good{
+            display: inline-block;
+        }
+
+        #good a{
+            font-size: 3em;
+            text-decoration: none;
+            color: darkgray;
+        }
+
+        ul li{
+            list-style: none;
+        }
+
+        .nickname{
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .comment{
+            font-weight: bold;
+            width: 750px;
+            height: auto;
+        }
+
+        #board_info{
+            padding-top: 300px;
+        }
+
+        #title{
+            opacity: .9;
+            width: 100%;
+            font-size: 40px;
+            height: 45px;
+            display: block;
+            text-decoration: underline;
+            z-index: 5;
+        }
+
+        #writer{
+            opacity: .9;
+            font-size: 25px;
+            width: 100%;
+            height: 50px;
+            display: inline;
+            z-index: 5;
+        }
+
+        #write_D{
+            opacity: .9;
+            font-size: 15px;
+            width: 100%;
+            height: 20px;
+            display: inline;
+            z-index: 5;
+        }
+
+        #region{
+            opacity: .9;
+            width: 100%;
+            font-size: 25px;
+            height: 45px;
+            display: block;
+            padding-top: 20px;
+            z-index: 5;
+        }
+
+        .content{
+            text-align: center;
+            padding-top: 50px;
+        }
+
+
+        .container-fluid{
+            background-color: white;
+            text-align: center;
+        }
+
+        .re_comment{
+            text-align: right;
+        }
+
+        .profile img{
+            display: block;
+            width: 50px;
+            height: 50px;
+        }
+
+        .comment_box:nth-child(1){
+            padding-top: 10px;
+            background-color: #F9F9F9;
+            border-top: #00ACC1 1px solid;
+        }
+
+        .comment_box{
+            padding-top: 10px;
+            background-color: #F9F9F9;
+            border-bottom: #00ACC1 1px solid;
+            float: left;
+            width: 100%;
+        }
+
+        .reply_btn{
+            text-align: right;
+            padding-right: 10px;
+        }
 	</style>
 </head>
 <body>
-	<table border="1" style="border-collapse: collapse">
+
+<nav class="navbar navbar-inverse" data-spy="affix">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../">DatePlanner</a>
+        </div>
+        <c:choose>
+            <c:when test="${empty loginInfo}">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="user/join"><span
+                            class="glyphicon glyphicon-user"></span>회원가입</a></li>
+
+                    <li class="dropdown"><a class="dropdown-toggle"
+                                            data-toggle="dropdown" href="user/login">로그인<span
+                            class="glyphicon glyphicon-log-in"></span></a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="user/login">데이트 플래너 로그인</a></li>
+                            <li><a
+                                    href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
+                                네이버 로그인</a></li>
+                            <li><a href="#">페이스북 로그인</a></li>
+                        </ul></li>
+                </ul>
+            </c:when>
+            <c:otherwise>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="user/mypage"><span
+                            class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로
+                        로그인중</a></li>
+                    <li><a href="user/logout">로그아웃</a></li>
+                </ul>
+            </c:otherwise>
+
+        </c:choose>
+
+    </div>
+</nav>
+
+<div class="parallex">
+    <div id="board_info">
+        <span id="title">${post.title}</span>
+        <span id="writer">writer by ${post.user.nickname}</span>
+        <span id="write_D">on ${post.regdate}</span>
+        <span id="region">이 글은 현재 <i class="fas fa-map-marker-alt"></i>${post.region}</span>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <div class="content">
+
+        ${post.content}
+
+    </div>
+
+    <div id="good">
+    <c:choose>
+    	<c:when test="${likeCheck eq 1}">
+    		<a href="../post/like?boardNo=${post.no}"><i class="fas fa-heart" style="color: red"></i></a>
+    		<span style="display: block">${post.like}</span>
+    	</c:when>
+    	
+    	<c:otherwise>
+	        <a href="../post/like?boardNo=${post.no}"><i class="fas fa-heart"></i></a>
+	        <span style="display: block">${post.like}</span>
+    	</c:otherwise>
+    
+    </c:choose>
+    </div>
+
+</div>
+
+<div class="container" style="padding: 0">
+    <div class="jumbotron">
+        <div>
+
+            <div id="comment_write">
+                <div id="profile">
+                    <a href="user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" style="width: 50px; height: 50px; float: left;"></a>
+                    <span style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
+                </div>
+
+                <form action="post/commentInsert">
+                    <%-- <input type="hidden" value="order=${comment.order}"> --%>
+                    <%-- <input type="hidden" value="boardNo=${comment.boardNo}"> --%>
+                    <textarea class="form-control" placeholder="댓글을 입력해주세요" style="min-height: 150px; height: auto; resize: none"></textarea>
+                    <button type="submit" class="btn btn-default" style="float: right">입력!</button>
+                </form>
+            </div>
+
+            <div id="comment_wrap" style="float: left; width: 100%">
+
+                <c:forEach var="comment" items="${comment}">
+                    <div class="comment_box">
+                        <div class="user_info">
+                            <div class="profile"><img src="/user/img/${loginInfo.profileWithDefault}"></div>
+                            <div class="nickname"><span>${comment.user}</span></div>
+                        </div>
+
+
+                        <div class="comment_content">
+                            <div class="comment"><span>${comment.content}</span></div>
+                            <div class="write_date"><span>${comment.regdate}</span></div>
+                        </div>
+                        <div class="reply_btn">
+                            <form action="post/commentInsert">
+                                <button class=" btn btn-default">답글달기</button>
+                            </form>
+                        </div>
+                    </div>
+                </c:forEach>
+                <!--대댓글 처리하기-->
+            </div>
+           
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+	<%-- <table border="1" style="border-collapse: collapse">
 		<tr><td>제목: </td><td>${post.title}</td></tr>
 		<tr><td>내용: </td><td>${post.content}</td></tr>
 		<tr><td>사진: </td><td>${post.image}</td></tr>
@@ -18,7 +288,7 @@
 		<tr><td>지역: </td><td>${post.region}</td></tr>
 		<tr><td>패키지 허용 여부: </td><td>${post.packageable}</td></tr>
 		<tr><td>작성일: </td><td>${post.regdate}</td></tr>
-	</table>
+	</table> --%>
 	
 	<ul class="pagination">
 	
@@ -45,6 +315,17 @@
 		</c:if>
 	</ul><!-- pagination -->
 	
-	<a href="../../">메인 페이지로</a>
+<script>
+    var window = $(window);
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop()/2 < 500) {
+            $('.parallex').css('top', $(window).scrollTop() / 2);
+        } //if
+    });
+
+</script>
+	
+	
 </body>
 </html>
