@@ -228,7 +228,7 @@
     </div>
 
 <div class="container" style="padding: 0">
-    <div class="jumbotron" style="float: left">
+    <div class="jumbotron" style="float: left; width: 100%;">
         <div>
 
             <div id="comment_write">
