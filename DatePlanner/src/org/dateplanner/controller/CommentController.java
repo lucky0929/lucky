@@ -20,25 +20,25 @@ public class CommentController {
 	public String commentInsert(int boardNo, String content, HttpSession session, HttpServletRequest req) {
 		User user = (User)session.getAttribute("loginInfo");
 		commentService.insertComment(new Comment(boardNo, user.getNo(),content));
-		return "redirect:"+req.getRequestURI().substring(1, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
+		return "redirect:view/"+boardNo;
 	}
 	
 	@RequestMapping("reCommentInsert")
 	public String reCommentInsert(int boardNo, int no, int orderNo, String content, HttpServletRequest req) {
 		commentService.insertReply(new Comment(no, orderNo,content));
-		return "redirect:"+req.getRequestURI().substring(1, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
+		return "redirect:view/"+boardNo;
 	}
 
 	@RequestMapping("commentDelete")
 	public String commentDelete(int boardNo, int no, int orderNo, HttpServletRequest req) {
 		commentService.deleteComment(new Comment(boardNo, no, orderNo));
-		return "redirect:"+req.getRequestURI().substring(1, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
+		return "redirect:view/"+boardNo;
 	}
 	
 	@RequestMapping("commentUpdate")
 	public String commentUpdate(int boardNo, int orderNo, int no,String content, HttpServletRequest req) {
 		commentService.updateCommtent(new Comment(no, orderNo,content));
-		return "redirect:"+req.getRequestURI().substring(1, req.getRequestURI().indexOf("/v"))+"/view/"+boardNo;
+		return "redirect:view/"+boardNo;
 	}
 	
 } //class CommentController;
