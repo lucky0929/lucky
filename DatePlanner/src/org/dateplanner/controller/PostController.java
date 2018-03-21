@@ -99,7 +99,7 @@ public class PostController {
 		     { likeService.insertLike(params); }
 		else { likeService.deleteLike(params); }
 		 	
-		return "redirect:post/view/"+boardNo;
+		return "redirect:/post/view/"+boardNo;
 	} //like()
 	
 	@RequestMapping("update/{no}")

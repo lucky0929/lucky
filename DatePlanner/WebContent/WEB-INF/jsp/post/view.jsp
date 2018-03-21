@@ -217,16 +217,13 @@
     <div id="good">
     <c:choose>
     	<c:when test="${likeCheck eq 1}">
-    		<a href="../post/like?boardNo=${post.no}"><i class="fas fa-heart" style="color: red"></i></a>
-    		<span style="display: block">${post.like}</span>
+    		<a href="../like?boardNo=${post.no}"><i class="fas fa-heart" style="color: red"></i></a>
     	</c:when>
-    	
     	<c:otherwise>
-	        <a href="../post/like?boardNo=${post.no}"><i class="fas fa-heart"></i></a>
-	        <span style="display: block">${post.like}</span>
+	        <a href="../like?boardNo=${post.no}"><i class="fas fa-heart"></i></a>
     	</c:otherwise>
-    
     </c:choose>
+    <span style="display: block">${like}</span>
     </div>
 
 </div>
@@ -241,7 +238,7 @@
                     <span style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
                 </div>
 
-                <form action="post/commentInsert">
+                <form action="../commentInsert">
                     <%-- <input type="hidden" value="order=${comment.order}"> --%>
                     <%-- <input type="hidden" value="boardNo=${comment.boardNo}"> --%>
                     <textarea class="form-control" placeholder="댓글을 입력해주세요" style="min-height: 150px; height: auto; resize: none"></textarea>
@@ -257,7 +254,6 @@
                             <div class="profile"><img src="/user/img/${loginInfo.profileWithDefault}"></div>
                             <div class="nickname"><span>${comment.user}</span></div>
                         </div>
-
 
                         <div class="comment_content">
                             <div class="comment"><span>${comment.content}</span></div>
@@ -275,9 +271,6 @@
            
         </div>
     </div>
-
-</div>
-
 </div>
 
 	<%-- <table border="1" style="border-collapse: collapse">

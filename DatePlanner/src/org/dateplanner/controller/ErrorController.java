@@ -11,6 +11,7 @@ public class ErrorController {
 	@RequestMapping("404")
 	 public String handle404(HttpServletResponse res , Exception e) {
 		 res.setStatus(HttpServletResponse.SC_OK); //Response 상태를 정상으로 만듦
+		 System.out.println("404발생");
 		 return "redirect:/";
 	 } //404
 	
