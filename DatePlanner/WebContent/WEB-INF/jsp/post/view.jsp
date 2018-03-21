@@ -237,11 +237,9 @@
                     <a href="user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" style="width: 50px; height: 50px; float: left;"></a>
                     <span style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
                 </div>
-
                 <form action="../commentInsert">
-                    <%-- <input type="hidden" value="order=${comment.order}"> --%>
-                    <%-- <input type="hidden" value="boardNo=${comment.boardNo}"> --%>
-                    <textarea class="form-control" placeholder="댓글을 입력해주세요" style="min-height: 150px; height: auto; resize: none"></textarea>
+                    <input type="hidden" name="boardNo" value="${post.no}">
+                    <textarea class="form-control" name="content" placeholder="댓글을 입력해주세요" style="min-height: 150px; height: auto; resize: none"></textarea>
                     <button type="submit" class="btn btn-default" style="float: right">입력!</button>
                 </form>
             </div>
@@ -308,17 +306,15 @@
 		</c:if>
 	</ul><!-- pagination -->
 	
-<script>
-    var window = $(window);
-
-    $(window).scroll(function () {
-        if ($(window).scrollTop()/2 < 500) {
-            $('.parallex').css('top', $(window).scrollTop() / 2);
-        } //if
-    });
-
-</script>
+	<!-- <script>
+	    var window = $(window);
 	
-	
+	    $(window).scroll(function () {
+	        if ($(window).scrollTop()/2 < 500) {
+	            $('.parallex').css('top', $(window).scrollTop() / 2);
+	        } //if
+	    });
+	</script> -->
+	<script>$(window).scroll(function(){st=$(this).scrollTop()/2;if(st<500)$('.parallex').css('top',st)})</script>
 </body>
 </html>
