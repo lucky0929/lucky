@@ -148,6 +148,7 @@
             background-color: #F9F9F9;
             border-bottom: #00ACC1 1px solid;
             float: left;
+            text-align: left;
             width: 100%;
         }
 
@@ -226,10 +227,8 @@
     <span style="display: block">${like}</span>
     </div>
 
-</div>
-
 <div class="container" style="padding: 0">
-    <div class="jumbotron">
+    <div class="jumbotron" style="float: left">
         <div>
 
             <div id="comment_write">
@@ -248,12 +247,12 @@
 
                 <c:forEach var="comment" items="${comment}">
                     <div class="comment_box">
-                        <div class="user_info">
+                        <div class="user_info" style="padding-left: 10px">
                             <div class="profile"><img src="/user/img/${loginInfo.profileWithDefault}"></div>
-                            <div class="nickname"><span>${comment.user}</span></div>
+                            <div class="nickname"><span>${comment.user.nickname}</span></div>
                         </div>
 
-                        <div class="comment_content">
+                        <div class="comment_content" style="padding-left: 10px">
                             <div class="comment"><span>${comment.content}</span></div>
                             <div class="write_date"><span>${comment.regdate}</span></div>
                         </div>
@@ -271,17 +270,7 @@
     </div>
 </div>
 
-	<%-- <table border="1" style="border-collapse: collapse">
-		<tr><td>제목: </td><td>${post.title}</td></tr>
-		<tr><td>내용: </td><td>${post.content}</td></tr>
-		<tr><td>사진: </td><td>${post.image}</td></tr>
-		<tr><td>글쓴이_닉네임: </td><td>${post.user.nickname}</td></tr>
-		<tr><td>지역: </td><td>${post.region}</td></tr>
-		<tr><td>패키지 허용 여부: </td><td>${post.packageable}</td></tr>
-		<tr><td>작성일: </td><td>${post.regdate}</td></tr>
-	</table> --%>
-	
-	<ul class="pagination">
+<ul class="pagination">
 	
 	<%-- 이전 페이지로 --%>
 		<c:if test="${1 < page.start}"> 
@@ -305,6 +294,8 @@
 			</li>
 		</c:if>
 	</ul><!-- pagination -->
+
+</div>
 	
 	<!-- <script>
 	    var window = $(window);
