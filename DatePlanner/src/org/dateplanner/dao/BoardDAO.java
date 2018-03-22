@@ -10,7 +10,9 @@ import org.dateplanner.vo.Post;
 public interface BoardDAO {
 	
 	public boolean insertPost(Post post);
+	public boolean delete(int boardNo);
 	public boolean insertPackage(Post post);
+	public boolean update(Post post);
 	public int checkPackageable(Package pack);
 	public int selectTotalByUserNo(int userNo);
 	public int selectTotalByRegion(int regionNo);

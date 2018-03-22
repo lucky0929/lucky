@@ -15,7 +15,7 @@
 		<form action="doWrite" method="POST">
 			<table border="1" style="width: 100%; border-collapse: collapse">
 				<tr><td>제목: </td><td><input name="title" value="${post.title}" required></td></tr>
-				<tr>
+				<tr> 
 					<td>내용: </td>
 					<td><textarea id="summernote" name="content" required>${post.content}</textarea></td>
 				</tr>
@@ -27,12 +27,12 @@
 					<td>사진 주소: </td>
 					<td><input id="image" name="image" value="${post.image}" readonly></td>
 				</tr>
-				<tr><td>lat: </td><td><input name="lat" value="${post.lat}"></td></tr>
-				<tr><td>lng: </td><td><input name="lng" value="${post.lng}"></td></tr>
+				<tr><td>lat: </td><td><input name="lat" value="${post.lat}" readonly></td></tr>
+				<tr><td>lng: </td><td><input name="lng" value="${post.lng}" readonly></td></tr>
 				<tr>
 					<td>지역: </td>
 					<td>
-						<select name="regionNo">
+						<select name="regionNo" disabled="disabled">
 							<c:forEach var="region" items="${Region.LIST}" varStatus="status">
 								<option value="${status.index}"<c:if test="${status.index eq post.regionNo}"> selected</c:if>>${region}</option>
 							</c:forEach>
@@ -43,7 +43,7 @@
 				<tr>
 					<td colspan="2" style="text-align: right">
 						<a href="../">메인 페이지로</a>
-						<button>글쓰기</button>
+						<button>수정하기</button>
 					</td>
 				</tr>
 			</table>

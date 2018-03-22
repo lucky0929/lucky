@@ -73,8 +73,11 @@ public class PostController {
 		params.put("userNo",user.getNo());
 		
 		System.out.println(commentService.selectByBoardNo(no, page));
+		User sibar = (User)session.getAttribute("loginInfo");
+		Post post = (Post)postService.selectOne(no);
 		
-		model.addObject("post", postService.selectOne(no));
+		model.addObject("mypost", sibar.getNo()==post.getNo());
+		model.addObject("post", post);
 		model.addObject("profile", user.getProfile());
 		model.addObject("comment", commentService.selectByBoardNo(no, page));
 		model.addObject("page", page);
@@ -93,7 +96,7 @@ public class PostController {
 		HashMap<String, Integer> params = new HashMap<String, Integer>();
 		
 		params.put("boardNo", boardNo);
-		params.put("userNo", user.getNo());
+		params.put("userNo" , user.getNo());
 		
 		if(likeService.userCheck(params) == 0)
 		     { likeService.insertLike(params); }
@@ -103,12 +106,20 @@ public class PostController {
 	} //like()
 	
 	@RequestMapping("update/{no}")
-	public ModelAndView update(@PathVariable int no) {
+	public ModelAndView update(@PathVariable int no, String title, String content) {
 		
-		ModelAndView model = new ModelAndView("post/update");
-		model.addObject("post", postService.selectOne(no));
+		ModelAndView model = new ModelAndView("redirect:../");
+		
+		postService.update(new Post());
+		
 		return model;
 		
 	} //update();
+	
+	@RequestMapping("delete/{no}")
+	public String delete(@PathVariable int boardNo) {
+		postService.delete(boardNo);
+		return "redirect:../";
+	} //delete();
 	
 } //class PlaceController;
