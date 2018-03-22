@@ -29,7 +29,7 @@
       user_no = u.no
     WHERE
       board_no = #{boardNo}
-    ORDER BY c.no, `order`
+    ORDER BY c.no DESC, `order` DESC
     LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   

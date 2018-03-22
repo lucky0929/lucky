@@ -46,8 +46,8 @@ public class PostController {
 	@RequestMapping("img/upload/list")
 	public ResponseEntity<String> writeUploadList(MultipartHttpServletRequest request)
 			throws IOException { return JsonUtil.convertToResponseEntity(FileReceiver.receiveFiles(request, "/post/img/")); }
-	
-	@RequestMapping(path = "doWrite", params = { "title", "content", "image", "lat", "lng", "regionNo", "files" })
+			
+	@RequestMapping(path = "doWrite", params = { "title", "content", "regionNo", "files" })
 	public String doWrite(HttpSession session, @ModelAttribute Post post) {
 		
 		post.setUser((User)session.getAttribute("loginInfo"));
@@ -63,7 +63,7 @@ public class PostController {
 	@RequestMapping("view/{no}")
 	public ModelAndView view(HttpSession session, @PathVariable int no, Integer r, @RequestParam(defaultValue = "1") int p) {
 		
-		Page page = new Page(10, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
+		Page page = new Page(5, 5, p); //댓글[result 개수, 페이징 블록 수, 페이지 넘버]
 		
 		ModelAndView model = new ModelAndView("post/view");
 		
@@ -106,7 +106,7 @@ public class PostController {
 	} //like()
 	
 	@RequestMapping("update/{no}")
-	public ModelAndView update(@PathVariable int no, String title, String content) {
+	public ModelAndView update(@PathVariable int no, String title, String content, ) {
 		
 		ModelAndView model = new ModelAndView("redirect:../");
 		

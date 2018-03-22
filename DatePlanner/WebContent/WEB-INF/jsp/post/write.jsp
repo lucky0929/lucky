@@ -58,6 +58,7 @@
 			</ul>
 		</div>
 	</nav>
+
 	<div class="container">
 		<form action="doWrite" method="POST">
 			<table border="1" style="width: 100%; border-collapse: collapse">
@@ -68,9 +69,11 @@
 				</tr>
 				<tr>
 					<td>게시글 배경사진</td>
-					<td><input id="imageInput" type="file"></td>
+					<td><input id="imageInput" type="file"> <input id="image" type="hidden" name="image" readonly /></td>
 				</tr>
+					
 				<tr>
+				
 					<td>해당 지역</td>
 					<td>
 						<select name="regionNo">
@@ -87,7 +90,7 @@
 	</div>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.min.js"></script>
 	<script src="../js/FileUpload.js"></script>
 	<script>
 		var $image = $('#image'),
