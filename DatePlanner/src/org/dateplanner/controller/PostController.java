@@ -46,8 +46,8 @@ public class PostController {
 	@RequestMapping("img/upload/list")
 	public ResponseEntity<String> writeUploadList(MultipartHttpServletRequest request)
 			throws IOException { return JsonUtil.convertToResponseEntity(FileReceiver.receiveFiles(request, "/post/img/")); }
-	
-	@RequestMapping(path = "doWrite", params = { "title", "content"/*, "image"*/, "regionNo", "files" })
+			
+	@RequestMapping(path = "doWrite", params = { "title", "content", "regionNo", "files" })
 	public String doWrite(HttpSession session, @ModelAttribute Post post) {
 		
 		post.setUser((User)session.getAttribute("loginInfo"));

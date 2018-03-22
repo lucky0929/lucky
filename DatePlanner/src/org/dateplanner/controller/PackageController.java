@@ -36,8 +36,7 @@ public class PackageController {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("regionNo", Region.getRegionNo(session));
-		model.addObject("placeList",
-				packageService.selectPackageable(((User)session.getAttribute("loginInfo")).getNo()));
+		model.addObject("placeList", packageService.selectPackageable(((User)session.getAttribute("loginInfo")).getNo()));
 		
 		return model;
 		

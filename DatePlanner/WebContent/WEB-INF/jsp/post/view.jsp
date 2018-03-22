@@ -156,6 +156,10 @@
             text-align: right;
             padding-right: 10px;
         }
+        
+        #my_post{
+        	padding: 15px;
+        }
 	</style>
 </head>
 <body>
@@ -226,6 +230,13 @@
     </c:choose>
     <span style="display: block">${like}</span>
     </div>
+    
+    <c:if test="${mypost}">
+	    <div id="my_post">
+	       <a href="../update/no=${post.no}"><button class="btn btn-warning">수정</button></a>
+	       <a href="../delete/no=${post.no}"><button class="btn btn-danger">삭제</button></a>
+	    </div>
+    </c:if>
 
 <div class="container" style="padding: 0">
     <div class="jumbotron" style="float: left; width: 100%;">

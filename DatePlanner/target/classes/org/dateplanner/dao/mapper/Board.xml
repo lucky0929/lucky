@@ -130,16 +130,21 @@
 	LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   
-  <update id="update">
-  	UPDATE 
+  <update id="update" parameterType="Post">
+  	UPDATE
   	  board
-  	SET 
-  	  title = #{title}, content = #{content}, image = #{image}, lat = #{lat}, lng = #{lng},
-  	  region_no = #{regionNo}, packageable = #{packageable}
-  	WHERE 
-  	  no = #{no} 
-  	  AND 
-  	  user_no = #{userNo}
+  	SET
+  	  title = #{title}, content = #{content}, image = #{image}, packageable = #{packageable}
+  	WHERE
+  	  no = #{no}
   </update>
   
+  <update id="delete" parameterType="int">
+  	UPDATE
+  	  board
+  	SET
+  	  title = #{title}, content = #{content}, image = #{image}, packageable = #{packageable}
+  	WHERE
+  	  no = #{boardNo}
+  </update>
 </mapper>

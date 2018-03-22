@@ -14,6 +14,8 @@ public class PostService {
 	@Autowired
 	private BoardDAO boardDAO;
 	
+	public boolean delete(int boardNo) { return boardDAO.delete(boardNo); }
+	public boolean update(Post post) { return boardDAO.update(post); }
 	public boolean write(Post post) { return boardDAO.insertPost(post); }
 	public Post selectOne(int no) { return boardDAO.selectByNo(no); }
 	public List<Post> selectByTitleAndRegionWithPage(String title, Page page) {

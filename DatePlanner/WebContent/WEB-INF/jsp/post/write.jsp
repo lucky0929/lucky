@@ -69,9 +69,11 @@
 				</tr>
 				<tr>
 					<td>게시글 배경사진</td>
-					<td><input id="imageInput" type="file"></td>
+					<td><input id="imageInput" type="file"> <input id="image" type="hidden" name="image" readonly /></td>
 				</tr>
+					
 				<tr>
+				
 					<td>해당 지역</td>
 					<td>
 						<select name="regionNo">
