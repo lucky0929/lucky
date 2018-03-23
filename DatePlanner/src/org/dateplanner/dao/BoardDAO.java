@@ -10,7 +10,7 @@ import org.dateplanner.vo.Post;
 public interface BoardDAO {
 	
 	public boolean insertPost(Post post);
-	public boolean delete(int boardNo);
+	public void delete(@Param(value="boardNo")int boardNo);
 	public boolean insertPackage(Post post);
 	public boolean update(Post post);
 	public int checkPackageable(Package pack);

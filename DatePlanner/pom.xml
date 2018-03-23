@@ -62,26 +62,27 @@
 	<dependency>
 	  <groupId>org.aspectj</groupId>
 	  <artifactId>aspectjrt</artifactId>
-	  <version>1.8.10</version>
+	  <version>1.8.13</version>
 	</dependency>
 	<dependency>
-	  <groupId>org.aspectj</groupId>
-	  <artifactId>aspectjweaver</artifactId>
-	  <version>1.8.10</version>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjweaver</artifactId>
+	    <version>1.8.13</version>
 	</dependency>
+
 
 	<!-- MySQL -->
 	<dependency>
 	  <groupId>mysql</groupId>
 	  <artifactId>mysql-connector-java</artifactId>
-	  <version>5.1.38</version>
+	  <version>5.1.41</version>
 	</dependency>
 
 	<!-- Mybatis -->
 	<dependency>
 	  <groupId>org.mybatis</groupId>
 	  <artifactId>mybatis</artifactId>
-	  <version>3.4.1</version>
+	  <version>3.4.4</version>
 	</dependency>
 	<dependency>
 	  <groupId>org.mybatis</groupId>

@@ -60,10 +60,19 @@ public class PostController {
 		
 	} //doWrite();
 	
+	@RequestMapping(path = "doUpdate", params = { "title", "content", "files", "no", "image" })
+	public String doUpdate(@ModelAttribute Post post) {
+		System.out.println(post);
+		post.setPackageable(post.getPackageable() != null);
+		postService.update(post);
+		return "redirect:view/"+post.getNo();
+		
+	} //doWrite();
+	
 	@RequestMapping("view/{no}")
 	public ModelAndView view(HttpSession session, @PathVariable int no, Integer r, @RequestParam(defaultValue = "1") int p) {
 		
-		Page page = new Page(10, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
+		Page page = new Page(4, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
 		
 		ModelAndView model = new ModelAndView("post/view");
 		
@@ -72,8 +81,7 @@ public class PostController {
 		params.put("boardNo", no);
 		params.put("userNo",user.getNo());
 		
-		System.out.println(commentService.selectByBoardNo(no, page));
-		
+		System.out.println(commentService.selectByBoardNo(no, page)+"\n");
 		model.addObject("post", postService.selectOne(no));
 		model.addObject("profile", user.getProfile());
 		model.addObject("comment", commentService.selectByBoardNo(no, page));
@@ -102,13 +110,17 @@ public class PostController {
 		return "redirect:/post/view/"+boardNo;
 	} //like()
 	
+	@RequestMapping("delete/{no}")
+	public String delete(@PathVariable int no) {
+		postService.delete(no);
+		return "redirect:/";
+	} //delete();
+	
 	@RequestMapping("update/{no}")
 	public ModelAndView update(@PathVariable int no) {
-		
 		ModelAndView model = new ModelAndView("post/update");
 		model.addObject("post", postService.selectOne(no));
 		return model;
-		
 	} //update();
 	
 } //class PlaceController;

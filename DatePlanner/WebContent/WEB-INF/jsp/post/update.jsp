@@ -10,9 +10,11 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css">
 	<title>글쓰기</title>
 </head>
+<jsp:include page="../include/nav.jsp" flush="false"/>
 <body>
 	<div class="container">
-		<form action="doWrite" method="POST">
+		<form action="../doUpdate" method="POST">
+		<input type="hidden" value="${post.no}" name="no" />
 			<table border="1" style="width: 100%; border-collapse: collapse">
 				<tr><td>제목: </td><td><input name="title" value="${post.title}" required></td></tr>
 				<tr> 
@@ -49,8 +51,9 @@
 			</table>
 		</form>
 	</div>
+	
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.min.js"></script>
 	<script src="../js/FileUpload.js"></script>
 	<script>

@@ -164,43 +164,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse" data-spy="affix">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="../">DatePlanner</a>
-        </div>
-        <c:choose>
-            <c:when test="${empty loginInfo}">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="user/join"><span
-                            class="glyphicon glyphicon-user"></span>회원가입</a></li>
-
-                    <li class="dropdown"><a class="dropdown-toggle"
-                                            data-toggle="dropdown" href="user/login">로그인<span
-                            class="glyphicon glyphicon-log-in"></span></a>
-
-                        <ul class="dropdown-menu">
-                            <li><a href="user/login">데이트 플래너 로그인</a></li>
-                            <li><a
-                                    href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
-                                네이버 로그인</a></li>
-                            <li><a href="#">페이스북 로그인</a></li>
-                        </ul></li>
-                </ul>
-            </c:when>
-            <c:otherwise>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="user/mypage"><span
-                            class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로
-                        로그인중</a></li>
-                    <li><a href="user/logout">로그아웃</a></li>
-                </ul>
-            </c:otherwise>
-
-        </c:choose>
-
-    </div>
-</nav>
+<jsp:include page="../include/nav.jsp" flush="false"/>
 
 <div class="parallex">
     <div id="board_info">
@@ -230,18 +194,13 @@
     </c:choose>
     <span style="display: block">${like}</span>
     </div>
-    
-    <c:if test="${mypost}">
 	    <div id="my_post">
-	       <a href="../update/no=${post.no}"><button class="btn btn-warning">수정</button></a>
-	       <a href="../delete/no=${post.no}"><button class="btn btn-danger">삭제</button></a>
+	       <a href="../update/${post.no}"><button class="btn btn-warning">수정</button></a>
+	       <a href="../delete/${post.no}"><button class="btn btn-danger">삭제</button></a>
 	    </div>
-    </c:if>
-
 <div class="container" style="padding: 0">
     <div class="jumbotron" style="float: left; width: 100%;">
         <div>
-
             <div id="comment_write">
                 <div id="profile">
                     <a href="user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" style="width: 50px; height: 50px; float: left;"></a>
@@ -268,22 +227,30 @@
                             <div class="write_date"><span>${comment.regdate}</span></div>
                         </div>
                         <div class="reply_btn">
-                            <form action="post/commentInsert">
-                                <button class=" btn btn-default">답글달기</button>
+                            <form action="../reCommentInsert">
+                            	<input type="hidden" name="no" value="${comment.no}"/>
+                            	<input type="hidden" name="boardNo" value="${post.no}"/>
+                                <input type="text" name="content" placeholder="답글달기"/>
+                                <button type="submit" class=" btn btn-default">답글달기</button>
+                            </form>
+                            <a href="../commentInsert?board=${comment.no}&orderNo=${comment.orderNo}">삭제</a>
+                            <form action="../commentUpdate">
+                            	<input type="hidden" name="no" value="${comment.no}"/>
+                            	<input type="hidden" name="boardNo" value="${post.no}"/>
+                                <input type="text" name="content" placeholder="수정할 내용"/>
+                                <button type="submit" class=" btn btn-default">수정하기</button>
                             </form>
                         </div>
                     </div>
                 </c:forEach>
-                <!--대댓글 처리하기-->
-            </div>
-           
-        </div>
+               <!--대댓글 처리하기-->
+          </div>
+       </div>
     </div>
 </div>
 
-<ul class="pagination">
-	
-	<%-- 이전 페이지로 --%>
+	<ul class="pagination">
+		<%-- 이전 페이지로 --%>
 		<c:if test="${1 < page.start}"> 
 			<li><a href="?p=${page.start - page.pageCount}" aria-label="Previous">
 					<span aria-hidden="true">&laquo;</span>
@@ -307,16 +274,9 @@
 	</ul><!-- pagination -->
 
 </div>
-	
-	<!-- <script>
-	    var window = $(window);
-	
-	    $(window).scroll(function () {
-	        if ($(window).scrollTop()/2 < 500) {
-	            $('.parallex').css('top', $(window).scrollTop() / 2);
-	        } //if
-	    });
-	</script> -->
-	<script>$(window).scroll(function(){st=$(this).scrollTop()/2;if(st<500)$('.parallex').css('top',st)})</script>
+	<script>
+	st = $(this).scrollTop()/2
+		$(window).scroll(function(){if(st < 500) $('.parallex').css('top',st)})
+	</script>
 </body>
 </html>

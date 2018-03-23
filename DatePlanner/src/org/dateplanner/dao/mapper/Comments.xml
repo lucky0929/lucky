@@ -16,11 +16,11 @@
       (no, `order`, board_no, user_no, content)
     VALUES
       (#{no}, (SELECT IFNULL(MAX(`order`), 0)+1 FROM comments c WHERE no = #{no}), #{boardNo}, #{user.no}, #{content})
-  </insert>  
+  </insert>
 
   <select id="selectByBoardNo" parameterType="int" resultType="Comment">
 	SELECT
-      c.no, `order`, board_no, content, c.regdate, u.no 'user.no', u.nickname 'user.nickname'
+      c.no, `order` orderNo, board_no, content, c.regdate, u.no 'user.no', u.nickname 'user.nickname'
     FROM
       comments c
     JOIN
@@ -48,15 +48,15 @@
     SET
       content = #{content}
     WHERE 
-      order = `#{orderNo}`
+      `order` = #{orderNo}
   	  AND
   	  no = #{no}
   </update>
   
-  <delete id="delete" parameterType="String">
+  <delete id="delete" parameterType="Comment">
     DELETE FROM comment
     WHERE 
-      order = `#{orderNo}`
+      `order` = #{orderNo}
   	  AND
   	  no = #{no}
   </delete>

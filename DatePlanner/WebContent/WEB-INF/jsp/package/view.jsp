@@ -5,8 +5,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>${pack.post.title} - DatePlanner</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
+
 <body>
+<jsp:include page="../include/nav.jsp" flush="false"/>
 	<table border="1" style="border-collapse: collapse">
 		<tr><td>제목: </td><td>${pack.post.title}</td></tr>
 		<tr><td>내용: </td><td>${pack.post.content}</td></tr>

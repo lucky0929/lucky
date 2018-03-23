@@ -35,6 +35,7 @@ public class Post {
 	public Boolean getPackageable() { return packageable; }
 	public Timestamp getRegdate() { return regdate; }
 	public String getFormattedRegdate() { return DATE_FORMAT.format(regdate); }
+	public String getFormattedRegdate(Timestamp regdate) { return DATE_FORMAT.format(regdate); }
 	public Double getLat() { return lat; }
 	public Double getLng() { return lng; }
 	public int getLike() { return like; }

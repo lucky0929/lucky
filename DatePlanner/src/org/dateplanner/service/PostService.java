@@ -14,23 +14,18 @@ public class PostService {
 	@Autowired
 	private BoardDAO boardDAO;
 	
-	public boolean delete(int boardNo) { return boardDAO.delete(boardNo); }
+	public void delete(int boardNo) { boardDAO.delete(boardNo); }
 	public boolean update(Post post) { return boardDAO.update(post); }
 	public boolean write(Post post) { return boardDAO.insertPost(post); }
 	public Post selectOne(int no) { return boardDAO.selectByNo(no); }
 	public List<Post> selectByTitleAndRegionWithPage(String title, Page page) {
 		int total;
-		if((total=boardDAO.selectTotalByTitle(title)) == 0){ return null;}
-		else {
-//			HashMap<String, Object> map = new HashMap<String, Object>();
-//			map.put("page", );
-//			map.put("title", );
-			return boardDAO.selectByTitleAndRegionWithPage(page.initTotal(total), title); 
-		} //if~else
+		if((total=boardDAO.selectTotalByTitle(title)) == 0) return null;
+		else{ return boardDAO.selectByTitleAndRegionWithPage(page.initTotal(total), title); }
 	}
 
 	public List<Post> selectByRegionWithPage(int regionNo, Page page) {
-		
+	
 		return boardDAO.selectByRegionWithPage(regionNo, page.initTotal(boardDAO.selectTotalByRegion(regionNo)));
 		
 	} //selectByRegionWithPage();

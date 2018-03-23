@@ -45,20 +45,8 @@
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="../">DatePlanner</a>
-			</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="user/mypage"><span
-						class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로
-						로그인중</a></li>
-				<li><a href="user/logout">로그아웃</a></li>
-			</ul>
-		</div>
-	</nav>
 
+<jsp:include page="../include/nav.jsp" flush="false"/>
 	<div class="container">
 		<form action="doWrite" method="POST">
 			<table border="1" style="width: 100%; border-collapse: collapse">

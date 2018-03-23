@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Comment {
 	
 	private int no;
-	private Integer order;
+	private Integer orderNo;
 	private int boardNo;
 	private User user;
 	private String content;
@@ -16,7 +16,7 @@ public class Comment {
 	public Comment(int boardNo, int no, int orderNo) {
 		this.boardNo=boardNo;
 		this.no = no;
-		this.order = orderNo;
+		this.orderNo = orderNo;
 	}
 	
 	public Comment(int boardNo, int userNo, String content) {
@@ -29,7 +29,7 @@ public class Comment {
 	
 	public Comment(int boardNo, int orderNo) {
 		
-		this.order = orderNo;
+		this.orderNo = orderNo;
 		this.boardNo = boardNo;
 		
 	} //Comment();
@@ -42,13 +42,13 @@ public class Comment {
 	} //Comment();
 	
 	public int getNo() { return no; }
-	public Integer getOrder() { return order; }
+	public Integer getOrder() { return orderNo; }
 	public int getBoardNo() { return boardNo; }
 	public User getUser() { return user; }
 	public String getContent() { return content; }
-	public Timestamp getRegdate() { return regdate; }
+	public String getRegdate() { return new Post().getFormattedRegdate(regdate); }
 	public void setNo(int no) { this.no = no; }
-	public void setOrder(Integer order) { this.order = order; }
+	public void setOrder(Integer order) { this.orderNo = order; }
 	public void setBoardNo(int boardNo) { this.boardNo = boardNo; }
 	public void setUser(User user) { this.user = user; }
 	public void setContent(String content) { this.content = content; }
@@ -56,7 +56,7 @@ public class Comment {
 	
 	@Override
 	public String toString() {
-		return "Comment [no=" + no + ", order=" + order + ", boardNo=" + boardNo + ", user=" + user + ", content="
+		return "Comment [no=" + no + ", order=" + orderNo + ", boardNo=" + boardNo + ", user=" + user + ", content="
 				+ content + ", regdate=" + regdate + "]";
 	} //toString();
 	

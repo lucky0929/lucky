@@ -8,6 +8,7 @@ import org.dateplanner.vo.Comment;
 import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller @RequestMapping(path = { "post", "package" })
@@ -24,21 +25,25 @@ public class CommentController {
 	}
 	
 	@RequestMapping("reCommentInsert")
-	public String reCommentInsert(int boardNo, int no, int orderNo, String content, HttpServletRequest req) {
-		commentService.insertReply(new Comment(no, orderNo,content));
-		return "redirect:view/"+boardNo;
+	public String reCommentInsert(@ModelAttribute Comment comment, /*int boardNo, int no, String content,*/ HttpServletRequest req, HttpSession session) {
+		User user = (User)session.getAttribute("loginInfo");
+//		commentService.insertReply(new Comment(no, boardNo, user.getNo(), content));
+		comment.setUser(user);
+		commentService.insertReply(comment);
+		return "redirect:view/"+comment.getBoardNo();
 	}
-
+	
 	@RequestMapping("commentDelete")
 	public String commentDelete(int boardNo, int no, int orderNo, HttpServletRequest req) {
-		commentService.deleteComment(new Comment(boardNo, no, orderNo));
+		commentService.deleteComment(new Comment(no, orderNo));
 		return "redirect:view/"+boardNo;
 	}
 	
 	@RequestMapping("commentUpdate")
 	public String commentUpdate(int boardNo, int orderNo, int no,String content, HttpServletRequest req) {
-		commentService.updateCommtent(new Comment(no, orderNo,content));
+		commentService.updateCommtent(new Comment(no, orderNo, content));
 		return "redirect:view/"+boardNo;
 	}
 	
 } //class CommentController;
+	

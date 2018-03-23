@@ -6,9 +6,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>패키지 만들기 - DatePlanner</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.min.js"></script>
 </head>
 <body>
+<jsp:include page="../include/nav.jsp" flush="false"/>
 	<form id="createForm" action="doCreate">
+	
 		<table>
 			<tr><td>제목: </td><td><input name="title" required></td></tr>
 			<tr><td>내용: </td><td><input name="content" required></td></tr>
