@@ -159,7 +159,14 @@ ul {
             <c:if test="${page.next}"><a href="?p=${page.end + 1}"><span aria-hidden="true">&raquo;</span></a></c:if>
          </ul>
               <ul>
-            <c:forEach var="post" items="${postList }">
+            <c:forEach var="post" items="${postList}">
+            <c:set var="category">
+				<c:choose>
+					<c:when test="${post.packageable eq null}">package</c:when>
+					<c:otherwise>post</c:otherwise>
+				</c:choose>
+			</c:set>
+       		
                <li class="content_L" <c:if test="${category eq 'package'}">style="board:3px solid pink"</c:if>>
                   <a href="../../${category}/view/${post.no}">
                      <div class="info_box">
