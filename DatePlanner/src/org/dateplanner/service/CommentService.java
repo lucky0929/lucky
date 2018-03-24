@@ -15,9 +15,9 @@ public class CommentService {
 	CommentsDAO commentDAO;
 	
 	public void insertComment(Comment comment){ commentDAO.insertComment(comment); }
-	public void insertReply(Comment reply){ commentDAO.insertComment(reply); }
+	public void insertReply(Comment reply){ commentDAO.insertReply(reply); }
 	public List<Comment> selectByBoardNo(int no, Page page){ return commentDAO.selectByBoardNo(no, page.initTotal(commentDAO.selectCount(no))); }
 	public void updateCommtent(Comment comment){ commentDAO.update(comment); }
-	public void deleteComment(Comment comment){ commentDAO.delete(comment); }
+	public void deleteComment(Comment comment) { commentDAO.delete(comment); }
 	
 } //class CommentService;

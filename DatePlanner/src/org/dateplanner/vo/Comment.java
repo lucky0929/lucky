@@ -19,18 +19,18 @@ public class Comment {
 		this.orderNo = orderNo;
 	}
 	
-	public Comment(int boardNo, int userNo, String content) {
+	public Comment(int no, int orderNo, String content) {
 		
-		this.boardNo = boardNo;
-		this.user = new User(userNo);
+		this.no = no;
+		this.orderNo = orderNo;
 		this.content = content;
 		
 	} //Comment();
 	
-	public Comment(int boardNo, int orderNo) {
+	public Comment(int no, Integer orderNo) {
 		
 		this.orderNo = orderNo;
-		this.boardNo = boardNo;
+		this.no = no;
 		
 	} //Comment();
 	
@@ -42,13 +42,13 @@ public class Comment {
 	} //Comment();
 	
 	public int getNo() { return no; }
-	public Integer getOrder() { return orderNo; }
+	public Integer getOrderNo() { return orderNo; }
 	public int getBoardNo() { return boardNo; }
 	public User getUser() { return user; }
 	public String getContent() { return content; }
 	public String getRegdate() { return new Post().getFormattedRegdate(regdate); }
 	public void setNo(int no) { this.no = no; }
-	public void setOrder(Integer order) { this.orderNo = order; }
+	public void setOrderNo(Integer order) { this.orderNo = order; }
 	public void setBoardNo(int boardNo) { this.boardNo = boardNo; }
 	public void setUser(User user) { this.user = user; }
 	public void setContent(String content) { this.content = content; }

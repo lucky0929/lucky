@@ -13,5 +13,4 @@ public interface CommentsDAO {
 	public  int	selectCount(int boardNo);
 	public void update(Comment comment);
 	public void delete(Comment comment);
-	
 } //interface CommentsDAO;

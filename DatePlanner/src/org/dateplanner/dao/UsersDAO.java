@@ -8,5 +8,5 @@ public interface UsersDAO {
 	public boolean selectIdExist(String id);
 	public User selectByNo(int no);
 	public User selectById(String id);
-	
+
 } //interface UsersDAO;

@@ -19,6 +19,8 @@ public class PackageService {
 	@Autowired
 	private BoardDAO boardDAO;
 	
+	public void deletePackage(int boardNo) { boardDAO.delete(boardNo); }
+	
 	public boolean createPackage(Package pack) {
 		
 		return boardDAO.checkPackageable(pack) == pack.getPlaceList().size() && boardDAO.insertPackage(pack.getPost()) && packagesDAO.insert(pack);
@@ -33,26 +35,16 @@ public class PackageService {
 		List<Post> placeList = new ArrayList<>();
 		
 		for(Post post : postList) {
-			
 			if(post.getNo() == no) pack.setPost(post);
 			else placeList.add(post);
-			
 		}
 		
 		pack.setPlaceList(placeList);
-		
-		System.out.println(pack);
 		
 		return pack;
 		
 	} //selectPackage();
 	
 	public List<Post> selectPackageable(int no) { return boardDAO.selectPackageable(no); }
-
-	public Package selectOne(int no) {
-		
-		
-		return null;
-	}
 	
 } //class PackageService;

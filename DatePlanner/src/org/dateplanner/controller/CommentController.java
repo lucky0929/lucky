@@ -25,22 +25,22 @@ public class CommentController {
 	}
 	
 	@RequestMapping("reCommentInsert")
-	public String reCommentInsert(@ModelAttribute Comment comment, /*int boardNo, int no, String content,*/ HttpServletRequest req, HttpSession session) {
+	public String reCommentInsert(@ModelAttribute Comment comment, HttpServletRequest req, HttpSession session) {
 		User user = (User)session.getAttribute("loginInfo");
-//		commentService.insertReply(new Comment(no, boardNo, user.getNo(), content));
 		comment.setUser(user);
 		commentService.insertReply(comment);
 		return "redirect:view/"+comment.getBoardNo();
 	}
 	
-	@RequestMapping("commentDelete")
-	public String commentDelete(int boardNo, int no, int orderNo, HttpServletRequest req) {
+	@RequestMapping(value="commentDelete")
+	public String commentDelete(int boardNo, int no, Integer orderNo, HttpServletRequest req) {
 		commentService.deleteComment(new Comment(no, orderNo));
 		return "redirect:view/"+boardNo;
 	}
 	
 	@RequestMapping("commentUpdate")
 	public String commentUpdate(int boardNo, int orderNo, int no,String content, HttpServletRequest req) {
+		
 		commentService.updateCommtent(new Comment(no, orderNo, content));
 		return "redirect:view/"+boardNo;
 	}

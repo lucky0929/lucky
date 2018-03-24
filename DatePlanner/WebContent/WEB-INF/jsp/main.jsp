@@ -118,7 +118,6 @@
 			background-color: gray;
 			color:#fff;
 		}
-
 		
 	</style>
 </head>
@@ -149,7 +148,7 @@
 							<c:forEach var="post" items="${postList}">
 								<c:set var="category">
 									<c:choose>
-										<c:when test="${post.packageable} eq null">package</c:when>
+										<c:when test="${post.packageable eq null}">package</c:when>
 										<c:otherwise>post</c:otherwise>
 									</c:choose>
 								</c:set>

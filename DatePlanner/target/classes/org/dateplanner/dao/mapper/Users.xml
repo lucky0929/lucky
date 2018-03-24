@@ -48,6 +48,8 @@
     UPDATE 
       users 
     SET
+    
+    
       name = #{name}, key = #{key}, nickname = #{nickname}, profile = #{profile}, region_no = #{regionNo}, 
       introduction = #{introduction}, regdate = now()
     WHERE

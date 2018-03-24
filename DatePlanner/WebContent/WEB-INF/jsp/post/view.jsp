@@ -160,6 +160,9 @@
         #my_post{
         	padding: 15px;
         }
+        .repIn{
+        	margin-right:-50px;
+        }
 	</style>
 </head>
 <body>
@@ -175,8 +178,7 @@
                             class="glyphicon glyphicon-user"></span>회원가입</a></li>
 
                     <li class="dropdown"><a class="dropdown-toggle"
-                                            data-toggle="dropdown" href="user/login">로그인<span
-                            class="glyphicon glyphicon-log-in"></span></a>
+                                            data-toggle="dropdown" href="user/login">로그인<span class="glyphicon glyphicon-log-in"></span></a>
 
                         <ul class="dropdown-menu">
                             <li><a href="user/login">데이트 플래너 로그인</a></li>
@@ -229,10 +231,12 @@
     </c:choose>
     <span style="display: block">${like}</span>
     </div>
+    <c:if test="${userNo eq post.user.no}">
 	    <div id="my_post">
 	       <a href="../update/${post.no}"><button class="btn btn-warning">수정</button></a>
 	       <a href="../delete/${post.no}"><button class="btn btn-danger">삭제</button></a>
 	    </div>
+	</c:if>
 <div class="container" style="padding: 0">
     <div class="jumbotron" style="float: left; width: 100%;">
         <div>
@@ -249,9 +253,8 @@
             </div>
 
             <div id="comment_wrap" style="float: left; width: 100%">
-
                 <c:forEach var="comment" items="${comment}">
-                    <div class="comment_box">
+                    <div class="comment_box" <c:if test="${comment.orderNo != 0}">style="background:wheat"></c:if>> 
                         <div class="user_info" style="padding-left: 10px">
                             <div class="profile"><img src="/user/img/${loginInfo.profileWithDefault}"></div>
                             <div class="nickname"><span>${comment.user.nickname}</span></div>
@@ -262,19 +265,29 @@
                             <div class="write_date"><span>${comment.regdate}</span></div>
                         </div>
                         <div class="reply_btn">
-                            <form action="../reCommentInsert">
-                            	<input type="hidden" name="no" value="${comment.no}"/>
-                            	<input type="hidden" name="boardNo" value="${post.no}"/>
-                                <input type="text" name="content" placeholder="답글달기"/>
-                                <button type="submit" class=" btn btn-default">답글달기</button>
-                            </form>
-                            <a href="../commentInsert?board=${comment.no}&orderNo=${comment.orderNo}">삭제</a>
-                            <form action="../commentUpdate">
-                            	<input type="hidden" name="no" value="${comment.no}"/>
-                            	<input type="hidden" name="boardNo" value="${post.no}"/>
-                                <input type="text" name="content" placeholder="수정할 내용"/>
-                                <button type="submit" class=" btn btn-default">수정하기</button>
-                            </form>
+                        	<c:if test="${comment.orderNo == 0}"> <!-- 대댓글일경우 -->
+	                            <form action="../reCommentInsert">
+	                            	<input type="hidden" name="no" value="${comment.no}"/>
+	                            	<input type="hidden" name="boardNo" value="${post.no}"/>
+	                                <input type="text" name="content" placeholder="답글달기"/>
+	                                <button type="submit" class=" btn btn-default">답글달기</button>
+	                            </form>
+                            </c:if>
+                            <c:if test="${userNo eq comment.user.no}">
+	                            <form action="../commentDelete">
+	                            	<input type="hidden" name="boardNo" value="${post.no}"/>
+	                            	<input type="hidden" name="orderNo" value="${comment.orderNo}"/>
+	                            	<input type="hidden" name="no" value="${comment.no}"/>
+	                                <button type="submit" class=" btn btn-default">삭제</button>
+	                            </form> 
+	                            <form action="../commentUpdate">
+	                            	<input type="hidden" name="orderNo" value="${comment.orderNo}"/>
+	                            	<input type="hidden" name="no" value="${comment.no}"/>
+	                            	<input type="hidden" name="boardNo" value="${post.no}"/>
+	                                <input type="text" name="content" placeholder="수정할 내용"/>
+	                                <button type="submit" class=" btn btn-default">수정하기</button>
+	                            </form>
+                            </c:if>
                         </div>
                     </div>
                 </c:forEach>

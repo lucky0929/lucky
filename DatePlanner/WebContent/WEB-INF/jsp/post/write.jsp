@@ -81,6 +81,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.min.js"></script>
 	<script src="../js/FileUpload.js"></script>
 	<script>
+		$('form').submit(function(){$(this).submit(function(e){e.preventDefault()})});
+	
 		var $image = $('#image'),
 			$summernote = $('#summernote');
 		

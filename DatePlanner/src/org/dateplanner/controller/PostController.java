@@ -81,12 +81,12 @@ public class PostController {
 		params.put("boardNo", no);
 		params.put("userNo",user.getNo());
 		
-		System.out.println(commentService.selectByBoardNo(no, page)+"\n");
-		model.addObject("post", postService.selectOne(no));
+		model.addObject("userNo" , user.getNo());
+		model.addObject("post"   , postService.selectOne(no));
 		model.addObject("profile", user.getProfile());
 		model.addObject("comment", commentService.selectByBoardNo(no, page));
-		model.addObject("page", page);
-		model.addObject("like", likeService.selectCount(no));
+		model.addObject("page"   , page);
+		model.addObject("like"   , likeService.selectCount(no));
 		model.addObject("likeCheck", likeService.userCheck(params));
 		
 		return model;
