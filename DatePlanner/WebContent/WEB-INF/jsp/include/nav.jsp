@@ -8,20 +8,13 @@
         <c:choose>
             <c:when test="${empty loginInfo}">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="user/join"><span
+
+                    <li><a href="../user/join"><span
                             class="glyphicon glyphicon-user"></span>회원가입</a></li>
 
-                    <li class="dropdown"><a class="dropdown-toggle"
-                                            data-toggle="dropdown" href="user/login">로그인<span
-                            class="glyphicon glyphicon-log-in"></span></a>
+                    <li><a href="../user/login"><span
+                            class="glyphicon glyphicon-log-in"></span>로그인</a></li>
 
-                        <ul class="dropdown-menu">
-                            <li><a href="user/login">데이트 플래너 로그인</a></li>
-                            <li><a
-                                    href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=tOzxSVFgBuq1ArjsmwsD&state=STATE_STRING&redirect_uri=http://localhost/main.jsp">
-                                네이버 로그인</a></li>
-                            <li><a href="#">페이스북 로그인</a></li>
-                        </ul></li>
                 </ul>
             </c:when>
             <c:otherwise>
@@ -29,7 +22,7 @@
                     <li><a href="user/mypage"><span
                             class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로
                         로그인중</a></li>
-                    <li><a href="user/logout">로그아웃</a></li>
+                    <li><a href="../../user/logout">로그아웃</a></li>
                 </ul>
             </c:otherwise>
 
