@@ -142,19 +142,19 @@ public class UserController {
 	   }
 	
 	@RequestMapping("page/{no}")
-	public ModelAndView page(HttpSession session, @PathVariable int no, @RequestParam(defaultValue = "1") int p) {
+	public ModelAndView page(HttpSession session, @PathVariable Integer no, @RequestParam(defaultValue = "1") int p) {
 		
 		ModelAndView model = new ModelAndView("user/page");
 		
 		User user=(User)session.getAttribute("loginInfo");
-		
-			user = userService.selectUser(no);
-		
-		if(user == null) return new RedirectWithAlert("유저정보 페이지 - DatePlanner", "유저를 찾을수 없습니다", "../../");
+		if(user.getNo() == no){
+			model.addObject("mypage", user);
+		}
+		user = userService.selectUser(no);
+		if(no == null) return new RedirectWithAlert("유저정보 페이지 - DatePlanner", "유저를 찾을수 없습니다", "../../");
 		
 		Page page = new Page(8, 8, p);
 		
-		model.addObject("mypage", user);
 		model.addObject("userInfo", user);
 		model.addObject("postList", userService.selectUsersPost(no, page));
 		model.addObject("page", page);
