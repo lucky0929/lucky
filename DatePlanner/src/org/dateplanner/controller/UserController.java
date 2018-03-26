@@ -149,7 +149,7 @@ public class UserController {
 		
 		User user=(User)session.getAttribute("loginInfo");
 		if(user.getNo() == no){
-			model.addObject("mypage", user);
+			model.addObject("mypage", true);
 		}
 		user = userService.selectUser(no);
 		if(no == null) return new RedirectWithAlert("유저정보 페이지 - DatePlanner", "유저를 찾을수 없습니다", "../../");
@@ -159,7 +159,6 @@ public class UserController {
 		model.addObject("userInfo", user);
 		model.addObject("postList", userService.selectUsersPost(no, page));
 		model.addObject("page", page);
-		
 		return model;
 		
 	} //page();
