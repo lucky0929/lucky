@@ -39,7 +39,7 @@ public class CommentController {
 	}
 	
 	@RequestMapping("commentUpdate")
-	public String commentUpdate(int boardNo, int orderNo, int no,String content, HttpServletRequest req) {
+	public String commentUpdate(int boardNo, int orderNo, int no,String content, HttpServletRequest req) {	
 		commentService.updateCommtent(new Comment(no, orderNo, content));
 		return "redirect:view/"+boardNo;
 	}
