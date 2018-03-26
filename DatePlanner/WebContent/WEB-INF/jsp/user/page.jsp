@@ -13,119 +13,119 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <style>
-body {
-   background-repeat: no-repeat;
-   background-image: url("/tem7p/user-background/sunset-3102754_1920.jpg");
-}
-
-.first {
-   min-width: 1200px;
-}
-
-#profile_H {
-   padding-left: 69px;
-   position: relative;
-   width: 100%;
-   height: 100%;
-}
-
-#profile {
-   width: 300px;
-   height: 30%;
-   display: inline-block;
-   border: 2px solid cyan;
-}
-
-#nameBox {
-   display: inline-table;
-   color: white;
-   margin-bottom: -50px;
-}
-
-#name {
-   font-weight: bold;
-   font-size: xx-large;
-}
-
-#nickname {
-   font-weight: bold;
-   font-size: large;
-}
-
-#intro {
-   font-weight: bold;
-}
-
-#region {
-   font-weight: bold;
-}
-
-ul {
-   list-style: none;
-   padding: 0;
-   margin: 0;
-}
-
-.myContent {
-   text-align: center;
-   padding-top: 20px;
-   margin-left: 5%;
-   position: relative;
-   width: 100%;
-}
-
-.content_L {
-   float: left;
-   overflow: hidden;
-   transition: .1s ease;
-   margin: 10px;
-   position: relative;
-   width: 240px;
-   height: 240px;
-}
-
-.info_box {
-   color: antiquewhite;
-   width: 240px;
-   height: 240px;
-   position: absolute;
-   transition: .1s ease;
-   bottom: -240px;
-}
-
-.content_L:hover {
-   box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0
-      rgba(0, 0, 0, 0.21);
-}
-
-.content_L:hover .info_box {
-   bottom: -70px;
-   transition: .1s ease;
-}
-
-.content_L:hover:before {
-   content: "";
-   display: block;
-   width: 240px;
-   height: 240px;
-   top: 0;
-   left: 0;
-   position: absolute;
-   background-color: rgba(0, 0, 0, .7);
-}
-
-.heart {
-   color: indianred;
-   padding-right: 3px;
-   font-size: 1.3em;
-}
-
-.comment {
-   color: cadetblue;
-   padding-right: 3px;
-   font-size: 1.3em;
-}
-</style>
+		body {
+		   background-repeat: no-repeat;
+		   background-image: url("/tem7p/user-background/sunset-3102754_1920.jpg");
+		}
+		
+		.first {
+		   min-width: 1200px;
+		}
+		
+		#profile_H {
+		   padding-left: 69px;
+		   position: relative;
+		   width: 100%;
+		   height: 100%;
+		}
+		
+		#profile {
+		   width: 300px;
+		   height: 30%;
+		   display: inline-block;
+		   border: 2px solid cyan;
+		}
+		
+		#nameBox {
+		   display: inline-table;
+		   color: white;
+		   margin-bottom: -50px;
+		}
+		
+		#name {
+		   font-weight: bold;
+		   font-size: xx-large;
+		}
+		
+		#nickname {
+		   font-weight: bold;
+		   font-size: large;
+		}
+		
+		#intro {
+		   font-weight: bold;
+		}
+		
+		#region {
+		   font-weight: bold;
+		}
+		
+		ul {
+		   list-style: none;
+		   padding: 0;
+		   margin: 0;
+		}
+		
+		.myContent {
+		   text-align: center;
+		   padding-top: 20px;
+		   margin-left: 5%;
+		   position: relative;
+		   width: 100%;
+		}
+		
+		.content_L {
+		   float: left;
+		   overflow: hidden;
+		   transition: .1s ease;
+		   margin: 10px;
+		   position: relative;
+		   width: 240px;
+		   height: 240px;
+		}
+		
+		.info_box {
+		   color: antiquewhite;
+		   width: 240px;
+		   height: 240px;
+		   position: absolute;
+		   transition: .1s ease;
+		   bottom: -240px;
+		}
+		
+		.content_L:hover {
+		   box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0
+		      rgba(0, 0, 0, 0.21);
+		}
+		
+		.content_L:hover .info_box {
+		   bottom: -70px;
+		   transition: .1s ease;
+		}
+		
+		.content_L:hover:before {
+		   content: "";
+		   display: block;
+		   width: 240px;
+		   height: 240px;
+		   top: 0;
+		   left: 0;
+		   position: absolute;
+		   background-color: rgba(0, 0, 0, .7);
+		}
+		
+		.heart {
+		   color: indianred;
+		   padding-right: 3px;
+		   font-size: 1.3em;
+		}
+		
+		.comment {
+		   color: cadetblue;
+		   padding-right: 3px;
+		   font-size: 1.3em;
+		}
+	</style>
 </head>
 <body>
  <jsp:include page="../include/nav.jsp" />
