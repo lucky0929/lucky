@@ -5,43 +5,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script defer
-	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>DatePlanner</title>
-<style>
-.container {
-	text-align: center;
-}
-
-table {
-	width: 100%;
-}
-
-input {
-	width: 100%;
-}
-
-select {
-	text-align: left;
-	float: left;
-}
-
-#jumbotron_wrap{
-	padding-top: 10%;
-}
-</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>DatePlanner</title>
+	<style>
+		.container { text-align: center; }
+		table  { width: 100%; }
+		input  { width: 100%; }
+		select { text-align: left; float: left; }
+		#jumbotron_wrap { padding-top: 10%  }
+	</style>
 </head>
 <body>
 <jsp:include page="../include/nav.jsp" />
-
 	<div class="container">
 		<div id="jumbotron_wrap">
 			<div class="jumbotron">
@@ -114,7 +94,19 @@ select {
 		});
 		$('#joinForm').submit(function(e) {
 			$password.val(sha512($password.val()))
-		});
+		});  
+/*		       ____
+		      /ㅍㅍ\
+		      \ ㅇ /
+		       |  |
+		 ======++++=======
+			  /    \
+		       \  /
+		       |  |
+		       |  |
+  		       |  |
+      P=======[{()}]========b
+		
 	</script>
 </body>
 </html>

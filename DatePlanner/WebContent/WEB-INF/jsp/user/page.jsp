@@ -136,7 +136,7 @@
          <div id="profile">
             <img src="/post/img/"${userInfo.profile} style="width: 100%; height: 100%;">
          </div>
-       
+
          <div id="nameBox">
             <span id="name">${userInfo.name }</span> <span id="nickname">(${userInfo.nickname })</span>
             <p id="intro">${userInfo.introduction }</p>
@@ -151,11 +151,11 @@
       </c:when>
       <c:otherwise>   
          <ul class="pagination">
-            <c:if test="${1 < page.start}"><a href="?p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></c:if>
+            <c:if test="${1 < page.start}"><li><a href="?p=${page.start - page.pageCount}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li></c:if>
             <c:forEach var="p" begin="${page.start}" end="${page.end}">
                <li><a href="?p=${p}" aria-label="Next">${p}</a></li>
             </c:forEach>
-            <c:if test="${page.next}"><a href="?p=${page.end + 1}" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></c:if>
+            <c:if test="${page.next}"><li><a href="?p=${page.end + 1}" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li></c:if>
          </ul>
               <ul>
             <c:forEach var="post" items="${postList}">
