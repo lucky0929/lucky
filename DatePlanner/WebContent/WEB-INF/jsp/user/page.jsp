@@ -3,11 +3,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-   <c:set var="mypage" value="${loginInfo eq user}"/>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-   <title><c:choose><c:when test="${mypage}">내</c:when><c:otherwise>${user.nickname}님의 </c:otherwise></c:choose>페이지 - DatePlanner</title>
+   <title><c:choose><c:when test="${mypage}">내</c:when><c:otherwise>${userInfo.nickname}님의 </c:otherwise></c:choose>페이지 - DatePlanner</title>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -135,7 +134,7 @@
       <div id="profile_H">
 
          <div id="profile">
-            <img src="/post/img/"${userInfo.profile } style="width: 100%; height: 100%;">
+            <img src="/post/img/"${userInfo.profile} style="width: 100%; height: 100%;">
          </div>
        
          <div id="nameBox">
@@ -156,7 +155,7 @@
             <c:forEach var="p" begin="${page.start}" end="${page.end}">
                <li><a href="?p=${p}" aria-label="Next">${p}</a></li>
             </c:forEach>
-            <c:if test="${page.next}"><a href="?p=${page.end + 1}"><span aria-hidden="true">&raquo;</span></a></c:if>
+            <c:if test="${page.next}"><a href="?p=${page.end + 1}" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></c:if>
          </ul>
               <ul>
             <c:forEach var="post" items="${postList}">
@@ -176,9 +175,7 @@
                            <li><i class="fas fa-comment comment"></i><span>${post.comments}</span></li><!-- 댓글 개수 -->
                         </ul>
                      </div> 
-                     <%-- <c:if test="${!empty post.image}"> --%>
-                        <img src="${category}/img/${post.image}" height="100%" width="100%">
-                     <%-- </c:if> --%> 
+                     <img src="/${category}/img/${post.image}" height="100%" width="100%">
                   </a>
                </li>
                </c:forEach>

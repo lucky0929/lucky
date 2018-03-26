@@ -96,7 +96,27 @@ public class UserController {
 	   public String facebooka(@RequestParam String code) throws Exception{
 	      facebook(code);
 	      return "login";
-	   }
+	}
+	
+	@RequestMapping(value="update")
+	   public String update(@ModelAttribute User user) {
+	      userService.update(user);
+	      return "redirect:mypage";
+	}
+
+	@RequestMapping(value="updateForm")
+	   public String update(HttpSession session){
+		User user = (User)session.getAttribute("loginInfo");
+		  userService.selectUser(user.getNo());
+	      return "updateForm";
+	}
+	
+	@RequestMapping("delete")
+	   public String delete(@RequestParam int no, HttpSession session) {
+		userService.delete(no);
+		session.removeAttribute("loginInfo");
+	      return "redirect:/";
+	}
 	
 	public void facebook(String code) throws Exception{
 	      String access_token = "EAAc4NdS6is8BADkJ9FZCz9cTW71id2DYZBScIiD3w9oAIHwgQTZB6i5p6jwPqvD2QhIIqZAFYGq9OtNhqVPy7R3MTbGiwN1HHQ2kc0ZBH79BqiJ2qMDM03TB0KMWnStOdWpzxLQFJyLpmParXOdezZBRUV3PJY7g6DMQMtFOfz4gZDZD";
@@ -126,15 +146,16 @@ public class UserController {
 		
 		ModelAndView model = new ModelAndView("user/page");
 		
-		User user;
-		if((user = ((User)session.getAttribute("loginInfo"))) == null || user.getNo() != no)
+		User user=(User)session.getAttribute("loginInfo");
+		
 			user = userService.selectUser(no);
 		
 		if(user == null) return new RedirectWithAlert("유저정보 페이지 - DatePlanner", "유저를 찾을수 없습니다", "../../");
 		
 		Page page = new Page(8, 8, p);
 		
-		model.addObject("user", user);
+		model.addObject("mypage", user);
+		model.addObject("userInfo", user);
 		model.addObject("postList", userService.selectUsersPost(no, page));
 		model.addObject("page", page);
 		

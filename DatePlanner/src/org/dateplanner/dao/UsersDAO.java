@@ -8,5 +8,7 @@ public interface UsersDAO {
 	public boolean selectIdExist(String id);
 	public User selectByNo(int no);
 	public User selectById(String id);
+	public void update(User user);
+	public void delete(int no);
 
 } //interface UsersDAO;

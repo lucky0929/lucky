@@ -24,7 +24,7 @@
   
   <select id="selectByNo" parameterType="int" resultType="User">
 	SELECT
-	  no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction, regdate
+	  no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction
 	FROM
 	  users
 	WHERE
@@ -35,7 +35,7 @@
   
   <select id="selectById" parameterType="String" resultType="User">
 	SELECT
-	  no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction, regdate
+	  no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction
 	FROM
 	  users
 	WHERE
@@ -48,14 +48,13 @@
     UPDATE 
       users 
     SET
-    
-    
-      name = #{name}, key = #{key}, nickname = #{nickname}, profile = #{profile}, region_no = #{regionNo}, 
-      introduction = #{introduction}, regdate = now()
+      `key` = #{key}, profile = #{profile}, region_no = #{regionNo}, introduction = #{introduction}
     WHERE
-     no = #{no} 
-     AND
-     id = #{id}
+     `no` = #{no}
   </update>
   
+  <delete id="delete" parameterType="int">
+  	DELETE FROM users 
+  	WHERE `no` = {no}
+  </delete>
 </mapper>

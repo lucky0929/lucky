@@ -19,6 +19,10 @@ public class UserService {
 	@Autowired
 	private BoardDAO boardDAO;
 	
+	
+	public void delete(int no) { usersDAO.delete(no); }
+	public void update(User user) { usersDAO.update(user); }
+	
 	public boolean join(User user) { return usersDAO.insert(user); }
 	public boolean idExist(String id) { return usersDAO.selectIdExist(id); }
 	public User selectUser(int no) { return usersDAO.selectByNo(no); }
