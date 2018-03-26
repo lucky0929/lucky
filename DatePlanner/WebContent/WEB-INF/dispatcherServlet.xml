@@ -48,6 +48,7 @@
 	  <mvc:mapping path="/package/doUpdate/**"/>
 	  <mvc:mapping path="/package/doDelete/**"/>
 	  <mvc:mapping path="/user/logout"/>
+	  <mvc:mapping path="/user/page/**"/>
 	  <bean class="org.dateplanner.interceptor.FalseLoginInterceptor"/>
 	</mvc:interceptor>
 	

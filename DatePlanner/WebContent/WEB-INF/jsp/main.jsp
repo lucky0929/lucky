@@ -198,8 +198,7 @@
 
 					<c:otherwise>
 						<div id="profile">
-							<a href="user/mypage"><img
-								src="/user/img/${loginInfo.profile}" height="85%"
+							<a href="user/mypage"><img src="/user/img/${loginInfo.profile}" height="85%"
 								width="85%" /></a>
 						</div>
 

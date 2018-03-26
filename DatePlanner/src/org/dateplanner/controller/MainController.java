@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.dateplanner.commons.Region;
 import org.dateplanner.service.PostService;
 import org.dateplanner.vo.Page;
+import org.dateplanner.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,11 @@ public class MainController {
 		
 		int regionNo = Region.getRegionNo(session);
 		Page page = new Page(10, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
-		
+		User user;
+		if((user = (User)session.getAttribute("loginInfo")) != null) {
+			model.addObject("loginInfo",user);
+			if(user.getProfile()!=null) user.setProfile("default.png");
+		}
 		model.addObject("postList", title==null ? postService.selectByRegionWithPage(regionNo, page) : postService.selectByTitleAndRegionWithPage(title, page));
 		model.addObject("regionNo", regionNo);
 		model.addObject("page", page);

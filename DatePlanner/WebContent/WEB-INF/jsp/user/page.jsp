@@ -171,6 +171,7 @@
                      <div class="info_box">
                         <h3>${post.title}</h3>
                         <ul>
+                           <c:if test="${category eq 'package'}"><li><span>Package</span></li></c:if><!-- 패키지 뜻-->
                            <li><i class="fas fa-heart heart"></i><span>${post.like}</span></li><!-- 조아요 개수 -->
                            <li><i class="fas fa-comment comment"></i><span>${post.comments}</span></li><!-- 댓글 개수 -->
                         </ul>
