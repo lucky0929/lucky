@@ -77,8 +77,7 @@ select {
 			<div class="jumbotron">
 				<h1>DatePlanner</h1>
 				<h3>회원정보 수정하기</h3>
-				<form id="joinForm" action="doJoin" method="POST"
-					enctype="multipart/form-data">
+				<form id="joinForm" action="update" method="POST" enctype="multipart/form-data">
 					<table class="table table-condensed">
 						<tbody>
 							<tr>

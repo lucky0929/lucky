@@ -42,7 +42,7 @@
                     <input type="password" name="password" id="password" placeholder="비밀번호" required>
 
                     <div style="padding-top: 15px">
-                        <button class="btn btn-info" style="width: 50%; height: 50px">로그인</button>
+                        <button id="but" class="btn btn-info" style="width: 50%; height: 50px">로그인</button>
                     </div>
                 </form>
                 <a href="../user/join"><button class="btn btn-info" style="width: 50%; height: 50px">회원가입</button></a>
@@ -60,7 +60,7 @@
 <script src="../js/sha512.js"></script>
 <script>
     var $password = $('#password');
-    $('#loginForm').submit(function(e) { $password.val(sha512($password.val())); });
+    $('#but').submit(function(e) { $password.val(sha512($password.val())); });
 </script>
 
 </body>

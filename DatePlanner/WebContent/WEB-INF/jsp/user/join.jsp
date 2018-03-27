@@ -94,19 +94,7 @@
 		});
 		$('#joinForm').submit(function(e) {
 			$password.val(sha512($password.val()))
-		});  
-/*		       ____
-		      /ㅍㅍ\
-		      \ ㅇ /
-		       |  |
-		 ======++++=======
-			  /    \
-		       \  /
-		       |  |
-		       |  |
-  		       |  |
-      P=======[{()}]========b
-		
+		});
 	</script>
 </body>
 </html>
