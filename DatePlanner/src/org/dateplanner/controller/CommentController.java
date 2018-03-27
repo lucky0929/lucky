@@ -32,7 +32,7 @@ public class CommentController {
 		return "redirect:view/"+comment.getBoardNo();
 	}
 	
-	@RequestMapping(value="commentDelete")
+	@RequestMapping("commentDelete")
 	public String commentDelete(int boardNo, int no, Integer orderNo, HttpServletRequest req) {
 		commentService.deleteComment(new Comment(no, orderNo));
 		return "redirect:view/"+boardNo;
@@ -45,4 +45,3 @@ public class CommentController {
 	}
 	
 } //class CommentController;
-	

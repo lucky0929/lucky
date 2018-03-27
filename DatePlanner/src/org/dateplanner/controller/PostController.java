@@ -80,7 +80,7 @@ public class PostController {
 		User user = (User)session.getAttribute("loginInfo");
 		params.put("boardNo", no);
 		params.put("userNo",user.getNo());
-		
+		System.out.println(commentService.selectByBoardNo(no, page));
 		model.addObject("userNo" , user.getNo());
 		model.addObject("post"   , postService.selectOne(no));
 		model.addObject("profile", user.getProfile());

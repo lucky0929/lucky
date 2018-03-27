@@ -210,13 +210,12 @@
 </div>
 
 <div class="container-fluid">
-
 	<c:forEach var="post" items="${pack.placeList}">
 		제목: ${post.title}
 	    <div class="content">
 	
 	        ${post.content}
-	
+	        
 	    </div>
 			글쓴이_닉네임: ${post.user.nickname}
 			지역: ${post.regionNo}

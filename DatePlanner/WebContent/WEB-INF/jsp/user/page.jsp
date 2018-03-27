@@ -129,9 +129,7 @@
  <jsp:include page="../include/nav.jsp" />
 
    <div class="first container">
-
       <div id="profile_H">
-
          <div id="profile">
             <img src="/post/img/"${userInfo.profile} style="width: 100%; height: 100%;">
          </div>
@@ -139,7 +137,7 @@
          <div id="nameBox">
             <span id="name">${userInfo.name }</span> <span id="nickname">(${userInfo.nickname })</span>
             <p id="intro">${userInfo.introduction }</p>
-            <p id="region">주활동지역 : ${userInfo.regionNo }</p>
+            <p id="region">주활동지역 : ${userInfo.regionNo}</p>
          </div> <!-- id="nameBox" -->
       </div> <!-- id="profile_H -->
       
@@ -148,7 +146,6 @@
       <a href="/user/updateForm"><button class="btn btn-warning">개인정보 수정</button></a>
       </div>
       </c:if>
-      
 
       <div class="myContent">
      <c:choose>

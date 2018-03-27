@@ -12,5 +12,7 @@ public interface CommentsDAO {
 	public List<Comment> selectByBoardNo(@Param(value = "boardNo")int no, @Param(value = "page") Page page);
 	public  int	selectCount(int boardNo);
 	public void update(Comment comment);
-	public void delete(Comment comment);
+	public void commentDelete(Comment comment);
+	public void reCommentDelete(Comment comment);
+	
 } //interface CommentsDAO;

@@ -4,9 +4,9 @@
   
   <insert id="insertComment" parameterType="Comment">
     INSERT INTO comments
-      (`no`, board_no, user_no, content)
+      (`no`, `order`, board_no, user_no, content)
     VALUES
-      ((SELECT MAX(no)+1 FROM comments c), #{boardNo}, #{user.no}, #{content})
+      ((SELECT IFNULL(MAX(no)+1, 0) FROM comments c), 0, #{boardNo}, #{user.no}, #{content})
   </insert>
   
   <insert id="insertReply" parameterType="Comment">
@@ -51,9 +51,15 @@
   	  no = #{no}
   </update>
   
-  <delete id="delete" parameterType="Comment">
+  <delete id="commentDelete" parameterType="Comment">
     DELETE FROM comments
-    WHERE 
+    WHERE
+  	  no = #{no}
+  </delete>
+  
+  <delete id="reCommentDelete" parameterType="Comment">
+    DELETE FROM comments
+    WHERE
       `order` = #{orderNo}
   	  AND
   	  no = #{no}
