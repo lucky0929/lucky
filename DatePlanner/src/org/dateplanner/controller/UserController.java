@@ -87,14 +87,11 @@ public class UserController {
 	public String mypage(HttpSession session) { return "redirect:page/" + ((User)session.getAttribute("loginInfo")).getNo(); }
 	
 	@RequestMapping("update")
-	   public String update(@ModelAttribute User user) {
-		System.out.println(user.getIntroduction());
-		System.out.println(user.getKey());
-		System.out.println(user.getNickname());
-		System.out.println(user.getProfile());
-		System.out.println(user.getRegionNo());
-	      userService.update(user);
-	      return "redirect:mypage";
+	public String update(@ModelAttribute User user, HttpSession session) {
+		User sessionUser = (User)session.getAttribute("loginInfo");
+		user.setNo(sessionUser.getNo());
+		userService.update(user);
+		return "redirect:mypage";
 	}
 
 	@RequestMapping("updateForm")
