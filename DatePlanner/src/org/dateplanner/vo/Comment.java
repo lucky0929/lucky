@@ -12,6 +12,12 @@ public class Comment {
 	private Timestamp regdate;
 
 	public Comment() { }
+	
+	public Comment(int boardNo, String content, int userNo) {
+		this.boardNo = boardNo;
+		this.content = content;
+		this.user = new User(userNo);
+	}
 
 	public Comment(int boardNo, int no, int orderNo) {
 		this.boardNo=boardNo;
@@ -20,25 +26,14 @@ public class Comment {
 	}
 	
 	public Comment(int no, int orderNo, String content) {
-		
 		this.no = no;
 		this.orderNo = orderNo;
 		this.content = content;
-		
 	} //Comment();
 	
 	public Comment(int no, Integer orderNo) {
-		
 		this.orderNo = orderNo;
 		this.no = no;
-		
-	} //Comment();
-	
-	public Comment(int no, int boardNo, int userNo, String content) {
-		
-		this(boardNo, userNo, content);
-		this.no = no;
-		
 	} //Comment();
 	
 	public int getNo() { return no; }

@@ -20,7 +20,7 @@ public class CommentController {
 	@RequestMapping("commentInsert")
 	public String commentInsert(int boardNo, String content, HttpSession session, HttpServletRequest req) {
 		User user = (User)session.getAttribute("loginInfo");
-		commentService.insertComment(new Comment(boardNo, user.getNo(),content));
+		commentService.insertComment(new Comment(boardNo, content, user.getNo()));
 		return "redirect:view/"+boardNo;
 	}
 	

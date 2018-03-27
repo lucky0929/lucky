@@ -23,7 +23,7 @@ public class MainController {
 	public ModelAndView main(HttpServletRequest request, HttpSession session, Integer r, @RequestParam(defaultValue = "1") int p, @RequestParam(required = false) String title) {
 		
 		ModelAndView model = new ModelAndView("main");
-
+		
 		if(r != null && 0 <= r && r < Region.LIST.size())
 			session.setAttribute("regionNo", r);
 		
