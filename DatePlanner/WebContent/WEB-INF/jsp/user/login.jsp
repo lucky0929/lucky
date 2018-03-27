@@ -31,9 +31,9 @@
 <body>
 
 <jsp:include page="../include/nav.jsp" />
-
+ 
 <div class="container">
-    <div id="jumbotron_wrap" style="padding-top: 10%">
+    <div id="jumbotron_wrap" style="padding-top: 15%">
         <div class="jumbotron">
             <h1 style="text-align: center">DatePlanner</h1>
             <div id="login_box">
@@ -47,10 +47,10 @@
                 </form>
                 <a href="../user/join"><button class="btn btn-info" style="width: 50%; height: 50px">회원가입</button></a>
             </div>
-
+<!-- 
             <div id="api_login" style="text-align: center; padding-top: 15px">
-                <a href="#"><img src="/user/img/facebook.png"></a>
-            </div>
+                <a href="/user/facebook.do"><img src="/user/img/facebook.png"></a>
+            </div> -->
         </div>
 
     </div>
