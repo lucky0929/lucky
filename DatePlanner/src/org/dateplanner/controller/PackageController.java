@@ -100,7 +100,7 @@ public class PackageController {
 		return model;
 		
 	} //view();
-		
+	
 	@RequestMapping("like")
 	public String likeInsert(@RequestParam int boardNo, HttpSession session, HttpServletRequest req) {
 		

@@ -98,7 +98,6 @@ public class UserController {
 	   public String update(HttpSession session,Model model){
 		User user = (User)session.getAttribute("loginInfo");
 		model.addAttribute("user",userService.selectUser(user.getNo()));
-		System.out.println("updateForm");
 	      return "user/updateForm";
 	}
 	

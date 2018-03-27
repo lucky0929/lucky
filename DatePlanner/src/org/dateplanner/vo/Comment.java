@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Comment {
 	
 	private int no;
-	private Integer orderNo;
+	private int orderNo;
 	private int boardNo;
 	private User user;
 	private String content;

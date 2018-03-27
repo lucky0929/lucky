@@ -252,7 +252,7 @@
                     <span style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
                 </div>
                 <form action="../commentInsert">
-                    <input type="hidden" name="boardNo" value="${post.no}">
+                    <input type="hidden" name="boardNo" value="${pack.post.no}">
                     <textarea class="form-control" name="content" placeholder="댓글을 입력해주세요" style="min-height: 150px; height: auto; resize: none"></textarea>
                     <button type="submit" class="btn btn-default" style="float: right">입력!</button>
                 </form>
@@ -274,14 +274,14 @@
                         	<c:if test="${comment.orderNo == 0}"> <!-- 대댓글일경우 -->
 	                            <form action="../reCommentInsert">
 	                            	<input type="hidden" name="no" value="${comment.no}"/>
-	                            	<input type="hidden" name="boardNo" value="${post.no}"/>
+	                            	<input type="hidden" name="boardNo" value="${pack.post.no}"/>
 	                                <input type="text" name="content" placeholder="답글달기"/>
 	                                <button type="submit" class=" btn btn-default">답글달기</button>
 	                            </form>
                             </c:if>
                             <c:if test="${userNo eq comment.user.no}">
 	                            <form action="../commentDelete">
-	                            	<input type="hidden" name="boardNo" value="${post.no}"/>
+	                            	<input type="hidden" name="boardNo" value="${pack.post.no}"/>
 	                            	<input type="hidden" name="orderNo" value="${comment.orderNo}"/>
 	                            	<input type="hidden" name="no" value="${comment.no}"/>
 	                                <button type="submit" class=" btn btn-default">삭제</button>
@@ -289,7 +289,7 @@
 	                            <form action="../commentUpdate">
 	                            	<input type="hidden" name="orderNo" value="${comment.orderNo}"/>
 	                            	<input type="hidden" name="no" value="${comment.no}"/>
-	                            	<input type="hidden" name="boardNo" value="${post.no}"/>
+	                            	<input type="hidden" name="boardNo" value="${pack.post.no}"/>
 	                                <input type="text" name="content" placeholder="수정할 내용"/>
 	                                <button type="submit" class=" btn btn-default">수정하기</button>
 	                            </form>
