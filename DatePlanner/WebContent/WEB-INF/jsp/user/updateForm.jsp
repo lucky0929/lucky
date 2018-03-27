@@ -70,7 +70,7 @@
 							<tr>
 								<td>비밀번호 :</td>
 								<td><input id="password" name="key" type="password"
-									required></td>
+									required placeholder="비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성하여야 합니다."></td>
 							</tr>
 							<tr>
 								<td>이름 :</td>
@@ -138,6 +138,7 @@
 		$profileInput.change(function (){
 			fileUpload('join/upload', $profileInput[0].files, function(json) { $profile.val(json.result) })
 		});
+		
 		$('#joinForm').submit(function(e){
 			$password.val(sha512($password.val()))
 		});

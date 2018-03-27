@@ -38,7 +38,7 @@
 							<tr>
 								<td>비밀번호 :</td>
 								<td><input id="password" name="password" type="password"
-									required></td>
+									required placeholder="비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성하여야 합니다."></td>
 							</tr>
 							<tr>
 								<td>이름 :</td>
@@ -71,7 +71,7 @@
 								<td><input name="introduction"></td>
 							</tr>
 							<tr>
-								<td colspan="2"><button class="btn btn-info">회원가입</button></td>
+								<td colspan="2"><button id="submit" class="btn btn-info">회원가입</button></td>
 							</tr>
 						</tbody>
 					</table>
@@ -86,6 +86,24 @@
 	<script>
 		var $password = $('#password'), $profileInput = $('#profileInput')
 		$profile = $('#profile'), submittable = false;
+		
+		 // 비밀번호 패턴 체크 (8자 이상, 문자, 숫자, 특수문자 포함여부 체크)
+		function checkPasswordPattern(str) {
+			var pattern1 = /[0-9]/; // 숫자 
+			var pattern2 = /[a-zA-Z]/; // 문자 
+			var pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자 
+			if (!pattern1.test(str) || !pattern2.test(str)
+					|| !pattern3.test(str) || str.length < 8) {
+				alert("비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성하여야 합니다.");
+				return false;
+			} else {
+				return true;
+			}
+		}
+		$("#submit").click(function (){ return checkPasswordPattern($password.val()); })
+		$profileInput.change(function (){
+			fileUpload('join/upload', $profileInput[0].files, function(json) { $profile.val(json.result) })
+		});
 
 		$profileInput.change(function() {
 			fileUpload('join/upload', $profileInput[0].files, function(json) {

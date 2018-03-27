@@ -328,8 +328,16 @@
 
 </div>
 	<script>
-	st = $(this).scrollTop()/2
-		$(window).scroll(function(){if(st < 500) $('.parallex').css('top',st)})
+	/* st = $(this).scrollTop()/2
+		$(window).scroll(function(){if(st < 500) $('.parallex').css('top',st)}) */
+		
+		 var window = $(window);
+
+	    $(window).scroll(function () {
+	        if ($(window).scrollTop()/2 < 500) {
+	            $('.parallex').css('top', $(window).scrollTop() / 2);
+	        } //if
+	    });
 	</script>
 </body>
 </html>

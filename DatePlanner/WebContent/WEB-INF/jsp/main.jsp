@@ -12,6 +12,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>DatePlanner</title>
 	<style>
+	 	#search_wrap{
+            position: relative;
+            padding-bottom: 50px;
+        }
+
+        #search_box{
+            width: 95%;
+            position: absolute;
+            display: inline-block;
+        }
+
+        .input-group-btn{
+            width: 5%;
+            float: right;
+        }
+        
 		#list_view {
 			width: 70%; 
 			padding-right: 5%;
@@ -124,6 +140,17 @@
 <body>
 	<jsp:include page="include/nav.jsp" flush="false"/>
 	<div class="container">
+	<form action="/">
+        <div id="search_wrap" class="form-group">
+            <div id="search_box">
+                <input type="text" class="form-control" name="title" placeholder="게시글 검색">
+            </div>
+
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </form>
 		<div id="list_view">
 			<c:choose>
 				<c:when test="${empty postList}">
