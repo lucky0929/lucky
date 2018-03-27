@@ -29,6 +29,8 @@
 <!-- 	</mvc:interceptor> -->
 	<mvc:interceptor>
 	  <mvc:mapping path="/user/mypage/**"/>
+	  <mvc:mapping path="/user/updateForm"/>
+	  <mvc:mapping path="/user/update"/>
 	  <mvc:mapping path="/package/**"/>
 	  <mvc:mapping path="/post/write/**"/>
 	  <mvc:mapping path="/post/write"/>

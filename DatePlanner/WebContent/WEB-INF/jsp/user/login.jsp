@@ -14,13 +14,11 @@
         #login_box{
             text-align: center;
         }
-
         #id{
             font-size: large;
             height: 50px;
             width: 50%;
         }
-
         #password{
             font-size: large;
             height: 50px;
@@ -42,17 +40,12 @@
                     <input type="password" name="password" id="password" placeholder="비밀번호" required>
 
                     <div style="padding-top: 15px">
-                        <button id="but" class="btn btn-info" style="width: 50%; height: 50px">로그인</button>
+                        <button class="btn btn-info" style="width: 50%; height: 50px">로그인</button>
                     </div>
                 </form>
                 <a href="../user/join"><button class="btn btn-info" style="width: 50%; height: 50px">회원가입</button></a>
             </div>
-<!-- 
-            <div id="api_login" style="text-align: center; padding-top: 15px">
-                <a href="/user/facebook.do"><img src="/user/img/facebook.png"></a>
-            </div> -->
         </div>
-
     </div>
 </div>
 
@@ -60,7 +53,7 @@
 <script src="../js/sha512.js"></script>
 <script>
     var $password = $('#password');
-    $('#but').submit(function(e) { $password.val(sha512($password.val())); });
+    $('#loginForm').submit(function(e) { $password.val(sha512($password.val())); }); /* 비밀번호 암호화 */
 </script>
 
 </body>

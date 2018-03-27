@@ -92,9 +92,7 @@
 				$profile.val(json.result)
 			})
 		});
-		$('#joinForm').submit(function(e) {
-			$password.val(sha512($password.val()))
-		});
+		$('#joinForm').submit(function(e) { $password.val(sha512($password.val())) });
 	</script>
 </body>
 </html>

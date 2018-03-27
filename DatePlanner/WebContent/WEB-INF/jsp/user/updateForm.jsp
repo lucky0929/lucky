@@ -86,7 +86,7 @@ select {
 							</tr>
 							<tr>
 								<td>비밀번호 :</td>
-								<td><input id="password" name="password" type="password"
+								<td><input id="password" name="key" type="password"
 									required></td>
 							</tr>
 							<tr>
