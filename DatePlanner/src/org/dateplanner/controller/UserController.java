@@ -105,11 +105,12 @@ public class UserController {
 	      return "redirect:mypage";
 	}
 
-	@RequestMapping(value="updateForm")
+	@RequestMapping("updateForm")
 	   public String update(HttpSession session,Model model){
 		User user = (User)session.getAttribute("loginInfo");
 		model.addAttribute("user",userService.selectUser(user.getNo()));
-	      return "updateForm";
+		System.out.println("updateForm");
+	      return "user/updateForm";
 	}
 	
 	@RequestMapping("delete")

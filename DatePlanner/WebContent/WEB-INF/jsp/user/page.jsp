@@ -37,7 +37,6 @@
 		
 		#nameBox {
 		   display: inline-table;
-		   color: white;
 		   margin-bottom: -50px;
 		}
 		
@@ -143,6 +142,13 @@
             <p id="region">주활동지역 : ${userInfo.regionNo }</p>
          </div> <!-- id="nameBox" -->
       </div> <!-- id="profile_H -->
+      
+      <c:if test="${mypage}">
+      <div>
+      <a href="/user/updateForm"><button class="btn btn-warning">개인정보 수정</button></a>
+      </div>
+      </c:if>
+      
 
       <div class="myContent">
      <c:choose>
