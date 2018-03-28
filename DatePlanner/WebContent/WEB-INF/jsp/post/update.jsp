@@ -96,7 +96,7 @@
 				</tr>
 				<tr>
 					<td colspan="4" style="text-align: right">
-						<button>수정하기</button>
+						<button class="btn btn-warning">수정하기</button>
 					</td>
 				</tr>
 			</table>
