@@ -18,7 +18,7 @@
 
   <select id="selectByBoardNo" parameterType="int" resultType="Comment">
 	SELECT
-      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, u.no 'user.no', u.nickname 'user.nickname'
+      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, u.no 'user.no', u.nickname 'user.nickname', u.profile 'user.profile'
     FROM
       comments c
     JOIN

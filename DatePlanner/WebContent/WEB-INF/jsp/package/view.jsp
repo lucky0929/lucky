@@ -288,7 +288,7 @@
                 <c:forEach var="comment" items="${comment}">
                     <div class="comment_box" <c:if test="${comment.orderNo != 0}">style="background:wheat"></c:if>>
                     <div class="user_info" style="padding-left: 10px">
-                        <div class="profile"><img src="/user/img/${loginInfo.profileWithDefault}"></div>
+                        <div class="profile"><a href="/user/page/${comment.user.no}"><img src="/user/img/${comment.user.profileWithDefault}"/></a></div>
                         <div class="nickname"><span>${comment.user.nickname}</span></div>
                     </div>
 
@@ -304,7 +304,7 @@
                                 <input type="hidden" name="boardNo" value="${pack.post.no}"/>
                                 <input type="hidden" name="orderNo" value="${comment.orderNo}"/>
                                 <input type="hidden" name="no" value="${comment.no}"/>
-                                <button type="submit" class=" btn btn-default">삭제</button>
+                                <button type="submit" class="btn btn-default">삭제</button>
                             </form>
 
                             <div class="update">

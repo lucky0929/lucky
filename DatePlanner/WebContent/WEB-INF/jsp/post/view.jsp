@@ -270,7 +270,7 @@
         <div>
             <div id="comment_write">
                 <div id="profile">
-                    <a href="user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" style="width: 50px; height: 50px; float: left;"></a>
+                    <a href="/user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" style="width: 50px; height: 50px; float: left;"></a>
                     <span style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
                 </div>
                 <form action="../commentInsert">
@@ -284,7 +284,7 @@
                 <c:forEach var="comment" items="${comment}">
                     <div class="comment_box" <c:if test="${comment.orderNo != 0}">style="background:wheat"></c:if>>
                     <div class="user_info" style="padding-left: 10px">
-                        <div class="profile"><img src="/user/img/${loginInfo.profileWithDefault}"></div>
+                        <div class="profile"><a href="/user/page/${comment.user.no}"><img src="/user/img/${comment.user.profileWithDefault}"></a></div>
                         <div class="nickname"><span>${comment.user.nickname}</span></div>
                     </div>
 

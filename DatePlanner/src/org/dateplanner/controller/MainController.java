@@ -32,7 +32,6 @@ public class MainController {
 		User user;
 		if((user = (User)session.getAttribute("loginInfo")) != null) {
 			model.addObject("loginInfo",user);
-			if(user.getProfile()!=null) user.setProfile("default.png");
 		}
 		model.addObject("postList", title==null ? postService.selectByRegionWithPage(regionNo, page) : postService.selectByTitleAndRegionWithPage(title, page));
 		model.addObject("regionNo", regionNo);

@@ -135,7 +135,7 @@
    <div class="first container">
       <div id="profile_H">
          <div id="profile">
-            <img src="/post/img/"${userInfo.profile} style="width: 100%; height: 100%;">
+            <img src="/user/img/${userInfo.profileWithDefault}" style="width: 100%; height: 100%;">
          </div>
 
          <div id="nameBox">
@@ -151,7 +151,7 @@
       </div>
       </c:if>
 
-      <div class="myContent">
+     <div class="myContent">
      <c:choose>
         <c:when test="${empty postList}">
          <div><span>글이 없습니다.</span></div>
@@ -190,7 +190,7 @@
            </ul>
          </c:otherwise>
      </c:choose>
-      </div> <!-- class="myContent -->
+     </div> <!-- class="myContent -->
    </div> <!-- class="first container" --> 
 </body>
 </html>

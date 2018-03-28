@@ -88,10 +88,11 @@ public class UserController {
 	
 	@RequestMapping("update")
 	public String update(@ModelAttribute User user, HttpSession session) {
-		System.out.println(user);
 		User sessionUser = (User)session.getAttribute("loginInfo");
-		user.setNo(sessionUser.getNo());
+		int userNo = sessionUser.getNo();
+		user.setNo(userNo);
 		userService.update(user);
+		session.setAttribute("loginInfo", userService.selectUser(userNo));
 		return "redirect:mypage";
 	}
 

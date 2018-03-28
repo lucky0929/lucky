@@ -30,7 +30,7 @@ public class User {
 	public Character getPlatform() { return platform; }
 	public String getNickname() { return nickname; }
 	public String getProfile() { return profile; }
-	public String getProfileWithDefault() { return profile == null || profile.isEmpty() ? "default.jpg" : profile; }
+	public String getProfileWithDefault() { return profile == null || profile.isEmpty() ? "default.png" : profile; }
 	public Integer getRegionNo() { return regionNo; }
 	public String getRegion() { return Region.LIST.get(regionNo); }
 	public String getIntroduction() { return introduction; }
