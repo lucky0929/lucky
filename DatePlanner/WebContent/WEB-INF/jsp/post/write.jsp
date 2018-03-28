@@ -90,7 +90,7 @@
 							</c:forEach>
 						</select>
 					</td>
-					<td>페키지 가능 여부</td><td><input type="checkbox" name="packageable"></td>
+					<td>패키지 가능 여부</td><td><input type="checkbox" name="packageable"></td>
 				</tr>
 			</table>
 				<input type="submit" class="button" value="글쓰기" />
