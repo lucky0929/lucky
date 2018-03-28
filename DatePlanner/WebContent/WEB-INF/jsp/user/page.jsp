@@ -132,7 +132,8 @@
 <body>
  <jsp:include page="../include/nav.jsp" />
 
-   <div class="first container">
+<div class="jumbotron">
+<div class="first container">
       <div id="profile_H">
          <div id="profile">
             <img src="/user/img/${userInfo.profile}" style="width: 100%; height: 100%;">
@@ -192,5 +193,7 @@
      </c:choose>
       </div> <!-- class="myContent -->
    </div> <!-- class="first container" --> 
+</div>
+   
 </body>
 </html>
