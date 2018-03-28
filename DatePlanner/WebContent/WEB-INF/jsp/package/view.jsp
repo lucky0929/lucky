@@ -197,14 +197,14 @@
 	</style>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" data-spy="affix">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="../">DatePlanner</a>
         </div>
         <c:choose>
             <c:when test="${empty loginInfo}">
-                <ul class="nav navbar-nav navbar-right" data-spy="affix">
+                <ul class="nav navbar-nav navbar-right" >
 
                     <li><a href="../user/join"><span
                             class="glyphicon glyphicon-user"></span>회원가입</a></li>
