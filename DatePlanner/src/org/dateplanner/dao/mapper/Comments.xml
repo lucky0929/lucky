@@ -54,7 +54,7 @@
   <delete id="commentDelete" parameterType="Comment">
     DELETE FROM comments
     WHERE
-  	  no = #{no}
+  	  `no` = #{no}
   </delete>
   
   <delete id="reCommentDelete" parameterType="Comment">
@@ -62,6 +62,6 @@
     WHERE
       `order` = #{orderNo}
   	  AND
-  	  no = #{no}
+  	  `no` = #{no}
   </delete>
 </mapper>

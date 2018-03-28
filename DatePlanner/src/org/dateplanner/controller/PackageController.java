@@ -88,7 +88,6 @@ public class PackageController {
 		User user = (User)session.getAttribute("loginInfo");
 		params.put("boardNo", no);
 		params.put("userNo",user.getNo());
-		System.out.println(commentService.selectByBoardNo(no, page));
 		model.addObject("userNo" , user.getNo());
 		model.addObject("pack", packageService.selectPackage(no));
 		model.addObject("profile", user.getProfile());

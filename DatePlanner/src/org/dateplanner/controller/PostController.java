@@ -62,7 +62,6 @@ public class PostController {
 	
 	@RequestMapping(path = "doUpdate", params = { "title", "content", "files", "no", "image" })
 	public String doUpdate(@ModelAttribute Post post) {
-		System.out.println(post);
 		post.setPackageable(post.getPackageable() != null);
 		postService.update(post);
 		return "redirect:view/"+post.getNo();
@@ -80,7 +79,6 @@ public class PostController {
 		User user = (User)session.getAttribute("loginInfo");
 		params.put("boardNo", no);
 		params.put("userNo",user.getNo());
-		System.out.println(commentService.selectByBoardNo(no, page));
 		model.addObject("userNo" , user.getNo());
 		model.addObject("post"   , postService.selectOne(no));
 		model.addObject("profile", user.getProfile());

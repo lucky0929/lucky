@@ -117,9 +117,6 @@ public class UserController {
 		if(user.getNo() == no){
 			model.addObject("mypage", true);
 		}
-		String a="22";
-		String b="22";
-		System.out.println(a==b);
 		user = userService.selectUser(no);
 		if(no == null) return new RedirectWithAlert("유저정보 페이지 - DatePlanner", "유저를 찾을수 없습니다", "../../");
 		
