@@ -152,9 +152,43 @@
             width: 100%;
         }
 
-        .reply_btn{
+         .reply_btn{
             text-align: right;
-            padding-right: 10px;
+            width: 50%;
+            padding: 10px;
+            float: right;
+            display: inline-block;
+        }
+
+        .reply_btn input{
+            width: 80%;
+        }
+
+        .update{
+            text-align: right;
+            float: right;
+            width: 85%;
+            padding: 10px;
+            display: inline-block;
+        }
+
+        .delete{
+            text-align: right;
+            float: right;
+            padding: 10px;
+            display: inline-block;
+        }
+
+
+        .update input{
+            width: 75%;
+        }
+
+        .comment_control{
+            text-align: right;
+            width: 50%;
+            float: right;
+            display: inline-block;
         }
         
         #my_post{
@@ -238,62 +272,71 @@
 	    </div>
 	</c:if>
 	<div class="container" style="padding: 0">
-	    <div class="jumbotron" style="float: left; width: 100%;">
-	        <div>
-	            <div id="comment_write">
-	                <div id="profile">
-	                    <a href="user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" style="width: 50px; height: 50px; float: left;"></a>
-	                    <span style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
-	                </div>
-	                <form action="../commentInsert">
-	                    <input type="hidden" name="boardNo" value="${post.no}">
-	                    <textarea class="form-control" name="content" placeholder="댓글을 입력해주세요" style="min-height: 150px; height: auto; resize: none"></textarea>
-	                    <button type="submit" class="btn btn-default" style="float: right">입력!</button>
-	                </form>
-	            </div>
-	
-	            <div id="comment_wrap" style="float: left; width: 100%">
-	              	<c:forEach var="comment" items="${comment}">
-	                   <div class="comment_box" <c:if test="${comment.orderNo != 0}">style="background:wheat"></c:if>> 
-	                       <div class="user_info" style="padding-left: 10px">
-	                          <div class="profile"><img src="/user/img/${loginInfo.profileWithDefault}"></div>
-	                          <div class="nickname"><span>${comment.user.nickname}</span></div>
-	                    	</div>
-	                    	
-	                       <div class="comment_content" style="padding-left: 10px">
-	                           <div class="comment"><span>${comment.content}</span></div>
-	                           <div class="write_date"><span>${comment.regdate}</span></div>
-	                       </div>
-	                       <div class="reply_btn">
-	                       	<c:if test="${comment.orderNo == 0}"> <!-- 대댓글일경우 -->
-	                            <form action="../reCommentInsert">
-	                            	<input type="hidden" name="no" value="${comment.no}"/>
-	                            	<input type="hidden" name="boardNo" value="${post.no}"/>
-	                                <input type="text" name="content" placeholder="답글달기"/>
-	                                <button type="submit" class=" btn btn-default">답글달기</button>
-	                            </form>
-	                           </c:if>
-	                           <c:if test="${userNo eq comment.user.no}">
-	                            <form action="../commentDelete">
-	                            	<input type="hidden" name="boardNo" value="${post.no}"/>
-	                            	<input type="hidden" name="orderNo" value="${comment.orderNo}"/>
-	                            	<input type="hidden" name="no" value="${comment.no}"/>
-	                                <button type="submit" class=" btn btn-default">삭제</button>
-	                            </form>
-	                            <form action="../commentUpdate">
-	                            	<input type="hidden" name="orderNo" value="${comment.orderNo}"/>
-	                            	<input type="hidden" name="no" value="${comment.no}"/>
-	                            	<input type="hidden" name="boardNo" value="${post.no}"/>
-	                                <input type="text" name="content" placeholder="수정할 내용"/>
-	                                <button type="submit" class=" btn btn-default">수정하기</button>
-	                            </form>
-	                           </c:if>
-	                       </div>
-	                   </div>
-	             </c:forEach>
-	          </div>
-	       </div>
-	    </div>
+    <div class="jumbotron" style="float: left; width: 100%;">
+        <div>
+            <div id="comment_write">
+                <div id="profile">
+                    <a href="user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" style="width: 50px; height: 50px; float: left;"></a>
+                    <span style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
+                </div>
+                <form action="../commentInsert">
+                    <input type="hidden" name="boardNo" value="${post.no}">
+                    <textarea class="form-control" name="content" placeholder="댓글을 입력해주세요" style="min-height: 150px; height: auto; resize: none"></textarea>
+                    <button type="submit" class="btn btn-default" style="float: right">입력!</button>
+                </form>
+            </div>
+
+            <div id="comment_wrap" style="float: left; width: 100%">
+                <c:forEach var="comment" items="${comment}">
+                    <div class="comment_box" <c:if test="${comment.orderNo != 0}">style="background:wheat"></c:if>>
+                    <div class="user_info" style="padding-left: 10px">
+                        <div class="profile"><img src="/user/img/${loginInfo.profileWithDefault}"></div>
+                        <div class="nickname"><span>${comment.user.nickname}</span></div>
+                    </div>
+
+                    <div class="comment_content" style="padding-left: 10px">
+                        <div class="comment"><span>${comment.content}</span></div>
+                        <div class="write_date"><span>${comment.regdate}</span></div>
+                    </div>
+
+                    <div class="comment_control">
+                        <c:if test="${userNo eq comment.user.no}">
+
+                            <form class="delete" action="../commentDelete">
+                                <input type="hidden" name="boardNo" value="${post.no}"/>
+                                <input type="hidden" name="orderNo" value="${comment.orderNo}"/>
+                                <input type="hidden" name="no" value="${comment.no}"/>
+                                <button type="submit" class=" btn btn-default">삭제</button>
+                            </form>
+
+                            <div class="update">
+                            <form  action="../commentUpdate">
+                                <input type="hidden" name="orderNo" value="${comment.orderNo}"/>
+                                <input type="hidden" name="no" value="${comment.no}"/>
+                                <input type="hidden" name="boardNo" value="${post.no}"/>
+                                <input type="text" name="content" placeholder="수정할 내용"/>
+                                <button type="submit" class=" btn btn-default">수정하기</button>
+                            </form>
+                        </div>
+                        </c:if>
+                    </div>
+
+                    <div class="reply_btn">
+                        <c:if test="${comment.orderNo == 0}"> <!-- 대댓글일경우 -->
+                            <form action="../reCommentInsert">
+                                <input type="hidden" name="no" value="${comment.no}"/>
+                                <input type="hidden" name="boardNo" value="${post.no}"/>
+                                <input type="text" name="content" placeholder="답글달기"/>
+                                <button type="submit" class=" btn btn-default">답글달기</button>
+                            </form>
+                        </c:if>
+                    </div>
+            </div>
+            </c:forEach>
+            <!--대댓글 처리하기-->
+        </div>
+    </div>
+</div>
 	</div>
 
 	<ul class="pagination">
