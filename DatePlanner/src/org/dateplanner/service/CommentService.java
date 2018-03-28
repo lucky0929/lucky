@@ -19,7 +19,7 @@ public class CommentService {
 	public List<Comment> selectByBoardNo(int no, Page page){ return commentDAO.selectByBoardNo(no, page.initTotal(commentDAO.selectCount(no))); }
 	public void updateCommtent(Comment comment){ commentDAO.update(comment); }
 	public void deleteComment(Comment comment) {
-		if(comment.getNo()==0) 
+		if(comment.getOrderNo()==0) 
 			 { commentDAO.commentDelete(comment); } 
 		else { commentDAO.reCommentDelete(comment);}
 		 
