@@ -17,8 +17,6 @@ public class Post {
 	private int regionNo;
 	private Boolean packageable;
 	private Timestamp regdate;
-	private Double lat;
-	private Double lng;
 	private int like;
 	private int comments;
 	
@@ -36,8 +34,6 @@ public class Post {
 	public Timestamp getRegdate() { return regdate; }
 	public String getFormattedRegdate() { return DATE_FORMAT.format(regdate); }
 	public String getFormattedRegdate(Timestamp regdate) { return DATE_FORMAT.format(regdate); }
-	public Double getLat() { return lat; }
-	public Double getLng() { return lng; }
 	public int getLike() { return like; }
 	public int getComments() { return comments; }
 	public void setNo(int no) { this.no = no; }
@@ -48,16 +44,14 @@ public class Post {
 	public void setRegionNo(int regionNo) { this.regionNo = regionNo; }
 	public void setPackageable(Boolean packageable) { this.packageable = packageable; }
 	public void setRegdate(Timestamp regdate) { this.regdate = regdate; }
-	public void setLat(Double lat) { this.lat = lat; }
-	public void setLng(Double lng) { this.lng = lng; }
 	public void setLike(int like) { this.like = like; }
 	public void setComments(int comments) { this.comments = comments; }
 	
 	@Override
 	public String toString() {
 		return "Post [no=" + no + ", title=" + title + ", content=" + content + ", image=" + image + ", user=" + user
-				+ ", regionNo=" + regionNo + ", packageable=" + packageable + ", regdate=" + regdate + ", lat=" + lat
-				+ ", lng=" + lng + ", like=" + like + ", comments=" + comments + "]";
+				+ ", regionNo=" + regionNo + ", packageable=" + packageable + ", regdate=" + regdate + ","
+						+ ", like=" + like + ", comments=" + comments + "]";
 	}
 	
 } //class Post;
@@ -69,8 +63,6 @@ public class Post {
 	  `title` varchar(150) NOT NULL,
 	  `content` text NOT NULL,
 	  `image` char(37) NOT NULL,
-	  `lat` double DEFAULT NULL,
-	  `lng` double DEFAULT NULL,
 	  `user_no` int(10) NOT NULL,
 	  `region_no` int(2) NOT NULL,
 	  `packageable` tinyint(1) DEFAULT NULL,

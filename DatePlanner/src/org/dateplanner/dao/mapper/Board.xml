@@ -4,9 +4,9 @@
   
   <insert id="insertPost" parameterType="Post">
 	INSERT INTO
-	  board(title, content, image, lat, lng, user_no, region_no, packageable)
+	  board(title, content, image, user_no, region_no, packageable)
 	VALUES
-	  (#{title}, #{content}, #{image}, #{lat}, #{lng}, #{user.no}, #{regionNo}, #{packageable})
+	  (#{title}, #{content}, #{image}, #{user.no}, #{regionNo}, #{packageable})
   </insert>
   
   <insert id="insertPackage" parameterType="Post" keyProperty="no" useGeneratedKeys="true">
@@ -58,7 +58,7 @@
   
   <select id="selectByNo" parameterType="int" resultType="Post">
 	SELECT
-	  b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
+	  b.no, title, content, image, user_no, b.region_no regionNo, packageable, b.regdate,
 	  u.no 'user.no', nickname 'user.nickname'
 	FROM
 	  board b
@@ -72,7 +72,7 @@
   
   <select id="selectPackageable" parameterType="int" resultType="Post">
 	SELECT
-	  no, title, content, image, lat, lng, user_no 'user.no', region_no regionNo, packageable, regdate, 
+	  no, title, content, image, user_no 'user.no', region_no regionNo, packageable, regdate, 
 	  (SELECT COUNT(no) from `like` where board_no = board.no) 'like'
 	FROM
 	  board
@@ -84,7 +84,7 @@
   
   <select id="selectByUserNoWithPage" parameterType="int" resultType="Post">
 	SELECT
-	  b.no, title, content, image, lat, lng, user_no, b.region_no regionNo, packageable, b.regdate,
+	  b.no, title, content, image, user_no, b.region_no regionNo, packageable, b.regdate,
 	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like', (SELECT COUNT(*) from comments where board_no = b.no) comments
 	FROM
 	  board b
@@ -100,7 +100,7 @@
   
   <select id="selectByTitleAndRegionWithPage" resultType="Post">
 	SELECT
-	  b.no 'no', title, content, image, lat, lng, b.user_no userNo, b.region_no regionNo, packageable, b.regdate regdate,
+	  b.no 'no', title, content, image, b.user_no userNo, b.region_no regionNo, packageable, b.regdate regdate,
 	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like'
 	FROM
 	  board b
@@ -116,7 +116,7 @@
   
   <select id="selectByRegionWithPage" resultType="Post">
 	SELECT
-	  b.no, title, content, image, lat, lng, b.user_no, b.region_no regionNo, packageable, b.regdate,
+	  b.no, title, content, image, b.user_no, b.region_no regionNo, packageable, b.regdate,
 	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like'
 	FROM
 	  board b

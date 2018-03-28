@@ -13,7 +13,7 @@
   
   <select id="selectPackage" parameterType="int" resultType="Post">
 	SELECT
-	  b.no no, title, content, image, lat, lng, user_no userNo, b.region_no regtionNo, packageable, b.regdate regdate,
+	  b.no no, title, content, image, user_no userNo, b.region_no regtionNo, packageable, b.regdate regdate,
 	  u.no 'user.no', u.nickname 'user.nickname'
 	FROM
 	  board b
