@@ -123,6 +123,10 @@
 		   padding-right: 3px;
 		   font-size: 1.3em;
 		}
+		
+		#update{
+			text-align: right;
+		}
 	</style>
 </head>
 <body>
@@ -137,12 +141,12 @@
          <div id="nameBox">
             <span id="name">${userInfo.name }</span> <span id="nickname">(${userInfo.nickname })</span>
             <p id="intro">${userInfo.introduction }</p>
-            <p id="region">주활동지역 : ${userInfo.regionNo}</p>
+            <p id="region">주활동지역 : ${userInfo.region}</p>
          </div> <!-- id="nameBox" -->
       </div> <!-- id="profile_H -->
       
       <c:if test="${mypage}">
-      <div>
+      <div id="update">
       <a href="/user/updateForm"><button class="btn btn-warning">개인정보 수정</button></a>
       </div>
       </c:if>
