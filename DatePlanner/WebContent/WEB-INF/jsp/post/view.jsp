@@ -200,14 +200,14 @@
 	</style>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" data-spy="affix">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="../">DatePlanner</a>
         </div>
         <c:choose>
             <c:when test="${empty loginInfo}">
-                <ul class="nav navbar-nav navbar-right" data-spy="affix">
+                <ul class="nav navbar-nav navbar-right" >
 
                     <li><a href="../user/join"><span
                             class="glyphicon glyphicon-user"></span>회원가입</a></li>
@@ -284,7 +284,7 @@
                 <c:forEach var="comment" items="${comment}">
                     <div class="comment_box" <c:if test="${comment.orderNo != 0}">style="background:wheat"></c:if>>
                     <div class="user_info" style="padding-left: 10px">
-                        <div class="profile"><a href="/user/page/${comment.user.no}"><img src="/user/img/${comment.user.profileWithDefault}"></a></div>
+                        <div class="profile"><a style="display: inline-block;" href="/user/page/${comment.user.no}"><img src="/user/img/${comment.user.profileWithDefault}"></a></div>
                         <div class="nickname"><span>${comment.user.nickname}</span></div>
                     </div>
 
