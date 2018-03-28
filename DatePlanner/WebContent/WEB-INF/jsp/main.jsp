@@ -129,6 +129,7 @@
 		}
 	    .pagination {
 	     	text-align: center;
+	     	padding-left: 50%
 	    }
 		#selected {
 			background-color: gray;
