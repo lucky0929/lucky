@@ -42,6 +42,26 @@
 		    background: center;
 		    border: 3px solid gray;
 		}
+		table{
+            width: 100%;
+        }
+
+        input{
+            width: 100%;
+        }
+
+        .jumbotron table{
+            font-size: 18px;
+        }
+
+        table tr td{
+            padding: 10px;
+        }
+
+        ul{
+            list-style: none;
+        }
+		
 	</style>
 </head>
 <body>
@@ -50,14 +70,14 @@
 	<div class="container">
 		<form action="doWrite" method="POST">
 			<table border="1" style="width: 100%; border-collapse: collapse">
-				<tr><td>제목</td><td><input name="title" size="50" placeholder="제목"></td></tr>
+				<tr><td>제목</td><td colspan="3"><input name="title" size="50" placeholder="제목"></td></tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea id="summernote" name="content" required></textarea></td>
+					<td colspan="3"><textarea id="summernote" name="content" required></textarea></td>
 				</tr>
 				<tr>
 					<td>게시글 배경사진</td>
-					<td><input id="imageInput" type="file"> <input id="image" type="hidden" name="image" readonly /></td>
+					<td colspan="3"><input id="imageInput" type="file"> <input id="image" type="hidden" name="image" readonly /></td>
 				</tr>
 					
 				<tr>
@@ -70,7 +90,7 @@
 							</c:forEach>
 						</select>
 					</td>
-					<td >페키지 가능 여부</td><td><input type="checkbox" name="packageable"></td>
+					<td>페키지 가능 여부</td><td><input type="checkbox" name="packageable"></td>
 				</tr>
 			</table>
 				<input type="submit" class="button" value="글쓰기" />
