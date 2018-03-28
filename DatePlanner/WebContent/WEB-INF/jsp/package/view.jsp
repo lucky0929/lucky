@@ -27,7 +27,7 @@
         .parallex{
             position: relative;
             height: 718px;
-            background-image: url("/post/img/${post.image}");
+            background-image: url("/package/img/${pack.post.image}");
             background-position: center;
             background-repeat: no-repeat;
             background-color: dimgray;
