@@ -274,7 +274,7 @@
         <div>
             <div id="comment_write">
                 <div id="profile">
-                    <a href="user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" style="width: 50px; height: 50px; float: left;"></a>
+                    <a href="/user/mypage"><img src="/user/img/${loginInfo.profileWithDefault}" style="width: 50px; height: 50px; float: left;"></a>
                     <span style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
                 </div>
                 <form action="../commentInsert">
