@@ -102,11 +102,11 @@
 		}
 		$("#submit").click(function (){ return checkPasswordPattern($password.val()); })
 		$profileInput.change(function (){
-			fileUpload('join/upload', $profileInput[0].files, function(json) { $profile.val(json.result) })
+			fileUpload('img/upload', $profileInput[0].files, function(json) { $profile.val(json.result) })
 		});
 
 		$profileInput.change(function() {
-			fileUpload('join/upload', $profileInput[0].files, function(json) {
+			fileUpload('img/upload', $profileInput[0].files, function(json) {
 				$profile.val(json.result)
 			})
 		});

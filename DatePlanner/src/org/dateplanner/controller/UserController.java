@@ -38,7 +38,10 @@ public class UserController {
 	
 	@RequestMapping(path = "doJoin", params = { "id", "password", "name", "nickname", "regionNo", "profile", "introduction" })
 	public ModelAndView doJoin(@ModelAttribute User user, String password) {
-		
+		System.out.println(user.getProfile());
+		System.out.println(user.getProfile());
+		System.out.println(user.getProfile());
+		System.out.println(user.getProfile());
 		user.setKey(password);
 		
 		RedirectWithAlert redirect = new RedirectWithAlert("회원가입 - DatePlanner");
