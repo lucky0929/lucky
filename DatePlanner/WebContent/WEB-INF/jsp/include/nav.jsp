@@ -19,7 +19,7 @@
             </c:when>
             <c:otherwise>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="user/mypage"><span
+                    <li><a href="/user/mypage"><span
                             class="glyphicon glyphicon-user"></span><strong>${loginInfo.nickname}</strong>로
                         로그인중</a></li>
                     <li><a href="../../user/logout">로그아웃</a></li>
