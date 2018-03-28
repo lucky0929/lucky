@@ -226,7 +226,7 @@
                 </ul>
             </c:otherwise>
 
-        </c:choose>
+        </c:choose> 
 
     </div>
 </nav>
