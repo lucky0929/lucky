@@ -13,7 +13,6 @@ public class User {
 	private String id;
 	private String name;
 	private String key;
-	private Character platform;
 	private String nickname;
 	private String profile;
 	private Integer regionNo;
@@ -27,7 +26,6 @@ public class User {
 	public String getId() { return id; }
 	public String getName() { return name; }
 	public String getKey() { return key; }
-	public Character getPlatform() { return platform; }
 	public String getNickname() { return nickname; }
 	public String getProfile() { return profile; }
 	public String getProfileWithDefault() { return profile == null || profile.isEmpty() ? "default.png" : profile; }
@@ -40,7 +38,6 @@ public class User {
 	public void setId(String id) { this.id = id; }
 	public void setName(String name) { this.name = name; }
 	public void setKey(String key) { this.key = key; }
-	public void setPlatform(Character platform) { this.platform = platform; }
 	public void setNickname(String nickname) { this.nickname = nickname; }
 	public void setProfile(String profile) { this.profile = profile; }
 	public void setRegionNo(Integer regionNo) { this.regionNo = regionNo; }
@@ -49,7 +46,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [no=" + no + ", id=" + id + ", name=" + name + ", key=" + key + ", platform=" + platform
+		return "User [no=" + no + ", id=" + id + ", name=" + name + ", key=" + key
 				+ ", nickname=" + nickname + ", profile=" + profile + ", regionNo=" + regionNo
 				+ ", introduction=" + introduction + ", regdate=" + regdate + "]";
 	} //toString();
@@ -61,7 +58,6 @@ public class User {
 		  `id` varchar(30) DEFAULT NULL,
 		  `name` varchar(30) DEFAULT NULL,
 		  `key` varchar(128) NOT NULL,
-		  `platform` char(1) DEFAULT NULL,
 		  `nickname` varchar(45) NOT NULL,
 		  `profile` varchar(128) DEFAULT NULL,
 		  `region_no` int(2) DEFAULT NULL,

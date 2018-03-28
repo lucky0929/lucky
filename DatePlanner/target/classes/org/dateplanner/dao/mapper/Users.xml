@@ -17,30 +17,24 @@
 	FROM
 	  users
 	WHERE
-	  platform IS NULL
-	AND
 	  id = #{id}
   </select>
   
   <select id="selectByNo" parameterType="int" resultType="User">
 	SELECT
-	  no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction
+	  no, id, name, `key`, nickname, profile, region_no regionNo, introduction
 	FROM
 	  users
 	WHERE
-	  platform IS NULL
-	AND
 	  no = #{no}
   </select>
   
   <select id="selectById" parameterType="String" resultType="User">
 	SELECT
-	  no, id, name, `key`, platform, nickname, profile, region_no regionNo, introduction
+	  no, id, name, `key`, nickname, profile, region_no regionNo, introduction
 	FROM
 	  users
 	WHERE
-	  platform IS NULL
-	AND
 	  id = #{id}
   </select>
   
