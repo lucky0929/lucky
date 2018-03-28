@@ -95,7 +95,7 @@
 								<td>프로필 :</td>
 								<td><input id="profileInput" type="file"></td>
 							</tr>
-							<tr class="hidden" style="">
+							<tr>
 								<td>파일 주소 :</td>
 								<td colspan="2"><input id="profile" name="profile" readonly></td>
 							</tr>
