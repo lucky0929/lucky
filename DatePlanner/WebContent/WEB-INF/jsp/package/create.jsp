@@ -79,8 +79,8 @@
                     <tbody class="table table-condensed">
                     <tr><td>제목: </td><td><input name="title" required></td></tr>
                     <tr><td>내용: </td><td><input name="content" required></td></tr>
-                    <tr><td>파일 주소: </td><td><input id="image" name="image" readonly></td></tr>
-                    <tr><td>글 목록: </td><td><input id="placeList" name="placeList" readonly></td></tr>
+                    <tr class="hidden"><td>파일 주소: </td><td><input id="image" name="image" readonly></td></tr>
+                    <tr class="hidden"><td>글 목록: </td><td><input id="placeList" name="placeList" readonly></td></tr>
                     <tr><td>사진: </td><td><input id="imageInput" type="file"></td></tr>
                     <tr><td>선택됨</td><td>글목록</td></tr>
                     <tr>
