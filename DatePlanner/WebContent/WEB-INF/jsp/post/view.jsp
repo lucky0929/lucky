@@ -349,11 +349,16 @@ ul li {
 			$.ajax({
 				url:'/post/commentSelect',
 				type:'GET',
-				data:{p:p, no:${post.no}},
+				data:{p:p, boardNo:${post.no}},
 				success:function(data){
-					p+=1;
-					var jsonData = JSON.parse(data);
-					$("#moreTarget").append("<p>"+jsonData.content+"</p>");
+					if(data.length <= 0){
+						alert("댓글이 없습니다.");
+					} else {
+						p+=1;
+						 for (var i = 0; i < data.length; i++){
+							 $('#comment_wrap').append("<img src='/user/img/"+data[i].user.profileWithDefault +"'><p>"+ data[i].content+'</p>');
+						 }
+					}
 				},
 				error:function(textStatus, errorThrown){
                    alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");

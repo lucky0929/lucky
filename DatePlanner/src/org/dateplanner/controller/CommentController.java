@@ -2,7 +2,6 @@ package org.dateplanner.controller;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.dateplanner.service.CommentService;
@@ -24,6 +23,7 @@ public class CommentController {
 	
 	@RequestMapping("commentSelect")
 	public ResponseEntity<String> commentSelect(int boardNo, Integer p, HttpSession session) throws IOException {
+		System.out.println(boardNo+", "+p);
 		return JsonUtil.convertToResponseEntity(commentService.selectByBoardNo(boardNo ,new Page(5, 5, p)));
 	}
 	
