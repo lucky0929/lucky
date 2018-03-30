@@ -46,7 +46,15 @@ public class PostController {
 	@RequestMapping("img/upload/list")
 	public ResponseEntity<String> writeUploadList(MultipartHttpServletRequest request)
 			throws IOException { return JsonUtil.convertToResponseEntity(FileReceiver.receiveFiles(request, "/post/img/")); }
-			
+	
+//	@RequestMapping("test")
+//	public ResponseEntity<String> test(@RequestParam Integer num) throws IOException { 
+//		System.out.println("test 접근");
+//		return JsonUtil.convertToResponseEntity(postService.selectOne(num));
+//	}
+//	@RequestMapping("testInput")
+//	public String testInput(){ return "post/testInput"; }
+	
 	@RequestMapping(path = "doWrite", params = { "title", "content", "regionNo", "files" })
 	public String doWrite(HttpSession session, @ModelAttribute Post post) {
 		
@@ -71,7 +79,7 @@ public class PostController {
 	@RequestMapping("view/{no}")
 	public ModelAndView view(HttpSession session, @PathVariable int no, Integer r, @RequestParam(defaultValue = "1") int p) {
 		
-		Page page = new Page(4, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
+		Page page = new Page(5, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
 		
 		ModelAndView model = new ModelAndView("post/view");
 		
@@ -92,7 +100,8 @@ public class PostController {
 	} //view();
 	
 	@RequestMapping("like")
-	public String likeInsert(@RequestParam int boardNo, HttpSession session, HttpServletRequest req) {
+	public ResponseEntity<String> likeInsert(@RequestParam int boardNo, HttpSession session, HttpServletRequest req) 
+			throws IOException {
 		
 		User user = new User();
 		user = (User)session.getAttribute("loginInfo");
@@ -101,11 +110,14 @@ public class PostController {
 		params.put("boardNo", boardNo);
 		params.put("userNo", user.getNo());
 		
+		boolean result = false;
+		
 		if(likeService.userCheck(params) == 0)
-		     { likeService.insertLike(params); }
-		else { likeService.deleteLike(params); }
-		 	
-		return "redirect:/post/view/"+boardNo;
+		     { result = likeService.insertLike(params); }
+		else { result = likeService.deleteLike(params); }
+		
+		return JsonUtil.convertToResponseEntity(result);
+		
 	} //like()
 	
 	@RequestMapping("delete/{no}")

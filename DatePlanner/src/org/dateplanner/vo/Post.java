@@ -22,6 +22,7 @@ public class Post {
 	
 	public Post() {}
 	public Post(int no) { this.no = no; }
+	public Post(String title) { this.title = title; }
 	
 	public int getNo() { return no; }
 	public String getTitle() { return title; }
@@ -32,8 +33,8 @@ public class Post {
 	public String getRegion() { return Region.LIST.get(regionNo); }
 	public Boolean getPackageable() { return packageable; }
 	public Timestamp getRegdate() { return regdate; }
-	public String getFormattedRegdate() { return DATE_FORMAT.format(regdate); }
-	public String getFormattedRegdate(Timestamp regdate) { return DATE_FORMAT.format(regdate); }
+	public String getFormattedRegdate() { return regdate == null ? null : DATE_FORMAT.format(regdate); }
+	public String getFormattedRegdate(Timestamp regdate) { return regdate == null ? null : DATE_FORMAT.format(regdate); }
 	public int getLike() { return like; }
 	public int getComments() { return comments; }
 	public void setNo(int no) { this.no = no; }

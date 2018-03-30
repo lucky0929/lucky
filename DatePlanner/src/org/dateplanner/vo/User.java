@@ -30,10 +30,10 @@ public class User {
 	public String getProfile() { return profile; }
 	public String getProfileWithDefault() { return profile == null || profile.isEmpty() ? "default.png" : profile; }
 	public Integer getRegionNo() { return regionNo; }
-	public String getRegion() { return Region.LIST.get(regionNo); }
+	public String getRegion() { return regionNo == null ? null : Region.LIST.get(regionNo); }
 	public String getIntroduction() { return introduction; }
 	public Timestamp getRegdate() { return regdate; }
-	public String getFormattedRegdate() { return DATE_FORMAT.format(regdate); }
+	public String getFormattedRegdate() { return regdate == null ? null : DATE_FORMAT.format(regdate); }
 	public void setNo(int no) { this.no = no; }
 	public void setId(String id) { this.id = id; }
 	public void setName(String name) { this.name = name; }

@@ -14,7 +14,7 @@ public class LikeService {
 	
 	public int selectCount(int boardNo){ return likeDAO.selectCount(boardNo); }
 	public int userCheck(HashMap<String, Integer> params){ return likeDAO.userCheck(params); }
-	public void insertLike(HashMap<String, Integer> params){ likeDAO.insertLike(params); }
-	public void deleteLike(HashMap<String, Integer> params){ likeDAO.deleteLike(params); }
+	public boolean insertLike(HashMap<String, Integer> params){ return likeDAO.insertLike(params); }
+	public boolean deleteLike(HashMap<String, Integer> params){ return likeDAO.deleteLike(params); }
 
 }

@@ -14,14 +14,14 @@ public class CommentService {
 	@Autowired
 	CommentsDAO commentDAO;
 	
-	public void insertComment(Comment comment){ commentDAO.insertComment(comment); }
-	public void insertReply(Comment reply){ commentDAO.insertReply(reply); }
+	public boolean insertComment(Comment comment){ return commentDAO.insertComment(comment); }
+	public boolean insertReply(Comment reply){ return commentDAO.insertReply(reply); }
 	public List<Comment> selectByBoardNo(int no, Page page){ return commentDAO.selectByBoardNo(no, page.initTotal(commentDAO.selectCount(no))); }
-	public void updateCommtent(Comment comment){ commentDAO.update(comment); }
-	public void deleteComment(Comment comment) {
-		if(comment.getOrderNo()==0) 
-			 { commentDAO.commentDelete(comment); } 
-		else { commentDAO.reCommentDelete(comment);}
+	public boolean updateCommtent(Comment comment){ return commentDAO.update(comment); }
+	public boolean deleteComment(Comment comment) {
+		if(comment.getOrderNo() == 0) 
+			 { return commentDAO.commentDelete(comment); } 
+		else { return commentDAO.reCommentDelete(comment);}
 		 
 	}
 	

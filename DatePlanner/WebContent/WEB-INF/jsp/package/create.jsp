@@ -116,7 +116,6 @@
             </form>
         </div>
     </div>
-    </form>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="../js/FileUpload.js"></script>
     <script>
