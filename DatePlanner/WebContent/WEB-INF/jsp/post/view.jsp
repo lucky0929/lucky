@@ -356,7 +356,8 @@ ul li {
 					} else {
 						p+=1;
 						 for (var i = 0; i < data.length; i++){
-							 $('#comment_wrap').append("<img src='/user/img/"+data[i].user.profileWithDefault +"'><p>"+ data[i].content+'</p>');
+							 
+							 $('#comment_wrap').append("<div class='comment_box'>"+"<img src='/user/img/"+data[i].user.profileWithDefault +"'><p>"+ data[i].content+'</p></div>');
 						 }
 					}
 				},
