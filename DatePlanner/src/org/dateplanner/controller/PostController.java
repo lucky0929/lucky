@@ -110,13 +110,11 @@ public class PostController {
 		params.put("boardNo", boardNo);
 		params.put("userNo", user.getNo());
 		
-		boolean result = false;
-		
 		if(likeService.userCheck(params) == 0)
-		     { result = likeService.insertLike(params); }
-		else { result = likeService.deleteLike(params); }
+		     { likeService.insertLike(params); }
+		else { likeService.deleteLike(params); }
 		
-		return JsonUtil.convertToResponseEntity(result);
+		return JsonUtil.convertToResponseEntity(likeService.selectCount(boardNo));
 		
 	} //like()
 	

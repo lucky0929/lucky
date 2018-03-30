@@ -330,7 +330,6 @@ ul li {
 								</div>
 							</div>
 						</c:forEach>
-						<!--대댓글 처리하기-->
 					</div>
 				</div>
 			</div>
@@ -348,10 +347,11 @@ ul li {
 		
 		$("#more").click(function(){
 			$.ajax({
-				url:'/comment/commentSelect',
+				url:'/post/commentSelect',
 				type:'GET',
 				data:{p:p, no:${post.no}},
 				success:function(data){
+					p+=1;
 					var jsonData = JSON.parse(data);
 					$("#moreTarget").append("<p>"+jsonData.content+"</p>");
 				},
@@ -359,8 +359,8 @@ ul li {
                    alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
                    self.close();
 	           }
-			})
-		})
+			});
+		});
 		
 		$('#imageInput').change(function() {
 			fileUpload('img/upload', this.files, function(json) {

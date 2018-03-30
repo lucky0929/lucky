@@ -44,13 +44,13 @@ public class CommentController {
 	}
 	
 	@RequestMapping("commentDelete")
-	public ResponseEntity<String> commentDelete(int boardNo, int no, Integer orderNo, HttpServletRequest req) 
+	public ResponseEntity<String> commentDelete(int no, Integer orderNo) 
 			throws IOException {
 		return JsonUtil.convertToResponseEntity(commentService.deleteComment(new Comment(no, orderNo)));
 	}
 	
 	@RequestMapping("commentUpdate")
-	public ResponseEntity<String> commentUpdate(int boardNo, int orderNo, int no, String content) throws IOException{	
+	public ResponseEntity<String> commentUpdate(int orderNo, int no, String content) throws IOException{	
 		return JsonUtil.convertToResponseEntity(commentService.deleteComment(new Comment(no, orderNo, content)));
 	}
 	
