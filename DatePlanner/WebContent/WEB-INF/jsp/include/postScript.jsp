@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script>
-		/* st = $(this).scrollTop()/2
-			$(window).scroll(function(){if(st < 500) $('.parallex').css('top',st)}) */
-
+// 댓글 더보기 aJax
 		var window = $(window);
 		var $more = $("#more");
 		var p = 2;
@@ -29,16 +27,11 @@
 	           }
 			});
 		});
-		
-		$('#imageInput').change(function() {
-			fileUpload('img/upload', this.files, function(json) {
-				$image.val(json.result)
-			})
-		});
-
+// 페럴렉스
 		$(window).scroll(function() {
 			if ($(window).scrollTop() / 2 < 500) {
 				$('.parallex').css('top', $(window).scrollTop() / 2);
 			} //if
 		});
-	</script>
+		
+</script>
