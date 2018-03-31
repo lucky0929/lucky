@@ -147,7 +147,7 @@
 		</div>
 		<div id="moreTarget"></div>
 		<button id="more">더보기</button>
-	</div>
+	</div> 
 	<jsp:include page="../include/postScript.jsp" flush="false"/>
 </body>
 </html>
