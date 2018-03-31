@@ -113,7 +113,41 @@
 	ORDER BY regdate DESC
 	LIMIT #{page.startContent}, #{page.contentCount}
   </select>
-  
+
+  <select id="selectPackageWithRegion" resultType="Post">
+	SELECT
+	  b.no, title, content, image, b.user_no, b.region_no regionNo, packageable, b.regdate,
+	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like'
+	FROM
+	  board b
+	JOIN
+	  users u
+	ON
+	  user_no = u.no
+	WHERE
+	  b.region_no = #{regionNo}
+	  AND
+	  title = #{title}
+	ORDER BY regdate DESC
+	LIMIT #{page.startContent}, #{page.contentCount}
+  </select>
+
+  <select id="selectPackageWithRegionAndTitle" resultType="Post">
+	SELECT
+	  b.no, title, content, image, b.user_no, b.region_no regionNo, packageable, b.regdate,
+	  u.no 'user.no', nickname 'user.nickname', (SELECT COUNT(no) from `like` where board_no = b.no) 'like'
+	FROM
+	  board b
+	JOIN
+	  users u
+	ON
+	  user_no = u.no
+	WHERE
+	  b.region_no = #{regionNo}
+	ORDER BY regdate DESC
+	LIMIT #{page.startContent}, #{page.contentCount}
+  </select>
+
   <select id="selectByRegionWithPage" resultType="Post">
 	SELECT
 	  b.no, title, content, image, b.user_no, b.region_no regionNo, packageable, b.regdate,

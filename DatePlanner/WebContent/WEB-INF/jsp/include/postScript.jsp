@@ -1,6 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script>
+//댓글 입력
+$('#comment_wrap').on('submit', '.inputForm', function(e) {
+    e.preventDefault();
+   	alert("입력될 값" + $(this).children("textarea").val());
+    $.ajax({
+    	url:'/post/commentInsert',
+        data: { data, content:$(this).children("textarea").val() },
+        success: function() {
+        	alert("입력해버렷");
+        },
+        error:function(textStatus, errorThrown){
+               alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+               self.close();
+        }
+    });
+});
+
+//대댓글 입력
+	$('#comment_wrap').on('submit', '.reInputForm', function(e) {
+	    e.preventDefault();
+	   	alert("입력될 값" + $(this).children("textarea").val());
+	    $.ajax({
+	    	url:'/post/commentInsert',
+	        data: { data, content:$(this).children("input").val() },
+	        success: function() {
+	        	alert("입력해버렷");
+	        },
+	        error:function(textStatus, errorThrown){
+	               alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	               self.close();
+	        }
+	    });
+	});
+
+
+//댓글 수정
+	$('#comment_wrap').on('submit', '.updateForm', function(e) {
+	    e.preventDefault();
+	   	alert("수정될 값" + $(this).children("input").val());
+	    $.ajax({
+	    	url:'/post/commentUpdate',
+	        data: { data, content:$(this).children("input").val() },
+	        success: function() {
+	        	alert("수정해버렷");
+	        },
+	        error:function(textStatus, errorThrown){
+	               alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	               self.close();
+	        }
+	    });
+	});
+
 // 댓글 삭제
     $('#comment_wrap').on('submit', '.deleteForm', function(e) {
         e.preventDefault();
@@ -10,12 +62,7 @@
         	url:'/post/commentDelete',
             data: data,
             success: function() {
-            	/* 
-            	$(this).unwrap();
-            	$(this).unwrap();
-            	$(this).remove();
-            	*/
-            	$(this).parents(".comment_box");
+            	$(this).parent(".comment_box").remove();
             },
             error:function(textStatus, errorThrown){
                    alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -55,28 +102,27 @@
 	});
 	
 // 추천		
-$("#good").click(function() {
+var likeCheck = ${likeCheck};
+
+   $("#good_box").on('click', '#good', function() {
         
-		var likeCheck = ${likeCheck};
-        
-        if(likeCheck==1)
-            { $('#good').css('color','red');   likeCheck = 0; }
-        else{ $('#good').css('color','black'); likeCheck = 1; }
+      $('#good').css('color',likeCheck?'black':'red');
+      likeCheck = !likeCheck;
 
         $.ajax({
             url:'/post/like' ,
             type:'GET' ,
             data:{boardNo:${post.no}} ,
             success:function(data){
-                $('#good>span').text(data);
+                $('#good_box>span').text(data);
             },
             error:function(textStatus, errorThrown){
                 alert("에러 발생 \n" + textStatus + " : " + errorThrown);
                 self.close();
             }
         }) 
-    })
-    
+    });
+   
 // 페럴렉스
 	var window = $(window);
 	$(window).scroll(function() {
