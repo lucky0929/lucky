@@ -52,17 +52,18 @@
 
 		<div class="content">${post.content}</div>
 
-		<div id="good">
+		<div id="good_box">
 			<c:choose>
 				<c:when test="${likeCheck eq 1}">
-					<a href="../like?boardNo=${post.no}"><i class="fas fa-heart" style="color: red"></i></a>
+					<i id="good" class="fas fa-heart" style="color: red"></i>
 				</c:when>
 				<c:otherwise>
-					<a href="../like?boardNo=${post.no}"><i class="fas fa-heart"></i></a>
+					<i id="good" class="fas fa-heart"></i>
 				</c:otherwise>
 			</c:choose>
 			<span style="display: block">${like}</span>
 		</div>
+		
 		<c:if test="${userNo eq post.user.no}">
 			<div id="my_post">
 				<a href="../update/${post.no}"><button class="btn btn-warning">수정</button></a> <a href="../delete/${post.no}"><button
@@ -78,12 +79,14 @@
 								style="width: 50px; height: 50px; float: left;"></a> <span
 								style="float: left; font-weight: bold; padding-left: 10px; margin-top: 15px">${loginInfo.nickname}</span>
 						</div>
-						<form action="../commentInsert">
-							<input type="hidden" name="boardNo" value="${post.no}">
-							<textarea class="form-control" name="content" placeholder="댓글을 입력해주세요"
+						
+						<!-- 댓글입력 -->
+						<form data-boardNo=${boardNo } class="comment_insert">
+							<textarea class="form-control " placeholder="댓글을 입력해주세요"
 								style="min-height: 150px; height: auto; resize: none"></textarea>
-							<button type="submit" class="btn btn-default" style="float: right">입력!</button>
+							<button class="btn btn-default" style="float: right">입력!</button>
 						</form>
+						
 					</div>
 
 					<div id="comment_wrap" style="float: left; width: 100%">
@@ -108,22 +111,16 @@
 									</div>
 								</div>
 
-								<div class="comment_control">
+								<div class="comment_control"><!-- 댓글삭제 -->
 									<c:if test="${userNo eq comment.user.no}">
-
-										<form class="delete" action="../commentDelete">
-											<input type="hidden" name="boardNo" value="${post.no}" /> <input type="hidden" name="orderNo"
-												value="${comment.orderNo}" /> <input type="hidden" name="no" value="${comment.no}" />
-											<button type="submit" class=" btn btn-default">삭제</button>
+										<form class="deleteForm" data-boardNo=${boarNo } data-orderNo=${orderNo } data-No=${no } >
+											<button class=" btn btn-warning">삭제</button>
 										</form>
 
-										<div class="update">
-											<form action="../commentUpdate">
-												<input type="hidden" name="orderNo" value="${comment.orderNo}" /> 
-												<input type="hidden" name="no" value="${comment.no}" /> 
-												<input type="hidden" name="boardNo" value="${post.no}" /> 
-												<input type="text" name="content" placeholder="수정할 내용" />
-												<button type="submit" class=" btn btn-default" data-no="2" data-order="3">수정하기</button>
+										<div class="update"><!-- 댓글수정 -->
+											<form class="updateForm" data-orderNo=${orderNo } data-No=${no } data-boardNo=${boardNo }>
+												<input type="text" placeholder="수정할 내용" />
+												<button class=" btn btn-default">수정하기</button>
 											</form>
 										</div>
 									</c:if>
@@ -132,10 +129,9 @@
 								<div class="reply_btn">
 									<c:if test="${comment.orderNo == 0}">
 										<!-- 대댓글일경우 -->
-										<form action="../reCommentInsert">
-											<input type="hidden" name="no" value="${comment.no}" /> <input type="hidden" name="boardNo" value="${post.no}" /> 
-											<input type="text" name="content" placeholder="답글달기" />
-											<button type="submit" class=" btn btn-default">답글달기</button>
+										<form class="reinputForm" data-no=${no } data-boardNo=${boardNo }>
+											<input type="text" placeholder="답글달기" />
+											<button class=" btn btn-default">답글달기</button>
 										</form>
 									</c:if>
 								</div>

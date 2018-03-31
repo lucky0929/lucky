@@ -104,10 +104,10 @@ $('#comment_wrap').on('submit', '.inputForm', function(e) {
 // 추천		
 var likeCheck = ${likeCheck};
 
-   $("#good_box").on('click', '#good', function() {
+	$("#good_box").on('click', '#good', function() {
         
-      $('#good').css('color',likeCheck?'black':'red');
-      likeCheck = !likeCheck;
+		$('#good').css('color',likeCheck?'black':'red');
+		likeCheck = !likeCheck;
 
         $.ajax({
             url:'/post/like' ,

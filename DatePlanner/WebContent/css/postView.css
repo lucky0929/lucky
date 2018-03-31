@@ -187,3 +187,13 @@
 	.repIn {
 		margin-right: -50px;
 	}
+	
+	#good{
+		cursor: pointer;
+		display: inline-block;
+		font-size: 2.5em;
+	}
+	
+	#good_box span{
+		font-size: 2em;
+	}
