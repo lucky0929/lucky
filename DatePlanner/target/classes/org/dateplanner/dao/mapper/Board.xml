@@ -125,7 +125,9 @@
 	ON
 	  user_no = u.no
 	WHERE
-	  b.region_no = #{regionNo}
+	  z
+	  AND
+	  (packageable = 1 AND packageable = true)
 	ORDER BY regdate DESC
 	LIMIT #{page.startContent}, #{page.contentCount}
   </select>

@@ -39,21 +39,31 @@ public class PostController {
 	@RequestMapping("write")
 	public ModelAndView write(HttpSession session) { return new ModelAndView().addObject("regionNo", Region.getRegionNo(session)); }
 	
+	/*aAjax*/
 	@RequestMapping("img/upload")
 	public ResponseEntity<String> writeUpload(MultipartHttpServletRequest request)
 			throws IOException { return JsonUtil.convertToResponseEntity(Collections.singletonMap("result", FileReceiver.receiveFile(request, "/post/img/"))); }
 	
+	/*aAjax*/
 	@RequestMapping("img/upload/list")
 	public ResponseEntity<String> writeUploadList(MultipartHttpServletRequest request)
 			throws IOException { return JsonUtil.convertToResponseEntity(FileReceiver.receiveFiles(request, "/post/img/")); }
 	
-//	@RequestMapping("test")
-//	public ResponseEntity<String> test(@RequestParam Integer num) throws IOException { 
-//		System.out.println("test 접근");
-//		return JsonUtil.convertToResponseEntity(postService.selectOne(num));
-//	}
-//	@RequestMapping("testInput")
-//	public String testInput(){ return "post/testInput"; }
+	/*aAjax*/
+	@RequestMapping("selectPackageWithRegionAndTitle")
+	public ResponseEntity<String> selectPackageWithRegionAndTitle(@RequestParam Integer region, String title, int p) 
+			throws IOException { 
+		return JsonUtil.convertToResponseEntity(
+				postService.selectPackageWithRegionAndTitle(title, region, new Page(5,5,p)));
+	}
+	
+	/*aAjax*/
+	@RequestMapping("selectPackageWithRegion")
+	public ResponseEntity<String> selectPackageWithRegion(@RequestParam Integer region, int p) 
+			throws IOException { 
+		return JsonUtil.convertToResponseEntity(
+				postService.selectPackageWithRegion(region, new Page(5,5,p)));
+	}
 	
 	@RequestMapping(path = "doWrite", params = { "title", "content", "regionNo", "files" })
 	public String doWrite(HttpSession session, @ModelAttribute Post post) {
@@ -99,6 +109,7 @@ public class PostController {
 		
 	} //view();
 	
+	/*aAjax*/
 	@RequestMapping("like")
 	public ResponseEntity<String> likeInsert(@RequestParam int boardNo, HttpSession session, HttpServletRequest req) 
 			throws IOException {

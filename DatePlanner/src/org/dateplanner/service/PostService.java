@@ -24,6 +24,13 @@ public class PostService {
 		else{ return boardDAO.selectByTitleAndRegionWithPage(page.initTotal(total), title); }
 	}
 
+	public List<Post> selectPackageWithRegionAndTitle(String title, int regionNo, Page page) {
+		return boardDAO.selectPackageWithRegionAndTitle(title, regionNo, page);
+	}
+	public List<Post> selectPackageWithRegion(int regionNo, Page page) {
+		return boardDAO.selectPackageWithRegion(regionNo, page);
+	}
+	
 	public List<Post> selectByRegionWithPage(int regionNo, Page page) {
 	
 		return boardDAO.selectByRegionWithPage(regionNo, page.initTotal(boardDAO.selectTotalByRegion(regionNo)));

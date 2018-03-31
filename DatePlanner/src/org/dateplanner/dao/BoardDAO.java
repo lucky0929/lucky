@@ -23,5 +23,7 @@ public interface BoardDAO {
 	public List<Post> selectByUserNoWithPage(@Param(value = "userNo") int userNo, @Param(value = "page") Page page);
 	public List<Post> selectByTitleAndRegionWithPage(@Param(value = "page") Page page, @Param(value = "title") String title);
 	public List<Post> selectByRegionWithPage(@Param(value = "regionNo") int regionNo, @Param(value = "page") Page page);
+	public List<Post> selectPackageWithRegion(@Param(value = "regionNo") int regionNo, @Param(value = "page") Page page);
+	public List<Post> selectPackageWithRegionAndTitle(@Param(value = "title") String title, @Param(value = "regionNo") int regionNo, @Param(value = "page") Page page);
 	
 } //interface BoardDAO;
