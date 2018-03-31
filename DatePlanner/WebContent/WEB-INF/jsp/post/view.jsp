@@ -81,7 +81,7 @@
 						</div>
 						
 						<!-- 댓글입력 -->
-						<form data-boardNo=${boardNo } class="comment_insert">
+						<form data-boardno="${post.no }" class="inputForm"> 
 							<textarea class="form-control " placeholder="댓글을 입력해주세요"
 								style="min-height: 150px; height: auto; resize: none"></textarea>
 							<button class="btn btn-default" style="float: right">입력!</button>
@@ -113,7 +113,7 @@
 
 								<div class="comment_control"><!-- 댓글삭제 -->
 									<c:if test="${userNo eq comment.user.no}">
-										<form class="deleteForm" data-boardNo=${boarNo } data-orderNo=${orderNo } data-No=${no } >
+										<form class="deleteForm" data-boardno="${post.no }" data-orderno="${comment.orderNo }" data-No="${comment.no }" >
 											<button class=" btn btn-warning">삭제</button>
 										</form>
 
@@ -129,7 +129,7 @@
 								<div class="reply_btn">
 									<c:if test="${comment.orderNo == 0}">
 										<!-- 대댓글일경우 -->
-										<form class="reinputForm" data-no=${no } data-boardNo=${boardNo }>
+										<form class="reInputForm" data-no="${comment.no }" data-boardNo="${post.no }">
 											<input type="text" placeholder="답글달기" />
 											<button class=" btn btn-default">답글달기</button>
 										</form>

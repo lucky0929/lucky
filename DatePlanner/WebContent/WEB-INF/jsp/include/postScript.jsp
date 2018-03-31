@@ -2,14 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script>
 //댓글 입력
-$('#comment_wrap').on('submit', '.inputForm', function(e) {
+$('#comment_write').on('submit', '.inputForm', function(e) {
     e.preventDefault();
-   	alert("입력될 값" + $(this).children("textarea").val());
     $.ajax({
     	url:'/post/commentInsert',
-        data: { data, content:$(this).children("textarea").val() },
+        data: { boardNo:
+        	$(this).data("boardno"), content:$(this).children("textarea").val() },
         success: function() {
-        	alert("입력해버렷");
+        	$(".form-control").val("");
         },
         error:function(textStatus, errorThrown){
                alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -21,12 +21,11 @@ $('#comment_wrap').on('submit', '.inputForm', function(e) {
 //대댓글 입력
 	$('#comment_wrap').on('submit', '.reInputForm', function(e) {
 	    e.preventDefault();
-	   	alert("입력될 값" + $(this).children("textarea").val());
+	   	
 	    $.ajax({
-	    	url:'/post/commentInsert',
-	        data: { data, content:$(this).children("input").val() },
+	    	url:'/post/reCommentInsert',
+	        data: { no:$(this).data("no"), content:$(this).children("input").val(), boardNo:$(this).data("boardno") },
 	        success: function() {
-	        	alert("입력해버렷");
 	        },
 	        error:function(textStatus, errorThrown){
 	               alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -44,7 +43,6 @@ $('#comment_wrap').on('submit', '.inputForm', function(e) {
 	    	url:'/post/commentUpdate',
 	        data: { data, content:$(this).children("input").val() },
 	        success: function() {
-	        	alert("수정해버렷");
 	        },
 	        error:function(textStatus, errorThrown){
 	               alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -56,19 +54,21 @@ $('#comment_wrap').on('submit', '.inputForm', function(e) {
 // 댓글 삭제
     $('#comment_wrap').on('submit', '.deleteForm', function(e) {
         e.preventDefault();
-        var data = $(this).data();
-        
-        $.ajax({
-        	url:'/post/commentDelete',
-            data: data,
-            success: function() {
-            	$(this).parent(".comment_box").remove();
-            },
-            error:function(textStatus, errorThrown){
-                   alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-                   self.close();
-	        }
-        });
+        if (confirm("삭제하시겠습니까?")) {
+	        $(this).parent().parent().remove();
+	        $.ajax({
+	        	url:'/post/commentDelete',
+	            data: { no:$(this).data("no"), orderNo:$(this).data("orderno") },
+	            success: function() {
+	            },
+	            error:function(textStatus, errorThrown){
+	                   alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	                   self.close();
+		        }
+	        });
+        } else {
+        	
+        }
     });
     
 // 댓글 더보기		
