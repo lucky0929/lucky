@@ -6,6 +6,23 @@
 		var $more = $("#more");
 		var p = 2;
 		
+	    $('#comment_wrap').on('submit', '.deleteForm', function(e) {
+	        e.preventDefault();
+	        var data = $(this).data();
+	        $('#loadingImg').fadeIn(400);
+	        $.ajax({
+	        	url:'/post/commentDelete',
+	            data: data,
+	            success: function() {
+	            	$('#loadingImg').fadeOut(400);
+	            },
+	            error:function(textStatus, errorThrown){
+	                   alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	                   self.close();
+		        }
+	        })
+	    })
+		
 		$("#more").click(function(){
 			$.ajax({
 				url:'/post/commentSelect',

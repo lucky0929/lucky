@@ -7,61 +7,10 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css">
+	<link rel="stylesheet" href="/css/postUpdateWrite.css">
 	<title>글쓰기</title>
 	<style>
-			input[name="packageable"] {
-			width:15px;
-			height:15px;
-		}
-		input[name="title"] {
-			height : 45px;
-			line-height: 45px;
-			text-indent :10px;
-			font-size:30px;
-		}
-		input[name="title"]:FOCUS { outline-style: none; }
-		table tr>td:NTH-CHILD(1) {
-			min-width: 100px;
-			padding: 20px;
-			text-align: center;
-			font-size:20px;
-			font-weight: 800;
-			background-color: #999;
-		}
-		.button:HOVER {
-			background-color: #000;
-			color: #fff;
-		}
-		.button {
-			transition: .4s ease;
-			float:right;
-		    width: 200px;
-		    height: 50px;
-		    font-size: 23px;
-		    font-weight: 600;
-		    background: center;
-		    border: 3px solid gray;
-		}
-		        table{
-            width: 100%;
-            text-align: center;
-        }
-
-        input{
-            width: 100%;
-        }
-
-        .jumbotron table{
-            font-size: 18px;
-        }
-
-        table tr td{
-            padding: 10px;
-        }
-
-        ul{
-            list-style: none;
-        }
+        table{ text-align: center; }
 	</style>
 </head>
 <jsp:include page="../include/nav.jsp" flush="false"/>
