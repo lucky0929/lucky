@@ -66,7 +66,7 @@ $("#good").click(function() {
         $.ajax({
             url:'/post/like' ,
             type:'GET' ,
-            data:{boardNo:${post.no}} ,#
+            data:{boardNo:${post.no}} ,
             success:function(data){
                 $('#good>span').text(data);
             },
