@@ -6,200 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/postView.css">
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>${post.title}-DatePlanner</title>
-<style>
-	#selected {
-		background-color: gray;
-		color: #fff;
-	}
-	
-	.navbar {
-		margin-bottom: 0;
-	}
-	
-	/*네비게이션바 고정*/
-	.affix {
-		top: 0;
-		width: 100%;
-		z-index: 9999 !important;
-	}
-	
-	.parallex {
-		position: relative;
-		height: 718px;
-		background-image: url("/post/img/${post.image}");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-color: dimgray;
-		text-align: center;
-		font-weight: bold;
-		color: white;
-		z-index: -1;
-		opacity: .8;
-	}
-	
-	.parallex:before {
-		content: "";
-		display: block;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		position: absolute;
-		background-color: rgba(0, 0, 0, .4);
-	}
-	
-	#good {
-		display: inline-block;
-	}
-	
-	#good a {
-		font-size: 3em;
-		text-decoration: none;
-		color: darkgray;
-	}
-	
-	ul li {
-		list-style: none;
-	}
-	
-	.nickname {
-		font-weight: bold;
-		font-size: 1.3em;
-	}
-	
-	.comment {
-		font-weight: bold;
-		width: 750px;
-		height: auto;
-	}
-	
-	#board_info {
-		padding-top: 300px;
-	}
-	
-	#title {
-		opacity: .9;
-		width: 100%;
-		font-size: 40px;
-		height: 45px;
-		display: block;
-		text-decoration: underline;
-		z-index: 5;
-	}
-	
-	#writer {
-		opacity: .9;
-		font-size: 25px;
-		width: 100%;
-		height: 50px;
-		display: inline;
-		z-index: 5;
-	}
-	
-	#write_D {
-		opacity: .9;
-		font-size: 15px;
-		width: 100%;
-		height: 20px;
-		display: inline;
-		z-index: 5;
-	}
-	
-	#region {
-		opacity: .9;
-		width: 100%;
-		font-size: 25px;
-		height: 45px;
-		display: block;
-		padding-top: 20px;
-		z-index: 5;
-	}
-	
-	.content {
-		text-align: center;
-		padding-top: 50px;
-	}
-	
-	.container-fluid {
-		background-color: white;
-		text-align: center;
-	}
-	
-	.re_comment {
-		text-align: right;
-	}
-	
-	.profile img {
-		display: block;
-		width: 50px;
-		height: 50px;
-	}
-	
-	.comment_box:nth-child(1) {
-		padding-top: 10px;
-		background-color: #F9F9F9;
-		border-top: #00ACC1 1px solid;
-	}
-	
-	.comment_box {
-		padding-top: 10px;
-		background-color: #F9F9F9;
-		border-bottom: #00ACC1 1px solid;
-		float: left;
-		text-align: left;
-		width: 100%;
-	}
-	
-	.reply_btn {
-		text-align: right;
-		width: 50%;
-		padding: 10px;
-		float: right;
-		display: inline-block;
-	}
-	
-	.reply_btn input {
-		width: 80%;
-	}
-	
-	.update {
-		text-align: right;
-		float: right;
-		width: 85%;
-		padding: 10px;
-		display: inline-block;
-	}
-	
-	.delete {
-		text-align: right;
-		float: right;
-		padding: 10px;
-		display: inline-block;
-	}
-	
-	.update input {
-		width: 75%;
-	}
-	
-	.comment_control {
-		text-align: right;
-		width: 50%;
-		float: right;
-		display: inline-block;
-	}
-	
-	#my_post {
-		padding: 15px;
-	}
-	
-	.repIn {
-		margin-right: -50px;
-	}
-</style>
 </head>
 <body>
 	<nav class="navbar navbar-inverse" data-spy="affix">
@@ -312,7 +123,7 @@
 												<input type="hidden" name="no" value="${comment.no}" /> 
 												<input type="hidden" name="boardNo" value="${post.no}" /> 
 												<input type="text" name="content" placeholder="수정할 내용" />
-												<button type="submit" class=" btn btn-default">수정하기</button>
+												<button type="submit" class=" btn btn-default" data-no="2" data-order="3">수정하기</button>
 											</form>
 										</div>
 									</c:if>
@@ -337,47 +148,6 @@
 		<div id="moreTarget"></div>
 		<button id="more">더보기</button>
 	</div>
-	<script>
-		/* st = $(this).scrollTop()/2
-			$(window).scroll(function(){if(st < 500) $('.parallex').css('top',st)}) */
-
-		var window = $(window);
-		var $more = $("#more");
-		var p = 2;
-		
-		$("#more").click(function(){
-			$.ajax({
-				url:'/post/commentSelect',
-				type:'GET',
-				data:{p:p, boardNo:${post.no}},
-				success:function(data){
-					if(data.length <= 0){
-						alert("댓글이 없습니다.");
-					} else {
-						p+=1;
-						 for (var i = 0; i < data.length; i++){ 
-							 $('#comment_wrap').append("<div class='comment_box'>"+"<img src='/user/img/"+data[i].user.profileWithDefault +"'><p>"+ data[i].content+'</p></div>');
-						 }
-					}
-				},
-				error:function(textStatus, errorThrown){
-                   alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-                   self.close();
-	           }
-			});
-		});
-		
-		$('#imageInput').change(function() {
-			fileUpload('img/upload', this.files, function(json) {
-				$image.val(json.result)
-			})
-		});
-
-		$(window).scroll(function() {
-			if ($(window).scrollTop() / 2 < 500) {
-				$('.parallex').css('top', $(window).scrollTop() / 2);
-			} //if
-		});
-	</script>
+	<jsp:include page="../include/postScript.jsp" flush="false"/>
 </body>
 </html>
