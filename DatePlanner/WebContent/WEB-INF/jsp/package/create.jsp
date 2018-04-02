@@ -113,7 +113,7 @@
         $('#createForm').submit(function(e) {
         	if($inputTitle.val().length < 5 || $inputTitle.val().length > 50) { alert('제목은 5자 ~ 50자 범위여야 합니다'); return false; }
         	if($inputContent.val().length < 10 || $inputContent.val().length > 100) { alert('내용은 10자에서 100자 범위여야 합니다'); return false; }
-        	if($("#selectedBox li").length > 10) { alert("패키지는 10개를 초과 할 수 없습니다."); return false; }
+        	if($("#selectedBox li").length > 10 || $("#selectedBox li").length > 2) { alert("패키지는 10개를 초과 할 수 없습니다."); return false; }
         	
             var arr = []; $.each($select[0].find('li'), function() { arr.push(this.dataset.no) });
             $placeList.val(arr.join(','))
