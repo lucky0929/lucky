@@ -17,7 +17,7 @@ $('#comment_write').on('submit', '.inputForm', function(e) {
         }
     });
 });
- 
+
 //대댓글 입력
 	$('#comment_wrap').on('submit', '.reInputForm', function(e) {
 	    e.preventDefault();
@@ -66,9 +66,7 @@ $('#comment_write').on('submit', '.inputForm', function(e) {
 	                   self.close();
 		        }
 	        });
-        } else {
-        	
-        }
+        } //confirm()
     });
     
 // 댓글 더보기		

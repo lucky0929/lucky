@@ -25,9 +25,7 @@
 					<td>게시글 배경사진</td>
 					<td colspan="3"><input id="imageInput" type="file"> <input id="image" type="hidden" name="image" readonly /></td>
 				</tr>
-					
 				<tr>
-				
 					<td>해당 지역</td>
 					<td>
 						<select name="regionNo">
@@ -47,8 +45,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.min.js"></script>
 	<script src="../js/FileUpload.js"></script>
 	<script>
-		$('form').submit(function(){$(this).submit(function(e){e.preventDefault()})});
-	
+		var $inputTitle = $("input[name='title']"),
+			$inputContent = $("textarea[name='content']");
+		
+		$('form').submit(function(e){
+			if($inputTitle.val().length < 5 || $inputTitle.val().length > 50){ alert("제목은 5자에서 50자여야 합니다."); return false; }
+			if($inputContent.val().length < 10 || $inputContent.val().length > 2000){ alert("내용은 10자에서 2000자 사이여야 합니다."); return false; }
+			$(this).submit(function(e){e.preventDefault()})}
+		})
+		
 		var $image = $('#image'),
 			$summernote = $('#summernote');
 		

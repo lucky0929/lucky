@@ -12,23 +12,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title>DatePlanner</title>
 	<style>
-		.container {
-			text-align: center;
-		}
-		table {
-			width: 100%;
-			font-size: larger;
-		}
-		input {
-			width: 100%;
-		}
-		select {
-			text-align: left;
-			float: left;
-		}	
-		#jumbotron_wrap {
-			padding-top: 10%;
-		}
+		.container { text-align: center; }
+		table  { width: 100%; font-size: larger; }
+		input  { width: 100%; }
+		select { text-align: left; float: left; }	
+		#jumbotron_wrap { padding-top: 10%; }
 	</style>
 </head>
 <body>
@@ -119,6 +107,21 @@
 		var $password = $('#password'), $profileInput = $('#profileInput')
 		$profile = $('#profile'), submittable = false;
 
+		var $intputId = $('input[name="id"]'),
+		$password = $('#password'),
+		$inputName = $('input[name="name"]'),
+		$inputNickname = $('input[name="nickname"]'),
+		$inputIntroduction = $('input[name="introduction"]');
+
+		$('#joinForm').submit(function(e){
+			if($inputId.val().length < 8 || $inputId.val().length > 20){ alert("아이디는 8자리에서 20자리 이하여야 합니다"); return false; }
+			if($inputName.val().length < 2 || $inputName.val().length > 8){ alert("이름은 2자리에서 8자리 이하여야 합니다"); return false; }
+			if($inputNickname.val().length < 2 || $inputNickname.val().length > 10){ alert("닉네임은 2자리에서 10자리 이하여야 합니다"); return false; }
+			if($inputIntroduction.val().length > 200){  alert("한줄소개는 200자리 이하여야 합니다"); return false; }
+		})
+		 
+
+		
 	 // 비밀번호 패턴 체크 (8자 이상, 문자, 숫자, 특수문자 포함여부 체크)
 		function checkPasswordPattern(str) {
 			var pattern1 = /[0-9]/; // 숫자 

@@ -19,7 +19,7 @@ public interface BoardDAO {
 	public int selectTotalByTitle(String title);
 	public Post selectByNo(int no);
 	public List<Post> selectPackageable(int userNo);
-
+	
 	public List<Post> selectByUserNoWithPage(@Param(value = "userNo") int userNo, @Param(value = "page") Page page);
 	public List<Post> selectByTitleAndRegionWithPage(@Param(value = "page") Page page, @Param(value = "title") String title);
 	public List<Post> selectByRegionWithPage(@Param(value = "regionNo") int regionNo, @Param(value = "page") Page page);

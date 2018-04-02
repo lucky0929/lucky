@@ -18,6 +18,7 @@
 		input  { width: 100%; }
 		select { text-align: left; float: left; }
 		#jumbotron_wrap { padding-top: 10%  }
+		input["name='name'"]{ background:red; }
 	</style>
 </head>
 <body>
@@ -33,20 +34,20 @@
 						<tbody>
 							<tr>
 								<td>아이디 :</td>
-								<td><input name="id" required></td>
+								<td><input name="id" placeholder="8자 이상 20자 이하" required></td>
 							</tr>
 							<tr>
 								<td>비밀번호 :</td>
-								<td><input id="password" name="password" type="password"
+								<td><input id="password" name="password" type="password" 
 									required placeholder="비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성하여야 합니다."></td>
 							</tr>
 							<tr>
 								<td>이름 :</td>
-								<td><input name="name" required></td>
+								<td><input name="name" placeholder="2자 이상 20자 이하" required></td>
 							</tr>
 							<tr>
 								<td>닉네임 :</td>
-								<td><input name="nickname" required></td>
+								<td><input name="nickname" placeholder="2자 이상 10자 이하" required></td>
 							</tr>
 							<tr>
 								<td>지역</td>
@@ -68,7 +69,7 @@
 							</tr>
 							<tr>
 								<td>한줄소개 :</td>
-								<td><input name="introduction"></td>
+								<td><input name="introduction" placeholder="200자 이하"></td>
 							</tr>
 							<tr>
 								<td colspan="2"><button id="submit" class="btn btn-info">회원가입</button></td>
@@ -87,19 +88,30 @@
 		var $password = $('#password'), $profileInput = $('#profileInput')
 		$profile = $('#profile'), submittable = false;
 		
-		 // 비밀번호 패턴 체크 (8자 이상, 문자, 숫자, 특수문자 포함여부 체크)
+		var $intputId = $('input[name="id"]'),
+			$password = $('#password'),
+			$inputName = $('input[name="name"]'),
+			$inputNickname = $('input[name="nickname"]'),
+			$inputIntroduction = $('input[name="introduction"]');
+		
+		 // 비밀번호 패턴 체크 (8자 이상, 문자, 숫자 포함여부 체크)
 		function checkPasswordPattern(str) {
-			var pattern1 = /[0-9]/; // 숫자 
+			var pattern1 = /[0-9]/; // 숫자
 			var pattern2 = /[a-zA-Z]/; // 문자 
-			var pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자 
-			if (!pattern1.test(str) || !pattern2.test(str)
-					|| !pattern3.test(str) || str.length < 8) {
-				alert("비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성하여야 합니다.");
+			if (!pattern1.test(str) || !pattern2.test(str) || str.length < 8) {
+				alert("비밀번호는 8자리 이상 문자, 숫자로 구성하여야 합니다.");
 				return false;
-			} else {
-				return true;
-			}
+			} 
+			else { return true; }
 		}
+		
+		$('#joinForm').submit(function(e){
+			if($inputId.val().length < 8 || $inputId.val().length > 20){ alert("아이디는 8자리에서 20자리 이하여야 합니다"); return false; }
+			if($inputName.val().length < 2 || $inputName.val().length > 8){ alert("이름은 2자리에서 8자리 이하여야 합니다"); return false; }
+			if($inputNickname.val().length < 2 || $inputNickname.val().length > 10){ alert("닉네임은 2자리에서 10자리 이하여야 합니다"); return false; }
+			if($inputIntroduction.val().length > 200){  alert("한줄소개는 200자리 이하여야 합니다"); return false; }
+		})
+		 
 		$("#submit").click(function (){ return checkPasswordPattern($password.val()); })
 		$profileInput.change(function (){
 			fileUpload('img/upload', $profileInput[0].files, function(json) { $profile.val(json.result) })

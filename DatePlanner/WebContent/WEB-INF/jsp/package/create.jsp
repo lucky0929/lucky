@@ -12,30 +12,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>DatePlanner</title>
     <style>
-        h1{
-            text-align: center;
-        }
-
-        table{
-            width: 100%;
-            text-align: center;
-        }
-
-        input{
-            width: 100%;
-        }
-
-        .jumbotron table{
-            font-size: 18px;
-        }
-
-        table tr td{
-            padding: 10px;
-        }
-
-        ul{
-            list-style: none;
-        }
+        h1{ text-align: center; }
+        table{ width: 100%; text-align: center; }
+        input{ width: 100%; }
+        .jumbotron table{ font-size: 18px; }
+        table tr td{ padding: 10px; }
+        ul{ list-style: none; }
     </style>
 </head>
 <body>
@@ -47,13 +29,9 @@
         <c:choose>
             <c:when test="${empty loginInfo}">
                 <ul class="nav navbar-nav navbar-right">
-
-                    <li><a href="../user/join"><span
-                            class="glyphicon glyphicon-user"></span>회원가입</a></li>
-
-                    <li><a href="../user/login"><span
-                            class="glyphicon glyphicon-log-in"></span>로그인</a></li>
-
+                    <li><a href="../user/join"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+                    <li><a href="../user/login">
+                    <span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
                 </ul>
             </c:when>
             <c:otherwise>
@@ -64,9 +42,7 @@
                     <li><a href="../../user/logout">로그아웃</a></li>
                 </ul>
             </c:otherwise>
-
         </c:choose>
-
     </div>
 </nav>
 
@@ -116,21 +92,32 @@
             </form>
         </div>
     </div>
+</div>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="../js/FileUpload.js"></script>
     <script>
         var $select = [$('#selectedBox'), $('#placeBox')],
             $image = $('#image'),
-            $placeList = $('#placeList');
-
+            $placeList = $('#placeList'),
+            $createForm = $('#createForm'),
+            $inputTitle = $('input[name="title"]'),
+            $inputContent = $('input[name="content"]');
+            
+        
         $('#imageInput').change(function() { fileUpload('img/upload', this.files, function(json) { $image.val(json.result) }) });
-        $.each($select, function(i, v) { v.on('click', 'li', function() { console.log(i); $(this).appendTo($select[1-i]) }) });
+        
+        $.each($select, function(i, v) {
+        		v.on('click', 'li', function() { $(this).appendTo($select[1-i]) })
+        });
+        
         $('#createForm').submit(function(e) {
+        	if($inputTitle.val().length < 5 || $inputTitle.val().length > 50) { alert('제목은 5자 ~ 50자 범위여야 합니다'); return false; }
+        	if($inputContent.val().length < 10 || $inputContent.val().length > 100) { alert('내용은 10자에서 100자 범위여야 합니다'); return false; }
+        	if($("#selectedBox li").length > 10) { alert("패키지는 10개를 초과 할 수 없습니다."); return false; }
+        	
             var arr = []; $.each($select[0].find('li'), function() { arr.push(this.dataset.no) });
             $placeList.val(arr.join(','))
         })
     </script>
-
-</div>
 </body>
 </html>
