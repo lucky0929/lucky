@@ -15,10 +15,25 @@
     VALUES
       (#{no}, (SELECT MAX(`order`)+1 FROM comments c WHERE no = #{no}), #{boardNo}, #{user.no}, #{content})
   </insert>
-
-  <select id="selectByBoardNo" parameterType="int" resultType="Comment">
+  
+  <select id="selectReComment" resultType="Comment" parameterType="int">
 	SELECT
       c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, u.no 'user.no', u.nickname 'user.nickname', u.profile 'user.profile'
+    FROM
+      comments c
+    JOIN
+      users u
+    ON
+      user_no = u.no
+    WHERE
+      c.no = #{no}
+    ORDER BY `order` DESC
+  </select>
+  
+  <select id="selectByBoardNo" parameterType="int" resultType="Comment">
+	SELECT
+      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, u.no 'user.no', u.nickname 'user.nickname', u.profile 'user.profile',
+      (SELECT COUNT(*) FROM comments WHERE `no`=c.no) replyCount
     FROM
       comments c
     JOIN

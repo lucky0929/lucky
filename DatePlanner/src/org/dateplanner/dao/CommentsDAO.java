@@ -10,9 +10,9 @@ public interface CommentsDAO {
 	public boolean insertComment(Comment comment);
 	public boolean insertReply(Comment reply);
 	public List<Comment> selectByBoardNo(@Param(value = "boardNo")int no, @Param(value = "page") Page page);
-	public  int	selectCount(int boardNo);
+	public List<Comment> selectReComment(int no);
+	public int selectCount(int boardNo);
 	public boolean update(Comment comment);
 	public boolean commentDelete(Comment comment);
 	public boolean reCommentDelete(Comment comment);
-	
 } //interface CommentsDAO;

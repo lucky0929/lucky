@@ -129,4 +129,19 @@ var likeCheck = ${likeCheck};
 		} //if
 	});
 	
+	
+//대댓글 불러오기
+	$.ajax({
+		url:'/post/reCommentSelect',
+		type:'GET',
+		data:no:/* 불러올 대댓글의 부모 no */,
+		success:function(data){
+			//불러온 값들 처리방법
+		},
+		error:function(textStatus, errorThrown){
+              alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+              self.close();
+       }
+	});
+	
 </script>

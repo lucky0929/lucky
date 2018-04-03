@@ -23,8 +23,12 @@ public class CommentController {
 	
 	@RequestMapping("commentSelect")
 	public ResponseEntity<String> commentSelect(int boardNo, Integer p, HttpSession session) throws IOException {
-		System.out.println(boardNo+", "+p);
 		return JsonUtil.convertToResponseEntity(commentService.selectByBoardNo(boardNo ,new Page(5, 5, p)));
+	}
+	
+	@RequestMapping("reCommentSelect")
+	public ResponseEntity<String> reCommentSelect(int no, HttpSession session) throws IOException {
+		return JsonUtil.convertToResponseEntity(commentService.selectReComment(no));
 	}
 	
 	@RequestMapping("commentInsert")

@@ -10,6 +10,7 @@ public class Comment {
 	private User user;
 	private String content;
 	private Timestamp regdate;
+	private int replyCount;
 
 	public Comment() { }
 	
@@ -42,12 +43,14 @@ public class Comment {
 	public User getUser() { return user; }
 	public String getContent() { return content; }
 	public String getRegdate() { return new Post().getFormattedRegdate(regdate); }
+	public int getReplyCount() { return replyCount; }
 	public void setNo(int no) { this.no = no; }
 	public void setOrderNo(Integer orderNo) { this.orderNo = orderNo; }
 	public void setBoardNo(int boardNo) { this.boardNo = boardNo; }
 	public void setUser(User user) { this.user = user; }
 	public void setContent(String content) { this.content = content; }
 	public void setRegdate(Timestamp regdate) { this.regdate = regdate; }
+	public void setReplyCount(int replyCount) { this.replyCount = replyCount; }
 	
 	@Override
 	public String toString() {

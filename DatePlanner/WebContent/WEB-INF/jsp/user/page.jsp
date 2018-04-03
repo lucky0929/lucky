@@ -148,7 +148,7 @@
       
       <c:if test="${mypage}">
       <div id="update">
-      <a href="/user/updateForm"><button class="btn btn-warning">개인정보 수정</button></a>
+	      <a href="/user/updateForm"><button class="btn btn-warning">개인정보 수정</button></a>
       </div>
       </c:if>
 
